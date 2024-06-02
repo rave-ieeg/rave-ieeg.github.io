@@ -1,7 +1,7 @@
 {% if page.cover.embed_demo_viewer %}
 
-  <link defer href="{{ '/assets/demo/lib/htmltools-fill-0.5.8.1/fill.css' | relative_url | bust_file_cache }}" rel="stylesheet">
-  <script src="/assets/demo/lib/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+  <link defer href="{{ 'assets/demo/lib/htmltools-fill-0.5.8.1/fill.css' | relative_url | bust_file_cache }}" rel="stylesheet">
+  <script src="assets/demo/lib/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 
   <style>
     .navbar-fit-content {
@@ -257,13 +257,13 @@ const $overlay = document.getElementById( "viewer-overlay" );
 
 </script>
 
-<script src="/assets/demo/lib/three-brain-1.0.0/threebrain-main.js"></script>
-<script src="/assets/demo/lib/threejs_brain-binding-1.1.0.9020/threejs_brain.js"></script>
+<script src="assets/demo/lib/three-brain-1.0.0/threebrain-main.js"></script>
+<script src="assets/demo/lib/threejs_brain-binding-1.1.0.9020/threejs_brain.js"></script>
 
 <script type="application/json" data-for="htmlwidget-b6baefbe903f3615dc28">{"x":{"data_filename":"config.json","settings":{"title":"","side_camera":true,"side_canvas_zoom":1,"side_canvas_width":250,"side_canvas_shift":[0,0],"color_maps":{"[Subject]":{"name":"[Subject]","time_range":[0,1],"value_range":[-1,1],"value_names":"PAV037","value_type":"discrete","color_keys":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],"color_vals":["0xFFA500","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000"],"color_levels":1,"hard_range":[],"alias":[]}},"default_colormap":"[Subject]","hide_controls":false,"control_center":[0,0,0],"camera_pos":[500,0,0],"font_magnification":1,"start_zoom":1,"show_legend":true,"render_timestamp":true,"control_presets":["subject2","surface_type2","hemisphere_material","surface_color","map_template","electrodes","voxel","animation","display_highlights"],
-"cache_folder":"/assets/demo/lib/threebrain_data-0/",
-"worker_script":"/assets/demo/lib/three-brain-1.0.0/threebrain-worker.js",
-"lib_path":"/assets/demo/lib/",
+"cache_folder":"assets/demo/lib/threebrain_data-0/",
+"worker_script":"assets/demo/lib/three-brain-1.0.0/threebrain-worker.js",
+"lib_path":"assets/demo/lib/",
 "default_controllers":{"Subject":"cvs_avg35_inMNI152"},"debug":false,"enable_cache":false,"background":"#FFFFFF","token":null,"show_inactive_electrodes":true,"side_display":true,"control_display":true,"qrcode":null,"custom_javascript":"app.startDemo()"},"force_render":true},"evals":[],"jsHooks":[]}</script>
 <script type="application/htmlwidget-sizing" data-for="htmlwidget-b6baefbe903f3615dc28">{"viewer":{"width":"100%","height":"calc( 100vh - 150px )","padding":"0px","fill":true},"browser":{"width":"100%","height":"calc( 100vh - 150px )","padding":"0px","fill":false}}</script>
 {% endif %}
