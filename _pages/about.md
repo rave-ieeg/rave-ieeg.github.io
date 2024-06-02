@@ -11,7 +11,7 @@ cover:
   features: 
     - class: active
       text: >
-        Placeholder text to introduce the features
+        (Placeholder text to introduce the features)
   links:
     - text: Play Demo
       url: \#
