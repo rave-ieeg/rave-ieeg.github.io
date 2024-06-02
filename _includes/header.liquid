@@ -1,140 +1,269 @@
-<header>
-  <!-- Nav Bar -->
-  <nav id="navbar" class="navbar navbar-light navbar-expand-sm {% if site.navbar_fixed %}fixed-top{% else %}sticky-top{% endif %}" role="navigation">
-    <div class="container">
-      {% if page.permalink != '/' %}
-        <a class="navbar-brand title font-weight-lighter" href="{{ site.baseurl }}/">
-          {% if site.title == 'blank' %}
-            {% if site.first_name %}
-              <span class="font-weight-bold">
-                {{- site.first_name -}}
-              </span>
-            {% endif %}
-            {% if site.middle_name %}
-              {{- site.middle_name -}}
-            {% endif %}
-            {% if site.last_name %}
-              {{- site.last_name -}}
-            {% endif %}
-          {% else %}
-            {{- site.title -}}
-          {% endif %}
-        </a>
-      {% elsif site.enable_navbar_social %}
-        <!-- Social Icons -->
-        <div class="navbar-brand social">{% include social.liquid %}</div>
-      {% endif %}
-      <!-- Navbar Toggle -->
-      <button
-        class="navbar-toggler collapsed ml-auto"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar top-bar"></span>
-        <span class="icon-bar middle-bar"></span>
-        <span class="icon-bar bottom-bar"></span>
-      </button>
+{% if page.cover.embed_demo_viewer %}
 
-      <div class="collapse navbar-collapse text-right" id="navbarNav">
-        <ul class="navbar-nav ml-auto flex-nowrap">
-          {% for page in site.pages %}
-            {% if page.permalink == '/' %} {% assign about_title = page.title %} {% endif %}
-          {% endfor %}
+  <link defer href="{{ '/assets/demo/lib/htmltools-fill-0.5.8.1/fill.css' | relative_url | bust_file_cache }}" rel="stylesheet">
+  <script src="{{ '/assets/demo/lib/htmlwidgets-1.6.4/htmlwidgets.js' | relative_url | bust_file_cache }}"></script>
 
-          <!-- About -->
-          <li class="nav-item {% if page.permalink == '/' %}active{% endif %}">
-            <a class="nav-link" href="{{ '/' | relative_url }}">
-              {{- about_title }}
-              {% if page.permalink == '/' %}
-                <span class="sr-only">(current)</span>
-              {% endif %}
-            </a>
-          </li>
+  <style>
+    .navbar-fit-content {
+      width: fit-content;
+    }
+    #viewer-overlay {
+      position: absolute;
+      z-index: 1023;
+      width: 30%;
+      height: calc( 100vh - 150px );
+    }
 
-          <!-- Other pages -->
-          {% assign sorted_pages = site.pages | sort: 'nav_order' %}
-          {% for p in sorted_pages %}
-            {% if p.nav and p.autogen == null %}
-              {% if p.dropdown %}
-                {% assign has_active_child = false %}
-                {% for child in p.children %}
-                  {% if page.title == child.title %}
-                    {% assign has_active_child = true %}
-                  {% endif %}
-                {% endfor %}
-                <li class="nav-item dropdown {% if page.title == p.title or has_active_child %}active{% endif %}">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    {{- p.title }}
-                    {% if page.title == p.title or has_active_child %}
-                      <span class="sr-only">(current)</span>
-                    {% endif %}
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    {% for child in p.children %}
-                      {% if child.title == 'divider' %}
-                        <div class="dropdown-divider"></div>
-                      {% else %}
-                        <a class="dropdown-item {% if page.title == child.title %}active{% endif %}" href="{{ child.permalink | relative_url }}">
-                          {{- child.title -}}
-                        </a>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-                </li>
-              {% else %}
-                <li class="nav-item {% if page.url contains p.permalink %}active{% endif %}">
-                  {% if p.permalink contains '/blog/' %}{% assign url = '/blog/' %} {% else %}{% assign url = p.url %}{% endif %}
-                  <a class="nav-link" href="{{ url | relative_url }}">
-                    {{- p.title }}
-                    {% if page.url contains p.url %}
-                      <span class="sr-only">(current)</span>
-                    {% endif %}
-                  </a>
-                </li>
-              {% endif %}
+    #viewer-overlay-logo-container {
+      position: absolute;
+      z-index: 1024;
+      transform: translate(0, 15px);
+      bottom: 0;
+      width: 100%;
+    }
+    #viewer-overlay-logo {
+      width: 120px;
+      left: 10px;
+    }
+    #viewer-overlay-logo-container {
+      pointer-events: none !important;
+    }
+
+    #viewer-overlay-content {
+      margin-top: 25vh;
+      margin-left: auto;
+      margin-right: auto;
+      min-width: 370px;
+      max-width: 100%;
+      width: 370px;
+      padding: 20px;
+      background: rgba(251,248,244, 0.8);
+    }
+    #viewer-overlay .viewer-overlay-title span {
+      display: block;
+    }
+    #viewer-overlay .viewer-feature-item {
+      display: none;
+    }
+    #viewer-overlay .viewer-feature-item.active {
+      display: block;
+    }
+  </style>
+
+  <div id="htmlwidget_container" style="position:relative">
+    <div id="viewer-overlay">
+      <div id="viewer-overlay-content" class="rounded-lg">
+        <div class="row">
+          <div class="col-xs-12 cl-sm-12 col-md-12 text-center">
+            <h3>{{ page.cover.message }}</h3>
+          </div>
+          <div class="col-xs-12 cl-sm-12 col-md-12 text-left">
+            {% if page.cover.features %}
+              {% for feature in page.cover.features %}
+                <p class="viewer-feature-item {{ feature.class }}" >
+                  {{ feature.text }}
+                </p>
+              {% endfor %}
             {% endif %}
-          {% endfor %}
-          {% if site.search_enabled %}
-            <!-- Search -->
-            <li class="nav-item">
-              <button id="search-toggle" title="Search" onclick="openSearchModal()">
-                <span class="nav-link">ctrl k <i class="ti ti-search"></i></span>
-              </button>
-            </li>
-          {% endif %}
-          {% if site.enable_darkmode %}
-            <!-- Toogle theme mode -->
-            <li class="toggle-container">
-              <button id="light-toggle" title="Change theme">
-                <i class="ti ti-sun-moon" id="light-toggle-system"></i>
-                <i class="ti ti-moon-filled" id="light-toggle-dark"></i>
-                <i class="ti ti-sun-filled" id="light-toggle-light"></i>
-              </button>
-            </li>
-          {% endif %}
-        </ul>
+          </div>
+          <div class="col-xs-12 cl-sm-12 col-md-12 text-center">
+            <hr />
+            {% for link in page.cover.links %}
+              <a href="{{ link.url }}" class="btn rounded {{ link.type }}" type="button">
+                {{ link.text }}
+              </a>
+            {% endfor %}
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
-  {% if site.enable_progressbar %}
-    <!-- Scrolling Progress Bar -->
-    <progress id="progress" value="0">
-      <div class="progress-container">
-        <span class="progress-bar"></span>
+    <div id="viewer-overlay-logo-container">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 cl-sm-12 col-md-12">
+            <div id="viewer-overlay-logo">
+              {% if page.cover.image %}
+                {% assign profile_cover_image_path = page.cover.image | prepend: 'assets/img/' %}
+                {% assign profile_cover_image_class = 'img-fluid z-depth-1 rounded float-left w-100' %}
+                {% capture sizes %}(min-width: {{site.max_width}}) {{ site.max_width | minus: 30 | times: 0.3}}px, (min-width: 576px)
+            30vw, 95vw"{% endcapture %}
+                {%
+                  include figure.liquid loading="eager" 
+                  path=profile_cover_image_path 
+                  class=profile_cover_image_class 
+                  sizes=sizes alt=page.cover.image
+                  cache_bust=true
+                %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
       </div>
-    </progress>
-  {% endif %}
-</header>
+    </div>
+    <div class="threejs_brain html-widget html-fill-item" id="htmlwidget-b6baefbe903f3615dc28" style="width:100%; height: calc( 100vh - 150px );">
+    </div>
+  </div>
+{% else %}
+  <header>
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm {% if site.navbar_fixed %}fixed-top{% else %}sticky-top{% endif %}" role="navigation">
+      <div class="container">
+        {% if page.permalink != '/' %}
+          <a class="navbar-brand title font-weight-lighter" href="{{ site.baseurl }}/">
+            {% if site.title == 'blank' %}
+              {% if site.first_name %}
+                <span class="font-weight-bold">
+                  {{- site.first_name -}}
+                </span>
+              {% endif %}
+              {% if site.middle_name %}
+                {{- site.middle_name -}}
+              {% endif %}
+              {% if site.last_name %}
+                {{- site.last_name -}}
+              {% endif %}
+            {% else %}
+              {{- site.title -}}
+            {% endif %}
+          </a>
+        {% elsif site.enable_navbar_social %}
+          <!-- Social Icons -->
+          <div class="navbar-brand social">{% include social.liquid %}</div>
+        {% endif %}
+        <!-- Navbar Toggle -->
+        <button
+          class="navbar-toggler collapsed ml-auto"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar top-bar"></span>
+          <span class="icon-bar middle-bar"></span>
+          <span class="icon-bar bottom-bar"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text-right" id="navbarNav">
+          <ul class="navbar-nav ml-auto flex-nowrap">
+            {% for page in site.pages %}
+              {% if page.permalink == '/' %} {% assign about_title = page.title %} {% endif %}
+            {% endfor %}
+
+            <!-- About -->
+            <li class="nav-item {% if page.permalink == '/' %}active{% endif %}">
+              <a class="nav-link" href="{{ '/' | relative_url }}">
+                {{- about_title }}
+                {% if page.permalink == '/' %}
+                  <span class="sr-only">(current)</span>
+                {% endif %}
+              </a>
+            </li>
+
+            <!-- Other pages -->
+            {% assign sorted_pages = site.pages | sort: 'nav_order' %}
+            {% for p in sorted_pages %}
+              {% if p.nav and p.autogen == null %}
+                {% if p.dropdown %}
+                  {% assign has_active_child = false %}
+                  {% for child in p.children %}
+                    {% if page.title == child.title %}
+                      {% assign has_active_child = true %}
+                    {% endif %}
+                  {% endfor %}
+                  <li class="nav-item dropdown {% if page.title == p.title or has_active_child %}active{% endif %}">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      {{- p.title }}
+                      {% if page.title == p.title or has_active_child %}
+                        <span class="sr-only">(current)</span>
+                      {% endif %}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      {% for child in p.children %}
+                        {% if child.title == 'divider' %}
+                          <div class="dropdown-divider"></div>
+                        {% else %}
+                          <a class="dropdown-item {% if page.title == child.title %}active{% endif %}" href="{{ child.permalink | relative_url }}">
+                            {{- child.title -}}
+                          </a>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </li>
+                {% else %}
+                  <li class="nav-item {% if page.url contains p.permalink %}active{% endif %}">
+                    {% if p.permalink contains '/blog/' %}{% assign url = '/blog/' %} {% else %}{% assign url = p.url %}{% endif %}
+                    <a class="nav-link" href="{{ url | relative_url }}">
+                      {{- p.title }}
+                      {% if page.url contains p.url %}
+                        <span class="sr-only">(current)</span>
+                      {% endif %}
+                    </a>
+                  </li>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+            {% if site.search_enabled %}
+              <!-- Search -->
+              <li class="nav-item">
+                <button id="search-toggle" title="Search" onclick="openSearchModal()">
+                  <span class="nav-link">ctrl k <i class="ti ti-search"></i></span>
+                </button>
+              </li>
+            {% endif %}
+            {% if site.enable_darkmode %}
+              <!-- Toogle theme mode -->
+              <li class="toggle-container">
+                <button id="light-toggle" title="Change theme">
+                  <i class="ti ti-sun-moon" id="light-toggle-system"></i>
+                  <i class="ti ti-moon-filled" id="light-toggle-dark"></i>
+                  <i class="ti ti-sun-filled" id="light-toggle-light"></i>
+                </button>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% if site.enable_progressbar %}
+      <!-- Scrolling Progress Bar -->
+      <progress id="progress" value="0">
+        <div class="progress-container">
+          <span class="progress-bar"></span>
+        </div>
+      </progress>
+    {% endif %}
+  </header>
+{% endif %}
+
+{% if page.cover.embed_demo_viewer %}
+<script>
+document.body.classList.add("p-0");
+const $navbar = document.getElementById("navbar");
+$navbar.classList.add("navbar-fit-content");
+
+const $viewerContainer = document.getElementById( "htmlwidget_container" );
+const $overlay = document.getElementById( "viewer-overlay" );
+
+</script>
+
+<script src="{{ '/assets/demo/lib/three-brain-1.0.0/threebrain-main.js' | relative_url | bust_file_cache }}"></script>
+<script src="{{ '/assets/demo/lib/threejs_brain-binding-1.1.0.9020/threejs_brain.js' | relative_url | bust_file_cache }}"></script>
+
+<script type="application/json" data-for="htmlwidget-b6baefbe903f3615dc28">{"x":{"data_filename":"config.json","settings":{"title":"","side_camera":true,"side_canvas_zoom":1,"side_canvas_width":250,"side_canvas_shift":[0,0],"color_maps":{"[Subject]":{"name":"[Subject]","time_range":[0,1],"value_range":[-1,1],"value_names":"PAV037","value_type":"discrete","color_keys":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],"color_vals":["0xFFA500","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000","0x000000"],"color_levels":1,"hard_range":[],"alias":[]}},"default_colormap":"[Subject]","hide_controls":false,"control_center":[0,0,0],"camera_pos":[500,0,0],"font_magnification":1,"start_zoom":1,"show_legend":true,"render_timestamp":true,"control_presets":["subject2","surface_type2","hemisphere_material","surface_color","map_template","electrodes","voxel","animation","display_highlights"],
+"cache_folder":"{{ '/assets/demo/lib/threebrain_data-0' | relative_url }}/",
+"worker_script":"{{ '/assets/demo/lib/three-brain-1.0.0/threebrain-worker.js' | relative_url }}",
+"lib_path":"{{ '/assets/demo/lib' | relative_url }}/",
+"default_controllers":{"Subject":"cvs_avg35_inMNI152"},"debug":false,"enable_cache":false,"background":"#FFFFFF","token":null,"show_inactive_electrodes":true,"side_display":true,"control_display":true,"qrcode":null,"custom_javascript":"app.startDemo()"},"force_render":true},"evals":[],"jsHooks":[]}</script>
+<script type="application/htmlwidget-sizing" data-for="htmlwidget-b6baefbe903f3615dc28">{"viewer":{"width":"100%","height":"calc( 100vh - 150px )","padding":"0px","fill":true},"browser":{"width":"100%","height":"calc( 100vh - 150px )","padding":"0px","fill":false}}</script>
+{% endif %}

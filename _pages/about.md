@@ -1,9 +1,23 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
-
+cover:
+  embed_demo_viewer: true
+  image: RAVE_Neuroimage_Cover.jpg
+  message: >
+    Welcome to RAVE!
+  features: 
+    - class: active
+      text: >
+        Placeholder text to introduce the features
+  links:
+    - text: Play Demo
+      url: \#
+    - text: Install RAVE
+      type: btn-secondary
+      url: \#
 profile:
   align: right
   image: prof_pic.jpg
