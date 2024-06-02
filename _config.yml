@@ -3,9 +3,9 @@
 # -----------------------------------------------------------------------------
 
 title: RAVE - Reproducible Analysis & Visualization of iEEG # the website title (if blank, full name will be used instead)
-first_name: You
-middle_name: R.
-last_name: Name
+first_name: 
+middle_name: 
+last_name: BeauchampLab
 email: help@rave.wiki
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Reproducible Analysis and Visualization of iEEG.
@@ -230,7 +230,6 @@ exclude:
   - package.json
   - package-lock.json
   - _pages/cv.md
-  - _pages/publications.md
   - _pages/repositories.md
   - _pages/dropdown.md
   - purgecss.config.js

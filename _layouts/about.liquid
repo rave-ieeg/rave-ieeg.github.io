@@ -43,25 +43,27 @@ layout: default
 
     <!-- News -->
     {% if page.news and site.announcements.enabled %}
-      <h2>
+      <h3>
         <a href="{{ '/news/' | relative_url }}" style="color: inherit">news</a>
-      </h2>
+      </h3>
       {% include news.liquid limit=true %}
     {% endif %}
 
     <!-- Latest posts -->
-    {% if site.latest_posts.enabled %}
-      <h2>
+    {% if page.latest_posts and site.latest_posts.enabled %}
+      <h3>
         <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
-      </h2>
+      </h3>
       {% include latest_posts.liquid %}
     {% endif %}
 
     <!-- Selected papers -->
-    {% if page.selected_papers %}
-      <h2>
-        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">selected publications</a>
-      </h2>
+    {% if page.selected_papers.enabled %}
+      <h3>
+        <a href="{{ '/publications/' | relative_url }}" style="color: inherit">{{ page.selected_papers.title }}</a>
+      </h3>
+      <p>{{ page.selected_papers.description }}</p>
+      
       {% include selected_papers.liquid %}
     {% endif %}
 
