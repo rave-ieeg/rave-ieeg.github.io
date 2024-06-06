@@ -11,10 +11,11 @@ cover:
   features: 
     - class: active
       text: >
-        (Placeholder text to introduce the features)
+        Drag the brain around with your mouse. It's interactive!
   links:
-    - text: Play Demo
-      url: \#
+    - text: Play 3D Viewer
+      onclick: >
+        threeBrain.userDemo();
     - text: Install RAVE
       type: btn-secondary
       url: \#installation
@@ -22,7 +23,7 @@ profile:
   align: right
   image: 
   image_circular: false # crops the image to make it circular
-  more_info: >
+  more_info: > 
     <iframe width="480" height="270" src="https://www.youtube.com/embed/s6EnlqF-Q8E" title="RAVE Highlights" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 news: false # includes a list of news items

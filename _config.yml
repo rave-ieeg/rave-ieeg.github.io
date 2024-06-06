@@ -213,7 +213,9 @@ kramdown:
       start_line: 1
 
 # Includes & excludes
-include: ["_pages"]
+include: 
+  - _pages
+  - _assets
 exclude:
   - bin/
   - CONTRIBUTING.md
@@ -273,7 +275,7 @@ sass:
 # -----------------------------------------------------------------------------
 
 jekyll-minifier:
-  exclude: ["robots.txt", "assets/js/search/*.js", "assets/demo/*"]
+  exclude: ["robots.txt", "assets/js/search/*.js", "assets/demo/*", "_assets/demo/*"]
   uglifier_args:
     harmony: true
 
@@ -356,7 +358,7 @@ filtered_bibtex_keywords:
 
 # Maximum number of authors to be shown for each publication (more authors are visible on click)
 max_author_limit: 3 # leave blank to always show all authors
-more_authors_animation_delay: 10 # more authors are revealed on click using animation; smaller delay means faster animation
+more_authors_animation_delay: 3 # more authors are revealed on click using animation; smaller delay means faster animation
 
 # Enables publication thumbnails. If disabled, none of the publications will display thumbnails, even if specified in the bib entry.
 enable_publication_thumbnails: true
