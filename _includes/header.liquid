@@ -46,8 +46,7 @@
     #viewer-overlay {
       position: absolute;
       z-index: 1023;
-      width: 30%;
-      min-width: 480px;
+      max-width: 100%;
       padding: 0;
       height: calc( 100vh - 150px );
       pointer-events: none;
@@ -75,16 +74,15 @@
       position: relative;
       margin: 0;
       height: calc( 100vh - 150px );
-      padding: 15px 0;
+      padding: 15px 40px; 
     }
     #viewer-overlay-content {
       margin-top: 50vh;
       transform: translate(0, -100%);
       margin-left: auto;
       margin-right: auto;
-      min-width: 400px;
       max-width: 100%;
-      width: 370px;
+      width: 400px;
       padding: 15px;
       background: rgba(251,248,244, 0.8);
       pointer-events: all!important;
