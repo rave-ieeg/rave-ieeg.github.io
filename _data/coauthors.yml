@@ -4,9 +4,29 @@
 
 "beauchamp":
   - firstname: ["Michael", "M.", "M. S.", "Michael S."]
-    url: https://scholar.google.com/citations?hl=en&user=wHJH3TUAAAAJ
+    url: https://scholar.google.com/citations?user=wHJH3TUAAAAJ
 
 "magnotti":
   - firstname: ["John", "J.F.", "John F.", "John F"]
     url: https://scholar.google.com/citations?user=lzUiqpwAAAAJ
 
+"yoshor":
+  - firstname: ["Daniel", "D."]
+    url: https://www.pennmedicine.org/providers/profile/daniel-yoshor
+
+"metzger":
+  - firstname: ["Brian", "Brian A.", "Brian A", "B.", "B. A.", "BA."]
+    url: https://scholar.google.com/citations?user=nIN0ZNkAAAAJ
+
+"karas":
+  - firstname: ["Patrick", "Patrick J.", "Patrick J", "P.", "P. J.", "PJ."]
+    url: https://www.utmb.edu/neurosurgery/faculty-and-staff/patrick-j-karas-md
+
+"sheth":
+  - firstname: ["Sameer", "Sameer A.", "Sameer A", "S.", "S. A.", "SA."]
+    url: https://scholar.google.com/citations?user=lgG2xMgAAAAJ
+    scholar:
+
+"li":
+  - firstname: ["Meng", "M."]
+    url: https://profiles.rice.edu/faculty/meng-li
