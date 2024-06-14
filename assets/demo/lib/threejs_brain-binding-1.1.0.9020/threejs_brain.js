@@ -28,27 +28,70 @@ HTMLWidgets.widget({
       viewerMode : HTMLWidgets.viewerMode
     });
 
+    let demoReady = false;
+    let widgetWidth = width || 100;
+
+    const pauseDemo = () => {
+      if( !widget.viewer.ready ) {
+        console.log("Viewer not ready yet.");
+        setTimeout(pauseDemo, 2000);
+        return;
+      }
+      if( !demoReady ) {
+        demoReady = true;
+        console.log("Viewer is (just) ready... pausing demo.");
+        setTimeout(pauseDemo, 2000);
+        return;
+      }
+      try {
+        widget.viewer.pauseDemo();
+        console.log("Viewer paused.");
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+
+    const render = ( v ) => {
+      const doRender = async () => {
+        widget.receiveData({ data : v, reset : false });
+        if( HTMLWidgets.shinyMode && !widget.viewer.shinyDriver ) {
+          widget.viewer.shinyDriver = new threeBrain.Drivers.Shiny( widget.viewer );
+        }
+        try {
+          if( widgetWidth < 600 ) {
+            pauseDemo();
+          }
+        } catch (error) {
+          console.warn(error);
+        }
+      };
+      const renderLater = () => {
+        if( widgetWidth < 600 ) {
+          setTimeout(renderLater, 2000);
+          return;
+        }
+        doRender();
+      };
+      renderLater();
+    }
+
     return {
       // "find", "renderError", "clearError", "sizing", "name", "type", "initialize", "renderValue", "resize"
 
       renderValue: (v) => {
-        widget.receiveData({ data : v, reset : false });
-
-        if( HTMLWidgets.shinyMode && !widget.viewer.shinyDriver ) {
-          widget.viewer.shinyDriver = new threeBrain.Drivers.Shiny( widget.viewer );
-        }
-        /*
-        widget.values = v;
-        if( widget.initalized ){
-          widget.render( widget.values, false );
-        } else if( v.force_render ){
-          widget.el.click();
-        }
-        */
+        render( v );
       },
 
       resize: (width, height) => {
+        widgetWidth = width;
         widget.resize(width, height);
+        try {
+          if( width < 600 ) {
+            pauseDemo();
+          } else {
+            widget.viewer.resumeDemo();
+          }
+        } catch (error) {}
       }
     };
   }
