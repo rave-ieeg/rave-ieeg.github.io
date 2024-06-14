@@ -15,6 +15,12 @@
     const s = '{"isThreeBrainControllerData":true,"controllerData":{"controllers":{},"folders":{"_logo_":{"controllers":{},"folders":{}},"Default":{"controllers":{"Background Color":"#FFFFFF","Camera Position":"[free rotate]","Display Coordinates":false,"Record":false,"Paste to Set State":""},"folders":{}},"Volume Settings":{"controllers":{"Show Panels":true,"Slice Brightness":0,"Slice Contrast":0,"Slice Mode":"canonical","Crosshair Gap":0,"Coronal (P - A)":0,"Axial (I - S)":0,"Sagittal (L - R)":0,"Intersect MNI305":"-1.4, -18.5, 17.7","Overlay Coronal":false,"Overlay Axial":false,"Overlay Sagittal":false,"Frustum Near":5,"Frustum Far":10,"Voxel Type":"wmparc","Voxel Display":"side camera","Voxel Opacity":-1,"Voxel Min":-100000,"Voxel Max":100000,"Voxel Label":"","ISO Surface":false},"folders":{}},"Surface Settings":{"controllers":{"Surface Material":"MeshPhysicalMaterial","Surface Type":"pial","Clipping Plane":"disabled","Left Hemisphere":"mesh clipping x 0.1","Right Hemisphere":"normal","Left Opacity":1,"Right Opacity":1,"Left Mesh Clipping":0.1,"Right Mesh Clipping":1,"Surface Color":"none","Blend Factor":1,"Sigma":1,"Decay":0.6,"Range Limit":5},"folders":{}},"Electrode Settings":{"controllers":{"Subject":"cvs_avg35_inMNI152","Map Electrodes":true,"Surface Mapping":"sphere.reg","Volume Mapping":"mni305","Visibility":"all visible","Electrode Shape":"prototype+sphere","Outlines":"auto","Translucent":"contact-only","Text Scale":1.5,"Text Visibility":false},"folders":{}},"Custom Geometry Settings":{"controllers":{},"folders":{"Configure ROI Surfaces":{"controllers":{"Visibility (all surfaces)":"visible","Opacity (all surfaces)":1},"folders":{}},"Configure ROI Volumes":{"controllers":{"Visibility (all volumes)":"visible","Opacity (all volumes)":1},"folders":{}}}},"Data Visualization":{"controllers":{"Display Data":"LabelPrefix","Display Range":"","Threshold Data":"[None]","Threshold Range":"","Threshold Method":"|v| >= T1","Additional Data":"[None]","Inactive Color":"#c2c2c2","Play/Pause":false,"Speed":1,"Time":0,"Video Mode":"muted","Show Legend":true,"Show Time":false,"Highlight Box":false,"Info Text":false},"folders":{}}}},"sliceCrosshair":{"tkrRAS":"-1.41, -18.47, 17.68","scannerRAS":"-2.41, -35.47, 36.68","mni305RAS":"-3.26, -36.85, 35.21","mni152RAS":"-2.41, -35.47, 36.68"},"cameraState":{"target":{"x":1.9237136840820312,"y":0.07685089111328125,"z":-3.6354293823242188},"up":{"x":-0.008643169310113382,"y":0.9553950587637821,"z":0.29520429758732053},"position":{"x":8.835380666500424,"y":-143.41800636013625,"z":473.2866439641265},"zoom":1}}';
     threeBrain.demoApp.controllerGUI.getController("Paste to Set State").setValue(s);
   };
+  threeBrain.nextStage = function() {
+    const explicit = threeBrain.demoApp.demoStage.explicit;
+    threeBrain.demoApp.demoStage.explicit = false;
+    threeBrain.demoApp.demoStage.switchStage();
+    threeBrain.demoApp.demoStage.explicit = explicit;
+  }
   </script>
 
   <style>
@@ -42,6 +48,7 @@
 
     #htmlwidget_container {
       position: relative;
+      background-color: rgb(251, 248, 244);
     }
     #viewer-overlay {
       position: absolute;
@@ -108,6 +115,13 @@
       }
       .threejs_brain {
         max-height: 50vh;
+      }
+      .hidden-on-screen-lt-600 {
+        display: none;
+      }
+      #viewer-overlay-content {
+        margin-top: 0;
+        transform: translate(0, 0);
       }
     }
     @media (max-height: 750px) {
@@ -335,7 +349,7 @@
 "cache_folder":"/assets/demo/lib/threebrain_data-0/",
 "worker_script":"/assets/demo/lib/three-brain-1.0.0/threebrain-worker.js",
 "lib_path":"/assets/demo/lib/",
-"default_controllers":{"Subject":"cvs_avg35_inMNI152"},"debug":false,"enable_cache":false,"background":"#FFFFFF","token":null,"show_inactive_electrodes":true,"side_display":true,"control_display":true,"qrcode":null,"custom_javascript":"app.startDemo()"},"force_render":true},"evals":[],"jsHooks":[]}
+"default_controllers":{"Subject":"cvs_avg35_inMNI152"},"debug":false,"enable_cache":false,"background":"#FFFFFF","token":null,"show_inactive_electrodes":true,"side_display":true,"control_display":true,"qrcode":null,"custom_javascript":"app.startDemo();app.demoStage.explicit=true;const url=new URL(window.location);if(url.searchParams.get('viewer')==='expand'){threeBrain.userDemo();};"},"force_render":true},"evals":[],"jsHooks":[]}
 </script>
 
 

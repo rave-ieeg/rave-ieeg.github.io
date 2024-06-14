@@ -11,13 +11,16 @@ cover:
   features: 
     - class: active
       text: >
-        Drag the brain around with your mouse. It's interactive!
+        RAVE is free and open-source software framework for reproducible analysis and visualization of intracranial electroencephalogram (iEEG) data.
+        <span class="hidden-on-screen-lt-600">
+          Please <a href="#" onclick="threeBrain.nextStage()">click here to explore</a> the 3D viewer or <a href="?viewer=expand" target="_blank">interact with this demo <small><i class="fa-solid fa-up-right-from-square"></i></small></a> from a new window.
+        </span>
   links:
-    - text: Play 3D Viewer
-      onclick: >
-        threeBrain.userDemo();
+    - text: Documentation
+      type: btn-secondary btn-sm
+      url: https://openwetware.org/wiki/RAVE
     - text: Install RAVE
-      type: btn-secondary
+      type: btn-sm
       url: \#installation
 profile:
   align: right
