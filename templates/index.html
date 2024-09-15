@@ -67,7 +67,7 @@ $endfor$
               </div>
             </div>
           </div>
-          <div class="w-100 h-100" style="background-image: url($it.image$); background-size: cover; background-position-y: center; filter: brightness(30%);">
+          <div class="w-100 h-100 placeholder placeholder-glow" data-src="$it.image$" style="background-size: cover; background-position-y: center; filter: brightness(30%);">
           </div>
         </div>
       ${ endfor }
@@ -94,7 +94,7 @@ $if(content-logo)$
   <div class="content-logo-container">
     <div class="content-logo-inner">
       <p class="img-fluid z-depth-1 rounded float-left w-100">
-        <img src="$content-logo$" class="w-100" />
+        <img data-src="$content-logo$" class="w-100 placeholder placeholder-glow" />
       </p>
     </div>
   </div>
@@ -112,6 +112,33 @@ $for(include-after)$
 $include-after$
 $endfor$
 
+
+<script>
+
+  function delayImage() {
+      let images = document.querySelectorAll('.placeholder');
+      images.forEach(function(image) {
+          const dataSrc = image.getAttribute('data-src');
+          if( image.tagName.toUpperCase() === "IMG" ) {
+            image.src = dataSrc;
+          } else {
+            image.style.backgroundImage = 'url(' + dataSrc + ')';
+          }
+          image.classList.remove('placeholder-glow');
+          image.classList.remove('placeholder');
+      });
+  }
+
+  window.addEventListener('load', function() {
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(delayImage);
+    } else {
+        // Fallback for browsers that do not support requestIdleCallback
+        setTimeout(delayImage, 2000);
+    }
+});
+
+</script>
 
 </body>
 

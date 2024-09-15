@@ -25,13 +25,20 @@ carousel:
         Time: 6:30-9:00 p.m. CT <br />
         Location: [Grant Park, Hyatt Regency McCormick Place, Chicago, IL](https://maps.app.goo.gl/5mbTWCFopC31YSWU7){target="_blank"}
         </p>
-    - image: "images/yael.gif"
+    - image: "images/power-explorer.webp"
       index: 1
+      interval: 10000
+      title: |
+        Power Explorer
+      details: |
+        Interactive RAVE module for exploratory time-frequency analysis and visualization
+    - image: "images/yael.gif"
+      index: 2
       interval: 10000
       title: |
         YAEL: Your Advanced Electrode Localization
       details: |
-        A free and open-source software for [localizing and visualizing electrodes in 3D brain](https://yael.wiki){target="_blank"}
+        RAVE module for automatic [localizing and visualizing electrodes in 3D brain](https://yael.wiki){target="_blank"}
 ---
 
 ## RAVE: Reproducible Analysis & Visualization of iEEG {{< ai open-access >}}
