@@ -1,0 +1,36 @@
+project:
+  type: website
+  resources:
+    - "images/*"
+
+website:
+  title: "RAVE"
+  navbar:
+    background: "#000000"
+    left:
+      - href: index.qmd
+        text: Home
+      - href: https://openwetware.org/wiki/RAVE
+        text: Documentation
+        target: "_blank"
+    tools:
+      - icon: github
+        href: https://github.com/rave-ieeg/
+        target: "_blank"
+        size: 3
+  page-footer:
+    center: "{{< fa regular copyright >}} Copyright 2024, [BeauchampLab](https://beauchamplab.med.upenn.edu){target='_blank'}."
+    right: "Created by [Zhengjia Wang](https://dipterix.org){target='_blank'}. Hosted by [Github](https://pages.github.com/){target='_blank'}"
+    border: true
+  # Hides the sidebar on this page
+  sidebar: false
+
+format:
+  html:
+    theme:
+      - zephyr
+      - css/styles.scss
+    toc: true
+
+editor: visual
+

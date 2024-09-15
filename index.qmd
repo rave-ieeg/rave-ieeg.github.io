@@ -1,0 +1,69 @@
+---
+format: 
+  html:
+    toc: false
+    page-layout: full
+    template: templates/index.html
+title: "RAVE"
+content-logo: images/cover.jpg
+carousel:
+  class: carousel-fade
+  interval: 5000
+  items:
+    - image: "images/hero.png"
+      index: 0
+      active: true
+      interval: 10000
+      title: |
+        News Event! (Saturday Oct 6, 2024)
+      details: |
+        <p>
+        RAVE has been selected to exhibit at <i>[Building Tools & Tech for an Innovative Future: A BRAIN Initiative Alliance Social](https://www.braininitiative.org/events/sfn-social/){target="_blank"}</i> during the Society for Neuroscience (2024)
+        </p>
+        <p class="text-start">
+        Date: Sunday, October 6, 2024 <br />
+        Time: 6:30-9:00 p.m. CT <br />
+        Location: [Grant Park, Hyatt Regency McCormick Place, Chicago, IL](https://maps.app.goo.gl/5mbTWCFopC31YSWU7){target="_blank"}
+        </p>
+    - image: "images/yael.gif"
+      index: 1
+      interval: 10000
+      title: |
+        YAEL: Your Advanced Electrode Localization
+      details: |
+        A free and open-source software for [localizing and visualizing electrodes in 3D brain](https://yael.wiki){target="_blank"}
+---
+
+## RAVE: Reproducible Analysis & Visualization of iEEG {{< ai open-access >}}
+
+RAVE is free and open-source software for the analysis of intracranial electroencephalogram (iEEG) data, including data collected using strips and grids (electrocorticography, ECoG) and depth electrodes (stereotactic EEG). A sister package to RAVE is the [YAEL electrode localization toolkit](https://yael.wiki).
+
+[<iframe width="480" height="270" src="https://www.youtube.com/embed/s6EnlqF-Q8E"
+    title="RAVE Highlights" frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen> </iframe>]{#rave-intro-video style="width: 480px; display: block; float: right;"} RAVE is easy to use and creates publication-ready figures with absolutely no programming. RAVE can import standard data formats, including Matlab and EDF, and is compatible with BIDS-iEEG. It runs on laptops, lab servers, or in the cloud. Since all user interactions take place through a web browser, the user experience is identical on Mac, Windows and Linux. Data from RAVE can be exported for analysis using other software ([click here for a list of iEEG analysis tools](https://openwetware.org/wiki/RAVE:SoftwareToolsTable)). Conversely, outside results can be imported and visualized using RAVE's visualization engine. RAVE provides templates to make it easy to create GUI-based analyses using the streamlined application programming interface.
+
+Join our growing RAVE-iEEG community on Slack {{< fa brands slack >}}. E-mail [slack\@rave.wiki](mailto:slack@rave.wiki) for an invitation.
+
+RAVE has been developed since 2017 with funding provided by NIH `U01NS113339`, `1R24MH117529.` If you use RAVE for a publication, please cite:
+
+> Magnotti JF, Wang Z, Beauchamp MS. RAVE: comprehensive open-source software for reproducible analysis and visualization of intracranial EEG data. NeuroImage (2020) 223:117341. \[Click here for the journal full text\] \[Click here for the PDF\] \[Click here for the preprint\].
+
+If you use YAEL for electrode localization, please cite:
+
+> Wang Z, Magnotti JF, Zhang X, Beauchamp MS. YAEL: Your Advanced Electrode Localizer. Eneuro. 2023 Oct 1;10(10). \[Click here for the journal full text\] \[Click here for the PDF\].
+
+## Installation
+
+Please check our full installation guide here: <https://openwetware.org/wiki/RAVE:Install>
+
+## Publications
+
+Send us your (p)reprint and we will add it to the list!
+
+```{r, echo=FALSE}
+# R code block to prettify the abstracts
+res <- source("abstracts.R", echo = FALSE, print.eval = FALSE, local = TRUE)
+res$value
+```

@@ -1,0 +1,145 @@
+/*-- scss:defaults --*/
+$h1-font-size:          1.6rem !default;
+$headings-font-weight:  500 !default;
+
+$font-weight-light:           200 !default;
+$font-weight-normal:          300 !default;
+$font-weight-medium:          500 !default;
+$font-weight-bold:            700 !default;
+
+$font-family-sans-serif: Roboto, BlinkMacSystemFont, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif !default;
+
+
+.figure {
+  margin: 0 0 1rem;
+}
+
+#quarto-header .quarto-navigation-tool i.bi {
+  font-size: x-large;
+}
+
+
+.publications .bibliography {
+  padding: 0;
+  margin-top: 0;
+
+  & .abstract-item {
+    margin-bottom: 1rem;
+
+    & .abbr {
+      margin-bottom: .5rem;
+    }
+
+    & .title {
+      font-weight: bolder;
+    }
+    & .author {
+      font-weight: lighter;
+    }
+    & .periodical {
+      font-weight: inherit;
+    }
+
+    & .links a.btn {
+      color: var(--bs-body-color);
+      border: 1px solid var(--bs-body-color);
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-top: .25rem;
+      padding-bottom: .25rem;
+      margin-left: 0;
+    }
+
+  }
+}
+
+#home-banner {
+  background-color: #000000;
+  margin-top: -71px;
+  padding-top: 71px;
+  height: 80vh;
+  opacity: 1; /* Adjust as needed */
+  z-index: -1;
+
+  & a {
+    color: var(--bs-yellow);
+  }
+
+  &.quarto-title-block.default {
+    & .quarto-title-meta {
+      color: #ffffff;
+    }
+    & .quarto-title-banner {
+      height: 0;
+    }
+    & .quarto-title {
+      position: absolute;
+    }
+  }
+
+  & .carousel {
+
+    &,
+    & .carousel-inner,
+    & .carousel-inner .carousel-item {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    & .carousel-inner .carousel-caption {
+      color: #e2e2e2;
+      margin-top: -200px;
+      z-index: 1;
+
+      & h1,
+      & h2,
+      & h3,
+      & h4,
+      & h5,
+      & h6 {
+        color: #ffffff;
+      }
+
+      & .carousel-caption-content-wrapper {
+        position: relative;
+        height: 100%;
+
+        & .carousel-caption-content {
+          top: 50%;
+          left: 50%;
+          position: absolute;
+          transform: translate(-50%,-50%);
+
+          @media (max-width: 600px) {
+            width: 100%;
+          }
+        }
+      }
+
+    }
+
+  }
+}
+
+#content-logo {
+  display: block;
+  position: relative;
+  height: 0!important;
+  padding: 0!important;
+  margin: 0!important;
+
+  & .content-logo-container {
+    position: absolute;
+    max-width: 150px;
+    bottom: -20px;
+
+    @media (max-width: 600px) {
+      max-width: 80px;
+      bottom: -20px;
+    }
+
+    & * {
+      max-width: 100%;
+    }
+  }
+}

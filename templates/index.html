@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
+
+<head>
+
+$metadata.html()$
+
+<style>
+$styles.html()$
+</style>
+
+<!-- htmldependencies:E3FAD763 -->
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+$if(math)$
+$if(mathjax)$
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+$endif$
+  $math$
+$endif$
+
+$for(css)$
+<link rel="stylesheet" href="$css$" />
+$endfor$
+</head>
+
+<body>
+
+<header id="home-banner" class="quarto-title-block default">
+
+  <div class="quarto-title">
+    $if(subtitle)$
+      <p class="subtitle lead">$subtitle$</p>
+    $endif$
+    $if(categories)$
+      $if(quarto-template-params.title-block-categories)$
+        <div class="quarto-categories">
+          $for(categories)$
+            <div class="quarto-category">$categories$</div>
+          $endfor$
+        </div>
+      $endif$
+    $endif$
+  </div>
+
+  $if(carousel)$
+  <div id="home-banner-carousel" class="carousel slide$if(carousel.class)$$carousel.class$$endif$" data-bs-ride="carousel" data-bs-interval="$if(carousel.interval)$$carousel.interval$$else$3000$endif$">
+    <div class="carousel-indicators">
+      ${ for(carousel.items) }
+        <button type="button" data-bs-target="#home-banner-carousel"
+          data-bs-slide-to="$it.index$" class="$if(it.active)$active$endif$" aria-current="true" aria-label="Slide $it.index$"></button>
+          $sep$
+      ${ endfor }
+    </div>
+    <div class="carousel-inner">
+      ${ for(carousel.items) }
+        <div class="carousel-item$if(it.active)$ active$endif$"$if(it.interval)$ data-bs-interval="$it.interval$"$endif$>
+          <div class="carousel-caption h-100">
+            <div class="carousel-caption-content-wrapper">
+              <div class="carousel-caption-content">
+                $if(it.title)$
+                  <h1>$it.title$</h1>
+                $endif$
+                $it.details$
+              </div>
+            </div>
+          </div>
+          <div class="w-100 h-100" style="background-image: url($it.image$); background-size: cover; background-position-y: center; filter: brightness(30%);">
+          </div>
+        </div>
+      ${ endfor }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#home-banner-carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#home-banner-carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  $endif$
+
+</header>
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+$if(content-logo)$
+<div id="content-logo">
+  <div class="content-logo-container">
+    <div class="content-logo-inner">
+      <p class="img-fluid z-depth-1 rounded float-left w-100">
+        <img src="$content-logo$" class="w-100" />
+      </p>
+    </div>
+  </div>
+</div>
+$endif$
+
+
+$if(toc)$
+$toc.html()$
+$endif$
+
+$body$
+
+$for(include-after)$
+$include-after$
+$endfor$
+
+
+</body>
+
+</html>
