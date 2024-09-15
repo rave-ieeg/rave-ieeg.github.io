@@ -5,6 +5,7 @@ project:
 
 website:
   title: "RAVE"
+  favicon: images/favicon.ico
   navbar:
     background: "#000000"
     left:

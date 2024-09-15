@@ -12,6 +12,6 @@ node_modules/
 vendor
 .idea
 .Rproj.user
-
 /.quarto/
 /_site/
+.Rhistory
