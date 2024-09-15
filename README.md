@@ -1,1 +1,3 @@
-# rave-ieeg.github.io
+# Website for RAVE
+
+See https://rave.wiki/
