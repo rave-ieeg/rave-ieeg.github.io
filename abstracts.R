@@ -25,6 +25,16 @@ abstracts <- list(
     doi = "10.1523/ENEURO.0328-23.2023"
   ),
   list(
+    title = "Beta activity in human anterior cingulate cortex mediates reward biases",
+    authors = c(
+      "Jiayang Xiao, Joshua A. Adkinson, John Myers, Anusha B. Allawala, Raissa K. Mathura, Victoria Pirtle, Ricardo Najera, Nicole R. Provenza, Eleonora Bartoli, Andrew J. Watrous, Denise Oswalt, Ron Gadot, Adrish Anand, Ben Shofty, Sanjay J. Mathew, Wayne K. Goodman, Nader Pouratian, Xaq Pitkow, Kelly R. Bijanki, Benjamin Hayden, and Sameer A. Sheth"
+    ),
+    journal = "Nature Communications",
+    date = "July 2024",
+    thumbnail = "xiao.webp",
+    doi = "10.1038/s41467-024-49600-7"
+  ),
+  list(
     title = "Intracranial stimulation and EEG feature analysis reveal affective salience network specialization",
     authors = c(
       "Brian A. Metzger, Prathik Kalva, Madaline M. Mocchi, Brian Cui, and Joshua A. Adkinson, Zhengjia Wang, Raissa Mathura, Kourtney Kanja, Jay Gavvala, Vaishnav Krishnan, Lu Lin, Atul Maheshwari, Ben Shofty, John F. Magnotti, Jon T. Willie, Sameer A. Sheth, Kelly R. Bijanki"
