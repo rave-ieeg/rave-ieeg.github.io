@@ -1,1 +1,1 @@
-Sitemap: https://rave-ieeg.github.io/sitemap.xml
+Sitemap: https://rave.wiki/sitemap.xml
