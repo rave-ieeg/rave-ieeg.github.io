@@ -9,6 +9,10 @@ $font-weight-bold:            700 !default;
 
 $font-family-sans-serif: Roboto, BlinkMacSystemFont, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif !default;
 
+html {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
 
 .figure {
   margin: 0 0 1rem;
