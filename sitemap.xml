@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://rave.wiki/posts/20240916-3dviewer/viewer201.html</loc>
-    <lastmod>2024-09-16T14:04:26.063Z</lastmod>
+    <loc>https://rave.wiki/posts/3dviewer/viewer201.html</loc>
+    <lastmod>2024-09-16T17:54:05.158Z</lastmod>
   </url>
   <url>
-    <loc>https://rave.wiki/blogs.html</loc>
-    <lastmod>2024-09-16T14:04:25.995Z</lastmod>
+    <loc>https://rave.wiki/data/library/data/R/shidashi/AdminLTE3-bare/www/shidashi/img/attribution.html</loc>
+    <lastmod>2024-09-16T17:54:05.082Z</lastmod>
   </url>
   <url>
     <loc>https://rave.wiki/index.html</loc>
-    <lastmod>2024-09-16T14:04:26.059Z</lastmod>
+    <lastmod>2024-09-16T17:54:05.154Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/blogs.html</loc>
+    <lastmod>2024-09-16T17:54:05.078Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/data/library/data/R/shidashi/AdminLTE3-bare/LICENSE.html</loc>
+    <lastmod>2024-09-16T17:54:05.078Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/posts/3dviewer/viewer301.html</loc>
+    <lastmod>2024-09-16T17:54:05.158Z</lastmod>
   </url>
 </urlset>
