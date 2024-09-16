@@ -160,6 +160,42 @@ b2$set_electrode_values()
 
 # plot with options
 template$plot(
+  controllers = list(
+    "Background Color" = "#000000",
+    "Camera Position" = "superior",
+    "Display Coordinates" = TRUE,
+    
+    "Show Panels" = TRUE,
+    "Crosshair Gap" = 10,
+    
+    "Overlay Coronal" = TRUE,
+    "Overlay Axial" = TRUE,
+    "Overlay Sagittal" = TRUE,
+    
+    "Frustum Near" = 1,
+    "Frustum Far" = 1,
+    "Voxel Type" = "wmparc",
+    "Voxel Display" = "side camera",
+    "Voxel Opacity" = 0.566,
+    
+    "Left Hemisphere" = "mesh clipping x 0.3",
+    "Right Hemisphere" = "mesh clipping x 0.3",
+    "Left Opacity" = 0.4,
+    "Right Opacity" = 0.4,
+    
+    "Electrode Shape" = "prototype",
+    "Translucent" = "contact+outline",
+    "Text Scale" = 3,
+    "Text Visibility" = TRUE,
+    
+    "Display Data" = "[Subject]",
+    
+    "Show Time" = FALSE,
+    
+    "Highlight Box" = FALSE,
+    
+    "Info Text" = TRUE
+  ),
   custom_javascript = r'[
   const urlParams = new URLSearchParams(window.location.search);
   const viewerOption = urlParams.get('viewer');
