@@ -14,3 +14,23 @@ local({
     })
   }
 })
+
+
+# utility functions
+.help_text <- function(...) {
+  file <- help(...)
+  path <- dirname(file)
+  dirpath <- dirname(path)
+  pkgname <- basename(dirpath)
+  RdDB <- file.path(path, pkgname)
+  rd <- tools:::fetchRdDB(RdDB, basename(file))
+  s <- character()
+  conn <- textConnection(object = "s", open = "w", local = TRUE)
+  on.exit({close(conn)})
+  tools::Rd2HTML(rd, out = conn, fragment = TRUE)
+  re <- textConnectionValue(conn)
+  re_trim <- trimws(re)
+  re <- re[!re_trim %in% c("<h3>NA</h3>")]
+  cat(re, sep = "\n")
+  invisible()
+}

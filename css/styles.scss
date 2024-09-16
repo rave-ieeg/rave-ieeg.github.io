@@ -149,7 +149,7 @@ $font-family-sans-serif: Roboto, BlinkMacSystemFont, system-ui, -apple-system, "
     background: transparent;
   }
 
-  & .quarto-title-meta {
+  &>div {
     position: relative;
   }
 }
@@ -175,4 +175,9 @@ $font-family-sans-serif: Roboto, BlinkMacSystemFont, system-ui, -apple-system, "
       max-width: 100%;
     }
   }
+}
+
+
+.column-margin .cell-output pre {
+  overflow: visible;
 }

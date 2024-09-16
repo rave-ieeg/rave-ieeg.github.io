@@ -1,0 +1,218 @@
+---
+title: "RAVE/YAEL 3D Viewer (Basics)"
+description: |
+  Create basic 3D viewer and render with colors
+date: 2024-09-16
+format: 
+  html:
+    toc: true
+    page-layout: full
+    code-copy: true
+execute:
+  freeze: auto
+title-block-banner: true
+author: 
+  - name: Zhengjia Wang
+    orcid: 0000-0001-5629-1116
+    affiliations: 
+      - name: "Dept. of Neurosurgery, University of Pennsylvania"
+keywords:
+  - "3D Viewer"
+license: "CC BY"
+copyright: 
+  holder: Zhengjia Wang
+  year: 2024
+---
+
+## Prerequisites
+
+```{r setup, echo=FALSE}
+csv_path <- data.frame(
+  Subject = "DemoSubject",
+  Electrode = c(13,14,15,16,24),
+  ContinuousValue = runif(5),
+  Categorical = letters[c(1,2,3,2,3)]
+)
+```
+
+This post assumes that you have already imported subject's imaging data to RAVE and finished the electrode localization. If you haven't done so, please check (TODO) for instructions.
+
+This post uses default demo subject. Please run the following code block
+
+```{r check-subject}
+library(raveio)
+project_demo <- as_rave_project("demo", strict = FALSE)
+if(!"DemoSubject" %in% project_demo$subjects()) {
+  # missing demo subject, install
+  message("Missing `DemoSubject`. Downloading...")
+  install_subject("DemoSubject")
+}
+```
+
+## 1. Simple 3D viewer
+
+Library `raveio` provides simple high-level function [`rave_brain`](#function-rave_brain) to load 3D brain object.
+
+``` r
+brain <- raveio::rave_brain("demo/DemoSubject")
+# See the output to the right for what's inside of the brain object
+brain
+```
+
+```{r, echo = FALSE}
+#| column: margin
+brain <- raveio::rave_brain("demo/DemoSubject")
+brain
+```
+
+Use `brain$plot(<your arguments...>)` to show the viewer:
+
+``` r
+brain$plot()
+```
+
+![Preview of the result. See below if you want to play with the 3D viewer interactively](preview-1.png){fig-align="center" width="100%"}
+
+## 2. Render electrodes with values
+
+`brain$set_electrode_values(table_or_path)` allows users to load a data table and render electrodes with colors. Users can create a `csv` table using Excel or their favorite programming languages, as long as the table follows the following format:
+
+| Subject     | Electrode | varname\* |
+|:------------|----------:|----------:|
+| DemoSubject |         1 |      0.25 |
+| DemoSubject |        14 |      -0.4 |
+| ...         |       ... |       ... |
+
+The column names are case-sensitive
+
+-   `Subject` is the subject code
+-   `Electrode` is the electrode channel number (integer)
+-   `varname*` can be almost anything (give it a meaningful name, for e.g., `Power`, `Cluster`, ...) that you would like to show, and the values can be either numeric or categorical
+    -   The variable name is recommended to only contain letters and digits. For example, `BetaBandPower` seems to be a good idea, while names like `75-150 Hz` should be avoided
+    -   The variable values must not be numerical if the intent is categorical. For example cluster values such as `1`, `2`, `3`, ... should be avoided and users should use `Cluster 1`, `Cluster 2`, `Cluster 3`, ..., or `A`, `B`, `C`, ... instead
+
+``` r
+# Method 1: `csv_path` is the string of path to the csv
+brain$set_electrode_values(csv_path)
+
+# Method 2: use data frame
+table <- read.csv(csv_path)
+brain$set_electrode_values(table)
+
+brain$plot()
+```
+
+![**Left**: continuous values with symmetric value range. The color palette transition from blue to white to red (default); **Right**: Categorical data with default color palette](preview-2.png){width="100%"}
+
+## 3. Render options
+
+`brain$plot` allows users to provide render options to change the following components:
+
+-   Color palette
+-   Default value ranges (for continuous data)
+-   Control panels
+
+Here's an example
+
+```{r}
+#| column: screen
+# Load brain
+brain <- raveio::rave_brain("demo/DemoSubject")
+
+# Set values with 2 variables: `ContinuousVal` and `CategoricalVal`
+brain$set_electrode_values(
+  data.frame(
+    Subject = "DemoSubject",
+    Electrode = c(13:16,24,73:80),
+    ContinuousVal = rnorm(13),
+    CategoricalVal = sample(letters[1:4], size = 13, replace = TRUE),
+    PValue = c(0.15, 0.5, 0.9, 0.01, 0.05, 0.45, 0.8,
+               0.68, 0.6, 0.33, 0.001, 0.36, 0.83)
+  )
+)
+
+# Plot brain with options
+brain$plot(
+  
+  # change color palettes: each variable requires a palette (if not default)
+  palettes = list(
+    
+    # discrete values require each category to be filled with a 
+    # color. The order is alphabetic
+    CategoricalVal = c("red", "blue", "green"),
+    
+    # continuous values requires at least 2 key colors
+    ContinuousVal = c("white", "purple"),
+    
+    # p-value is not linearly scaled, R provides `colorRampPalette`
+    # to generate non-linear color palette from at least 
+    # 3 key colors. 
+    # This example used 5 key colors with bias = 2 so the
+    PValue = colorRampPalette(
+      c("red", "yellow", "cyan", "gray", "gray"), bias = 2
+    )(100)
+    
+  ),
+  
+  # Change value range: sets the value range for variables that have
+  # bounded ranges, such as p-values
+  value_ranges = list(
+    
+    # p-value should range from 0-1 
+    PValue = c(0, 1),
+    
+    # We also want to trim the `ContinuousVal` to 95% CI
+    ContinuousVal = c(-2, 2)
+    
+  ),
+  
+  # Set initial controller status
+  controllers = list(
+    
+    # Display p-value 
+    "Display Data" = "PValue",
+    
+    
+    # Overlay atlases from side canvas
+    "Voxel Type" = "aparc_aseg",
+    "Voxel Display" = "side camera",
+    
+    # Overlay axial slices with surfaces
+    "Overlay Axial" = TRUE,
+    
+    # Set surface opacity
+    "Left Opacity" = 0.4,
+    "Left Mesh Clipping" = 0.3,
+    "Right Opacity" = 0.4,
+    "Right Mesh Clipping" = 0.3,
+    
+    # Electrode outline
+    "Outlines" = "on",
+    "Translucent" = "contact+outline",
+    
+    # Background color and camera position
+    "Background Color" = "#000000",
+    "Camera Position" = "superior"
+    
+  ),
+  
+  # Custom javascript for advanced users
+  custom_javascript = r"[
+  app.$wrapper.parentNode.style.width="100%";
+  app.$wrapper.parentNode.style.height="600px";
+  app.canvas.side_width = 160;
+  app.canvas.sideCanvasList.coronal.reset();
+  app.canvas.sideCanvasList.axial.reset();
+  app.canvas.sideCanvasList.sagittal.reset();
+  app.resize()
+  ]"
+)
+```
+
+## Key Documentations
+
+### Function `rave_brain` {#function-rave_brain}
+
+```{r, echo = FALSE, results='asis'}
+.help_text("rave_brain", package = "raveio")
+```
