@@ -1,3 +1,14 @@
+options(
+  repos = c(
+    raveieeg = "https://rave-ieeg.r-universe.dev",
+    RSPM = "https://packagemanager.rstudio.com/all/latest",
+    CRAN = "https://cran.rstudio.com/"
+  ),
+  renv.config.auto.snapshot = TRUE,
+  renv.config.rspm.enabled = TRUE,
+  renv.config.cache.enabled = TRUE
+)
+
 source("renv/activate.R")
 
 local({

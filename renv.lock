@@ -7,6 +7,10 @@
         "URL": "https://rave-ieeg.r-universe.dev"
       },
       {
+        "Name": "RSPM",
+        "URL": "https://packagemanager.rstudio.com/all/latest"
+      },
+      {
         "Name": "CRAN",
         "URL": "https://cloud.r-project.org"
       }
