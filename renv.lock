@@ -3,6 +3,10 @@
     "Version": "4.4.1",
     "Repositories": [
       {
+        "Name": "raveieeg",
+        "URL": "https://rave-ieeg.r-universe.dev"
+      },
+      {
         "Name": "CRAN",
         "URL": "https://cloud.r-project.org"
       }

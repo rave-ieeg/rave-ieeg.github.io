@@ -1,0 +1,27 @@
+threeBrain_template_subject: N27
+py_virtualenv: ''
+py3_path: ''
+py2_path: ''
+matlab_path: /Applications/MATLAB_R2016b.app/bin
+suma_nodes_per_electrodes: 42
+server_time_zone: America/Chicago
+max_mem: 16.0
+disable_fork_clusters: no
+max_worker: 7.0
+disable_startup_speed_check: no
+drive_speed:
+- 50.0
+- 20.0
+image_height: 768
+image_width: 1280
+fast_cache: yes
+test_mode: no
+delay_input: 20.0
+module_lookup_file: ~/rave_modules/modules.csv
+module_root_dir: ~/rave_modules/
+file_structure: native
+bids_data_dir: /Users/dipterix/rave_data/bids_dir/
+data_dir: /Users/dipterix/PennNeurosurgery Dropbox/Zhengjia Wang/RAVE/Website/rave-ieeg.github.io/data/processed
+raw_data_dir: /Users/dipterix/PennNeurosurgery Dropbox/Zhengjia Wang/RAVE/Website/rave-ieeg.github.io/data/raw
+verbose_level: DEBUG
+tensor_temp_path: ~/rave_data/cache_dir/
