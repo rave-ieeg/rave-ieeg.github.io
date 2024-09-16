@@ -8,6 +8,22 @@ options(
   renv.config.rspm.enabled = TRUE,
   renv.config.cache.enabled = TRUE
 )
+## For Linux and Windows users, we'll use RStudio Package Manager (RSPM).
+
+if (Sys.info()[['sysname']] %in% c('Linux')) {
+  options(repos = c(
+    raveieeg = "https://rave-ieeg.r-universe.dev",
+    CRAN = "https://packagemanager.rstudio.com/all/latest",
+    CRAN_ORIG = "https://cran.rstudio.com/"
+  ))
+} else {
+  ## RSPM does not yet support Mac binaries.
+  options(repos = c(
+    raveieeg = "https://rave-ieeg.r-universe.dev",
+    CRAN = "https://cran.rstudio.com/"
+  ))
+}
+options(renv.config.repos.override = getOption("repos"))
 
 source("renv/activate.R")
 
