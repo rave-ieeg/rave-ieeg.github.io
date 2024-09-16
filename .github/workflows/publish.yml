@@ -20,7 +20,13 @@ jobs:
       - name: Install Additional System Libraries on Linux
         if: runner.os == 'Linux'
         run: |
-          sudo apt-get update -y && sudo apt-get install -y libhdf5-dev
+          sudo apt-get update -y && \
+          sudo apt-get install -y \
+            libhdf5-dev python3 git libcurl4-openssl-dev libssl-dev \
+            libfftw3-dev make libgit2-dev libhdf5-dev zlib1g-dev libglpk-dev \
+            libxml2-dev pandoc cmake libzmq3-dev libpng-dev libfreetype6-dev \
+            libjpeg-dev libtiff-dev libicu-dev libfontconfig1-dev \
+            libfribidi-dev libharfbuzz-dev
 
       - name: Install R
         uses: r-lib/actions/setup-r@v2
