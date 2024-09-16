@@ -14,8 +14,10 @@ website:
       - href: https://openwetware.org/wiki/RAVE
         text: Documentation
         target: "_blank"
+      - href: posts/3dviewer/viewer301.html?viewer=full
+        text: Demo
       - href: blogs.qmd
-        text: Advanced Examples
+        text: Code Examples
     tools:
       - icon: github
         href: https://github.com/rave-ieeg/

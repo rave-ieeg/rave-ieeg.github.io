@@ -116,7 +116,7 @@ abstract_html <- lapply(abstracts, function(item) {
   htmltools::div(
     class = "grid abstract-item",
     htmltools::div(
-      class = "g-col-2 abbr",
+      class = "g-col-12 g-col-md-2 abbr",
       if(length(item$thumbnail)) {
         htmltools::div(
           class="figure",
@@ -134,7 +134,7 @@ abstract_html <- lapply(abstracts, function(item) {
       }
     ),
     htmltools::div(
-      class = "g-col-8",
+      class = "g-col-12 g-col-md-10 g-col-lg-8",
       htmltools::div(class="title", item$title),
       htmltools::div(class="author", authors),
       htmltools::div(class="periodical", htmltools::tags$em(item$journal), ", ", item$date),

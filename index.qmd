@@ -53,7 +53,7 @@ RAVE is free and open-source software for the analysis of intracranial electroen
 
 Join our growing RAVE-iEEG community on Slack {{< fa brands slack >}}. E-mail [slack\@rave.wiki](mailto:slack@rave.wiki) for an invitation.
 
-RAVE has been developed since 2017 with funding provided by NIH `U01NS113339`, `1R24MH117529.` If you use RAVE for a publication, please cite:
+RAVE has been developed since 2017 with funding provided by NIH `R01MH133717` , `U01NS113339`, and `1R24MH117529`. If you use RAVE for a publication, please cite:
 
 > Magnotti JF, Wang Z, Beauchamp MS. RAVE: comprehensive open-source software for reproducible analysis and visualization of intracranial EEG data. NeuroImage (2020) 223:117341. \[Click here for the journal full text\] \[Click here for the PDF\] \[Click here for the preprint\].
 
