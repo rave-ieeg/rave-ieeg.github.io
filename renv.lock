@@ -202,6 +202,16 @@
       ],
       "Hash": "2288423bb0f20a457800d7fc47f6aa54"
     },
+    "askpass": {
+      "Package": "askpass",
+      "Version": "1.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "sys"
+      ],
+      "Hash": "cad6cf7f1d5f6e906700b9d3e718c796"
+    },
     "backports": {
       "Package": "backports",
       "Version": "1.5.0",
@@ -510,6 +520,16 @@
       ],
       "Hash": "c2efdd5f0bcd1ea861c2d4e2a883a67d"
     },
+    "formatR": {
+      "Package": "formatR",
+      "Version": "1.14",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "63cb26d12517c7863f5abb006c5e0f25"
+    },
     "freesurferformats": {
       "Package": "freesurferformats",
       "Version": "0.1.18",
@@ -715,6 +735,21 @@
       ],
       "Hash": "d55aa087c47a63ead0f6fc10f8fa1ee0"
     },
+    "httr": {
+      "Package": "httr",
+      "Version": "1.4.7",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "R6",
+        "curl",
+        "jsonlite",
+        "mime",
+        "openssl"
+      ],
+      "Hash": "ac107251d9d9fd72f0ca8049988f1d7f"
+    },
     "igraph": {
       "Package": "igraph",
       "Version": "2.0.3",
@@ -823,6 +858,16 @@
       ],
       "Hash": "e2fca3e12e4db979dccc6e519b10a7ee"
     },
+    "logger": {
+      "Package": "logger",
+      "Version": "0.3.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "utils"
+      ],
+      "Hash": "c145edf05cc128e6ffcfa5d872c46329"
+    },
     "magrittr": {
       "Package": "magrittr",
       "Version": "2.0.3",
@@ -864,6 +909,16 @@
         "methods"
       ],
       "Hash": "29a4db6175aa4b8ff7e9764eedbd787b"
+    },
+    "openssl": {
+      "Package": "openssl",
+      "Version": "2.2.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "askpass"
+      ],
+      "Hash": "c62edf62de70cadf40553e10c739049d"
     },
     "ore": {
       "Package": "ore",
@@ -1258,6 +1313,23 @@
       ],
       "Hash": "114c0484a22b8d3faa9bb2f1a7a71850"
     },
+    "shidashi": {
+      "Package": "shidashi",
+      "Version": "0.1.6",
+      "Source": "Repository",
+      "Repository": "raveieeg",
+      "Requirements": [
+        "digest",
+        "fastmap",
+        "formatR",
+        "httr",
+        "jsonlite",
+        "shiny",
+        "utils",
+        "yaml"
+      ],
+      "Hash": "fc87517866a66a8be276183bb288baa3"
+    },
     "shiny": {
       "Package": "shiny",
       "Version": "1.9.1",
@@ -1331,6 +1403,13 @@
       ],
       "Hash": "960e2ae9e09656611e0b8214ad543207"
     },
+    "sys": {
+      "Package": "sys",
+      "Version": "3.4.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "3a1be13d68d47a8cd0bfd74739ca1555"
+    },
     "targets": {
       "Package": "targets",
       "Version": "1.7.1",
@@ -1361,9 +1440,14 @@
     },
     "threeBrain": {
       "Package": "threeBrain",
-      "Version": "1.1.1.9014",
-      "Source": "Repository",
-      "Repository": "raveieeg",
+      "Version": "1.1.1.9015",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "dipterix",
+      "RemoteRepo": "threeBrain",
+      "RemoteRef": "master",
+      "RemoteSha": "da148714af1ecb0339c6771690e774d7157b012a",
       "Requirements": [
         "R6",
         "digest",
@@ -1383,7 +1467,7 @@
         "utils",
         "xml2"
       ],
-      "Hash": "8afdbc6ac5539feeaeb965e27c32498b"
+      "Hash": "8808abffaeafcaee8d654da3a9802e40"
     },
     "tibble": {
       "Package": "tibble",

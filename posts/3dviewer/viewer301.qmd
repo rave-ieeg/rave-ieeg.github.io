@@ -19,6 +19,131 @@ copyright:
   year: 2024
 ---
 
+## Demo: Make Group-Level Visualization on a Template Brain
+
+Here is an interactive demo showing two subjects mapped to a template `MNI152` brain.
+
+```{r full-example, echo = FALSE}
+#| column: page
+
+# Using MNI152 template
+template_subject <- "cvs_avg35_inMNI152"
+template_root <- threeBrain::default_template_directory()
+if(!dir.exists(file.path(template_root, template_subject))) {
+  threeBrain::download_template_subject(template_subject)
+}
+
+# Load subject brain
+b1 <- raveio::rave_brain("YAEL/PAV037")
+b2 <- raveio::rave_brain("YAEL/PAV038")
+
+# create template brain
+template <- threeBrain::merge_brain(
+  b1, b2, 
+  template_subject = template_subject
+)
+
+# set electrode values
+b1$set_electrode_values()
+b2$set_electrode_values()
+
+# plot with options
+template$plot(
+  controllers = list(
+    "Background Color" = "#000000",
+    "Camera Position" = "superior",
+    "Display Coordinates" = TRUE,
+    
+    "Show Panels" = TRUE,
+    "Crosshair Gap" = 10,
+    
+    "Overlay Coronal" = TRUE,
+    "Overlay Axial" = TRUE,
+    "Overlay Sagittal" = TRUE,
+    
+    "Frustum Near" = 1,
+    "Frustum Far" = 1,
+    "Voxel Type" = "wmparc",
+    "Voxel Display" = "side camera",
+    "Voxel Opacity" = 0.566,
+    
+    "Left Hemisphere" = "mesh clipping x 0.3",
+    "Right Hemisphere" = "mesh clipping x 0.3",
+    "Left Opacity" = 0.4,
+    "Right Opacity" = 0.4,
+    
+    "Electrode Shape" = "prototype",
+    "Translucent" = "contact+outline",
+    "Text Scale" = 3,
+    "Text Visibility" = TRUE,
+    
+    "Display Data" = "[Subject]",
+    
+    "Show Time" = FALSE,
+    
+    "Highlight Box" = FALSE,
+    
+    "Info Text" = TRUE
+  ),
+  custom_javascript = r'[
+  const urlParams = new URLSearchParams(window.location.search);
+  const viewerOption = urlParams.get('viewer');
+  if(viewerOption) {
+    const main = document.getElementById("quarto-document-content");
+    main.style.position = "relative";
+    main.style.zIndex = "1024";
+    
+    const appContainer = app.$wrapper.parentNode.parentNode;
+    appContainer.style.width="100vw";
+    appContainer.style.height="100vh";
+    appContainer.style.position = "fixed";
+    appContainer.style.top = "0";
+    appContainer.style.left = "0";
+    appContainer.style.zIndex = "4096";
+    app.$wrapper.parentNode.style.width="100%";
+  
+    if( viewerOption === 'full') {
+      const stateText = '{"isThreeBrainControllerData":true,"controllerData":{"controllers":{},"folders":{"_logo_":{"controllers":{},"folders":{}},"Default":{"controllers":{"Background Color":"#000000","Camera Position":"[free rotate]","Display Coordinates":true,"Record":false,"Paste to Set State":""},"folders":{}},"Volume Settings":{"controllers":{"Show Panels":true,"Slice Brightness":0,"Slice Contrast":0,"Slice Mode":"canonical","Crosshair Gap":10,"Coronal (P - A)":0,"Axial (I - S)":0,"Sagittal (L - R)":0,"Intersect MNI305":"0.00, 0.00, 0.00","Overlay Coronal":true,"Overlay Axial":true,"Overlay Sagittal":true,"Frustum Near":1,"Frustum Far":1,"Voxel Type":"wmparc","Voxel Display":"side camera","Voxel Opacity":-1,"Voxel Min":-100000,"Voxel Max":100000,"Symmetric Color Map":false,"Voxel Label":"","ISO Surface":false},"folders":{}},"Surface Settings":{"controllers":{"Surface Material":"MeshPhysicalMaterial","Surface Type":"pial","Clipping Plane":"disabled","Left Hemisphere":"mesh clipping x 0.3","Right Hemisphere":"mesh clipping x 0.3","Left Opacity":0.4,"Right Opacity":0.4,"Left Mesh Clipping":0.3,"Right Mesh Clipping":0.3,"Surface Color":"none","Blend Factor":1,"Sigma":1,"Decay":0.6,"Range Limit":5},"folders":{}},"Electrode Settings":{"controllers":{"Subject":"cvs_avg35_inMNI152","Map Electrodes":true,"Surface Mapping":"sphere.reg","Volume Mapping":"mni305","Projection Threshold":30,"Target Surface":"auto","Visibility":"all visible","Electrode Shape":"prototype","Outlines":"auto","Translucent":"contact+outline","Text Scale":3,"Text Visibility":true},"folders":{}},"Custom Geometry Settings":{"controllers":{},"folders":{"Configure ROI Surfaces":{"controllers":{"Visibility (all surfaces)":"visible","Opacity (all surfaces)":1},"folders":{}},"Configure ROI Volumes":{"controllers":{"Visibility (all volumes)":"visible","Opacity (all volumes)":1},"folders":{}}}},"Data Visualization":{"controllers":{"Display Data":"[Subject]","Display Range":"","Threshold Data":"[None]","Threshold Range":"","Threshold Method":"|v| >= T1","Additional Data":"[None]","Inactive Color":"#c2c2c2","Play/Pause":false,"Speed":1,"Time":0,"Video Mode":"muted","Show Legend":true,"Show Time":false,"Highlight Box":false,"Info Text":true},"folders":{}}}},"sliceCrosshair":{"tkrRAS":"-1.41, -18.47, 17.68","scannerRAS":"-2.41, -35.47, 36.68","mni305RAS":"-3.26, -36.85, 35.21","mni152RAS":"-2.41, -35.47, 36.68"},"cameraState":{"target":{"x":1.9237136840820312,"y":0.07685089111328125,"z":-3.6354293823242188},"up":{"x":0.026081451985242324,"y":0.9996014963871832,"z":0.01079843890786995},"position":{"x":6.781290796621995,"y":-5.56686340368258,"z":499.94862987995145},"zoom":1}}';
+      const data = JSON.parse( stateText );
+      if( typeof data === "object" && data !== null && data.isThreeBrainControllerData ) {
+        const controllerData = data.controllerData;
+        if( controllerData && typeof controllerData === "object") {
+          app.controllerGUI.load( controllerData );
+        }
+        const cameraData = data.cameraState;
+        if( cameraData && typeof cameraData === "object" ) {
+          if( cameraData.target ) {
+            canvas.mainCamera.lookAt( cameraData.target );
+          }
+          if( cameraData.up ) {
+            canvas.mainCamera.up.copy( cameraData.up );
+          }
+          if( typeof cameraData.zoom === "number" ) {
+            canvas.mainCamera.zoom = cameraData.zoom;
+          }
+          if( cameraData.position ) {
+            cameraData.position.updateProjection = false;
+            canvas.mainCamera.setPosition( cameraData.position );
+          }
+          canvas.mainCamera.updateProjectionMatrix();
+        }
+      }
+    } else {
+      app.startDemo();
+    }
+  } else {
+    app.$wrapper.parentNode.style.width="100%";
+    app.$wrapper.parentNode.style.height="600px";
+    app.canvas.side_width = 160;
+    app.canvas.sideCanvasList.coronal.reset();
+    app.canvas.sideCanvasList.axial.reset();
+    app.canvas.sideCanvasList.sagittal.reset();
+  }
+  app.resize();
+  ]'
+)
+```
+
 ## 1. Create template brain
 
 Function `threeBrain::merge_brain` provides high-level function to load individual subjects' brain on a given template. See the following example:
@@ -94,167 +219,10 @@ b1$set_electrode_values()
 b2$set_electrode_values()
 
 # plot with options
-template$plot(
-  controllers = list(
-    "Background Color" = "#000000",
-    "Camera Position" = "superior",
-    "Display Coordinates" = TRUE,
-    
-    "Show Panels" = TRUE,
-    "Crosshair Gap" = 10,
-    
-    "Overlay Coronal" = TRUE,
-    "Overlay Axial" = TRUE,
-    "Overlay Sagittal" = TRUE,
-    
-    "Frustum Near" = 1,
-    "Frustum Far" = 1,
-    "Voxel Type" = "wmparc",
-    "Voxel Display" = "side camera",
-    "Voxel Opacity" = 0.566,
-    
-    "Left Hemisphere" = "mesh clipping x 0.3",
-    "Right Hemisphere" = "mesh clipping x 0.3",
-    "Left Opacity" = 0.4,
-    "Right Opacity" = 0.4,
-    
-    "Electrode Shape" = "prototype",
-    "Translucent" = "contact+outline",
-    "Text Scale" = 3,
-    "Text Visibility" = TRUE,
-    
-    "Display Data" = "[Subject]",
-    
-    "Show Time" = FALSE,
-    
-    "Highlight Box" = FALSE,
-    
-    "Info Text" = TRUE
-  )
-)
+template$plot()
 ```
 
-```{r full-example, echo = FALSE, cache = TRUE}
-#| column: screen
-
-# Using MNI152 template
-template_subject <- "cvs_avg35_inMNI152"
-template_root <- threeBrain::default_template_directory()
-if(!dir.exists(file.path(template_root, template_subject))) {
-  threeBrain::download_template_subject(template_subject)
-}
-
-# Load subject brain
-b1 <- raveio::rave_brain("YAEL/PAV037")
-b2 <- raveio::rave_brain("YAEL/PAV038")
-
-# create template brain
-template <- threeBrain::merge_brain(
-  b1, b2, 
-  template_subject = template_subject
-)
-
-# set electrode values
-b1$set_electrode_values()
-b2$set_electrode_values()
-
-# plot with options
-template$plot(
-  controllers = list(
-    "Background Color" = "#000000",
-    "Camera Position" = "superior",
-    "Display Coordinates" = TRUE,
-    
-    "Show Panels" = TRUE,
-    "Crosshair Gap" = 10,
-    
-    "Overlay Coronal" = TRUE,
-    "Overlay Axial" = TRUE,
-    "Overlay Sagittal" = TRUE,
-    
-    "Frustum Near" = 1,
-    "Frustum Far" = 1,
-    "Voxel Type" = "wmparc",
-    "Voxel Display" = "side camera",
-    "Voxel Opacity" = 0.566,
-    
-    "Left Hemisphere" = "mesh clipping x 0.3",
-    "Right Hemisphere" = "mesh clipping x 0.3",
-    "Left Opacity" = 0.4,
-    "Right Opacity" = 0.4,
-    
-    "Electrode Shape" = "prototype",
-    "Translucent" = "contact+outline",
-    "Text Scale" = 3,
-    "Text Visibility" = TRUE,
-    
-    "Display Data" = "[Subject]",
-    
-    "Show Time" = FALSE,
-    
-    "Highlight Box" = FALSE,
-    
-    "Info Text" = TRUE
-  ),
-  custom_javascript = r'[
-  const urlParams = new URLSearchParams(window.location.search);
-  const viewerOption = urlParams.get('viewer');
-  if(viewerOption) {
-    const main = document.getElementById("quarto-document-content");
-    main.style.position = "relative";
-    main.style.zIndex = "4096";
-    
-    const appContainer = app.$wrapper.parentNode.parentNode;
-    appContainer.style.width="100vw";
-    appContainer.style.height="100vh";
-    appContainer.style.position = "fixed";
-    appContainer.style.top = "0";
-    appContainer.style.left = "0";
-    appContainer.style.zIndex = "4096";
-    app.$wrapper.parentNode.style.width="100%";
-  
-    if( viewerOption === 'full') {
-      const stateText = '{"isThreeBrainControllerData":true,"controllerData":{"controllers":{},"folders":{"_logo_":{"controllers":{},"folders":{}},"Default":{"controllers":{"Background Color":"#000000","Camera Position":"[free rotate]","Display Coordinates":true,"Record":false,"Paste to Set State":""},"folders":{}},"Volume Settings":{"controllers":{"Show Panels":true,"Slice Brightness":0,"Slice Contrast":0,"Slice Mode":"canonical","Crosshair Gap":10,"Coronal (P - A)":0,"Axial (I - S)":0,"Sagittal (L - R)":0,"Intersect MNI305":"0.00, 0.00, 0.00","Overlay Coronal":true,"Overlay Axial":true,"Overlay Sagittal":true,"Frustum Near":1,"Frustum Far":1,"Voxel Type":"wmparc","Voxel Display":"side camera","Voxel Opacity":-1,"Voxel Min":-100000,"Voxel Max":100000,"Symmetric Color Map":false,"Voxel Label":"","ISO Surface":false},"folders":{}},"Surface Settings":{"controllers":{"Surface Material":"MeshPhysicalMaterial","Surface Type":"pial","Clipping Plane":"disabled","Left Hemisphere":"mesh clipping x 0.3","Right Hemisphere":"mesh clipping x 0.3","Left Opacity":0.4,"Right Opacity":0.4,"Left Mesh Clipping":0.3,"Right Mesh Clipping":0.3,"Surface Color":"none","Blend Factor":1,"Sigma":1,"Decay":0.6,"Range Limit":5},"folders":{}},"Electrode Settings":{"controllers":{"Subject":"cvs_avg35_inMNI152","Map Electrodes":true,"Surface Mapping":"sphere.reg","Volume Mapping":"mni305","Projection Threshold":30,"Target Surface":"auto","Visibility":"all visible","Electrode Shape":"prototype","Outlines":"auto","Translucent":"contact+outline","Text Scale":3,"Text Visibility":true},"folders":{}},"Custom Geometry Settings":{"controllers":{},"folders":{"Configure ROI Surfaces":{"controllers":{"Visibility (all surfaces)":"visible","Opacity (all surfaces)":1},"folders":{}},"Configure ROI Volumes":{"controllers":{"Visibility (all volumes)":"visible","Opacity (all volumes)":1},"folders":{}}}},"Data Visualization":{"controllers":{"Display Data":"[Subject]","Display Range":"","Threshold Data":"[None]","Threshold Range":"","Threshold Method":"|v| >= T1","Additional Data":"[None]","Inactive Color":"#c2c2c2","Play/Pause":false,"Speed":1,"Time":0,"Video Mode":"muted","Show Legend":true,"Show Time":false,"Highlight Box":false,"Info Text":true},"folders":{}}}},"sliceCrosshair":{"tkrRAS":"-1.41, -18.47, 17.68","scannerRAS":"-2.41, -35.47, 36.68","mni305RAS":"-3.26, -36.85, 35.21","mni152RAS":"-2.41, -35.47, 36.68"},"cameraState":{"target":{"x":1.9237136840820312,"y":0.07685089111328125,"z":-3.6354293823242188},"up":{"x":0.026081451985242324,"y":0.9996014963871832,"z":0.01079843890786995},"position":{"x":6.781290796621995,"y":-5.56686340368258,"z":499.94862987995145},"zoom":1}}';
-      const data = JSON.parse( stateText );
-      if( typeof data === "object" && data !== null && data.isThreeBrainControllerData ) {
-        const controllerData = data.controllerData;
-        if( controllerData && typeof controllerData === "object") {
-          app.controllerGUI.load( controllerData );
-        }
-        const cameraData = data.cameraState;
-        if( cameraData && typeof cameraData === "object" ) {
-          if( cameraData.target ) {
-            canvas.mainCamera.lookAt( cameraData.target );
-          }
-          if( cameraData.up ) {
-            canvas.mainCamera.up.copy( cameraData.up );
-          }
-          if( typeof cameraData.zoom === "number" ) {
-            canvas.mainCamera.zoom = cameraData.zoom;
-          }
-          if( cameraData.position ) {
-            cameraData.position.updateProjection = false;
-            canvas.mainCamera.setPosition( cameraData.position );
-          }
-          canvas.mainCamera.updateProjectionMatrix();
-        }
-      }
-    } else {
-      app.startDemo();
-    }
-  } else {
-    app.$wrapper.parentNode.style.width="100%";
-    app.$wrapper.parentNode.style.height="600px";
-    app.canvas.side_width = 160;
-    app.canvas.sideCanvasList.coronal.reset();
-    app.canvas.sideCanvasList.axial.reset();
-    app.canvas.sideCanvasList.sagittal.reset();
-  }
-  app.resize();
-  ]'
-)
-```
-
+![This is a screenshot of the output. Please scroll to the top to play with the 3D viewer demo](preview-mni.png){fig-align="center" width="100%"}
 
 ## Key Documentations
 
@@ -269,4 +237,3 @@ template$plot(
 ```{r, echo = FALSE, results='asis'}
 .help_text("download_template_subject", package = "threeBrain")
 ```
-
