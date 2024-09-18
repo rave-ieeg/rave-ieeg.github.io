@@ -1,5 +1,5 @@
 ---
-title: "3D Viewer (Coding)"
+title: "Customize 3D Viewer Color Palette"
 description: |
   Create basic 3D viewer and render with colors
 date: 2024-09-16
@@ -83,7 +83,7 @@ brain$plot()
 | DemoSubject |        14 |      -0.4 |
 | ...         |       ... |       ... |
 
-The column names are case-sensitive
+Here is the explanation of the columns (case-sensitive):
 
 -   `Subject` is the subject code
 -   `Electrode` is the electrode channel number (integer)
@@ -115,7 +115,7 @@ brain$plot()
 Here's an example
 
 ```{r}
-#| column: screen
+#| column: page
 # Load brain
 brain <- raveio::rave_brain("demo/DemoSubject")
 

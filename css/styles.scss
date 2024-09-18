@@ -14,9 +14,14 @@ html {
   overflow-x: hidden;
 }
 
+thead th {
+  text-transform: none !important;
+}
+
 .figure {
   margin: 0 0 1rem;
 }
+
 
 #quarto-header .quarto-navigation-tool i.bi {
   font-size: x-large;

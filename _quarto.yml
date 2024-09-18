@@ -2,10 +2,11 @@ project:
   type: website
   resources:
     - "images/*"
+    - "favicon.ico"
 
 website:
   title: "RAVE"
-  favicon: images/favicon.ico
+  favicon: favicon.ico
   navbar:
     background: "#000000"
     left:
