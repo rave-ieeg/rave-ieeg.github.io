@@ -1,0 +1,99 @@
+---
+title: "Playground: Basic Signal Filters"
+description: |
+  This *Experimental* demo that allows users to execute RAVE scripts 
+  interactively and server-lessly in their web browsers. 
+date: 2024-09-18
+format: 
+  html:
+    toc: true
+    page-layout: full
+    code-copy: true
+execute:
+  freeze: auto
+title-block-banner: true
+author: 
+  - name: Zhengjia Wang
+    orcid: 0000-0001-5629-1116
+    affiliations: 
+      - name: "Dept. of Neurosurgery, University of Pennsylvania"
+categories:
+  - "Signal Processing"
+license: "CC BY"
+copyright: 
+  holder: Zhengjia Wang
+  year: 2024
+filters:
+  - webr
+webr:
+  packages: ['ravetools']
+  repos: ['https://rave-ieeg.r-universe.dev', 'https://repo.r-wasm.org/']
+  version: 0.4.2
+  channel-type: "service-worker"
+  autoload-packages: false
+---
+
+This post contains an interactive module that allows you to run RAVE signal processing functions completely in the web browsers (without installing RAVE on your local machine or sharing the data to anyone else in the world).
+
+::: {.alert .alert-warning role="alert"}
+It will take a little bit while for the website to configure RAVE in your browser. Please do NOT refresh the site nor go back to previous site. You will see `🟢 Ready!` when the web-RAVE is ready.
+
+*(This interactive feature is experimental)*
+:::
+
+## 1. Preparation
+
+Let's load the package and generate a sample signal. The signal is a mixture of `2Hz`, `10Hz`, `60Hz`, and noise
+
+```{webr-r}
+library(ravetools)
+sample_rate <- 200
+t <- seq(0, 10, by = 1 / sample_rate)
+noise <- cumsum(rnorm(length(t), sd = 0.4)) / sqrt(seq_len(length(t)))
+x <- 0.2 * sin(t * 4 * pi) + 0.02 * sin(t * 20 * pi) +
+  0.005 * sin(t * 120 * pi) + noise
+
+# Plot the signal
+ravetools::diagnose_channel(
+  x,
+  srate = sample_rate,
+  name = "Sample signal",
+  window = 2 * sample_rate,
+  noverlap = sample_rate
+)
+```
+
+## 2. FIR Filter
+
+Construct a `FIR` filter with low pass at `3Hz` and (around) `0.5Hz` transition bandwidth:
+
+```{webr-r}
+# Low-pass filter
+f1 <- design_filter(
+  data_size = length(x),
+  sample_rate = sample_rate,
+  low_pass_freq = 3, low_pass_trans_freq = 0.5
+)
+f1
+```
+
+Apply the filter to the signal `x` using `filtfilt` method:
+
+```{webr-r}
+y1 <- filtfilt(b = f1$b, a = f1$a, x = x)
+
+# compare the results
+plot(t, x, type = 'l', xlab = "Time", ylab = "",
+    main = "Mixture of 2, 10, and 60Hz", xlim = c(0,1))
+lines(t, y1, col = 'red')
+legend(
+  "topleft", c("Input", "Low: 3Hz"),
+  col = c(par("fg"), "red"), lty = 1
+)
+
+# plot welch-periodogram
+pwelch(x, fs = sample_rate, window = sample_rate * 2,
+    noverlap = sample_rate, plot = 1, ylim = c(-100, 10))
+pwelch(y1, fs = sample_rate, window = sample_rate * 2,
+    noverlap = sample_rate, plot = 2, col = "red")
+```

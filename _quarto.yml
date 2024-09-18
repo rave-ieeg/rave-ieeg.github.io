@@ -1,5 +1,9 @@
 project:
   type: website
+  render:
+    - "*.{qmd,ipynb,rmd,md}"
+    - "!webr_packages/"
+    - "!data/"
   resources:
     - "images/*"
     - "favicon.ico"

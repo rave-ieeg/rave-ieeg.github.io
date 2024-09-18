@@ -58,11 +58,11 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
     // Setup a shelter
     globalThis.mainWebRCodeShelter = await new mainWebR.Shelter();
 
-    // Setup a pager to allow processing help documentation 
-    await mainWebR.evalRVoid('webr::pager_install()'); 
+    // Setup a pager to allow processing help documentation
+    await mainWebR.evalRVoid('webr::pager_install()');
 
     // Override the existing install.packages() to use webr::install()
-    await mainWebR.evalRVoid('webr::shim_install()'); 
+    await mainWebR.evalRVoid('webr::shim_install()');
 
     // Specify the repositories to pull from
     // Note: webR does not use the `repos` option, but instead uses `webr_pkg_repos`
@@ -73,6 +73,26 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
         repos = c(${qwebrPackageRepoURLS.map(repoURL => `'${repoURL}'`).join(',')})
       )
     `);
+
+    /** Added by Zhengjia to allow loading copiled packages
+     * @date: 2024-09-18
+    //
+    console.log("👉 Loading R packages ----");
+
+    const libName = "webr_packages";
+    const dirPath = "/webr_packages";
+
+    // Create a custom lib so that we don't have to worry about
+    // overwriting any packages that are already installed.
+    await mainWebR.FS.mkdir(`/usr/lib/R/${libName}`);
+    // Mount the custom lib
+    await mainWebR.FS.mount("NODEFS", { root: dirPath }, `/usr/lib/R/${libName}`);
+    // Add the custom lib to the R search path
+    await mainWebR.evalR(`.libPaths(c('/usr/lib/R/${libName}', .libPaths()))`);
+
+    /**
+     * End webr injection
+     */
 
     // Check to see if any packages need to be installed
     if (qwebrSetupRPackages) {
