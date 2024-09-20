@@ -8,9 +8,9 @@
 
 <meta name="author" content="Zhengjia Wang">
 <meta name="dcterms.date" content="2024-09-18">
-<meta name="description" content="This Experimental demo that allows users to execute RAVE scripts interactively and server-lessly in their web browsers.">
+<meta name="description" content="High-level functions to design and apply filters in RAVE">
 
-<title>Playground: Basic Signal Filters – RAVE</title>
+<title>Basic Signal Filters – RAVE</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -343,7 +343,7 @@ body.reveal.quarto-dark div.qwebr-console-area {
 globalThis.qwebrInstallRPackagesList = ['ravetools'];
 
 // Specify possible locations to search for the repository
-globalThis.qwebrPackageRepoURLS = ['https://rave-ieeg.r-universe.dev', 'https://repo.r-wasm.org/', 'https://repo.r-wasm.org/'];
+globalThis.qwebrPackageRepoURLS = ['https://rave-ieeg.r-universe.dev', 'https://dipterix.r-universe.dev', 'https://repo.r-wasm.org/', 'https://repo.r-wasm.org/'];
 
 // Check to see if we have an empty array, if we do set to skip the installation.
 globalThis.qwebrSetupRPackages = !(qwebrInstallRPackagesList.indexOf("") !== -1);
@@ -362,7 +362,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"library(ravetools)\nsample_rate <- 200\nt <- seq(0, 10, by = 1 / sample_rate)\nnoise <- cumsum(rnorm(length(t), sd = 0.4)) / sqrt(seq_len(length(t)))\nx <- 0.2 * sin(t * 4 * pi) + 0.02 * sin(t * 20 * pi) +\n  0.005 * sin(t * 120 * pi) + noise\n\n# Plot the signal\nravetools::diagnose_channel(\n  x,\n  srate = sample_rate,\n  name = \"Sample signal\",\n  window = 2 * sample_rate,\n  noverlap = sample_rate\n)","id":1,"options":{"warning":"true","out-width":"700px","editor-quick-suggestions":"TRUE","read-only":"false","label":"unnamed-chunk-1","editor-font-scale":"1","context":"interactive","fig-cap":"","message":"true","autorun":"false","dpi":72,"out-height":"","output":"true","comment":"","editor-max-height":"500","results":"markup","classes":"","fig-width":7,"fig-height":5,"editor-word-wrap":"true"}},{"code":"# Low-pass filter\nf1 <- design_filter(\n  data_size = length(x),\n  sample_rate = sample_rate,\n  low_pass_freq = 3, low_pass_trans_freq = 0.5\n)\nf1","id":2,"options":{"warning":"true","out-width":"700px","editor-quick-suggestions":"TRUE","read-only":"false","label":"unnamed-chunk-2","editor-font-scale":"1","context":"interactive","fig-cap":"","message":"true","autorun":"false","dpi":72,"out-height":"","output":"true","comment":"","editor-max-height":"500","results":"markup","classes":"","fig-width":7,"fig-height":5,"editor-word-wrap":"true"}},{"code":"y1 <- filtfilt(b = f1$b, a = f1$a, x = x)\n\n# compare the results\nplot(t, x, type = 'l', xlab = \"Time\", ylab = \"\",\n    main = \"Mixture of 2, 10, and 60Hz\", xlim = c(0,1))\nlines(t, y1, col = 'red')\nlegend(\n  \"topleft\", c(\"Input\", \"Low: 3Hz\"),\n  col = c(par(\"fg\"), \"red\"), lty = 1\n)\n\n# plot welch-periodogram\npwelch(x, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 1, ylim = c(-100, 10))\npwelch(y1, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 2, col = \"red\")","id":3,"options":{"warning":"true","out-width":"700px","editor-quick-suggestions":"TRUE","read-only":"false","label":"unnamed-chunk-3","editor-font-scale":"1","context":"interactive","fig-cap":"","message":"true","autorun":"false","dpi":72,"out-height":"","output":"true","comment":"","editor-max-height":"500","results":"markup","classes":"","fig-width":7,"fig-height":5,"editor-word-wrap":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"library(ravetools)\nsample_rate <- 200\nt <- seq(0, 10, by = 1 / sample_rate)\nnoise <- cumsum(rnorm(length(t), sd = 0.4)) / sqrt(seq_len(length(t)))\nx <- 0.2 * sin(t * 4 * pi) + 0.02 * sin(t * 20 * pi) +\n  0.005 * sin(t * 120 * pi) + noise\n\n# Plot the signal\nravetools::diagnose_channel(\n  x,\n  srate = sample_rate,\n  name = \"Sample signal\",\n  window = 2 * sample_rate,\n  noverlap = sample_rate\n)","options":{"fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","warning":"true","autorun":"true","message":"true","classes":"","dpi":72,"out-height":"","read-only":"false","out-width":"700px","editor-word-wrap":"true","output":"true","comment":"","fig-cap":"","context":"interactive","editor-font-scale":"1","results":"markup","editor-max-height":"500","editor-quick-suggestions":"TRUE"},"id":1},{"code":"# Low-pass filter\nf1 <- design_filter(\n  data_size = length(x),\n  sample_rate = sample_rate,\n  low_pass_freq = 3, low_pass_trans_freq = 0.5\n)\nf1","options":{"fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","warning":"true","autorun":"true","message":"true","classes":"","dpi":72,"out-height":"","read-only":"false","out-width":"700px","editor-word-wrap":"true","output":"true","comment":"","fig-cap":"","context":"interactive","editor-font-scale":"1","results":"markup","editor-max-height":"500","editor-quick-suggestions":"TRUE"},"id":2},{"code":"y1 <- filtfilt(b = f1$b, a = f1$a, x = x)\n\n# compare the results\nplot(t, x, type = 'l', xlab = \"Time\", ylab = \"\",\n    main = \"Mixture of 2, 10, and 60Hz\", xlim = c(0,1))\nlines(t, y1, col = 'red')\nlegend(\n  \"topleft\", c(\"Input\", \"Low: 3Hz\"),\n  col = c(par(\"fg\"), \"red\"), lty = 1\n)\n\n# plot welch-periodogram\npwelch(x, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 1, ylim = c(-100, 10))\npwelch(y1, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 2, col = \"red\")","options":{"fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","warning":"true","autorun":"true","message":"true","classes":"","dpi":72,"out-height":"","read-only":"false","out-width":"700px","editor-word-wrap":"true","output":"true","comment":"","fig-cap":"","context":"interactive","editor-font-scale":"1","results":"markup","editor-max-height":"500","editor-quick-suggestions":"TRUE"},"id":3}];
 
 </script>
 <script type="module">
@@ -1666,7 +1666,7 @@ globalThis.qwebrExecuteCode = async function (
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../blogs.html"> 
-<span class="menu-text">Code Examples</span></a>
+<span class="menu-text">Customization</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -1680,14 +1680,15 @@ globalThis.qwebrExecuteCode = async function (
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
-      <h1 class="title">Playground: Basic Signal Filters</h1>
+      <h1 class="title">Basic Signal Filters</h1>
                   <div>
         <div class="description">
-          <p>This <em>Experimental</em> demo that allows users to execute RAVE scripts interactively and server-lessly in their web browsers.</p>
+          <p>High-level functions to design and apply filters in RAVE</p>
         </div>
       </div>
                           <div class="quarto-categories">
                 <div class="quarto-category">Signal Processing</div>
+                <div class="quarto-category">Interactive Module</div>
               </div>
                   </div>
   </div>
@@ -2024,10 +2025,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 
 
-<p>This post contains an interactive module that allows you to run RAVE signal processing functions completely in the web browsers (without installing RAVE on your local machine or sharing the data to anyone else in the world).</p>
 <div class="alert alert-warning" role="alert">
-<p>It will take a little bit while for the website to configure RAVE in your browser. Please do NOT refresh the site nor go back to previous site. You will see <code>🟢 Ready!</code> when the web-RAVE is ready.</p>
-<p><em>(This interactive feature is experimental)</em></p>
+<p>This post contains interactive components (experimental) that allows you to execute RAVE code from the web browsers. If you would like to try this feature and customize/play with the code, please be patient. It might take a while for the browser to finish setting up (depending on your network speed). Once the script is ready, you will see “WEBR STATUS: 🟢 Ready!” in the above banner.</p>
 </div>
 <section id="preparation" class="level2">
 <h2 class="anchored" data-anchor-id="preparation">1. Preparation</h2>
