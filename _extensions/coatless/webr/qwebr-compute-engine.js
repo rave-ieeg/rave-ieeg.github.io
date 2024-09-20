@@ -3,7 +3,7 @@ globalThis.qwebrIsObjectEmpty = function (arr) {
     return Object.keys(arr).length === 0;
 }
 
-// Global version of the Escape HTML function that converts HTML 
+// Global version of the Escape HTML function that converts HTML
 // characters to their HTML entities.
 globalThis.qwebrEscapeHTMLCharacters = function(unsafe) {
     return unsafe
@@ -50,13 +50,22 @@ function qwebrImageCanvasDownloadButton(canvas, canvasContainer) {
         link.click();
     });
   }
-  
+
 
 // Function to parse the pager results
-globalThis.qwebrParseTypePager = async function (msg) { 
+globalThis.qwebrParseTypePager = async function (msg) {
 
-    // Split out the event data
-    const { path, title, deleteFile } = msg.data; 
+    let path, title, deleteFile;
+    if( msg.type === "browse" ) {
+      path = msg.data.url;
+      title = "Untitled";
+      deleteFile = false;
+    } else {
+      // Split out the event data
+      path = msg.data.path;
+      title = msg.data.title;
+      deleteFile = msg.data.deleteFile;
+    }
 
     // Process the pager data by reading the information from disk
     const paged_data = await mainWebR.FS.readFile(path).then((data) => {
@@ -73,22 +82,22 @@ globalThis.qwebrParseTypePager = async function (msg) {
     });
 
     // Unlink file if needed
-    if (deleteFile) { 
-        await mainWebR.FS.unlink(path); 
-    } 
+    if (deleteFile) {
+        await mainWebR.FS.unlink(path);
+    }
 
     // Return extracted data with spaces
     return paged_data;
-} 
+}
 
 // Function to run the code using webR and parse the output
 globalThis.qwebrComputeEngine = async function(
-    codeToRun, 
-    elements, 
+    codeToRun,
+    elements,
     options) {
 
     // Call into the R compute engine that persists within the document scope.
-    // To be prepared for all scenarios, the following happens: 
+    // To be prepared for all scenarios, the following happens:
     // 1. We setup a canvas device to write to by making a namespace call into the {webr} package
     // 2. We use values inside of the options array to set the figure size.
     // 3. We capture the output stream information (STDOUT and STERR)
@@ -108,7 +117,7 @@ globalThis.qwebrComputeEngine = async function(
         processOutput = qwebrIdentity;
     }
 
-    // ---- 
+    // ----
     // Convert from Inches to Pixels by using DPI (dots per inch)
     // for bitmap devices (dpi * inches = pixels)
     let fig_width = options["fig-width"] * options["dpi"]
@@ -124,7 +133,7 @@ globalThis.qwebrComputeEngine = async function(
         captureConditions: false,
         // env: webR.objs.emptyEnv, // maintain a global environment for webR v0.2.0
     };
-    
+
     // Determine if the browser supports OffScreen
     if (qwebrOffScreenCanvasSupport()) {
         // Mirror default options of webr::canvas()
@@ -152,22 +161,26 @@ globalThis.qwebrComputeEngine = async function(
         captureOutputOptions
     );
 
+    console.log(result);
+    window.mainWebR = mainWebR;
+    window.result = result;
+
     // -----
 
     // Start attempting to parse the result data
     processResultOutput:try {
-        
+
         // Avoid running through output processing
-        if (options.results === "hide" || options.output === "false") { 
-            break processResultOutput; 
+        if (options.results === "hide" || options.output === "false") {
+            break processResultOutput;
         }
 
         // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-        // Require both `warning` and `message` to be true to display `STDErr`. 
+        // Require both `warning` and `message` to be true to display `STDErr`.
         const out = result.output
         .filter(
-            evt => evt.type === "stdout" || 
-            ( evt.type === "stderr" && (options.warning === "true" && options.message === "true")) 
+            evt => evt.type === "stdout" ||
+            ( evt.type === "stderr" && (options.warning === "true" && options.message === "true"))
         )
         .map((evt, index) => {
             const className = `qwebr-output-code-${evt.type}`;
@@ -179,18 +192,24 @@ globalThis.qwebrComputeEngine = async function(
 
         // Clean the state
         // We're now able to process pager events.
-        // As a result, we cannot maintain a true 1-to-1 output order 
+        // As a result, we cannot maintain a true 1-to-1 output order
         // without individually feeding each line
         const msgs = await mainWebR.flush();
 
         // Use `map` to process the filtered "pager" events asynchronously
         const pager = await Promise.all(
-            msgs.filter(msg => msg.type === 'pager').map(
+            msgs.filter(
+                msg => {
+                    return msg.type === 'pager' || msg.type === 'browse';
+                }
+            ).map(
                 async (msg) => {
+                    window.msgmsg = msg;
                     return await qwebrParseTypePager(msg);
                 }
             )
         );
+        window.pager = pager;
 
         // Nullify the output area of content
         elements.outputCodeDiv.innerHTML = "";
@@ -250,20 +269,20 @@ globalThis.qwebrComputeEngine = async function(
                 // Draw image onto Canvas
                 const ctx = canvas.getContext("2d");
                 ctx.drawImage(img, 0, 0, img.width, img.height);
-          
+
                 // Append canvas to figure output area
                 figureElement.appendChild(canvas);
 
             });
-            
+
             if (options['fig-cap']) {
                 // Create figcaption element
                 const figcaptionElement = document.createElement('figcaption');
                 figcaptionElement.innerText = options['fig-cap'];
                 // Append figcaption to figure
-                figureElement.appendChild(figcaptionElement);    
+                figureElement.appendChild(figcaptionElement);
             }
-        
+
             elements.outputGraphDiv.appendChild(figureElement);
 
         }
@@ -272,11 +291,23 @@ globalThis.qwebrComputeEngine = async function(
         if (pager) {
         // Use the `pre` element to preserve whitespace.
         pager.forEach((paged_data, index) => {
-            let pre_pager = document.createElement("pre");
-            pre_pager.innerText = paged_data;
-            pre_pager.classList.add("qwebr-output-code-pager");
-            pre_pager.setAttribute("id", `qwebr-output-code-pager-editor-${elements.id}-result-${index + 1}`);
-            elements.outputCodeDiv.appendChild(pre_pager);
+            if( paged_data.startsWith("<!DOCTYPE html") ) {
+                const pre_pager = document.createElement('iframe');
+                pre_pager.classList.add("qwebr-output-code-pager");
+                pre_pager.setAttribute("id", `qwebr-output-code-pager-editor-${elements.id}-result-${index + 1}`);
+                pre_pager.style.width = "100%";
+                pre_pager.style.minHeight = "500px";
+                elements.outputCodeDiv.appendChild(pre_pager);
+                pre_pager.contentWindow.document.open();
+                pre_pager.contentWindow.document.write(paged_data);
+                pre_pager.contentWindow.document.close();
+            } else {
+                const pre_pager = document.createElement("pre");
+                pre_pager.classList.add("qwebr-output-code-pager");
+                pre_pager.setAttribute("id", `qwebr-output-code-pager-editor-${elements.id}-result-${index + 1}`);
+                pre_pager.textContent = paged_data;
+                elements.outputCodeDiv.appendChild(pre_pager);
+            }
         });
         }
     } finally {
@@ -293,12 +324,12 @@ globalThis.qwebrExecuteCode = async function (
 
     // If options are not passed, we fall back on the bare minimum to handle the computation
     if (qwebrIsObjectEmpty(options)) {
-        options = { 
-            "context": "interactive", 
-            "fig-width": 7, "fig-height": 5, 
-            "out-width": "700px", "out-height": "", 
+        options = {
+            "context": "interactive",
+            "fig-width": 7, "fig-height": 5,
+            "out-width": "700px", "out-height": "",
             "dpi": 72,
-            "results": "markup", 
+            "results": "markup",
             "warning": "true", "message": "true",
         };
     }
