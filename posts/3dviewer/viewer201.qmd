@@ -9,7 +9,7 @@ format:
     page-layout: full
     code-copy: true
 execute:
-  freeze: auto
+  freeze: false
 title-block-banner: true
 author: 
   - name: Zhengjia Wang
@@ -22,52 +22,57 @@ license: "CC BY"
 copyright: 
   holder: Zhengjia Wang
   year: 2024
+filters:
+  - webr
+webr:
+  packages: ['raveio']
+  repos: ['https://rave-ieeg.r-universe.dev', 'https://repo.r-wasm.org/']
+  version: 0.4.2
+  channel-type: "service-worker"
+  autoload-packages: false
 ---
+
+::: {.alert .alert-warning role="alert"}
+This page contains interactive demo that runs in your browser! Please feel free to browse now. If you want to interact with the code, please wait for a second before the document finishes set up. If your internet speed is slow, this process might take a while. Once the preparation is ready, you will see "WEBR STATUS: 🟢 Ready!" in the above banner.
+
+```{webr-r}
+#| context: setup
+#| autorun: true
+# Let's mount a demo data to your browser:
+if(!dir.exists("~/rave_data/data_dir/demo")) {
+  webr::mount(
+    normalizePath("~/rave_data", mustWork = FALSE),
+    "https://rave.wiki/samples/project-demo-minimal.data.gz"
+  )
+}
+brain <- raveio::rave_brain("demo/DemoSubject")
+```
+
+:::
 
 ## Prerequisites
 
-```{r setup, echo=FALSE}
-csv_path <- data.frame(
-  Subject = "DemoSubject",
-  Electrode = c(13,14,15,16,24),
-  ContinuousValue = runif(5),
-  Categorical = letters[c(1,2,3,2,3)]
-)
-```
 
 This post assumes that you have already imported subject's imaging data to RAVE and finished the electrode localization. If you haven't done so, please check (TODO) for instructions.
-
-This post uses default demo subject. Please run the following code block
-
-```{r check-subject}
-library(raveio)
-project_demo <- as_rave_project("demo", strict = FALSE)
-if(!"DemoSubject" %in% project_demo$subjects()) {
-  # missing demo subject, install
-  message("Missing `DemoSubject`. Downloading...")
-  install_subject("DemoSubject")
-}
-```
 
 ## 1. Simple 3D viewer
 
 Library `raveio` provides simple high-level function [`rave_brain`](#function-rave_brain) to load 3D brain object.
 
-``` r
+```{webr-r}
+#| editor-max-height: 500
+#| editor-quick-suggestions: TRUE
 brain <- raveio::rave_brain("demo/DemoSubject")
-# See the output to the right for what's inside of the brain object
-brain
-```
 
-```{r, echo = FALSE}
-#| column: margin
-brain <- raveio::rave_brain("demo/DemoSubject")
+# See the output to the right for what's inside of the brain object
 brain
 ```
 
 Use `brain$plot(<your arguments...>)` to show the viewer:
 
-``` r
+```{webr-r}
+#| editor-max-height: 500
+#| editor-quick-suggestions: TRUE
 brain$plot()
 ```
 
@@ -91,13 +96,19 @@ Here is the explanation of the columns (case-sensitive):
     -   The variable name is recommended to only contain letters and digits. For example, `BetaBandPower` seems to be a good idea, while names like `75-150 Hz` should be avoided
     -   The variable values must not be numerical if the intent is categorical. For example cluster values such as `1`, `2`, `3`, ... should be avoided and users should use `Cluster 1`, `Cluster 2`, `Cluster 3`, ..., or `A`, `B`, `C`, ... instead
 
-``` r
-# Method 1: `csv_path` is the string of path to the csv
-brain$set_electrode_values(csv_path)
+Here's an example data table
 
-# Method 2: use data frame
-table <- read.csv(csv_path)
-brain$set_electrode_values(table)
+```{webr-r}
+#| editor-max-height: 500
+#| editor-quick-suggestions: TRUE
+data_table <- data.frame(
+    Subject = "DemoSubject",
+    Electrode = c(13,14,15,16,24),
+    ContinuousValue = runif(5),
+    Categorical = letters[c(1,2,3,2,3)]
+)
+
+brain$set_electrode_values(data_table)
 
 brain$plot()
 ```
@@ -112,9 +123,11 @@ brain$plot()
 -   Default value ranges (for continuous data)
 -   Control panels
 
-Here's an example
+Here's a full example:
 
-```{r}
+```{webr-r}
+#| editor-max-height: 500
+#| editor-quick-suggestions: TRUE
 #| column: page
 # Load brain
 brain <- raveio::rave_brain("demo/DemoSubject")
@@ -194,24 +207,14 @@ brain$plot(
     "Background Color" = "#000000",
     "Camera Position" = "superior"
     
-  ),
+  )
   
-  # Custom javascript for advanced users
-  custom_javascript = r"[
-  app.$wrapper.parentNode.style.width="100%";
-  app.$wrapper.parentNode.style.height="600px";
-  app.canvas.side_width = 160;
-  app.canvas.sideCanvasList.coronal.reset();
-  app.canvas.sideCanvasList.axial.reset();
-  app.canvas.sideCanvasList.sagittal.reset();
-  app.resize()
-  ]"
 )
 ```
 
 ## Key Documentations
 
-### Function `rave_brain` {#function-rave_brain}
+### Function `raveio::rave_brain` {#function-rave_brain}
 
 ```{r, echo = FALSE, results='asis'}
 .help_text("rave_brain", package = "raveio")
