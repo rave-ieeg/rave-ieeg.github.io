@@ -1,96 +1,5 @@
 [
   {
-    "objectID": "posts/3dviewer/viewer201.html",
-    "href": "posts/3dviewer/viewer201.html",
-    "title": "Customize 3D Viewer Color Palette",
-    "section": "",
-    "text": "This post assumes that you have already imported subject’s imaging data to RAVE and finished the electrode localization. If you haven’t done so, please check (TODO) for instructions.\nThis post uses default demo subject. Please run the following code block\n\nlibrary(raveio)\nproject_demo &lt;- as_rave_project(\"demo\", strict = FALSE)\nif(!\"DemoSubject\" %in% project_demo$subjects()) {\n  # missing demo subject, install\n  message(\"Missing `DemoSubject`. Downloading...\")\n  install_subject(\"DemoSubject\")\n}"
-  },
-  {
-    "objectID": "posts/3dviewer/viewer201.html#prerequisites",
-    "href": "posts/3dviewer/viewer201.html#prerequisites",
-    "title": "Customize 3D Viewer Color Palette",
-    "section": "",
-    "text": "This post assumes that you have already imported subject’s imaging data to RAVE and finished the electrode localization. If you haven’t done so, please check (TODO) for instructions.\nThis post uses default demo subject. Please run the following code block\n\nlibrary(raveio)\nproject_demo &lt;- as_rave_project(\"demo\", strict = FALSE)\nif(!\"DemoSubject\" %in% project_demo$subjects()) {\n  # missing demo subject, install\n  message(\"Missing `DemoSubject`. Downloading...\")\n  install_subject(\"DemoSubject\")\n}"
-  },
-  {
-    "objectID": "posts/3dviewer/viewer201.html#simple-3d-viewer",
-    "href": "posts/3dviewer/viewer201.html#simple-3d-viewer",
-    "title": "Customize 3D Viewer Color Palette",
-    "section": "1. Simple 3D viewer",
-    "text": "1. Simple 3D viewer\nLibrary raveio provides simple high-level function rave_brain to load 3D brain object.\nbrain &lt;- raveio::rave_brain(\"demo/DemoSubject\")\n# See the output to the right for what's inside of the brain object\nbrain\n\n\n\nSubject - DemoSubject \nTransforms:\n\n- FreeSurfer TalXFM [from scanner to MNI305]:\n          [,1]      [,2]     [,3]       [,4]\n[1,]  1.071608 -0.069364 0.003839  -5.186203\n[2,] -0.033422  1.293478 0.133732 -26.001312\n[3,]  0.039658 -0.231380 1.268464 -21.980759\n[4,]  0.000000  0.000000 0.000000   1.000000\n\n- Torig [Voxel IJK/CRS to FreeSurfer space tkrRAS, vox2ras-tkr]\n     [,1] [,2] [,3] [,4]\n[1,]   -1    0    0  128\n[2,]    0    0    1 -128\n[3,]    0   -1    0  128\n[4,]    0    0    0    1\n\n- Norig [Voxel IJK/CRS to Scanner space, vox2ras]\n     [,1] [,2] [,3]      [,4]\n[1,]   -1    0    0  131.6145\n[2,]    0    0    1 -127.5000\n[3,]    0   -1    0  127.5000\n[4,]    0    0    0    1.0000\n\n- Scanner origin in FreeSurfer tkrRAS coordinate\n[1] -3.614471 -0.500000  0.500000\n\n- FreeSurfer RAS to MNI305, vox2vox-MNI305\n          [,1]      [,2]     [,3]       [,4]\n[1,]  1.071608 -0.069364 0.003839  -1.349508\n[2,] -0.033422  1.293478 0.133732 -25.542242\n[3,]  0.039658 -0.231380 1.268464 -22.587338\n[4,]  0.000000  0.000000 0.000000   1.000000\nSurface information (total count 1)\n  pial [ fs ]  \nVolume information (total count 1)\n  T1  \n\nUse brain$plot(&lt;your arguments...&gt;) to show the viewer:\nbrain$plot()\n\n\n\nPreview of the result. See below if you want to play with the 3D viewer interactively"
-  },
-  {
-    "objectID": "posts/3dviewer/viewer201.html#render-electrodes-with-values",
-    "href": "posts/3dviewer/viewer201.html#render-electrodes-with-values",
-    "title": "Customize 3D Viewer Color Palette",
-    "section": "2. Render electrodes with values",
-    "text": "2. Render electrodes with values\nbrain$set_electrode_values(table_or_path) allows users to load a data table and render electrodes with colors. Users can create a csv table using Excel or their favorite programming languages, as long as the table follows the following format:\n\n\n\nSubject\nElectrode\nvarname*\n\n\n\n\nDemoSubject\n1\n0.25\n\n\nDemoSubject\n14\n-0.4\n\n\n…\n…\n…\n\n\n\nHere is the explanation of the columns (case-sensitive):\n\nSubject is the subject code\nElectrode is the electrode channel number (integer)\nvarname* can be almost anything (give it a meaningful name, for e.g., Power, Cluster, …) that you would like to show, and the values can be either numeric or categorical\n\nThe variable name is recommended to only contain letters and digits. For example, BetaBandPower seems to be a good idea, while names like 75-150 Hz should be avoided\nThe variable values must not be numerical if the intent is categorical. For example cluster values such as 1, 2, 3, … should be avoided and users should use Cluster 1, Cluster 2, Cluster 3, …, or A, B, C, … instead\n\n\n# Method 1: `csv_path` is the string of path to the csv\nbrain$set_electrode_values(csv_path)\n\n# Method 2: use data frame\ntable &lt;- read.csv(csv_path)\nbrain$set_electrode_values(table)\n\nbrain$plot()\n\n\n\nLeft: continuous values with symmetric value range. The color palette transition from blue to white to red (default); Right: Categorical data with default color palette"
-  },
-  {
-    "objectID": "posts/3dviewer/viewer201.html#render-options",
-    "href": "posts/3dviewer/viewer201.html#render-options",
-    "title": "Customize 3D Viewer Color Palette",
-    "section": "3. Render options",
-    "text": "3. Render options\nbrain$plot allows users to provide render options to change the following components:\n\nColor palette\nDefault value ranges (for continuous data)\nControl panels\n\nHere’s an example\n\n# Load brain\nbrain &lt;- raveio::rave_brain(\"demo/DemoSubject\")\n\n# Set values with 2 variables: `ContinuousVal` and `CategoricalVal`\nbrain$set_electrode_values(\n  data.frame(\n    Subject = \"DemoSubject\",\n    Electrode = c(13:16,24,73:80),\n    ContinuousVal = rnorm(13),\n    CategoricalVal = sample(letters[1:4], size = 13, replace = TRUE),\n    PValue = c(0.15, 0.5, 0.9, 0.01, 0.05, 0.45, 0.8,\n               0.68, 0.6, 0.33, 0.001, 0.36, 0.83)\n  )\n)\n\n# Plot brain with options\nbrain$plot(\n  \n  # change color palettes: each variable requires a palette (if not default)\n  palettes = list(\n    \n    # discrete values require each category to be filled with a \n    # color. The order is alphabetic\n    CategoricalVal = c(\"red\", \"blue\", \"green\"),\n    \n    # continuous values requires at least 2 key colors\n    ContinuousVal = c(\"white\", \"purple\"),\n    \n    # p-value is not linearly scaled, R provides `colorRampPalette`\n    # to generate non-linear color palette from at least \n    # 3 key colors. \n    # This example used 5 key colors with bias = 2 so the\n    PValue = colorRampPalette(\n      c(\"red\", \"yellow\", \"cyan\", \"gray\", \"gray\"), bias = 2\n    )(100)\n    \n  ),\n  \n  # Change value range: sets the value range for variables that have\n  # bounded ranges, such as p-values\n  value_ranges = list(\n    \n    # p-value should range from 0-1 \n    PValue = c(0, 1),\n    \n    # We also want to trim the `ContinuousVal` to 95% CI\n    ContinuousVal = c(-2, 2)\n    \n  ),\n  \n  # Set initial controller status\n  controllers = list(\n    \n    # Display p-value \n    \"Display Data\" = \"PValue\",\n    \n    \n    # Overlay atlases from side canvas\n    \"Voxel Type\" = \"aparc_aseg\",\n    \"Voxel Display\" = \"side camera\",\n    \n    # Overlay axial slices with surfaces\n    \"Overlay Axial\" = TRUE,\n    \n    # Set surface opacity\n    \"Left Opacity\" = 0.4,\n    \"Left Mesh Clipping\" = 0.3,\n    \"Right Opacity\" = 0.4,\n    \"Right Mesh Clipping\" = 0.3,\n    \n    # Electrode outline\n    \"Outlines\" = \"on\",\n    \"Translucent\" = \"contact+outline\",\n    \n    # Background color and camera position\n    \"Background Color\" = \"#000000\",\n    \"Camera Position\" = \"superior\"\n    \n  ),\n  \n  # Custom javascript for advanced users\n  custom_javascript = r\"[\n  app.$wrapper.parentNode.style.width=\"100%\";\n  app.$wrapper.parentNode.style.height=\"600px\";\n  app.canvas.side_width = 160;\n  app.canvas.sideCanvasList.coronal.reset();\n  app.canvas.sideCanvasList.axial.reset();\n  app.canvas.sideCanvasList.sagittal.reset();\n  app.resize()\n  ]\"\n)"
-  },
-  {
-    "objectID": "posts/3dviewer/viewer201.html#key-documentations",
-    "href": "posts/3dviewer/viewer201.html#key-documentations",
-    "title": "Customize 3D Viewer Color Palette",
-    "section": "Key Documentations",
-    "text": "Key Documentations\n\nFunction rave_brain\n\nLoad ‘FreeSurfer’ or ‘AFNI/SUMA’ brain from ‘RAVE’\n\nrave_brain\n\nDescription\n\n\nCreate 3D visualization of the brain and visualize with modern web browsers\n\n\nUsage\n\nrave_brain(\n  subject,\n  surfaces = \"pial\",\n  use_141 = TRUE,\n  recache = FALSE,\n  clean_before_cache = FALSE,\n  compute_template = FALSE,\n  usetemplateifmissing = FALSE,\n  include_electrodes = TRUE\n)\n\n\nArguments\n\n\n\n\nsubject\n\n\n\ncharacter, list, or RAVESubject instance; for list or other objects, make sure subject$subject_id is a valid ‘RAVE’ subject ‘ID’\n\n\n\n\n\nsurfaces\n\n\n\none or more brain surface types from “pial”, “white”, “smoothwm”, “pial-outer-smoothed”, etc.; check freesurfer_brain2\n\n\n\n\n\nuse_141\n\n\n\nwhether to use ‘AFNI/SUMA’ standard 141 brain\n\n\n\n\n\nrecache\n\n\n\nwhether to re-calculate cache; only should be used when the original ‘FreeSurfer’ or ‘AFNI/SUMA’ files are changed; such as new files are added\n\n\n\n\n\nclean_before_cache\n\n\n\nwhether to clean the original cache before recache; only set it to be true if original cached files are corrupted\n\n\n\n\n\ncompute_template\n\n\n\nwhether to compute template mappings; useful when template mapping with multiple subjects are needed\n\n\n\n\n\nusetemplateifmissing\n\n\n\nwhether to use template brain when the subject brain files are missing. If set to true, then a template (usually ‘N27’) brain will be displayed as an alternative solution, and electrodes will be rendered according to their ‘MNI305’ coordinates, or ‘VertexNumber’ if given.\n\n\n\n\n\ninclude_electrodes\n\n\n\nwhether to include electrode in the model; default is true\n\n\n\n\n\nValue\n\n\nA ‘threeBrain’ instance if brain is found or usetemplateifmissing is set to true; otherwise returns NULL\n\n\nExamples\n\n\n\n# Please make sure DemoSubject is correctly installed\n# The subject is ~1GB from Github\n\nif(interactive()){\n  brain &lt;- rave_brain(\"demo/DemoSubject\")\n\n  if( !is.null(brain) ) { brain$plot() }\n\n}"
-  },
-  {
-    "objectID": "index.html#rave-reproducible-analysis-visualization-of-ieeg",
-    "href": "index.html#rave-reproducible-analysis-visualization-of-ieeg",
-    "title": "RAVE",
-    "section": "RAVE: Reproducible Analysis & Visualization of iEEG ",
-    "text": "RAVE: Reproducible Analysis & Visualization of iEEG \nRAVE is free and open-source software for the analysis of intracranial electroencephalogram (iEEG) data, including data collected using strips and grids (electrocorticography, ECoG) and depth electrodes (stereotactic EEG). A sister package to RAVE is the YAEL electrode localization toolkit.\n  RAVE is easy to use and creates publication-ready figures with absolutely no programming. RAVE can import standard data formats, including Matlab and EDF, and is compatible with BIDS-iEEG. It runs on laptops, lab servers, or in the cloud. Since all user interactions take place through a web browser, the user experience is identical on Mac, Windows and Linux. Data from RAVE can be exported for analysis using other software (click here for a list of iEEG analysis tools). Conversely, outside results can be imported and visualized using RAVE’s visualization engine. RAVE provides templates to make it easy to create GUI-based analyses using the streamlined application programming interface.\nJoin our growing RAVE-iEEG community on Slack . E-mail slack@rave.wiki for an invitation.\nRAVE has been developed since 2017 with funding provided by NIH R01MH133717 , U01NS113339, and 1R24MH117529. If you use RAVE for a publication, please cite:\n\nMagnotti JF, Wang Z, Beauchamp MS. RAVE: comprehensive open-source software for reproducible analysis and visualization of intracranial EEG data. NeuroImage (2020) 223:117341. [Click here for the journal full text] [Click here for the PDF] [Click here for the preprint].\n\nIf you use YAEL for electrode localization, please cite:\n\nWang Z, Magnotti JF, Zhang X, Beauchamp MS. YAEL: Your Advanced Electrode Localizer. Eneuro. 2023 Oct 1;10(10). [Click here for the journal full text] [Click here for the PDF]."
-  },
-  {
-    "objectID": "index.html#installation",
-    "href": "index.html#installation",
-    "title": "RAVE",
-    "section": "Installation",
-    "text": "Installation\nPlease check our full installation guide here: https://openwetware.org/wiki/RAVE:Install"
-  },
-  {
-    "objectID": "index.html#publications",
-    "href": "index.html#publications",
-    "title": "RAVE",
-    "section": "Publications",
-    "text": "Publications\nSend us your (p)reprint and we will add it to the list!\n\n\n\n\n\n\n\n\n\n\n\nRAVE: Comprehensive open-source software for reproducible analysis and visualization of intracranial EEG data\nJohn F. Magnotti, Zhengjia Wang, and Michael S. Beauchamp\n\nNeuroImage\n, \nDec 2020\n\n\n\n\nDOI: 10.1016/j.neuroimage.2020.117341\n\n\n\n\n\n\n\n\n\n\n\nYAEL: Your Advanced Electrode Localizer\nZhengjia Wang, John F. Magnotti, Xiang Zhang, and Michael S. Beauchamp\n\neNeuro\n, \nOct 2023\n\n\n\n\nDOI: 10.1523/ENEURO.0328-23.2023\n\n\n\n\n\n\n\n\n\n\n\nBeta activity in human anterior cingulate cortex mediates reward biases\nJiayang Xiao, Joshua A. Adkinson, John Myers, Anusha B. Allawala, Raissa K. Mathura, Victoria Pirtle, Ricardo Najera, Nicole R. Provenza, Eleonora Bartoli, Andrew J. Watrous, Denise Oswalt, Ron Gadot, Adrish Anand, Ben Shofty, Sanjay J. Mathew, Wayne K. Goodman, Nader Pouratian, Xaq Pitkow, Kelly R. Bijanki, Benjamin Hayden, and Sameer A. Sheth\n\nNature Communications\n, \nJuly 2024\n\n\n\n\nDOI: 10.1038/s41467-024-49600-7\n\n\n\n\n\n\n\n\n\n\n\nBayesian Image-on-Scalar Regression with a Spatial Global-Local Spike-and-Slab Prior\nZijian Zeng, Meng Li, and Marina Vannucci \n\nBayesian Analysis\n, \nMar 2024\n\n\n\n\nDOI: 10.1016/j.brs.2022.03.002\n\n\n\n\n\n\n\n\n\n\n\nIntracranial stimulation and EEG feature analysis reveal affective salience network specialization\nBrian A. Metzger, Prathik Kalva, Madaline M. Mocchi, Brian Cui, and Joshua A. Adkinson, Zhengjia Wang, Raissa Mathura, Kourtney Kanja, Jay Gavvala, Vaishnav Krishnan, Lu Lin, Atul Maheshwari, Ben Shofty, John F. Magnotti, Jon T. Willie, Sameer A. Sheth, Kelly R. Bijanki\n\nBrain: A Journal of Neurology\n, \nOct 2023\n\n\n\n\nDOI: 10.1093/brain/awad200\n\n\n\n\n\n\n\n\n\n\n\nFunctional group bridge for simultaneous regression and support estimation\nZhengjia Wang, John Magnotti, Michael S. Beauchamp, and Meng Li\n\nBiometrics\n, \nJun 2023\n\n\n\n\nDOI: 10.1111/biom.13684\n\n\n\n\n\n\n\n\n\n\n\nImaging versus electrographic connectivity in human mood-related fronto-temporal networks\nJoshua A. Adkinson, Evangelia Tsolaki, Sameer A. Sheth, Brian A. Metzger, and Meghan E. Robinson, Denise Oswalt, Cameron C. McIntyre, Raissa K. Mathura, Allison C. Waters, Anusha B. Allawala, Angela M. Noecker, Mahsa Malekmohammadi, Kevin Chiu, Richard Mustakos, Wayne Goodman, David Borton, Nader Pouratian, Kelly R. Bijanki\n\nBrain Stimulation\n, \nMay 2022\n\n\n\n\nDOI: 10.1016/j.brs.2022.03.002\n\n\n\n\n\n\n\n\n\n\n\nResponses to Visual Speech in Human Posterior Superior Temporal Gyrus Examined with iEEG Deconvolution\nBrian A. Metzger, John F. Magnotti, Zhengjia Wang, Elizabeth Nesbitt, and Patrick J. Karas, Daniel Yoshor, Michael S. Beauchamp \n\nThe Journal of Neuroscience: The Official Journal of the Society for Neuroscience\n, \nSep 2020\n\n\n\n\nDOI: 10.1523/JNEUROSCI.0279-20.2020\n\n\n\n\n\n\n\n\n\n\n\nThe visual speech head start improves perception and reduces superior temporal cortex responses to auditory speech\n Patrick J Karas, John F Magnotti, Brian A Metzger, Lin L Zhu, and Kristen B Smith, Daniel Yoshor, Michael S Beauchamp \n\neLife\n, \nAug 2019\n\n\n\n\nDOI: 10.7554/eLife.48116"
-  },
-  {
-    "objectID": "blogs.html",
-    "href": "blogs.html",
-    "title": "Posts",
-    "section": "",
-    "text": "Playground: Basic Signal Filters\n\n\n\n\n\n\nSignal Processing\n\n\n\nThis Experimental demo that allows users to execute RAVE scripts interactively and server-lessly in their web browsers. \n\n\n\n\n\nSep 18, 2024\n\n\nZhengjia Wang\n\n\n\n\n\n\n\n\n\n\n\n\nMake a group brain\n\n\n\n\n\n\n3D Viewer\n\n\n\nCreate a group-level 3D viewer \n\n\n\n\n\nSep 16, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nCustomize 3D Viewer Color Palette\n\n\n\n\n\n\n3D Viewer\n\n\n\nCreate basic 3D viewer and render with colors \n\n\n\n\n\nSep 16, 2024\n\n\nZhengjia Wang\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/playground/signal-filter.html",
-    "href": "posts/playground/signal-filter.html",
-    "title": "Playground: Basic Signal Filters",
-    "section": "",
-    "text": "This post contains an interactive module that allows you to run RAVE signal processing functions completely in the web browsers (without installing RAVE on your local machine or sharing the data to anyone else in the world)."
-  },
-  {
-    "objectID": "posts/playground/signal-filter.html#preparation",
-    "href": "posts/playground/signal-filter.html#preparation",
-    "title": "Playground: Basic Signal Filters",
-    "section": "1. Preparation",
-    "text": "1. Preparation\nLet’s load the package and generate a sample signal. The signal is a mixture of 2Hz, 10Hz, 60Hz, and noise\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
-  },
-  {
-    "objectID": "posts/playground/signal-filter.html#fir-filter",
-    "href": "posts/playground/signal-filter.html#fir-filter",
-    "title": "Playground: Basic Signal Filters",
-    "section": "2. FIR Filter",
-    "text": "2. FIR Filter\nConstruct a FIR filter with low pass at 3Hz and (around) 0.5Hz transition bandwidth:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nApply the filter to the signal x using filtfilt method:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
-  },
-  {
     "objectID": "posts/3dviewer/viewer301.html",
     "href": "posts/3dviewer/viewer301.html",
     "title": "Make a group brain",
@@ -131,5 +40,96 @@
     "title": "Make a group brain",
     "section": "Key Documentations",
     "text": "Key Documentations\n\nFunction merge_brain\n\nCreate Multi-subject Template\n\nmerge_brain\n\nDescription\n\n\nCreate Multi-subject Template\n\n\nUsage\n\nmerge_brain(\n  ...,\n  .list = NULL,\n  template_surface_types = NULL,\n  template_subject = unname(getOption(\"threeBrain.template_subject\", \"N27\")),\n  template_dir = default_template_directory()\n)\n\n\nArguments\n\n\n\n\n…, .list\n\n\n\nBrain2 objects\n\n\n\n\n\ntemplate_surface_types\n\n\n\nwhich template surface types to load, default is auto-guess\n\n\n\n\n\ntemplate_subject\n\n\n\ncharacter, subject code to be treated as template, default is ‘N27’\n\n\n\n\n\ntemplate_dir\n\n\n\nthe parent directory where template subject is stored in\n\n\n\n\n\nAuthor(s)\n\n\nZhengjia Wang\n\n\n\nFunction download_template_subject\n\nDownload and Manage Template Subjects\n\ntemplate_subject\n\nDescription\n\n\nDownload and Manage Template Subjects\n\n\nUsage\n\ndownload_template_subject(\n  subject_code = \"N27\",\n  url,\n  template_dir = default_template_directory()\n)\n\ndownload_N27(make_default = FALSE, ...)\n\nset_default_template(\n  subject_code,\n  view = TRUE,\n  template_dir = default_template_directory()\n)\n\nthreebrain_finalize_installation(\n  upgrade = c(\"ask\", \"always\", \"never\", \"data-only\", \"config-only\"),\n  async = TRUE\n)\n\navailable_templates()\n\n\nArguments\n\n\n\n\nsubject_code\n\n\n\ncharacter with only letters and numbers (Important); default is ‘N27’\n\n\n\n\n\nurl\n\n\n\nzip file address; must be specified if subject_code is not from the followings: ‘bert’, ‘cvs_avg35’, ‘cvs_avg35_inMNI152’, ‘fsaverage’, ‘fsaverage_sym’, or ‘N27’\n\n\n\n\n\ntemplate_dir\n\n\n\nparent directory where subject’s ‘FreeSurfer’ folder should be stored\n\n\n\n\n\nmake_default\n\n\n\nlogical, whether to make ‘N27’ default subject\n\n\n\n\n\n…\n\n\n\nmore to pass to download_template_subject\n\n\n\n\n\nview\n\n\n\nwhether to view the subject\n\n\n\n\n\nupgrade\n\n\n\nwhether to check and download ‘N27’ brain interactively. Choices are ‘ask’, ‘always’, and ‘never’\n\n\n\n\n\nasync\n\n\n\nwhether to run the job in parallel to others; default is true\n\n\n\n\n\nDetails\n\n\nTo view electrodes implanted in multiple subjects, it’s highly recommended to view them in a template space The detail mapping method is discussed in function freesurfer_brain.\n\n\nTo map to a template space, one idea is to find someone whose brain is normal. In our case, the choice is subject ‘N27’, also known as ‘Colin 27’. function download_N27 provides a simple and easy way to download a partial version from the Internet.\n\n\nIf you have any other ideas about template brain, you can use function set_default_template(subject_code, template_dir) to redirect to your choice. If your template brain is a ‘Zip’ file on the Internet, we provide function download_template_subject to automatically install it.\n\n\nAuthor(s)\n\n\nZhengjia Wang"
+  },
+  {
+    "objectID": "index.html#rave-reproducible-analysis-visualization-of-ieeg",
+    "href": "index.html#rave-reproducible-analysis-visualization-of-ieeg",
+    "title": "RAVE",
+    "section": "RAVE: Reproducible Analysis & Visualization of iEEG ",
+    "text": "RAVE: Reproducible Analysis & Visualization of iEEG \nRAVE is free and open-source software for the analysis of intracranial electroencephalogram (iEEG) data, including data collected using strips and grids (electrocorticography, ECoG) and depth electrodes (stereotactic EEG). A sister package to RAVE is the YAEL electrode localization toolkit.\n  RAVE is easy to use and creates publication-ready figures with absolutely no programming. RAVE can import standard data formats, including Matlab and EDF, and is compatible with BIDS-iEEG. It runs on laptops, lab servers, or in the cloud. Since all user interactions take place through a web browser, the user experience is identical on Mac, Windows and Linux. Data from RAVE can be exported for analysis using other software (click here for a list of iEEG analysis tools). Conversely, outside results can be imported and visualized using RAVE’s visualization engine. RAVE provides templates to make it easy to create GUI-based analyses using the streamlined application programming interface.\nJoin our growing RAVE-iEEG community on Slack . E-mail slack@rave.wiki for an invitation.\nRAVE has been developed since 2017 with funding provided by NIH R01MH133717 , U01NS113339, and 1R24MH117529. If you use RAVE for a publication, please cite:\n\nMagnotti JF, Wang Z, Beauchamp MS. RAVE: comprehensive open-source software for reproducible analysis and visualization of intracranial EEG data. NeuroImage (2020) 223:117341. [Click here for the journal full text] [Click here for the PDF] [Click here for the preprint].\n\nIf you use YAEL for electrode localization, please cite:\n\nWang Z, Magnotti JF, Zhang X, Beauchamp MS. YAEL: Your Advanced Electrode Localizer. Eneuro. 2023 Oct 1;10(10). [Click here for the journal full text] [Click here for the PDF]."
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "RAVE",
+    "section": "Installation",
+    "text": "Installation\nPlease check our full installation guide here: https://openwetware.org/wiki/RAVE:Install"
+  },
+  {
+    "objectID": "index.html#publications",
+    "href": "index.html#publications",
+    "title": "RAVE",
+    "section": "Publications",
+    "text": "Publications\nSend us your (p)reprint and we will add it to the list!\n\n\n\n\n\n\n\n\n\n\n\nRAVE: Comprehensive open-source software for reproducible analysis and visualization of intracranial EEG data\nJohn F. Magnotti, Zhengjia Wang, and Michael S. Beauchamp\n\nNeuroImage\n, \nDec 2020\n\n\n\n\nDOI: 10.1016/j.neuroimage.2020.117341\n\n\n\n\n\n\n\n\n\n\n\nYAEL: Your Advanced Electrode Localizer\nZhengjia Wang, John F. Magnotti, Xiang Zhang, and Michael S. Beauchamp\n\neNeuro\n, \nOct 2023\n\n\n\n\nDOI: 10.1523/ENEURO.0328-23.2023\n\n\n\n\n\n\n\n\n\n\n\nBeta activity in human anterior cingulate cortex mediates reward biases\nJiayang Xiao, Joshua A. Adkinson, John Myers, Anusha B. Allawala, Raissa K. Mathura, Victoria Pirtle, Ricardo Najera, Nicole R. Provenza, Eleonora Bartoli, Andrew J. Watrous, Denise Oswalt, Ron Gadot, Adrish Anand, Ben Shofty, Sanjay J. Mathew, Wayne K. Goodman, Nader Pouratian, Xaq Pitkow, Kelly R. Bijanki, Benjamin Hayden, and Sameer A. Sheth\n\nNature Communications\n, \nJuly 2024\n\n\n\n\nDOI: 10.1038/s41467-024-49600-7\n\n\n\n\n\n\n\n\n\n\n\nBayesian Image-on-Scalar Regression with a Spatial Global-Local Spike-and-Slab Prior\nZijian Zeng, Meng Li, and Marina Vannucci \n\nBayesian Analysis\n, \nMar 2024\n\n\n\n\nDOI: 10.1016/j.brs.2022.03.002\n\n\n\n\n\n\n\n\n\n\n\nIntracranial stimulation and EEG feature analysis reveal affective salience network specialization\nBrian A. Metzger, Prathik Kalva, Madaline M. Mocchi, Brian Cui, and Joshua A. Adkinson, Zhengjia Wang, Raissa Mathura, Kourtney Kanja, Jay Gavvala, Vaishnav Krishnan, Lu Lin, Atul Maheshwari, Ben Shofty, John F. Magnotti, Jon T. Willie, Sameer A. Sheth, Kelly R. Bijanki\n\nBrain: A Journal of Neurology\n, \nOct 2023\n\n\n\n\nDOI: 10.1093/brain/awad200\n\n\n\n\n\n\n\n\n\n\n\nFunctional group bridge for simultaneous regression and support estimation\nZhengjia Wang, John Magnotti, Michael S. Beauchamp, and Meng Li\n\nBiometrics\n, \nJun 2023\n\n\n\n\nDOI: 10.1111/biom.13684\n\n\n\n\n\n\n\n\n\n\n\nImaging versus electrographic connectivity in human mood-related fronto-temporal networks\nJoshua A. Adkinson, Evangelia Tsolaki, Sameer A. Sheth, Brian A. Metzger, and Meghan E. Robinson, Denise Oswalt, Cameron C. McIntyre, Raissa K. Mathura, Allison C. Waters, Anusha B. Allawala, Angela M. Noecker, Mahsa Malekmohammadi, Kevin Chiu, Richard Mustakos, Wayne Goodman, David Borton, Nader Pouratian, Kelly R. Bijanki\n\nBrain Stimulation\n, \nMay 2022\n\n\n\n\nDOI: 10.1016/j.brs.2022.03.002\n\n\n\n\n\n\n\n\n\n\n\nResponses to Visual Speech in Human Posterior Superior Temporal Gyrus Examined with iEEG Deconvolution\nBrian A. Metzger, John F. Magnotti, Zhengjia Wang, Elizabeth Nesbitt, and Patrick J. Karas, Daniel Yoshor, Michael S. Beauchamp \n\nThe Journal of Neuroscience: The Official Journal of the Society for Neuroscience\n, \nSep 2020\n\n\n\n\nDOI: 10.1523/JNEUROSCI.0279-20.2020\n\n\n\n\n\n\n\n\n\n\n\nThe visual speech head start improves perception and reduces superior temporal cortex responses to auditory speech\n Patrick J Karas, John F Magnotti, Brian A Metzger, Lin L Zhu, and Kristen B Smith, Daniel Yoshor, Michael S Beauchamp \n\neLife\n, \nAug 2019\n\n\n\n\nDOI: 10.7554/eLife.48116"
+  },
+  {
+    "objectID": "blogs.html",
+    "href": "blogs.html",
+    "title": "Posts",
+    "section": "",
+    "text": "Playground: Basic Signal Filters\n\n\n\n\n\n\nSignal Processing\n\n\n\nThis Experimental demo that allows users to execute RAVE scripts interactively and server-lessly in their web browsers. \n\n\n\n\n\nSep 18, 2024\n\n\nZhengjia Wang\n\n\n\n\n\n\n\n\n\n\n\n\nCustomize 3D Viewer Color Palette\n\n\n\n\n\n\n3D Viewer\n\n\n\nCreate basic 3D viewer and render with colors \n\n\n\n\n\nSep 16, 2024\n\n\nZhengjia Wang\n\n\n\n\n\n\n\n\n\n\n\n\nMake a group brain\n\n\n\n\n\n\n3D Viewer\n\n\n\nCreate a group-level 3D viewer \n\n\n\n\n\nSep 16, 2024\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/playground/signal-filter.html",
+    "href": "posts/playground/signal-filter.html",
+    "title": "Playground: Basic Signal Filters",
+    "section": "",
+    "text": "This post contains an interactive module that allows you to run RAVE signal processing functions completely in the web browsers (without installing RAVE on your local machine or sharing the data to anyone else in the world)."
+  },
+  {
+    "objectID": "posts/playground/signal-filter.html#preparation",
+    "href": "posts/playground/signal-filter.html#preparation",
+    "title": "Playground: Basic Signal Filters",
+    "section": "1. Preparation",
+    "text": "1. Preparation\nLet’s load the package and generate a sample signal. The signal is a mixture of 2Hz, 10Hz, 60Hz, and noise\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "posts/playground/signal-filter.html#fir-filter",
+    "href": "posts/playground/signal-filter.html#fir-filter",
+    "title": "Playground: Basic Signal Filters",
+    "section": "2. FIR Filter",
+    "text": "2. FIR Filter\nConstruct a FIR filter with low pass at 3Hz and (around) 0.5Hz transition bandwidth:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nApply the filter to the signal x using filtfilt method:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "posts/3dviewer/viewer201.html",
+    "href": "posts/3dviewer/viewer201.html",
+    "title": "Customize 3D Viewer Color Palette",
+    "section": "",
+    "text": "This page contains interactive demo that runs in your browser! Please feel free to browse now. If you want to interact with the code, please wait for a second before the document finishes set up. If your internet speed is slow, this process might take a while. Once the preparation is ready, you will see “WEBR STATUS: 🟢 Ready!” in the above banner.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "posts/3dviewer/viewer201.html#prerequisites",
+    "href": "posts/3dviewer/viewer201.html#prerequisites",
+    "title": "Customize 3D Viewer Color Palette",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nThis post assumes that you have already imported subject’s imaging data to RAVE and finished the electrode localization. If you haven’t done so, please check (TODO) for instructions."
+  },
+  {
+    "objectID": "posts/3dviewer/viewer201.html#simple-3d-viewer",
+    "href": "posts/3dviewer/viewer201.html#simple-3d-viewer",
+    "title": "Customize 3D Viewer Color Palette",
+    "section": "1. Simple 3D viewer",
+    "text": "1. Simple 3D viewer\nLibrary raveio provides simple high-level function rave_brain to load 3D brain object.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nUse brain$plot(&lt;your arguments...&gt;) to show the viewer:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nPreview of the result. See below if you want to play with the 3D viewer interactively"
+  },
+  {
+    "objectID": "posts/3dviewer/viewer201.html#render-electrodes-with-values",
+    "href": "posts/3dviewer/viewer201.html#render-electrodes-with-values",
+    "title": "Customize 3D Viewer Color Palette",
+    "section": "2. Render electrodes with values",
+    "text": "2. Render electrodes with values\nbrain$set_electrode_values(table_or_path) allows users to load a data table and render electrodes with colors. Users can create a csv table using Excel or their favorite programming languages, as long as the table follows the following format:\n\n\n\nSubject\nElectrode\nvarname*\n\n\n\n\nDemoSubject\n1\n0.25\n\n\nDemoSubject\n14\n-0.4\n\n\n…\n…\n…\n\n\n\nHere is the explanation of the columns (case-sensitive):\n\nSubject is the subject code\nElectrode is the electrode channel number (integer)\nvarname* can be almost anything (give it a meaningful name, for e.g., Power, Cluster, …) that you would like to show, and the values can be either numeric or categorical\n\nThe variable name is recommended to only contain letters and digits. For example, BetaBandPower seems to be a good idea, while names like 75-150 Hz should be avoided\nThe variable values must not be numerical if the intent is categorical. For example cluster values such as 1, 2, 3, … should be avoided and users should use Cluster 1, Cluster 2, Cluster 3, …, or A, B, C, … instead\n\n\nHere’s an example data table\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\nLeft: continuous values with symmetric value range. The color palette transition from blue to white to red (default); Right: Categorical data with default color palette"
+  },
+  {
+    "objectID": "posts/3dviewer/viewer201.html#render-options",
+    "href": "posts/3dviewer/viewer201.html#render-options",
+    "title": "Customize 3D Viewer Color Palette",
+    "section": "3. Render options",
+    "text": "3. Render options\nbrain$plot allows users to provide render options to change the following components:\n\nColor palette\nDefault value ranges (for continuous data)\nControl panels\n\nHere’s a full example:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "posts/3dviewer/viewer201.html#key-documentations",
+    "href": "posts/3dviewer/viewer201.html#key-documentations",
+    "title": "Customize 3D Viewer Color Palette",
+    "section": "Key Documentations",
+    "text": "Key Documentations\n\nFunction raveio::rave_brain\n\nLoad ‘FreeSurfer’ or ‘AFNI/SUMA’ brain from ‘RAVE’\n\nrave_brain\n\nDescription\n\n\nCreate 3D visualization of the brain and visualize with modern web browsers\n\n\nUsage\n\nrave_brain(\n  subject,\n  surfaces = \"pial\",\n  use_141 = TRUE,\n  recache = FALSE,\n  clean_before_cache = FALSE,\n  compute_template = FALSE,\n  usetemplateifmissing = FALSE,\n  include_electrodes = TRUE\n)\n\n\nArguments\n\n\n\n\nsubject\n\n\n\ncharacter, list, or RAVESubject instance; for list or other objects, make sure subject$subject_id is a valid ‘RAVE’ subject ‘ID’\n\n\n\n\n\nsurfaces\n\n\n\none or more brain surface types from “pial”, “white”, “smoothwm”, “pial-outer-smoothed”, etc.; check freesurfer_brain2\n\n\n\n\n\nuse_141\n\n\n\nwhether to use ‘AFNI/SUMA’ standard 141 brain\n\n\n\n\n\nrecache\n\n\n\nwhether to re-calculate cache; only should be used when the original ‘FreeSurfer’ or ‘AFNI/SUMA’ files are changed; such as new files are added\n\n\n\n\n\nclean_before_cache\n\n\n\nwhether to clean the original cache before recache; only set it to be true if original cached files are corrupted\n\n\n\n\n\ncompute_template\n\n\n\nwhether to compute template mappings; useful when template mapping with multiple subjects are needed\n\n\n\n\n\nusetemplateifmissing\n\n\n\nwhether to use template brain when the subject brain files are missing. If set to true, then a template (usually ‘N27’) brain will be displayed as an alternative solution, and electrodes will be rendered according to their ‘MNI305’ coordinates, or ‘VertexNumber’ if given.\n\n\n\n\n\ninclude_electrodes\n\n\n\nwhether to include electrode in the model; default is true\n\n\n\n\n\nValue\n\n\nA ‘threeBrain’ instance if brain is found or usetemplateifmissing is set to true; otherwise returns NULL\n\n\nExamples\n\n\n\n# Please make sure DemoSubject is correctly installed\n# The subject is ~1GB from Github\n\nif(interactive()){\n  brain &lt;- rave_brain(\"demo/DemoSubject\")\n\n  if( !is.null(brain) ) { brain$plot() }\n\n}"
   }
 ]
