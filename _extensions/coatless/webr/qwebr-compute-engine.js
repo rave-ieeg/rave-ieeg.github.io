@@ -12,7 +12,7 @@ globalThis.qwebrEscapeHTMLCharacters = function(unsafe) {
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
-  };
+};
 
 // Passthrough results
 globalThis.qwebrIdentity = function(x) {
@@ -29,7 +29,7 @@ globalThis.qwebrLogCodeToHistory = function(codeToRun, options) {
     qwebrRCommandHistory.push(
         `# Ran code in ${options.label} at ${new Date().toLocaleString()} ----\n${codeToRun}`
     );
-}
+};
 
 // Function to attach a download button onto the canvas
 // allowing the user to download the image.
@@ -49,23 +49,14 @@ function qwebrImageCanvasDownloadButton(canvas, canvasContainer) {
         link.download = 'qwebr-canvas-image.png';
         link.click();
     });
-  }
+}
 
 
 // Function to parse the pager results
 globalThis.qwebrParseTypePager = async function (msg) {
 
-    let path, title, deleteFile;
-    if( msg.type === "browse" ) {
-      path = msg.data.url;
-      title = "Untitled";
-      deleteFile = false;
-    } else {
-      // Split out the event data
-      path = msg.data.path;
-      title = msg.data.title;
-      deleteFile = msg.data.deleteFile;
-    }
+    // Split out the event data
+    const { path, title, deleteFile } = msg.data;
 
     // Process the pager data by reading the information from disk
     const paged_data = await mainWebR.FS.readFile(path).then((data) => {
@@ -74,7 +65,7 @@ globalThis.qwebrParseTypePager = async function (msg) {
 
         // Remove excessive backspace characters until none remain
         while(content.match(/.[\b]/)){
-        content = content.replace(/.[\b]/g, '');
+            content = content.replace(/.[\b]/g, '');
         }
 
         // Returned cleaned data
@@ -88,7 +79,26 @@ globalThis.qwebrParseTypePager = async function (msg) {
 
     // Return extracted data with spaces
     return paged_data;
-}
+};
+
+
+// Function to parse the browse results
+globalThis.qwebrParseTypeBrowse = async function (msg) {
+
+    // msg.type === "browse"
+    const path = msg.data.url;
+
+    // Process the browse data by reading the information from disk
+    const browse_data = await mainWebR.FS.readFile(path).then((data) => {
+        // Obtain the file content
+        let content = new TextDecoder().decode(data);
+
+        return content;
+    });
+
+    // Return extracted data as-is
+    return browse_data;
+};
 
 // Function to run the code using webR and parse the output
 globalThis.qwebrComputeEngine = async function(
@@ -120,8 +130,8 @@ globalThis.qwebrComputeEngine = async function(
     // ----
     // Convert from Inches to Pixels by using DPI (dots per inch)
     // for bitmap devices (dpi * inches = pixels)
-    let fig_width = options["fig-width"] * options["dpi"]
-    let fig_height = options["fig-height"] * options["dpi"]
+    let fig_width = options["fig-width"] * options["dpi"];
+    let fig_height = options["fig-height"] * options["dpi"];
 
     // Initialize webR
     await mainWebR.init();
@@ -161,10 +171,6 @@ globalThis.qwebrComputeEngine = async function(
         captureOutputOptions
     );
 
-    console.log(result);
-    window.mainWebR = mainWebR;
-    window.result = result;
-
     // -----
 
     // Start attempting to parse the result data
@@ -197,19 +203,29 @@ globalThis.qwebrComputeEngine = async function(
         const msgs = await mainWebR.flush();
 
         // Use `map` to process the filtered "pager" events asynchronously
-        const pager = await Promise.all(
-            msgs.filter(
-                msg => {
-                    return msg.type === 'pager' || msg.type === 'browse';
-                }
-            ).map(
+        const pager = [];
+        const browse = [];
+
+        await Promise.all(
+            msgs.map(
                 async (msg) => {
-                    window.msgmsg = msg;
-                    return await qwebrParseTypePager(msg);
+
+                    const msgType = msg.type || "unknown";
+
+                    switch(msgType) {
+                        case 'pager':
+                            const pager_data = await qwebrParseTypePager(msg);
+                            pager.push(pager_data);
+                            break;
+                        case 'browse':
+                            const browse_data = await qwebrParseTypeBrowse(msg);
+                            browse.push(browse_data);
+                            break;
+                    }
+                    return;
                 }
             )
         );
-        window.pager = pager;
 
         // Nullify the output area of content
         elements.outputCodeDiv.innerHTML = "";
@@ -288,33 +304,38 @@ globalThis.qwebrComputeEngine = async function(
         }
 
         // Display the pager data
-        if (pager) {
-        // Use the `pre` element to preserve whitespace.
-        pager.forEach((paged_data, index) => {
-            if( paged_data.startsWith("<!DOCTYPE html") ) {
-                const pre_pager = document.createElement('iframe');
-                pre_pager.classList.add("qwebr-output-code-pager");
-                pre_pager.setAttribute("id", `qwebr-output-code-pager-editor-${elements.id}-result-${index + 1}`);
-                pre_pager.style.width = "100%";
-                pre_pager.style.minHeight = "500px";
-                elements.outputCodeDiv.appendChild(pre_pager);
-                pre_pager.contentWindow.document.open();
-                pre_pager.contentWindow.document.write(paged_data);
-                pre_pager.contentWindow.document.close();
-            } else {
+        if (pager.length > 0) {
+            // Use the `pre` element to preserve whitespace.
+            pager.forEach((paged_data, index) => {
                 const pre_pager = document.createElement("pre");
+                pre_pager.innerText = paged_data;
                 pre_pager.classList.add("qwebr-output-code-pager");
                 pre_pager.setAttribute("id", `qwebr-output-code-pager-editor-${elements.id}-result-${index + 1}`);
-                pre_pager.textContent = paged_data;
                 elements.outputCodeDiv.appendChild(pre_pager);
-            }
-        });
+            });
+        }
+
+        // Display the browse data
+        if (browse.length > 0) {
+            // Use the `pre` element to preserve whitespace.
+            browse.forEach((browse_data, index) => {
+                const iframe_browse = document.createElement('iframe');
+                iframe_browse.classList.add("qwebr-output-code-browse");
+                iframe_browse.setAttribute("id", `qwebr-output-code-browse-editor-${elements.id}-result-${index + 1}`);
+                iframe_browse.style.width = "100%";
+                iframe_browse.style.minHeight = "500px";
+                elements.outputCodeDiv.appendChild(iframe_browse);
+
+                iframe_browse.contentWindow.document.open();
+                iframe_browse.contentWindow.document.write(browse_data);
+                iframe_browse.contentWindow.document.close();
+            });
         }
     } finally {
         // Clean up the remaining code
         mainWebRCodeShelter.purge();
     }
-}
+};
 
 // Function to execute the code (accepts code as an argument)
 globalThis.qwebrExecuteCode = async function (

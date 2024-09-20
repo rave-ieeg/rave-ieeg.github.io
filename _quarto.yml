@@ -6,6 +6,7 @@ project:
     - "!data/"
   resources:
     - "images/*"
+    - "samples/*"
     - "favicon.ico"
 
 website:

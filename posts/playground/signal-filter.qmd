@@ -46,6 +46,8 @@ It will take a little bit while for the website to configure RAVE in your browse
 Let's load the package and generate a sample signal. The signal is a mixture of `2Hz`, `10Hz`, `60Hz`, and noise
 
 ```{webr-r}
+#| editor-max-height: 500
+#| editor-quick-suggestions: TRUE
 library(ravetools)
 sample_rate <- 200
 t <- seq(0, 10, by = 1 / sample_rate)
@@ -68,6 +70,8 @@ ravetools::diagnose_channel(
 Construct a `FIR` filter with low pass at `3Hz` and (around) `0.5Hz` transition bandwidth:
 
 ```{webr-r}
+#| editor-max-height: 500
+#| editor-quick-suggestions: TRUE
 # Low-pass filter
 f1 <- design_filter(
   data_size = length(x),
@@ -80,6 +84,8 @@ f1
 Apply the filter to the signal `x` using `filtfilt` method:
 
 ```{webr-r}
+#| editor-max-height: 500
+#| editor-quick-suggestions: TRUE
 y1 <- filtfilt(b = f1$b, a = f1$a, x = x)
 
 # compare the results
