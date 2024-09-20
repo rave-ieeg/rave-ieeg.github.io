@@ -18,6 +18,7 @@ author:
       - name: "Dept. of Neurosurgery, University of Pennsylvania"
 categories:
   - "3D Viewer"
+  - "Interactive Module"
 license: "CC BY"
 copyright: 
   holder: Zhengjia Wang
@@ -26,14 +27,16 @@ filters:
   - webr
 webr:
   packages: ['raveio']
-  repos: ['https://rave-ieeg.r-universe.dev', 'https://repo.r-wasm.org/']
+  repos: ['https://rave-ieeg.r-universe.dev', 'https://dipterix.r-universe.dev', 'https://repo.r-wasm.org/']
   version: 0.4.2
   channel-type: "service-worker"
   autoload-packages: false
 ---
 
 ::: {.alert .alert-warning role="alert"}
-This page contains interactive demo that runs in your browser! Please feel free to browse now. If you want to interact with the code, please wait for a second before the document finishes set up. If your internet speed is slow, this process might take a while. Once the preparation is ready, you will see "WEBR STATUS: 🟢 Ready!" in the above banner.
+This post contains interactive components (experimental) that allows you to execute RAVE code from the web browsers. If you would like to try this feature and customize/play with the code, please be patient. 
+It might take a while for the browser to finish setting up (depending on your network speed).
+Once the script is ready, you will see "WEBR STATUS: 🟢 Ready!" in the above banner. 
 
 ```{webr-r}
 #| context: setup

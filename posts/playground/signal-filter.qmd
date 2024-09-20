@@ -1,16 +1,13 @@
 ---
-title: "Playground: Basic Signal Filters"
+title: "Basic Signal Filters"
 description: |
-  This *Experimental* demo that allows users to execute RAVE scripts 
-  interactively and server-lessly in their web browsers. 
+  High-level functions to design and apply filters in RAVE
 date: 2024-09-18
 format: 
   html:
     toc: true
     page-layout: full
     code-copy: true
-execute:
-  freeze: auto
 title-block-banner: true
 author: 
   - name: Zhengjia Wang
@@ -19,6 +16,7 @@ author:
       - name: "Dept. of Neurosurgery, University of Pennsylvania"
 categories:
   - "Signal Processing"
+  - "Interactive Module"
 license: "CC BY"
 copyright: 
   holder: Zhengjia Wang
@@ -27,18 +25,16 @@ filters:
   - webr
 webr:
   packages: ['ravetools']
-  repos: ['https://rave-ieeg.r-universe.dev', 'https://repo.r-wasm.org/']
+  repos: ['https://rave-ieeg.r-universe.dev', 'https://dipterix.r-universe.dev', 'https://repo.r-wasm.org/']
   version: 0.4.2
   channel-type: "service-worker"
   autoload-packages: false
 ---
 
-This post contains an interactive module that allows you to run RAVE signal processing functions completely in the web browsers (without installing RAVE on your local machine or sharing the data to anyone else in the world).
-
 ::: {.alert .alert-warning role="alert"}
-It will take a little bit while for the website to configure RAVE in your browser. Please do NOT refresh the site nor go back to previous site. You will see `🟢 Ready!` when the web-RAVE is ready.
-
-*(This interactive feature is experimental)*
+This post contains interactive components (experimental) that allows you to execute RAVE code from the web browsers. If you would like to try this feature and customize/play with the code, please be patient. 
+It might take a while for the browser to finish setting up (depending on your network speed).
+Once the script is ready, you will see "WEBR STATUS: 🟢 Ready!" in the above banner. 
 :::
 
 ## 1. Preparation
@@ -48,6 +44,7 @@ Let's load the package and generate a sample signal. The signal is a mixture of 
 ```{webr-r}
 #| editor-max-height: 500
 #| editor-quick-suggestions: TRUE
+#| autorun: true
 library(ravetools)
 sample_rate <- 200
 t <- seq(0, 10, by = 1 / sample_rate)
@@ -72,6 +69,7 @@ Construct a `FIR` filter with low pass at `3Hz` and (around) `0.5Hz` transition 
 ```{webr-r}
 #| editor-max-height: 500
 #| editor-quick-suggestions: TRUE
+#| autorun: true
 # Low-pass filter
 f1 <- design_filter(
   data_size = length(x),
@@ -86,6 +84,7 @@ Apply the filter to the signal `x` using `filtfilt` method:
 ```{webr-r}
 #| editor-max-height: 500
 #| editor-quick-suggestions: TRUE
+#| autorun: true
 y1 <- filtfilt(b = f1$b, a = f1$a, x = x)
 
 # compare the results
