@@ -1,1 +1,1 @@
-samples/project-demo-minimal.data filter=lfs diff=lfs merge=lfs -binary
+samples/project-demo-minimal.data.gz filter=lfs diff=lfs merge=lfs -binary
