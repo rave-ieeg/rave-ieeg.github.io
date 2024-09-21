@@ -190,18 +190,21 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="create-a-new-documentation">1. Create a new documentation</h2>
 <p>All the documentation files are stored at directory <a href="https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts">posts/</a>, which contains several folders that roughly classify the documents.</p>
 <ul>
-<li>To add a new documentation page, open <a href="https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts">https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts</a>. Please select a proper folder for the document, click on “Add File” button (see Figure 1), and click on “Create new file”.</li>
-</ul>
+<li><p>To add a new documentation page, open <a href="https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts" class="uri">https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts</a>. Please select a proper folder for the document, click on “Add File” button (see Figure 1), and click on “Create new file”.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figure-create-new-file.png" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of Github buttons to create a new file.</figcaption>
+<figcaption>Figure 1: Screenshot of Github buttons to create a new file.</figcaption>
 </figure>
-</div>
-<ul>
-<li><p>Github will open its online editor. The first thing to do is to give your new baby a good name, which should start with letters (<code>a-z</code> or <code>A-Z</code>) and often end with file extension <code>.md</code> (stands for “Markdown” format).</p></li>
-<li><p>After choosing the file name, copy the following meta header into the content box. Make sure you edit the key information such as <code>title</code>, <code>description</code>, <code>date</code>, <code>author</code>, and <code>categories</code> as they will affect how the page is sorted and displayed in the <a href="../../blogs.html">Documentation</a> page.</p></li>
-</ul>
+</div></li>
+<li><p>Github will open its online editor. The first thing to do is to give your new baby a good name, which should start with letters (<code>a-z</code> or <code>A-Z</code>) and often end with file extension <code>.md</code> (stands for “Markdown” format).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figure-name-your-file.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 2: Create a new file name: avoid special letters especially <code>/</code> in the file name (unless you want to create a folder). Filenames starting with <code>_</code> will be “hidden” markdown snippets that will not be rendered as a page. However, it can be included in other documents (see Section “<a href="#edit-markdown-files">3. Edit markdown files</a>” below).</figcaption>
+</figure>
+</div></li>
+<li><p>After choosing the file name, copy the following meta header into the content box. Make sure you copy the entire header (including “<code>---</code>”). Edit the key information such as <code>title</code>, <code>description</code>, <code>date</code>, <code>author</code>, and <code>categories</code> as they will affect how the page is arranged and displayed in the <a href="../../blogs.html">Documentation</a> page.</p>
 <pre><code>---
 title: "How to Edit this Website"
 description: |
@@ -216,15 +219,14 @@ categories:
 copyright: 
   holder: Beauchamp's Lab
   year: 2024
----</code></pre>
-<ul>
-<li>Start a new line after <code>---</code>, and now you can begin editting the content (See Section “3. Edit markdown files” below on how to format your content).</li>
+---</code></pre></li>
+<li><p>Start a new line after the second dash “<code>---</code>”, and now you can begin editing the content (See Section “<a href="#edit-markdown-files">3. Edit markdown files</a>” below on how to format your content).</p></li>
 </ul>
 </section>
 <section id="save-the-page" class="level2">
 <h2 class="anchored" data-anchor-id="save-the-page">2. Save the page</h2>
-<p>We all have experiences losing unsaved work. To avoid such frustration, it is a good practice to save the work before you regret.</p>
-<p>On Github, “saving the work” is called “Commit changes”. To commit the pages you have just created, simply scroll up to the top of the editor, and you will see the button “Commit changes” with an outstanding color. Click on this button, make sure you commit <strong><em>directly</em></strong> to the main branch. If you have time, you are more than welcome to comment on the changes you made. This is a good practice in general for back-tracking the website history. However, commenting the change is completely optional.</p>
+<p>We all have experienced losing unsaved work. To avoid such frustration, it is a good practice to save the page before you regret.</p>
+<p>On Github, “saving the work” is called <code>Commit changes</code>. To commit the pages you have just created, simply scroll up to the top of the editor, and you will see the button <code>Commit changes</code> with an outstanding color (green?). Click on this button, please ensure that the commit is made <strong><em>directly</em></strong> to the main branch. You are more than welcome to comment on the changes. For example, “This is my first page!”, “I feel fantastic”, or “The best Philly cheese steak I’ve ever had was in Houston” for back-tracking the website history. However, comment is completely optional.</p>
 </section>
 <section id="edit-markdown-files" class="level2">
 <h2 class="anchored" data-anchor-id="edit-markdown-files">3. Edit markdown files</h2>
@@ -235,11 +237,29 @@ copyright:
 <h2 class="anchored" data-anchor-id="view-the-results">4. View the results</h2>
 <section id="preview-during-the-editing" class="level4">
 <h4 class="anchored" data-anchor-id="preview-during-the-editing">Preview during the editing</h4>
-<p>Github online editor provides a decent tool that allows you to preview the results before publishing changes. To preview the draft, scroll up to the top of the editor page, and you will see a <code>Preview</code> button right next to the <code>Edit</code> button. Click on <code>Preview</code> and the markdown results will show up. Click on <code>Edit</code> and the viewer will switch back.</p>
+<p>Github online editor provides a decent tool for previewing the results before publishing changes. This feature allows you to test different formatting ideas before saving changes. To preview the page, scroll up to the top of the editor and click on the <code>Preview</code> button right next to <code>Edit</code>. The markdown pre-render results will show up. To continue editing the pages, click on <code>Edit</code> button and the viewer will switch back.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">“Edit” mode</th>
+<th style="text-align: center;">“Preview” mode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="figure-edit-mode.png" class="img-fluid" style="width:100.0%" alt="Left: “Edit” mode"></td>
+<td style="text-align: center;"><img src="figure-preview-mode.png" class="img-fluid" style="width:100.0%" alt="Right: “Preview” mode"></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="view-the-final-results" class="level4">
 <h4 class="anchored" data-anchor-id="view-the-final-results">View the final results</h4>
-<p>When you commit (save) the changes to the Github repository, an automatic bot will be dispatched to render the whole website. This process might take a while (usually several minutes) before you see the updates on the actual RAVE website. You can track the progress at <a href="https://github.com/rave-ieeg/rave-ieeg.github.io/actions">https://github.com/rave-ieeg/rave-ieeg.github.io/actions</a></p>
+<p>When you commit (save) the changes to the Github <code>main</code> repository branch, an Github bot will be invoked to render the whole website. This process is completely automatic and normally requires no manual intervention. Here is the link if you would like to track the progress out of curiosity: <a href="https://github.com/rave-ieeg/rave-ieeg.github.io/actions" class="uri">https://github.com/rave-ieeg/rave-ieeg.github.io/actions</a>. The rendering process usually costs several minutes before the updates are deployed to RAVE website.</p>
 
 
 </section>
