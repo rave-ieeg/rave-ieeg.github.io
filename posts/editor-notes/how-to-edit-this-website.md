@@ -24,11 +24,11 @@ All the documentation files are stored at directory [posts/](https://github.com/
 
 -   To add a new documentation page, open <https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts>. Please select a proper folder for the document, click on "Add File" button (see Figure 1), and click on "Create new file".
 
-    ![Figure 1: Screenshot of Github buttons to create a new file.](figure-create-new-file.png)
+    ![Figure 1: Screenshot of Github buttons to create a new file.](figure-create-new-file.png){width="100%"}
 
 -   Github will open its online editor. The first thing to do is to give your new baby a good name, which should start with letters (`a-z` or `A-Z`) and often end with file extension `.md` (stands for "Markdown" format).
 
-    ![Figure 2: Create a new file name: avoid special letters especially `/` in the file name (unless you want to create a folder). Filenames starting with `_` will be "hidden" markdown snippets that will not be rendered as a page. However, it can be included in other documents (see Section "[3. Edit markdown files]" below).](figure-name-your-file.png)
+    ![Figure 2: Create a new file name: avoid special letters especially `/` in the file name (unless you want to create a folder). Filenames starting with `_` will be "hidden" markdown snippets that will not be rendered as a page. However, it can be included in other documents (see Section "[3. Edit markdown files]" below).](figure-name-your-file.png){width="100%"}
 
 -   After choosing the file name, copy the following meta header into the content box. Make sure you copy the entire header (including "`---`"). Edit the key information such as `title`, `description`, `date`, `author`, and `categories` as they will affect how the page is arranged and displayed in the [Documentation](/blogs.html) page.
 
@@ -70,10 +70,12 @@ There are many tutorials on how to edit markdown files, for example, see [here](
 
 Github online editor provides a decent tool for previewing the results before publishing changes. This feature allows you to test different formatting ideas before saving changes. To preview the page, scroll up to the top of the editor and click on the `Preview` button right next to `Edit`. The markdown pre-render results will show up. To continue editing the pages, click on `Edit` button and the viewer will switch back.
 
-|                       "Edit" mode                       |                      "Preview" mode                     |
-|:-------------------------------------------------------:|:-------------------------------------------------------:|
-|![Left: "Edit" mode](figure-edit-mode.png){width="100%"} | ![Right: "Preview" mode](figure-preview-mode.png){width="100%"} |
+|                       "Edit" mode                        |                         "Preview" mode                          |
+|:----------------------------------:|:----------------------------------:|
+| ![Left: "Edit" mode](figure-edit-mode.png){width="100%"} | ![Right: "Preview" mode](figure-preview-mode.png){width="100%"} |
 
 #### View the final results
 
 When you commit (save) the changes to the Github `main` repository branch, an Github bot will be invoked to render the whole website. This process is completely automatic and normally requires no manual intervention. Here is the link if you would like to track the progress out of curiosity: <https://github.com/rave-ieeg/rave-ieeg.github.io/actions>. The rendering process usually costs several minutes before the updates are deployed to RAVE website.
+
+![Screenshot of RAVE website automatic building process.](figure-github-action.png){fig-align="left" width="50%"}
