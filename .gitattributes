@@ -1,1 +1,5 @@
 samples/project-demo-minimal.data.gz filter=lfs diff=lfs merge=lfs -binary
+*.png filter=lfs diff=lfs merge=lfs -binary
+*.jpg filter=lfs diff=lfs merge=lfs -binary
+*.jpeg filter=lfs diff=lfs merge=lfs -binary
+*.mp4 filter=lfs diff=lfs merge=lfs -binary
