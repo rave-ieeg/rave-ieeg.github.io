@@ -1,0 +1,11 @@
+---
+title: Page Not Found
+format: 
+  html:
+    toc: true
+    page-layout: full
+    code-copy: true
+title-block-banner: true
+---
+
+Congratulations on finding this hidden playground. 

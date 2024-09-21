@@ -3,12 +3,6 @@ title: "Basic Signal Filters"
 description: |
   High-level functions to design and apply filters in RAVE
 date: 2024-09-18
-format: 
-  html:
-    toc: true
-    page-layout: full
-    code-copy: true
-title-block-banner: true
 author: 
   - name: Zhengjia Wang
     orcid: 0000-0001-5629-1116
@@ -17,24 +11,15 @@ author:
 categories:
   - "Signal Processing"
   - "Interactive Module"
-license: "CC BY"
 copyright: 
   holder: Zhengjia Wang
   year: 2024
-filters:
-  - webr
 webr:
   packages: ['ravetools']
-  repos: ['https://rave-ieeg.r-universe.dev', 'https://dipterix.r-universe.dev', 'https://repo.r-wasm.org/']
-  version: 0.4.2
-  channel-type: "service-worker"
-  autoload-packages: false
 ---
 
 ::: {.alert .alert-warning role="alert"}
-This post contains interactive components (experimental) that allows you to execute RAVE code from the web browsers. If you would like to try this feature and customize/play with the code, please be patient. 
-It might take a while for the browser to finish setting up (depending on your network speed).
-Once the script is ready, you will see "WEBR STATUS: 🟢 Ready!" in the above banner. 
+This post contains interactive components (experimental) that allows you to execute RAVE code from the web browsers. If you would like to try this feature and customize/play with the code, please be patient. It might take a while for the browser to finish setting up (depending on your network speed). Once the script is ready, you will see "WEBR STATUS: 🟢 Ready!" in the above banner.
 :::
 
 ## 1. Preparation
