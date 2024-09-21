@@ -92,6 +92,7 @@ class GlobalModal {
     const modalContents = document.querySelectorAll(".rave-modal");
 
     modalContents.forEach(modalContent => {
+      const type = modalContent.getAttribute("data-type") || "botton";
       const cls = modalContent.getAttribute("data-class") || "";
       let text = modalContent.getAttribute("data-label");
       if( typeof text !== "string" || text.length === 0 ) {
@@ -103,10 +104,14 @@ class GlobalModal {
       }
 
 
-      const btn = document.createElement("botton");
-      btn.className = `btn ${cls}`;
+      const btn = document.createElement(type);
+      btn.className = `${cls}`;
       btn.setAttribute("type", "button");
       btn.innerHTML = text;
+
+      if( type === "a" ) {
+        btn.setAttribute("href", "#");
+      }
 
       btn.addEventListener("click", () => {
         this.show({

@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Zhengjia Wang, John Magnotti, Xiang Zhang, Michael Beauchamp">
-<meta name="dcterms.date" content="2024-09-14">
-<meta name="description" content="Try RAVE today!">
+<meta name="dcterms.date" content="2024-09-15">
+<meta name="description" content="Update RAVE today!">
 
-<title>Installation Guide – RAVE</title>
+<title>Updating and Upgrading Guide – RAVE</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -155,11 +155,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Installation Guide</h1>
+    <div class="quarto-title column-page">
+      <h1 class="title">Updating and Upgrading Guide</h1>
                   <div>
         <div class="description">
-          <p>Try RAVE today!</p>
+          <p>Update RAVE today!</p>
         </div>
       </div>
                           <div class="quarto-categories">
@@ -168,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                   </div>
   </div>
     
-  <div class="quarto-title-meta-author column-page-left">
+  <div class="quarto-title-meta-author column-page">
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-heading">Affiliation</div>
     
@@ -182,13 +182,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     </div>
 
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta column-page">
 
         
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">September 14, 2024</p>
+        <p class="date">September 15, 2024</p>
       </div>
     </div>
     
@@ -199,41 +199,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#step-1-install-prerequisites" id="toc-step-1-install-prerequisites" class="nav-link active" data-scroll-target="#step-1-install-prerequisites">Step 1: Install prerequisites</a></li>
-  <li><a href="#step-2-install-rave-for-the-first-time" id="toc-step-2-install-rave-for-the-first-time" class="nav-link" data-scroll-target="#step-2-install-rave-for-the-first-time">Step 2: Install RAVE for the First Time</a></li>
-  <li><a href="#step-3-launch-rave" id="toc-step-3-launch-rave" class="nav-link" data-scroll-target="#step-3-launch-rave">Step 3: Launch RAVE</a></li>
-  <li><a href="#step-4-optional-but-recommended-install-isolated-python-environment" id="toc-step-4-optional-but-recommended-install-isolated-python-environment" class="nav-link" data-scroll-target="#step-4-optional-but-recommended-install-isolated-python-environment">Step 4 (optional but recommended): Install Isolated Python Environment</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/posts/from_wiki/installation.md" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/posts/from_wiki/installation.md" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
 
 
 
 
 
-<section id="step-1-install-prerequisites" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-install-prerequisites">Step 1: Install prerequisites</h2>
-<div class="alert alert-warning" role="alert">
-<p>Please please please, read and install the prerequisites.</p>
-<p>❗The most common installation problem is that the prerequisites are not installed.❗</p>
-<p>❗❗❗If your installation fails, there’s a 99.9% chance that the prerequisites are missing.❗❗❗</p>
-</div>
-<p>First, choose your operating system below to start:</p>
-<!-- 
-  1. Go to `_prerequisite_xxx.md` to edit the prerequisites for xxx
-  2. The wrapper layer turns the content into modal ;D
-    `data-class` controls the button style
-    `data-label` is the button text
-    `data-title` is the modal title
--->
-<div class="rave-modal" data-type="botton" data-class="btn btn-primary" data-label="MacOS" data-title="Prerequisite on MacOS">
+<p>Because RAVE runs on top of R and RStudio, it is important to update both of these before updating RAVE. For major updates (about every 6-12 months) it is necessary to completely reinstall:</p>
+<p>Click here to see instructions on</p>
+<div class="rave-modal" data-type="botton" data-class="btn btn-outline-primary" data-label="MacOS" data-title="Upgrade R, RStudio, Homebrew on MacOS">
 <section id="check-if-you-are-logged-into-an-admin-account" class="level3">
 <h3 class="anchored" data-anchor-id="check-if-you-are-logged-into-an-admin-account">0. Check if you are logged into an admin account</h3>
 <p>MacOS requires users to have administrator (admin) privileges to install applications. At several points during the installation, MacOS will ask for your account password to verify installation. Installation will fail if your MacOS account doesn’t have admin privileges.</p>
@@ -296,7 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Click “yes” to proceed with installing the command-line tools. The message “xcode-select: error: command line tools are already installed” means that you can proceed.</p>
 </section>
 </div>
-<div class="rave-modal" data-type="botton" data-class="btn btn-primary" data-label="Windows" data-title="Prerequisite on Windows">
+<div class="rave-modal" data-type="botton" data-class="btn btn-outline-primary" data-label="Windows" data-title="Upgrade R, RTools on Windows">
 <p>These instructions are for Windows 10 with “bash” enabled. You will be asked many questions by the installers; the default response is fine for all of them.</p>
 <section id="install-the-latest-version-of-the-r-language" class="level3">
 <h3 class="anchored" data-anchor-id="install-the-latest-version-of-the-r-language">1. Install the latest version of the R language</h3>
@@ -308,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Go to <a href="https://cran.r-project.org/bin/windows/Rtools/" target="_blank">https://cran.r-project.org/bin/windows/Rtools/</a> and download a proper version of <code>RTools</code>. The version must match your version of R. RTools contains compilers used to compile packages</p>
 </section>
 </div>
-<div class="rave-modal" data-type="botton" data-class="btn btn-primary" data-label="Ubuntu Linux" data-title="Prerequisite on Ubuntu Linux">
+<div class="rave-modal" data-type="botton" data-class="btn btn-outline-primary" data-label="Ubuntu Linux" data-title="Upgrade R and system dependencies on Linux">
 <blockquote class="blockquote">
 <p>If you encounter difficulties, email <a href="mailto:help@rave.wiki">help@rave.wiki</a>.</p>
 </blockquote>
@@ -358,49 +336,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>and <code>RStudio</code> should be in your application list. If not, look at your sidebar in Ubuntu, click <strong>search your computer</strong> and enter “RStudio”.</p>
 </section>
 </div>
-</section>
-<section id="step-2-install-rave-for-the-first-time" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-install-rave-for-the-first-time">Step 2: Install RAVE for the First Time</h2>
-<p>If you have installed RAVE before, please check <a href="../../posts/from_wiki/update.html" title="How to update RAVE">How to update RAVE</a>.</p>
-<ol type="1">
-<li>Open the <code>R</code> application if it is not already open (<code>RStudio</code> may also be used). Copy and paste the following command into the <code>R</code> (or <code>RStudio</code>) console:</li>
-</ol>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'ravemanager'</span>, <span class="at">repos =</span> <span class="st">'https://rave-ieeg.r-universe.dev'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Copy and paste the following command into the <code>R</code> console:</li>
-</ol>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">install</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Wait until you see the “Done finalizing installations!” message and the R Console command prompt reappears. This may take a few minutes depending on the speed of your internet connection. After installation, it is recommended to close all instances of <code>R</code> and restart <code>R</code>.</p>
-<div class="rave-modal" data-type="botton" data-class="btn btn-outline-primary" data-label="Common installation problems" data-title="Common installation problems">
-<p>Here is a list of common problems you might encounter during the installlation.</p>
-<blockquote class="blockquote">
-<p>The following packages are found that cannot be unloaded…</p>
-</blockquote>
-<p>Some processes are still using RAVE scripts. Please make sure all R and RStudio windows are closed. Close them, re-open, and retry the installation.</p>
-<blockquote class="blockquote">
-<p>[ravemanager] The installer’s major version has been updated (from xxx -&gt; xxx)…</p>
-</blockquote>
-<p>Please make sure all R and RStudio windows are closed. Close them, re-open, and retry the installation.</p>
-<blockquote class="blockquote">
-<p>Your R version (xxx) is too low….</p>
-</blockquote>
-<p>R major version is too low, return to install the prerequisites (see Step 1).</p>
-</div>
-</section>
-<section id="step-3-launch-rave" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-launch-rave">Step 3: Launch RAVE</h2>
-<p>Copy and paste the following command into the <code>R</code> console:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rave<span class="sc">::</span><span class="fu">start_rave2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In a few seconds a web browser window showing RAVE should appear. Success! Explore RAVE by clicking on one of the module names on the left-hand side such as “Subject 3D Viewer” to view a brain or “Power Explorer” to view sample iEEG data.</p>
-</section>
-<section id="step-4-optional-but-recommended-install-isolated-python-environment" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-optional-but-recommended-install-isolated-python-environment">Step 4 (optional but recommended): Install Isolated Python Environment</h2>
-<p>Copy and paste the following command into the “R” console:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">configure_python</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Some advanced RAVE features (such as CT to MRI alignment via <code>ANTs</code>) call Python libraries. To prevent conflicts with existing Python installations and ensure stability and reliability, this step uses <code>Miniconda</code> to install an isolated Python environment and useful Python packages (<code>numpy</code>, <code>scipy</code>, <code>jupyterlab</code>, <code>mne</code>, <code>pynwb</code>, <code>antspyx</code>).</p>
+<hr>
+<p>For minor updates, start RStudio, “Help”/“Check for Updates”; start R, “R”/“Check For R Updates”).</p>
+<p>If you have a RAVE version older than October 2022, you must first enter the following command into the R console (if you are not sure, it is OK to run it just in case).</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lib_path <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"RAVE_LIB_PATH"</span>, <span class="at">unset =</span> <span class="fu">Sys.getenv</span>(<span class="st">"R_LIBS_USER"</span>, <span class="at">unset =</span> <span class="fu">.libPaths</span>()[[<span class="dv">1</span>]]))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'ravemanager'</span>, <span class="at">repos =</span> <span class="st">'https://rave-ieeg.r-universe.dev'</span>, <span class="at">lib =</span> lib_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Regardless of your current RAVE version, enter the following command into the R console:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">version_info</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This prints out current RAVE package versions. If all the core packages are up-to-date, you will see the message “Everything is up to date”, otherwise please follow the following steps. Quit all instance of <code>R</code> and <code>RStudio</code> before proceeding, or RAVE will not be able to update. Restart R and enter the following command into the R console :</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>lib_path <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"RAVE_LIB_PATH"</span>, <span class="at">unset =</span> <span class="fu">Sys.getenv</span>(<span class="st">"R_LIBS_USER"</span>, <span class="at">unset =</span> <span class="fu">.libPaths</span>()[[<span class="dv">1</span>]]))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">loadNamespace</span>(<span class="st">"ravemanager"</span>, <span class="at">lib.loc =</span> lib_path)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">update_rave</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Press “enter” if you are asked “yes/no/cancel”.</p>
+<p>After this command completes, quit and restart RStudio. Then restart the updated RAVE:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>rave<span class="sc">::</span><span class="fu">start_rave2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notes: Be sure to quit ALL other running R and RStudio instances before running “ravemanager::update_rave()”, otherwise packages will be locked and upgrade will fail. For other problems, the fallback is to completely reinstall RAVE.</p>
 
 
-</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -831,7 +783,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p><i class="fa-regular fa-copyright" aria-label="copyright"></i> Copyright 2024, <a href="https://beauchamplab.med.upenn.edu" target="_blank">BeauchampLab</a>.</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/posts/from_wiki/installation.md" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/posts/from_wiki/installation.md" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/posts/from_wiki/update.md" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/posts/from_wiki/update.md" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Created by <a href="https://dipterix.org" target="_blank">Zhengjia Wang</a>. Hosted by <a href="https://pages.github.com/" target="_blank">Github</a></p>
 </div>
