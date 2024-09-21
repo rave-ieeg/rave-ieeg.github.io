@@ -344,11 +344,11 @@ body.reveal.quarto-dark div.qwebr-console-area {
 globalThis.qwebrInstallRPackagesList = ['ravetools'];
 
 // Specify possible locations to search for the repository
-globalThis.qwebrPackageRepoURLS = ['https://repo.r-wasm.org/'];
+globalThis.qwebrPackageRepoURLS = ['https://rave-ieeg.r-universe.dev', 'https://dipterix.r-universe.dev', 'https://repo.r-wasm.org/', 'https://repo.r-wasm.org/'];
 
 // Check to see if we have an empty array, if we do set to skip the installation.
 globalThis.qwebrSetupRPackages = !(qwebrInstallRPackagesList.indexOf("") !== -1);
-globalThis.qwebrAutoloadRPackages = true;
+globalThis.qwebrAutoloadRPackages = false;
 
 // Display a startup message?
 globalThis.qwebrShowStartupMessage = true;
@@ -356,14 +356,14 @@ globalThis.qwebrShowHeaderMessage = false;
 
 // Describe the webR settings that should be used
 globalThis.qwebrCustomizedWebROptions = {
-  "baseURL": "https://webr.r-wasm.org/v0.4.0/",
+  "baseURL": "https://webr.r-wasm.org/v0.4.2/",
   "serviceWorkerUrl": "",
   "homedir": "/home/web_user", 
-  "channelType": "ChannelType.Automatic"
+  "channelType": "ChannelType.ServiceWorker"
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"library(ravetools)\nsample_rate <- 200\nt <- seq(0, 10, by = 1 / sample_rate)\nnoise <- cumsum(rnorm(length(t), sd = 0.4)) / sqrt(seq_len(length(t)))\nx <- 0.2 * sin(t * 4 * pi) + 0.02 * sin(t * 20 * pi) +\n  0.005 * sin(t * 120 * pi) + noise\n\n# Plot the signal\nravetools::diagnose_channel(\n  x,\n  srate = sample_rate,\n  name = \"Sample signal\",\n  window = 2 * sample_rate,\n  noverlap = sample_rate\n)","id":1,"options":{"label":"unnamed-chunk-1","fig-height":5,"read-only":"false","message":"true","fig-width":7,"dpi":72,"warning":"true","comment":"","results":"markup","editor-word-wrap":"true","editor-max-height":"500","fig-cap":"","classes":"","context":"interactive","autorun":"true","out-height":"","editor-font-scale":"1","out-width":"700px","output":"true","editor-quick-suggestions":"TRUE"}},{"code":"# Low-pass filter\nf1 <- design_filter(\n  data_size = length(x),\n  sample_rate = sample_rate,\n  low_pass_freq = 3, low_pass_trans_freq = 0.5\n)\nf1","id":2,"options":{"label":"unnamed-chunk-2","fig-height":5,"read-only":"false","message":"true","fig-width":7,"dpi":72,"warning":"true","comment":"","results":"markup","editor-word-wrap":"true","editor-max-height":"500","fig-cap":"","classes":"","context":"interactive","autorun":"true","out-height":"","editor-font-scale":"1","out-width":"700px","output":"true","editor-quick-suggestions":"TRUE"}},{"code":"y1 <- filtfilt(b = f1$b, a = f1$a, x = x)\n\n# compare the results\nplot(t, x, type = 'l', xlab = \"Time\", ylab = \"\",\n    main = \"Mixture of 2, 10, and 60Hz\", xlim = c(0,1))\nlines(t, y1, col = 'red')\nlegend(\n  \"topleft\", c(\"Input\", \"Low: 3Hz\"),\n  col = c(par(\"fg\"), \"red\"), lty = 1\n)\n\n# plot welch-periodogram\npwelch(x, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 1, ylim = c(-100, 10))\npwelch(y1, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 2, col = \"red\")","id":3,"options":{"label":"unnamed-chunk-3","fig-height":5,"read-only":"false","message":"true","fig-width":7,"dpi":72,"warning":"true","comment":"","results":"markup","editor-word-wrap":"true","editor-max-height":"500","fig-cap":"","classes":"","context":"interactive","autorun":"true","out-height":"","editor-font-scale":"1","out-width":"700px","output":"true","editor-quick-suggestions":"TRUE"}}];
+globalThis.qwebrCellDetails = [{"code":"library(ravetools)\nsample_rate <- 200\nt <- seq(0, 10, by = 1 / sample_rate)\nnoise <- cumsum(rnorm(length(t), sd = 0.4)) / sqrt(seq_len(length(t)))\nx <- 0.2 * sin(t * 4 * pi) + 0.02 * sin(t * 20 * pi) +\n  0.005 * sin(t * 120 * pi) + noise\n\n# Plot the signal\nravetools::diagnose_channel(\n  x,\n  srate = sample_rate,\n  name = \"Sample signal\",\n  window = 2 * sample_rate,\n  noverlap = sample_rate\n)","options":{"dpi":72,"message":"true","fig-width":7,"results":"markup","out-height":"","output":"true","warning":"true","editor-word-wrap":"true","read-only":"false","editor-max-height":"500","autorun":"true","fig-cap":"","fig-height":5,"editor-quick-suggestions":"TRUE","label":"unnamed-chunk-1","context":"interactive","classes":"","editor-font-scale":"1","out-width":"700px","comment":""},"id":1},{"code":"# Low-pass filter\nf1 <- design_filter(\n  data_size = length(x),\n  sample_rate = sample_rate,\n  low_pass_freq = 3, low_pass_trans_freq = 0.5\n)\nf1","options":{"dpi":72,"message":"true","fig-width":7,"results":"markup","out-height":"","output":"true","warning":"true","editor-word-wrap":"true","read-only":"false","editor-max-height":"500","autorun":"true","fig-cap":"","fig-height":5,"editor-quick-suggestions":"TRUE","label":"unnamed-chunk-2","context":"interactive","classes":"","editor-font-scale":"1","out-width":"700px","comment":""},"id":2},{"code":"y1 <- filtfilt(b = f1$b, a = f1$a, x = x)\n\n# compare the results\nplot(t, x, type = 'l', xlab = \"Time\", ylab = \"\",\n    main = \"Mixture of 2, 10, and 60Hz\", xlim = c(0,1))\nlines(t, y1, col = 'red')\nlegend(\n  \"topleft\", c(\"Input\", \"Low: 3Hz\"),\n  col = c(par(\"fg\"), \"red\"), lty = 1\n)\n\n# plot welch-periodogram\npwelch(x, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 1, ylim = c(-100, 10))\npwelch(y1, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 2, col = \"red\")","options":{"dpi":72,"message":"true","fig-width":7,"results":"markup","out-height":"","output":"true","warning":"true","editor-word-wrap":"true","read-only":"false","editor-max-height":"500","autorun":"true","fig-cap":"","fig-height":5,"editor-quick-suggestions":"TRUE","label":"unnamed-chunk-3","context":"interactive","classes":"","editor-font-scale":"1","out-width":"700px","comment":""},"id":3}];
 
 </script>
 <script type="module">
