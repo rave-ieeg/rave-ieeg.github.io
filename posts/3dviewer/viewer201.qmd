@@ -37,7 +37,7 @@ Once the script is ready, you will see "WEBR STATUS: 🟢 Ready!" in the above b
 if(!dir.exists("~/rave_data/data_dir/demo")) {
   webr::mount(
     normalizePath("~/rave_data", mustWork = FALSE),
-    "https://rave.wiki/samples/project-demo-minimal.data"
+    "https://rave.wiki/samples/project-demo-minimal.data.gz"
   )
 }
 brain <- raveio::rave_brain("demo/DemoSubject")
