@@ -170,7 +170,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#create-a-new-documentation" id="toc-create-a-new-documentation" class="nav-link active" data-scroll-target="#create-a-new-documentation">Create a new documentation</a></li>
+  <li><a href="#create-a-new-documentation" id="toc-create-a-new-documentation" class="nav-link active" data-scroll-target="#create-a-new-documentation">1. Create a new documentation</a></li>
+  <li><a href="#save-the-page" id="toc-save-the-page" class="nav-link" data-scroll-target="#save-the-page">2. Save the page</a></li>
+  <li><a href="#edit-markdown-files" id="toc-edit-markdown-files" class="nav-link" data-scroll-target="#edit-markdown-files">3. Edit markdown files</a></li>
+  <li><a href="#view-the-results" id="toc-view-the-results" class="nav-link" data-scroll-target="#view-the-results">4. View the results</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/posts/editor-notes/how-to-edit-this-website.md" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/posts/editor-notes/how-to-edit-this-website.md" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -184,11 +187,62 @@ ul.task-list li input[type="checkbox"] {
 <p>This post is an introduction on how to edit the website (rave.wiki), which completely runs on Github with no dedicated hosting servers.</p>
 <p>To start, you must have a Github account and must apply to be a member of <a href="https://github.com/rave-ieeg/"><code>rave-ieeg</code></a> group.</p>
 <section id="create-a-new-documentation" class="level2">
-<h2 class="anchored" data-anchor-id="create-a-new-documentation">Create a new documentation</h2>
+<h2 class="anchored" data-anchor-id="create-a-new-documentation">1. Create a new documentation</h2>
 <p>All the documentation files are stored at directory <a href="https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts">posts/</a>, which contains several folders that roughly classify the documents.</p>
-<p>To add a new documentation page, first open <a href="https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts">https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts</a>. Then select a proper folder for the document, click on “Add File” button (see Figure 1), and click on “Create new file”.</p>
+<ul>
+<li>To add a new documentation page, open <a href="https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts">https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts</a>. Please select a proper folder for the document, click on “Add File” button (see Figure 1), and click on “Create new file”.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figure-create-new-file.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot of Github buttons to create a new file.</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>Github will open its online editor. The first thing to do is to give your new baby a good name, which should start with letters (<code>a-z</code> or <code>A-Z</code>) and often end with file extension <code>.md</code> (stands for “Markdown” format).</p></li>
+<li><p>After choosing the file name, copy the following meta header into the content box. Make sure you edit the key information such as <code>title</code>, <code>description</code>, <code>date</code>, <code>author</code>, and <code>categories</code> as they will affect how the page is sorted and displayed in the <a href="../../blogs.html">Documentation</a> page.</p></li>
+</ul>
+<pre><code>---
+title: "How to Edit this Website"
+description: |
+  Editor's notes on how to edit this website
+date: 2024-09-01
+author: 
+  - name: Zhengjia Wang
+    affiliations: 
+      - name: "Dept. of Neurosurgery, University of Pennsylvania"
+categories:
+  - "Editor's Notes"
+copyright: 
+  holder: Beauchamp's Lab
+  year: 2024
+---</code></pre>
+<ul>
+<li>Start a new line after <code>---</code>, and now you can begin editting the content (See Section “3. Edit markdown files” below on how to format your content).</li>
+</ul>
+</section>
+<section id="save-the-page" class="level2">
+<h2 class="anchored" data-anchor-id="save-the-page">2. Save the page</h2>
+<p>We all have experiences losing unsaved work. To avoid such frustration, it is a good practice to save the work before you regret.</p>
+<p>On Github, “saving the work” is called “Commit changes”. To commit the pages you have just created, simply scroll up to the top of the editor, and you will see the button “Commit changes” with an outstanding color. Click on this button, make sure you commit <strong><em>directly</em></strong> to the main branch. If you have time, you are more than welcome to comment on the changes you made. This is a good practice in general for back-tracking the website history. However, commenting the change is completely optional.</p>
+</section>
+<section id="edit-markdown-files" class="level2">
+<h2 class="anchored" data-anchor-id="edit-markdown-files">3. Edit markdown files</h2>
+<p>This website is based on <code>Pandoc</code> and uses its variation of markdown as its underlying document syntax. Markdown is a plain text format that is designed to be easy to write, and, even more importantly, easy to read.</p>
+<p>There are many tutorials on how to edit markdown files, for example, see <a href="https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">here</a> and <a href="https://quarto.org/docs/authoring/markdown-basics.html">there</a>. Most of the time you only need to remember the basics such as text formatting, headings, list, links and images.</p>
+</section>
+<section id="view-the-results" class="level2">
+<h2 class="anchored" data-anchor-id="view-the-results">4. View the results</h2>
+<section id="preview-during-the-editing" class="level4">
+<h4 class="anchored" data-anchor-id="preview-during-the-editing">Preview during the editing</h4>
+<p>Github online editor provides a decent tool that allows you to preview the results before publishing changes. To preview the draft, scroll up to the top of the editor page, and you will see a <code>Preview</code> button right next to the <code>Edit</code> button. Click on <code>Preview</code> and the markdown results will show up. Click on <code>Edit</code> and the viewer will switch back.</p>
+</section>
+<section id="view-the-final-results" class="level4">
+<h4 class="anchored" data-anchor-id="view-the-final-results">View the final results</h4>
+<p>When you commit (save) the changes to the Github repository, an automatic bot will be dispatched to render the whole website. This process might take a while (usually several minutes) before you see the updates on the actual RAVE website. You can track the progress at <a href="https://github.com/rave-ieeg/rave-ieeg.github.io/actions">https://github.com/rave-ieeg/rave-ieeg.github.io/actions</a></p>
 
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->

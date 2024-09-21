@@ -80,8 +80,29 @@
     "objectID": "posts/editor-notes/how-to-edit-this-website.html#create-a-new-documentation",
     "href": "posts/editor-notes/how-to-edit-this-website.html#create-a-new-documentation",
     "title": "How to Edit this Website",
-    "section": "Create a new documentation",
-    "text": "Create a new documentation\nAll the documentation files are stored at directory posts/, which contains several folders that roughly classify the documents.\nTo add a new documentation page, first open https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts. Then select a proper folder for the document, click on “Add File” button (see Figure 1), and click on “Create new file”."
+    "section": "1. Create a new documentation",
+    "text": "1. Create a new documentation\nAll the documentation files are stored at directory posts/, which contains several folders that roughly classify the documents.\n\nTo add a new documentation page, open https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts. Please select a proper folder for the document, click on “Add File” button (see Figure 1), and click on “Create new file”.\n\n\n\n\nScreenshot of Github buttons to create a new file.\n\n\n\nGithub will open its online editor. The first thing to do is to give your new baby a good name, which should start with letters (a-z or A-Z) and often end with file extension .md (stands for “Markdown” format).\nAfter choosing the file name, copy the following meta header into the content box. Make sure you edit the key information such as title, description, date, author, and categories as they will affect how the page is sorted and displayed in the Documentation page.\n\n---\ntitle: \"How to Edit this Website\"\ndescription: |\n  Editor's notes on how to edit this website\ndate: 2024-09-01\nauthor: \n  - name: Zhengjia Wang\n    affiliations: \n      - name: \"Dept. of Neurosurgery, University of Pennsylvania\"\ncategories:\n  - \"Editor's Notes\"\ncopyright: \n  holder: Beauchamp's Lab\n  year: 2024\n---\n\nStart a new line after ---, and now you can begin editting the content (See Section “3. Edit markdown files” below on how to format your content)."
+  },
+  {
+    "objectID": "posts/editor-notes/how-to-edit-this-website.html#save-the-page",
+    "href": "posts/editor-notes/how-to-edit-this-website.html#save-the-page",
+    "title": "How to Edit this Website",
+    "section": "2. Save the page",
+    "text": "2. Save the page\nWe all have experiences losing unsaved work. To avoid such frustration, it is a good practice to save the work before you regret.\nOn Github, “saving the work” is called “Commit changes”. To commit the pages you have just created, simply scroll up to the top of the editor, and you will see the button “Commit changes” with an outstanding color. Click on this button, make sure you commit directly to the main branch. If you have time, you are more than welcome to comment on the changes you made. This is a good practice in general for back-tracking the website history. However, commenting the change is completely optional."
+  },
+  {
+    "objectID": "posts/editor-notes/how-to-edit-this-website.html#edit-markdown-files",
+    "href": "posts/editor-notes/how-to-edit-this-website.html#edit-markdown-files",
+    "title": "How to Edit this Website",
+    "section": "3. Edit markdown files",
+    "text": "3. Edit markdown files\nThis website is based on Pandoc and uses its variation of markdown as its underlying document syntax. Markdown is a plain text format that is designed to be easy to write, and, even more importantly, easy to read.\nThere are many tutorials on how to edit markdown files, for example, see here and there. Most of the time you only need to remember the basics such as text formatting, headings, list, links and images."
+  },
+  {
+    "objectID": "posts/editor-notes/how-to-edit-this-website.html#view-the-results",
+    "href": "posts/editor-notes/how-to-edit-this-website.html#view-the-results",
+    "title": "How to Edit this Website",
+    "section": "4. View the results",
+    "text": "4. View the results\n\nPreview during the editing\nGithub online editor provides a decent tool that allows you to preview the results before publishing changes. To preview the draft, scroll up to the top of the editor page, and you will see a Preview button right next to the Edit button. Click on Preview and the markdown results will show up. Click on Edit and the viewer will switch back.\n\n\nView the final results\nWhen you commit (save) the changes to the Github repository, an automatic bot will be dispatched to render the whole website. This process might take a while (usually several minutes) before you see the updates on the actual RAVE website. You can track the progress at https://github.com/rave-ieeg/rave-ieeg.github.io/actions"
   },
   {
     "objectID": "blogs.html",
