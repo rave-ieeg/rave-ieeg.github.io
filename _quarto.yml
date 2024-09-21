@@ -45,7 +45,7 @@ format:
       - css/styles.scss
     toc: true
 include-in-header:
-  text: <script type="text/javascript" src="/js/customize.js"></script>
+  text: <script type="text/javascript" type="module" src="/js/customize.js"></script>
 
 editor: visual
 

@@ -1,4 +1,144 @@
-(function(funcName, baseObj) {
+class GlobalModal {
+  constructor() {
+    const modal = document.createElement("div");
+    modal.classList.add("modal", "fade");
+    modal.id = "rave-global-modal";
+    modal.setAttribute("data-bs-backdrop", "static");
+    modal.setAttribute("data-bs-keyboard", "false");
+    modal.setAttribute("tabindex", "-1");
+    modal.setAttribute("aria-labelledby", "rave-global-modal-label");
+    modal.setAttribute("aria-hidden", "true");
+
+    const modalDialog = document.createElement("div");
+    modalDialog.classList.add("modal-dialog", "modal-dialog-centered", "modal-dialog-scrollable", "modal-fullscreen-xl-down", "modal-xl");
+
+    const modalContent = document.createElement("div");
+    modalContent.classList.add("modal-content");
+
+    const modalHeader = document.createElement("div");
+    modalHeader.classList.add("modal-header");
+
+    const modalTitle = document.createElement("div");
+    modalTitle.classList.add("modal-title", "fs-5");
+    modalTitle.id = "rave-global-modal-label";
+
+    const modalTopRightBtn = document.createElement("button");
+    modalTopRightBtn.classList.add("btn-close");
+    modalTopRightBtn.setAttribute("type", "button");
+    modalTopRightBtn.setAttribute("data-bs-dismiss", "modal");
+    modalTopRightBtn.setAttribute("aria-label", "Close");
+
+    modalHeader.appendChild(modalTitle);
+    modalHeader.appendChild(modalTopRightBtn);
+    modalContent.appendChild(modalHeader);
+
+    const modalBody = document.createElement("div");
+    modalBody.classList.add("modal-body");
+
+    const modalBodyContainer = document.createElement("div");
+    modalBodyContainer.classList.add("container-fluid");
+
+    const modalBodyRow = document.createElement("div");
+    modalBodyRow.classList.add("row");
+
+    const modalBodyInner = document.createElement("div");
+    modalBodyInner.classList.add("col-sm-12");
+
+    modalBodyRow.appendChild(modalBodyInner);
+    modalBodyContainer.appendChild(modalBodyRow);
+    modalBody.appendChild(modalBodyContainer);
+    modalContent.appendChild(modalBody);
+
+    const modalFooter = document.createElement("div");
+    modalFooter.classList.add("modal-footer");
+
+    const modalFooterBtn = document.createElement("button");
+    modalFooterBtn.classList.add("btn", "btn-primary");
+    modalFooterBtn.setAttribute("type", "button");
+    modalFooterBtn.setAttribute("data-bs-dismiss", "modal");
+    modalFooterBtn.innerHTML = "Done!";
+
+    modalFooter.appendChild(modalFooterBtn);
+    modalContent.appendChild(modalFooter);
+
+    modalDialog.appendChild(modalContent);
+    modal.appendChild(modalDialog);
+
+    document.body.appendChild(modal);
+
+    this.$modal = modal;
+    this.$title = modalTitle;
+    this.$body = modalBodyInner;
+
+    this.object = new bootstrap.Modal(modal);
+  }
+
+  show({ title, content }) {
+    this.$title.innerHTML = title;
+
+    if( typeof content === "string" ) {
+      this.$body.innerHTML = content;
+    } else {
+      this.$body.innerHTML = "";
+      this.$body.appendChild( content );
+    }
+
+
+    this.object.show();
+  }
+
+  register() {
+    // query .rave-modal
+    const modalContents = document.querySelectorAll(".rave-modal");
+
+    modalContents.forEach(modalContent => {
+      const cls = modalContent.getAttribute("data-class") || "";
+      let text = modalContent.getAttribute("data-label");
+      if( typeof text !== "string" || text.length === 0 ) {
+        text = "(No `data-label`)";
+      }
+      let title = modalContent.getAttribute("data-title");
+      if( typeof title !== "string" || title.length === 0 ) {
+        title = "(No `data-title`)";
+      }
+
+
+      const btn = document.createElement("botton");
+      btn.className = `btn ${cls}`;
+      btn.setAttribute("type", "button");
+      btn.innerHTML = text;
+
+      btn.addEventListener("click", () => {
+        this.show({
+          title: title,
+          content: modalContent,
+        });
+      });
+
+      modalContent.replaceWith(btn);
+    });
+  }
+
+}
+
+function transformLinks() {
+  const links = document.querySelectorAll("a[href^='http']");
+  const host = document.location.host;
+
+  links.forEach(link => {
+
+    const url = link.getAttribute("href").replace(/^http[s]{0,1}:\/\//g, "");
+    if( !url.startsWith(host) ) {
+      link.setAttribute("target", "_blank");
+    }
+
+  })
+}
+
+
+
+
+function registerWindowReady(funcName, baseObj) {
     // The public function name defaults to window.docReady
     // but you can pass in your own object and own function name and those will be used
     // if you want to put them in a different namespace
@@ -69,134 +209,12 @@
             readyEventHandlersInstalled = true;
         }
     }
-})("docReady", window);
+}
+registerWindowReady("docReady", window);
 
+window.docReady(function() {
+  transformLinks();
 
-(function() {
-
-  class GlobalModal {
-    constructor() {
-      const modal = document.createElement("div");
-      modal.classList.add("modal", "fade");
-      modal.id = "rave-global-modal";
-      modal.setAttribute("data-bs-backdrop", "static");
-      modal.setAttribute("data-bs-keyboard", "false");
-      modal.setAttribute("tabindex", "-1");
-      modal.setAttribute("aria-labelledby", "rave-global-modal-label");
-      modal.setAttribute("aria-hidden", "true");
-
-      const modalDialog = document.createElement("div");
-      modalDialog.classList.add("modal-dialog", "modal-dialog-centered", "modal-dialog-scrollable", "modal-fullscreen-xl-down", "modal-xl");
-
-      const modalContent = document.createElement("div");
-      modalContent.classList.add("modal-content");
-
-      const modalHeader = document.createElement("div");
-      modalHeader.classList.add("modal-header");
-
-      const modalTitle = document.createElement("div");
-      modalTitle.classList.add("modal-title", "fs-5");
-      modalTitle.id = "rave-global-modal-label";
-
-      const modalTopRightBtn = document.createElement("button");
-      modalTopRightBtn.classList.add("btn-close");
-      modalTopRightBtn.setAttribute("type", "button");
-      modalTopRightBtn.setAttribute("data-bs-dismiss", "modal");
-      modalTopRightBtn.setAttribute("aria-label", "Close");
-
-      modalHeader.appendChild(modalTitle);
-      modalHeader.appendChild(modalTopRightBtn);
-      modalContent.appendChild(modalHeader);
-
-      const modalBody = document.createElement("div");
-      modalBody.classList.add("modal-body");
-
-      const modalBodyContainer = document.createElement("div");
-      modalBodyContainer.classList.add("container-fluid");
-
-      const modalBodyRow = document.createElement("div");
-      modalBodyRow.classList.add("row");
-
-      const modalBodyInner = document.createElement("div");
-      modalBodyInner.classList.add("col-sm-12");
-
-      modalBodyRow.appendChild(modalBodyInner);
-      modalBodyContainer.appendChild(modalBodyRow);
-      modalBody.appendChild(modalBodyContainer);
-      modalContent.appendChild(modalBody);
-
-      const modalFooter = document.createElement("div");
-      modalFooter.classList.add("modal-footer");
-
-      const modalFooterBtn = document.createElement("button");
-      modalFooterBtn.classList.add("btn", "btn-primary");
-      modalFooterBtn.setAttribute("type", "button");
-      modalFooterBtn.setAttribute("data-bs-dismiss", "modal");
-      modalFooterBtn.innerHTML = "Done!";
-
-      modalFooter.appendChild(modalFooterBtn);
-      modalContent.appendChild(modalFooter);
-
-      modalDialog.appendChild(modalContent);
-      modal.appendChild(modalDialog);
-
-      document.body.appendChild(modal);
-
-      this.$modal = modal;
-      this.$title = modalTitle;
-      this.$body = modalBodyInner;
-
-      this.object = new bootstrap.Modal(modal);
-    }
-
-    show({ title, content }) {
-      this.$title.innerHTML = title;
-
-      if( typeof content === "string" ) {
-        this.$body.innerHTML = content;
-      } else {
-        this.$body.innerHTML = "";
-        this.$body.appendChild( content );
-      }
-
-
-      this.object.show();
-    }
-
-  }
-
-  docReady(function() {
-    const raveModal = new GlobalModal();
-
-    // query .rave-modal
-    const modalContents = document.querySelectorAll(".rave-modal");
-
-    modalContents.forEach(modalContent => {
-      const cls = modalContent.getAttribute("data-class") || "";
-      let text = modalContent.getAttribute("data-label");
-      if( typeof text !== "string" || text.length === 0 ) {
-        text = "(No `data-label`)";
-      }
-      let title = modalContent.getAttribute("data-title");
-      if( typeof title !== "string" || title.length === 0 ) {
-        title = "(No `data-title`)";
-      }
-
-
-      const btn = document.createElement("botton");
-      btn.className = `btn ${cls}`;
-      btn.setAttribute("type", "button");
-      btn.innerHTML = text;
-
-      btn.addEventListener("click", () => {
-        raveModal.show({
-          title: title,
-          content: modalContent,
-        });
-      });
-
-      modalContent.replaceWith(btn);
-    });
-  })
-
-})();
+  const raveModal = new GlobalModal();
+  raveModal.register();
+})
