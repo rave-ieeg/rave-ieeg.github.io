@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Zhengjia Wang, John Magnotti, Xiang Zhang, Michael Beauchamp">
+<meta name="dcterms.date" content="2024-09-14">
+<meta name="description" content="Try RAVE today!">
+
+<title>Installation Guide – RAVE</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="text/javascript" src="../../js/customize.js"></script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">RAVE</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/3dviewer/viewer301.html?viewer=full"> 
+<span class="menu-text">Demo</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blogs.html"> 
+<span class="menu-text">Documentation</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://openwetware.org/wiki/RAVE" target="_blank"> 
+<span class="menu-text">Wiki</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/rave-ieeg/" title="" class="quarto-navigation-tool px-1" aria-label="" target="_blank"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Installation Guide</h1>
+                  <div>
+        <div class="description">
+          <p>Try RAVE today!</p>
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Installation</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author column-page-left">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author">Zhengjia Wang, John Magnotti, Xiang Zhang, Michael Beauchamp </p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              Dept. of Neurosurgery, University of Pennsylvania
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta column-page-left">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 14, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#step-1-install-prerequisites" id="toc-step-1-install-prerequisites" class="nav-link active" data-scroll-target="#step-1-install-prerequisites">Step 1: Install prerequisites</a></li>
+  <li><a href="#step-2-install-rave-for-the-first-time" id="toc-step-2-install-rave-for-the-first-time" class="nav-link" data-scroll-target="#step-2-install-rave-for-the-first-time">Step 2: Install RAVE for the First Time</a></li>
+  <li><a href="#step-3-launch-rave" id="toc-step-3-launch-rave" class="nav-link" data-scroll-target="#step-3-launch-rave">Step 3: Launch RAVE</a></li>
+  <li><a href="#step-4-optional-but-recommended-install-isolated-python-environment" id="toc-step-4-optional-but-recommended-install-isolated-python-environment" class="nav-link" data-scroll-target="#step-4-optional-but-recommended-install-isolated-python-environment">Step 4 (optional but recommended): Install Isolated Python Environment</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/posts/from_wiki/installation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/posts/from_wiki/installation.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
+
+
+
+
+<section id="step-1-install-prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-install-prerequisites">Step 1: Install prerequisites</h2>
+<div class="alert alert-warning" role="alert">
+<p>Please please please, read and install the prerequisites.</p>
+<p>❗The most common installation problem is that the prerequisites are not installed.❗</p>
+<p>❗❗❗If your installation fails, 99.9% changes are the prerequisites are missing.❗❗❗</p>
+</div>
+<p>First, choose your operating system below to start:</p>
+<!-- 
+  1. Go to `_prerequisite_xxx.qmd` to edit the prerequisites for xxx
+  2. The wrapper layer turns the content into modal ;D
+    `data-class` controls the button style
+    `data-label` is the button text
+    `data-title` is the modal title
+-->
+<div class="rave-modal" data-class="btn-primary" data-label="MacOS" data-title="Prerequisite on MacOS">
+<section id="check-if-you-are-logged-into-an-admin-account" class="level3">
+<h3 class="anchored" data-anchor-id="check-if-you-are-logged-into-an-admin-account">0. Check if you are logged into an admin account</h3>
+<p>MacOS requires users to have administrator (admin) privileges to install applications. At several points during the installation, MacOS will ask for your account password to verify installation. Installation will fail if your MacOS account doesn’t have admin privileges.</p>
+<blockquote class="blockquote">
+<p>How to check if I have an admin account?</p>
+</blockquote>
+<p>Open <code>Terminal</code> (in the /Applications/Utilities folder). Copy the command line shown below into the terminal window.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">sudo</span> ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You will be prompted for a password. This is the password of the MacOS account you are logged in as. If you have an admin account, MacOS will show the files in the current directory. If not, you will receive an error message. Alternately, click anywhere on the desktop to activate the MacOS menu bar, click on the Apple icon at the top left of the menu bar, then “System Preferences” or “System Settings”, then “Users &amp; Groups”. Find your current account and verify that it has admin privileges.</p>
+<blockquote class="blockquote">
+<p>What if I don’t have an admin account?</p>
+</blockquote>
+<p>You will need to create a new account with admin privileges or change the privileges of your current account, see https://support.apple.com/guide/mac-help/change-users-groups-settings-mtusr001/mac . If your computer is administered by others, ask them to create an admin account for you.</p>
+</section>
+<section id="install-r-version-4-or-higher" class="level3">
+<h3 class="anchored" data-anchor-id="install-r-version-4-or-higher">1. Install R, version 4 or higher</h3>
+<p><a href="https://cran.r-project.org/bin/macosx/" target="_blank" title="Official Website to Download R">Click here to install the latest version of the R language for Mac</a>. Find the latest package (.pkg) file, click to download, then open and install. There are different versions of R for older Macs with Intel CPUs and newer Macs with Apple CPUs (M1/M2). Choose the correct version, either “Intel 64-bit” or “Apple silicon ARM64”.</p>
+<p><strong><em>To verify R installation</em></strong>: R will be installed in the /Applications folder. Open this folder and double-click on the R icon to start R. After starting R, we recommend that you right-click on the R icon in the Dock and select “Options”/“Keep in Dock” to make it easier to launch with a single click. We also recommend starting R, opening the “Preferences”/“Startup” tab, and change “Save workspace on exit from”R” to “No”. Uncheck the box “Read history file on startup”. To check the current version of “R”, start R and enter the following into the console:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>R.version</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will produce a number of lines of output, beginning with something like</p>
+<pre><code> platform       x86_64-apple-darwin17.0     
+ arch           x86_64</code></pre>
+</section>
+<section id="homebrew-package-manager" class="level3">
+<h3 class="anchored" data-anchor-id="homebrew-package-manager">2. homebrew package manager</h3>
+<p>Installation requires the latest version of the <a href="http://brew.sh/" target="_blank"><code>homebrew</code></a> package manager. Open <code>Terminal</code> (in the /Applications/Utilities folder). Copy the command line shown below into the terminal window.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/bin/env</span> bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Copy the line below into the terminal window.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This step will take several minutes to complete. Wait until the installation is finished and the command prompt reappears before moving to the next step.</p>
+<p><strong><em>Add brew to your path or the next installation steps will fail</em></strong>. The installer provides the necessary command lines in the Terminal window at the conclusion of the previous step. Execute them in the same terminal window by copying and pasting. They will look something like</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'eval "$(/opt/homebrew/bin/brew shellenv)"'</span> <span class="op">&gt;&gt;</span> ~/.zprofile</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="ex">/opt/homebrew/bin/brew</span> shellenv<span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These commands will not produce any output.</p>
+<p>To verify brew installation: Copy the command line shown below into the terminal window.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Should produce a result like</p>
+<pre><code> Homebrew 3.4.1
+ Homebrew/homebrew-core (git revision f03c984ad7; last commit 2022-03-08)</code></pre>
+</section>
+<section id="install-libraries-using-brew" class="level3">
+<h3 class="anchored" data-anchor-id="install-libraries-using-brew">3. Install libraries using brew</h3>
+<p>Enter this command into the terminal window:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install hdf5 fftw pkg-config cmake libpng</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This step will install the <code>hdf5</code> (high-performance file system), <code>fftw</code> (fast-fourier transform library), <code>pkg-config</code> (package configuration toolbox), <code>cmake</code> (cross-platform make for compiling optional packages such as ant), <code>libpng</code> (library for manipulating png images) and takes several minutes to complete. Wait until the installation is finished and the command prompt reappears before moving to the next step.</p>
+</section>
+<section id="finished-with-prerequisites" class="level3">
+<h3 class="anchored" data-anchor-id="finished-with-prerequisites">4. Finished with prerequisites</h3>
+<p>Scroll to the top of the page and click on the “Install” tab to return to the full installation guide.</p>
+</section>
+<section id="troubleshooting" class="level3">
+<h3 class="anchored" data-anchor-id="troubleshooting">5. Troubleshooting</h3>
+<p>You may receive this message</p>
+<pre><code> Warning: macOS is reporting that you have not yet agreed to the Xcode license. This can occur if Xcode has been updated or reinstalled (e.g. as part of a macOS update). Some features (e.g. Git / SVN) may be disabled.</code></pre>
+<p>To make this error go away, open the <code>Terminal</code> app in the Applications folder, enter</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> xcodebuild <span class="at">-license</span> accept</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then restart <code>RStudio</code>. <a href="https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/" target="_blank">A helpful article in case of XCode installation errors</a>.</p>
+<p>If the XCode download from the RStudio install in step 2 fails, install the command line tools manually. First, download XCode. Click “GET” (if instead you see “OPEN”, then Xcode is already installed.) Open the <code>Terminal</code> app in the Applications folder, enter</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xcode-select</span> <span class="at">--install</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Click “yes” to proceed with installing the command-line tools. The message “xcode-select: error: command line tools are already installed” means that you can proceed.</p>
+</section>
+</div>
+<div class="rave-modal" data-class="btn-primary" data-label="Windows" data-title="Prerequisite on Windows">
+<p>These instructions are for Windows 10 with “bash” enabled. You will be asked many questions by the installers; the default response is fine for all of them.</p>
+<section id="install-the-latest-version-of-the-r-language" class="level3">
+<h3 class="anchored" data-anchor-id="install-the-latest-version-of-the-r-language">1. Install the latest version of the R language</h3>
+<p>Go to <a href="https://cran.r-project.org/bin/windows/base/" target="_blank">https://cran.r-project.org/bin/windows/base/</a> and download the latest R.</p>
+<p>Open the installer and click through to install</p>
+</section>
+<section id="install-the-latest-version-of-rtools." class="level3">
+<h3 class="anchored" data-anchor-id="install-the-latest-version-of-rtools.">2. Install the latest version of RTools.</h3>
+<p>Go to <a href="https://cran.r-project.org/bin/windows/Rtools/" target="_blank">https://cran.r-project.org/bin/windows/Rtools/</a> and download a proper version of <code>RTools</code>. The version must match your version of R. RTools contains compilers used to compile packages</p>
+</section>
+</div>
+<div class="rave-modal" data-class="btn-primary" data-label="Ubuntu Linux" data-title="Prerequisite on Ubuntu Linux">
+<blockquote class="blockquote">
+<p>If you encounter difficulties, email <a href="mailto:help@rave.wiki">help@rave.wiki</a>.</p>
+</blockquote>
+<p>To install R, please go to <a href="https://cran.r-project.org/" target="_blank">https://cran.r-project.org/</a> and read installation guide for Linux system. The following guide is for Ubuntu 20.x (x86_64) system. Please do <strong>ALWAYS</strong> read R’s official installation guide.</p>
+<section id="add-r-cran-repository-to-your-app-list" class="level3">
+<h3 class="anchored" data-anchor-id="add-r-cran-repository-to-your-app-list">1. Add R-Cran repository to your app list:</h3>
+<p>Open terminal (if you don’t know how, look at your sidebar in Ubuntu, <code>search your computer</code> enter <code>terminal</code>, and open it), type the following code:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update indices</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="at">-qq</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install two helper packages we need</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">--no-install-recommends</span> software-properties-common dirmngr</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># add the signing key (by Michael Rutter) for these repos</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># To verify key, run gpg --show-keys /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc </span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fingerprint: E298A3A825C0D65DFD57CBB651716619E084DAB9</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span> https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc <span class="kw">|</span> <span class="fu">sudo</span> tee <span class="at">-a</span> /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository <span class="st">"deb https://cloud.r-project.org/bin/linux/ubuntu </span><span class="va">$(</span><span class="ex">lsb_release</span> <span class="at">-cs</span><span class="va">)</span><span class="st">-cran40/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="install-r" class="level3">
+<h3 class="anchored" data-anchor-id="install-r">2. Install R</h3>
+<p>Copy the following command line by line into your terminal and run</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install r-base r-base-dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="type-and-enter-r-your-terminal.-this-launches-r-from-your-terminal." class="level3">
+<h3 class="anchored" data-anchor-id="type-and-enter-r-your-terminal.-this-launches-r-from-your-terminal.">3. Type and enter “R” your terminal. This launches R from your terminal.</h3>
+<p>Copy the following command line by line into your terminal and run</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'ravemanager'</span>, <span class="at">repos =</span> <span class="st">'https://rave-ieeg.r-universe.dev'</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">system_requirements</span>(<span class="at">sudo =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If your operating system is supported, it will print out all the system libraries needed.</p>
+</section>
+<section id="install-compiling-tools-and-system-dependencies" class="level3">
+<h3 class="anchored" data-anchor-id="install-compiling-tools-and-system-dependencies">4. Install compiling tools and system dependencies</h3>
+<p>Open a new terminal window, copy the installation script generated from the last step into this new window. For example, on Ubuntu 20.x,</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install <span class="at">-y</span> build-essential file git psmisc procps sudo wget make cmake <span class="dt">\</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a> libsodium-dev libffi-dev libbz2-dev libpcre2-dev libcairo2-dev libssh2-1-dev libtiff5-dev libv8-dev <span class="dt">\</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a> libicu-dev zlib1g-dev libcurl4-openssl-dev libssl-dev libfontconfig1-dev libfreetype6-dev <span class="dt">\</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a> libfribidi-dev libharfbuzz-dev libjpeg-dev libpng-dev libtiff-dev pandoc libxml2-dev git libgit2-dev <span class="dt">\</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a> libfftw3-dev libhdf5-dev libglpk-dev libgmp3-dev libzmq3-dev python3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The packages <code>libv8-dev</code> is for <code>V8</code> package to enable JavaScript. <code>libxml2-dev</code> is for <code>xml2</code>. <code>libfftw3-dev</code> <code>libtiff5-dev</code> are necessary for fast-fourier transformations and <code>libhdf5-dev</code> is for reading and writing data in open data format <code>HDF5</code>. All the other packages are necessary for <code>devtools</code> (compilers)</p>
+</section>
+<section id="install-the-free-version-of-rstudio-desktop-here" class="level3">
+<h3 class="anchored" data-anchor-id="install-the-free-version-of-rstudio-desktop-here">5. Install the free version of RStudio Desktop here:</h3>
+<p>Go to <a href="https://posit.co/download/rstudio-desktop/" target="_blank">https://posit.co/download/rstudio-desktop/</a> and download one with keywords “Ubuntu xxx/Debian xxx” (depending on your system version), move the downloaded file to your <strong>desktop</strong>, rename it “rstudio.deb”.</p>
+<p>Open terminal, type the following command in your terminal</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> ./rstudio.deb </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and <code>RStudio</code> should be in your application list. If not, look at your sidebar in Ubuntu, click <strong>search your computer</strong> and enter “RStudio”.</p>
+</section>
+</div>
+</section>
+<section id="step-2-install-rave-for-the-first-time" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-install-rave-for-the-first-time">Step 2: Install RAVE for the First Time</h2>
+<p>If you have installed RAVE before, please check How to update RAVE.</p>
+<ol type="1">
+<li>Open the <code>R</code> application if it is not already open (<code>RStudio</code> may also be used). Copy and paste the following command into the <code>R</code> (or <code>RStudio</code>) console:</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'ravemanager'</span>, <span class="at">repos =</span> <span class="st">'https://rave-ieeg.r-universe.dev'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Copy and paste the following command into the <code>R</code> console:</li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">install</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wait until you see the “Done finalizing installations!” message and the R Console command prompt reappears. This may take a few minutes depending on the speed of your internet connection. After installation, it is recommended to close all instances of <code>R</code> and restart <code>R</code>.</p>
+<div class="rave-modal" data-class="btn-outline-primary" data-label="Common installation problems" data-title="Common installation problems">
+<blockquote class="blockquote">
+<p>The following packages are found that cannot be unloaded…</p>
+</blockquote>
+<p>Some processes are still using RAVE scripts. Please make sure all R and RStudio windows are closed. Close them, re-open, and retry the installation.</p>
+<blockquote class="blockquote">
+<p>[ravemanager] The installer’s major version has been updated (from xxx -&gt; xxx)…</p>
+</blockquote>
+<p>Please make sure all R and RStudio windows are closed. Close them, re-open, and retry the installation.</p>
+<blockquote class="blockquote">
+<p>Your R version (xxx) is too low….</p>
+</blockquote>
+<p>R major version is too low, return to install the prerequisites (see Step 1).</p>
+</div>
+</section>
+<section id="step-3-launch-rave" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-launch-rave">Step 3: Launch RAVE</h2>
+<p>Copy and paste the following command into the <code>R</code> console:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rave<span class="sc">::</span><span class="fu">start_rave2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In a few seconds a web browser window showing RAVE should appear. Success! Explore RAVE by clicking on one of the module names on the left-hand side such as “Subject 3D Viewer” to view a brain or “Power Explorer” to view sample iEEG data.</p>
+</section>
+<section id="step-4-optional-but-recommended-install-isolated-python-environment" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-optional-but-recommended-install-isolated-python-environment">Step 4 (optional but recommended): Install Isolated Python Environment</h2>
+<p>Copy and paste the following command into the “R” console:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">configure_python</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Some advanced RAVE features (such as CT to MRI alignment via <code>ANTs</code>) call Python libraries. To prevent conflicts with existing Python installations and ensure stability and reliability, this step uses <code>Miniconda</code> to install an isolated Python environment and useful Python packages (<code>numpy</code>, <code>scipy</code>, <code>jupyterlab</code>, <code>mne</code>, <code>pynwb</code>, <code>antspyx</code>).</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/rave\.wiki");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><i class="fa-regular fa-copyright" aria-label="copyright"></i> Copyright 2024, <a href="https://beauchamplab.med.upenn.edu" target="_blank">BeauchampLab</a>.</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/posts/from_wiki/installation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/posts/from_wiki/installation.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Created by <a href="https://dipterix.org" target="_blank">Zhengjia Wang</a>. Hosted by <a href="https://pages.github.com/" target="_blank">Github</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
