@@ -29,7 +29,7 @@ Please please please, read and install the prerequisites.
 First, choose your operating system below to start:
 
 <!-- 
-  1. Go to `_prerequisite_xxx.qmd` to edit the prerequisites for xxx
+  1. Go to `_prerequisite_xxx.md` to edit the prerequisites for xxx
   2. The wrapper layer turns the content into modal ;D
     `data-class` controls the button style
     `data-label` is the button text
@@ -37,15 +37,15 @@ First, choose your operating system below to start:
 -->
 
 ::: {.rave-modal data-class="btn-primary" data-label="MacOS" data-title="Prerequisite on MacOS"}
-{{< include _prerequisite_macos.qmd >}}
+{{< include _prerequisite_macos.md >}}
 :::
 
 ::: {.rave-modal data-class="btn-primary" data-label="Windows" data-title="Prerequisite on Windows"}
-{{< include _prerequisite_windows.qmd >}}
+{{< include _prerequisite_windows.md >}}
 :::
 
 ::: {.rave-modal data-class="btn-primary" data-label="Ubuntu Linux" data-title="Prerequisite on Ubuntu Linux"}
-{{< include _prerequisite_ubuntu.qmd >}}
+{{< include _prerequisite_ubuntu.md >}}
 :::
 
 

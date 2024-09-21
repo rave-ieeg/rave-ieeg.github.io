@@ -22,7 +22,7 @@ website:
         text: Home
       - href: posts/3dviewer/viewer301.html?viewer=full
         text: Demo
-      - href: blogs.qmd
+      - href: blogs.md
         text: Documentation
       - href: https://openwetware.org/wiki/RAVE
         text: Wiki
