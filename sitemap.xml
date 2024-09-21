@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://rave.wiki/posts/from_wiki/installation.html</loc>
-    <lastmod>2024-09-21T00:46:42.234Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rave.wiki/posts/3dviewer/viewer201.html</loc>
-    <lastmod>2024-09-21T00:46:42.234Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rave.wiki/posts/signal_processing/signal-filter.html</loc>
-    <lastmod>2024-09-21T00:46:42.234Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rave.wiki/blogs.html</loc>
-    <lastmod>2024-09-21T00:46:42.155Z</lastmod>
+    <loc>https://rave.wiki/posts/3dviewer/viewer301.html</loc>
+    <lastmod>2024-09-21T01:26:05.204Z</lastmod>
   </url>
   <url>
     <loc>https://rave.wiki/index.html</loc>
-    <lastmod>2024-09-21T00:46:42.227Z</lastmod>
+    <lastmod>2024-09-21T01:26:05.197Z</lastmod>
   </url>
   <url>
-    <loc>https://rave.wiki/posts/3dviewer/viewer301.html</loc>
-    <lastmod>2024-09-21T00:46:42.234Z</lastmod>
+    <loc>https://rave.wiki/blogs.html</loc>
+    <lastmod>2024-09-21T01:26:05.125Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/posts/from_wiki/installation.html</loc>
+    <lastmod>2024-09-21T01:26:05.204Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/posts/signal_processing/signal-filter.html</loc>
+    <lastmod>2024-09-21T01:26:05.204Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/posts/3dviewer/viewer201.html</loc>
+    <lastmod>2024-09-21T01:26:05.204Z</lastmod>
   </url>
 </urlset>
