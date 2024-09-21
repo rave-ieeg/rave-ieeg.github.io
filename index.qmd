@@ -15,7 +15,7 @@ carousel:
       active: true
       interval: 10000
       title: |
-        News Event! (Saturday Oct 6, 2024)
+        News Event! (Sunday Oct 6, 2024)
       details: |
         <p>
         RAVE has been selected to exhibit at <i>[Building Tools & Tech for an Innovative Future: A BRAIN Initiative Alliance Social](https://www.braininitiative.org/events/sfn-social/){target="_blank"}</i> during the Society for Neuroscience (2024)
