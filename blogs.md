@@ -1,5 +1,8 @@
 ---
-title: "Documentations, Showcases, and Examples"
+title: |
+  <p style="padding-left:0;">Documentations</p>
+  <p style="padding-left:8rem;">Showcases</p>
+  <p style="padding-left:16rem;">Examples</p>
 listing:
   contents: posts
   sort: "date desc"
