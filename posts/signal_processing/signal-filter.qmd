@@ -16,6 +16,13 @@ copyright:
   year: 2024
 webr:
   packages: ['ravetools']
+  repos: 
+    - 'https://rave-ieeg.r-universe.dev'
+    - 'https://dipterix.r-universe.dev'
+    - 'https://repo.r-wasm.org/'
+  version: 0.4.2
+  channel-type: "service-worker"
+  autoload-packages: false
 ---
 
 ::: {.alert .alert-warning role="alert"}

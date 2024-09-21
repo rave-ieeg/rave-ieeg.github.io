@@ -21,7 +21,10 @@ license: "CC BY"
 filters:
   - webr
 webr:
-  repos: ['https://rave-ieeg.r-universe.dev', 'https://dipterix.r-universe.dev', 'https://repo.r-wasm.org/']
+  repos:
+    - 'https://rave-ieeg.r-universe.dev'
+    - 'https://dipterix.r-universe.dev'
+    - 'https://repo.r-wasm.org/'
   version: 0.4.2
   channel-type: "service-worker"
   autoload-packages: false
