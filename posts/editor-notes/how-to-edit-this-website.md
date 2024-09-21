@@ -66,6 +66,7 @@ There are many tutorials on how to edit markdown files, for example, see [here](
 
 ## 4. View the results
 
+
 #### Preview during the editing
 
 Github online editor provides a decent tool for previewing the results before publishing changes. This feature allows you to test different formatting ideas before saving changes. To preview the page, scroll up to the top of the editor and click on the `Preview` button right next to `Edit`. The markdown pre-render results will show up. To continue editing the pages, click on `Edit` button and the viewer will switch back.
