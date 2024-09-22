@@ -95,9 +95,9 @@ template$plot(
     
     const appContainer = app.$wrapper.parentNode.parentNode;
     appContainer.style.width="100vw";
-    appContainer.style.height="100vh";
+    appContainer.style.height="calc(100vh - 70px)";
     appContainer.style.position = "fixed";
-    appContainer.style.top = "0";
+    appContainer.style.top = "70px";
     appContainer.style.left = "0";
     appContainer.style.zIndex = "4096";
     app.$wrapper.parentNode.style.width="100%";
