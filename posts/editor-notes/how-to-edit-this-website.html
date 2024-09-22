@@ -8,7 +8,6 @@
 
 <meta name="author" content="Zhengjia Wang">
 <meta name="dcterms.date" content="2024-09-01">
-<meta name="description" content="Editor’s notes on how to edit this website">
 
 <title>How to Edit this Website – RAVE</title>
 <style>
@@ -177,6 +176,11 @@ window.Quarto = {
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="https://github.com/rave-ieeg/" title="" class="quarto-navigation-tool px-1" aria-label="" target="_blank"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -186,13 +190,8 @@ window.Quarto = {
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
       <h1 class="title">How to Edit this Website</h1>
-                  <div>
-        <div class="description">
-          <p>Editor’s notes on how to edit this website</p>
-        </div>
-      </div>
-                          <div class="quarto-categories">
-                <div class="quarto-category">Editor’s Notes</div>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Editor Notes</div>
               </div>
                   </div>
   </div>
@@ -235,11 +234,12 @@ window.Quarto = {
   <ul>
   <li><a href="#create-a-new-documentation" id="toc-create-a-new-documentation" class="nav-link active" data-scroll-target="#create-a-new-documentation">1. Create a new documentation</a></li>
   <li><a href="#save-the-page" id="toc-save-the-page" class="nav-link" data-scroll-target="#save-the-page">2. Save the page</a></li>
-  <li><a href="#edit-markdown-files" id="toc-edit-markdown-files" class="nav-link" data-scroll-target="#edit-markdown-files">3. Edit markdown files</a></li>
-  <li><a href="#view-the-results" id="toc-view-the-results" class="nav-link" data-scroll-target="#view-the-results">4. View the results</a>
+  <li><a href="#edit-an-existing-page" id="toc-edit-an-existing-page" class="nav-link" data-scroll-target="#edit-an-existing-page">3. Edit an existing page</a></li>
+  <li><a href="#edit-markdown-files" id="toc-edit-markdown-files" class="nav-link" data-scroll-target="#edit-markdown-files">4. Edit markdown files</a></li>
+  <li><a href="#view-the-results" id="toc-view-the-results" class="nav-link" data-scroll-target="#view-the-results">5. View the results</a>
   <ul class="collapse">
-  <li><a href="#preview-during-the-editing" id="toc-preview-during-the-editing" class="nav-link" data-scroll-target="#preview-during-the-editing">4.1 Preview during the editing</a></li>
-  <li><a href="#view-the-final-results" id="toc-view-the-final-results" class="nav-link" data-scroll-target="#view-the-final-results">4.2 View the final results</a></li>
+  <li><a href="#preview-during-the-editing" id="toc-preview-during-the-editing" class="nav-link" data-scroll-target="#preview-during-the-editing">5.1 Preview during the editing</a></li>
+  <li><a href="#view-the-final-results" id="toc-view-the-final-results" class="nav-link" data-scroll-target="#view-the-final-results">5.2 View the final results</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/posts/editor-notes/how-to-edit-this-website.md" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/posts/editor-notes/how-to-edit-this-website.md" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -255,6 +255,7 @@ window.Quarto = {
 <p>To start, you must have a Github account and must apply to be a member of <a href="https://github.com/rave-ieeg/"><code>rave-ieeg</code></a> group.</p>
 <section id="create-a-new-documentation" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-new-documentation">1. Create a new documentation</h2>
+<p><strong><em>If you want to edit an existing page, see <a href="#edit-an-existing-page">3. Edit an existing page</a></em></strong></p>
 <p>All the documentation files are stored at directory <a href="https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts">posts/</a>, which contains several folders that roughly classify the documents.</p>
 <ul>
 <li><p>To add a new documentation page, open <a href="https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts" class="uri">https://github.com/rave-ieeg/rave-ieeg.github.io/tree/main/posts</a>. Please select a proper folder for the document, click on “Add File” button (see Figure 1), and click on “Create new file”.</p>
@@ -268,26 +269,26 @@ window.Quarto = {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figure-name-your-file.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Figure 2: Create a new file name: avoid special letters especially <code>/</code> in the file name (unless you want to create a folder). Filenames starting with <code>_</code> will be “hidden” markdown snippets that will not be rendered as a page. However, it can be included in other documents (see Section “<a href="#edit-markdown-files">3. Edit markdown files</a>” below).</figcaption>
+<figcaption>Figure 2: Create a new file name: avoid special letters especially <code>/</code> in the file name (unless you want to create a folder). Filenames starting with <code>_</code> will be “hidden” markdown snippets that will not be rendered as a page. However, it can be included in other documents (see Section “[3. Edit markdown files]” below).</figcaption>
 </figure>
 </div></li>
 <li><p>After choosing the file name, copy the following meta header into the content box. Make sure you copy the entire header (including “<code>---</code>”). Edit the key information such as <code>title</code>, <code>description</code>, <code>date</code>, <code>author</code>, and <code>categories</code> as they will affect how the page is arranged and displayed in the <a href="../../blogs.html">Documentation</a> page.</p>
-<pre><code>---
-title: "How to Edit this Website"
-description: |
-  Editor's notes on how to edit this website
-date: 2024-09-01
-author: 
-  - name: Zhengjia Wang
-    affiliations: 
-      - name: "Dept. of Neurosurgery, University of Pennsylvania"
-categories:
-  - "Editor's Notes"
-copyright: 
-  holder: Beauchamp's Lab
-  year: 2024
----</code></pre></li>
-<li><p>Start a new line after the second dash “<code>---</code>”, and now you can begin editing the content (See Section “<a href="#edit-markdown-files">3. Edit markdown files</a>” below on how to format your content).</p></li>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "How to Edit this Website"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> |</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Editor's notes on how to edit this website</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2024-09-01</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Zhengjia Wang</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliations: </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">      - name: "Dept. of Neurosurgery, University of Pennsylvania"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">  - "Editor's Notes"</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="an">copyright:</span><span class="co"> </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">  holder: Beauchamp's Lab</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">  year: 2024</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code></pre></div></li>
+<li><p>Start a new line after the second dash “<code>---</code>”, and now you can begin editing the content (See Section “[3. Edit markdown files]” below on how to format your content).</p></li>
 </ul>
 </section>
 <section id="save-the-page" class="level2">
@@ -295,8 +296,18 @@ copyright:
 <p>We all have experienced losing unsaved work. To avoid such frustration, it is a good practice to save the page before you regret.</p>
 <p>On Github, “saving the work” is called <code>Commit changes</code>. To commit the pages you have just created, simply scroll up to the top of the editor, and you will see the button <code>Commit changes</code> with an outstanding color (green?). Click on this button, please ensure that the commit is made <strong><em>directly</em></strong> to the main branch. You are more than welcome to comment on the changes. For example, “This is my first page!”, “I feel fantastic”, or “The best Philly cheese steak I’ve ever had was in Houston” for back-tracking the website history. However, comment is completely optional.</p>
 </section>
+<section id="edit-an-existing-page" class="level2">
+<h2 class="anchored" data-anchor-id="edit-an-existing-page">3. Edit an existing page</h2>
+<p>To edit an existing page, you need to find the location of the source document. The easiest method is to open the RAVE website and navigate to the page that you want to edit. The content-bar should contain the following options:</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="figure-edit-choices.png" class="img-fluid quarto-figure quarto-figure-left figure-img"></p>
+</figure>
+</div>
+<p>Click on “<i class="fa-brands fa-github fa-1xl" aria-label="github"></i> Edit this page”, and the browser should take you directly to the editor page. Please <strong><em>BE AWARE</em></strong> that if Github asks you to “fork” the project, <strong><em>DON’T</em></strong> do it. Check if you have logged out of the Github. Please make sure you are logged into the Github!</p>
+</section>
 <section id="edit-markdown-files" class="level2">
-<h2 class="anchored" data-anchor-id="edit-markdown-files">3. Edit markdown files</h2>
+<h2 class="anchored" data-anchor-id="edit-markdown-files">4. Edit markdown files</h2>
 <p>This website is based on <code>Pandoc</code> and uses its variation of markdown as its underlying document syntax. Markdown is a plain text format that is designed to be easy to write, and, even more importantly, easy to read.</p>
 <p>There are many tutorials on how to edit markdown files. The following tutorial comes from <a href="https://quarto.org/docs/authoring/markdown-basics.html">quarto documentation</a>. Most of the time you only need to remember the basics such as text formatting, headings, list, links and images.</p>
 <p>Here is a list of common types. Pick one to see the format:</p>
@@ -670,7 +681,7 @@ Media (<a href="#">link</a>, figure, video, …) <img src="../../favicon.ico" cl
 </section>
 <section id="videos" class="level4">
 <h4 class="anchored" data-anchor-id="videos">Videos</h4>
-<p>You can include videos in documents using the <code>{{&lt; video &gt;}}</code> <a href="shortcodes.qmd">shortcode</a>. For example, here we embed a YouTube video:</p>
+<p>You can include videos in documents using the <code>{{&lt; video &gt;}}</code> shortcode. For example, here we embed a YouTube video:</p>
 <div class="sourceCode" id="cb34" data-shortcodes="false"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=hfHZMfqIaGY &gt;}}</span></code></pre></div>
 <p>Videos can refer to video files (e.g.&nbsp;MPEG) or can be links to videos published on YouTube, Vimeo, or Brightcove. Learn more in the article on <a href="https://quarto.org/docs/authoring/videos.html">Videos</a>.</p>
 </section>
@@ -1088,14 +1099,27 @@ Document <code>{</code>snippets<code>}</code>
 <p>To create a snippet, simply create a markdown document whose name starts with an underscore <code>_</code>. For example <code>_markdown-advanced-snippet.md</code> is the file name of text you are reading. Each document snippet is just a normal <code>markdown</code> file. They can be independently edited.</p>
 <p>To include the snippet into the main document, you can use the following markdown:</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>{{&lt; include _markdown-advanced-snippet.md &gt;}}</span></code></pre></div>
+<p>Document snippets work well with callouts and pop-up modals.</p>
+<ul>
+<li><p>Here’s an <a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/8bc076e6cd3fa71e5b3eba27ef76ce2b8b29f26f/posts/editor-notes/how-to-edit-this-website.md?plain=1#L144-L148">example using callouts</a></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>::: {.callout collapse="true" appearance="simple"}</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">### Document `{`snippets`}` </span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>{{&lt; include _markdown-advanced-snippet.md &gt;}}</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div></li>
+<li><p>This is an example <a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/8bc076e6cd3fa71e5b3eba27ef76ce2b8b29f26f/posts/from_wiki/installation.md?plain=1#L40C1-L42C4">using pop-up modal</a></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>::: {.rave-modal data-type="botton" data-class="btn btn-primary" data-label="MacOS" data-title="Prerequisite on MacOS"}</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>{{&lt; include _prerequisite_macos.md &gt;}}</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div></li>
+</ul>
 </div>
 </div>
 </div>
 </section>
 <section id="view-the-results" class="level2">
-<h2 class="anchored" data-anchor-id="view-the-results">4. View the results</h2>
+<h2 class="anchored" data-anchor-id="view-the-results">5. View the results</h2>
 <section id="preview-during-the-editing" class="level3">
-<h3 class="anchored" data-anchor-id="preview-during-the-editing">4.1 Preview during the editing</h3>
+<h3 class="anchored" data-anchor-id="preview-during-the-editing">5.1 Preview during the editing</h3>
 <p>Github online editor provides a decent tool for previewing the results before publishing changes. This feature allows you to test different formatting ideas before saving changes. To preview the page, scroll up to the top of the editor and click on the <code>Preview</code> button right next to <code>Edit</code>. The markdown pre-render results will show up. To continue editing the pages, click on <code>Edit</code> button and the viewer will switch back.</p>
 <table class="caption-top table">
 <colgroup>
@@ -1117,7 +1141,7 @@ Document <code>{</code>snippets<code>}</code>
 </table>
 </section>
 <section id="view-the-final-results" class="level3">
-<h3 class="anchored" data-anchor-id="view-the-final-results">4.2 View the final results</h3>
+<h3 class="anchored" data-anchor-id="view-the-final-results">5.2 View the final results</h3>
 <p>When you commit (save) the changes to the Github <code>main</code> repository branch, an Github bot will be invoked to render the whole website. This process is completely automatic and normally requires no manual intervention. Here is the link if you would like to track the progress out of curiosity: <a href="https://github.com/rave-ieeg/rave-ieeg.github.io/actions" class="uri">https://github.com/rave-ieeg/rave-ieeg.github.io/actions</a>. The rendering process usually costs several minutes before the updates are deployed to RAVE website.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
@@ -1131,10 +1155,10 @@ Document <code>{</code>snippets<code>}</code>
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Example Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>Here’s a footnode.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Here is the footnote.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Here is the footnote.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Here’s one with multiple blocks.</p>
 <p>Subsequent paragraphs are indented to show that they belong to the previous footnote.</p>

@@ -207,7 +207,37 @@ function transformLinks() {
   })
 }
 
+function isVisible(element) {
+  const style = window.getComputedStyle(element);
+  return style.display !== 'none' && style.opacity !== '0';
+}
 
+function estimateWordCount() {
+  const flag = window.location.pathname.startsWith("/posts");
+  const $title = document.querySelector("#title-block-header .quarto-title");
+  const $contents = document.querySelectorAll('#quarto-document-content p');
+  if(!flag || !$title || !$contents.length) { return; }
+
+  let visibleText = '';
+
+  $contents.forEach(paragraph => {
+    if (isVisible(paragraph)) {
+      visibleText += paragraph.innerText + ' ';
+    }
+  });
+
+  const words = visibleText.split(/\s+/);
+  const wordCount = words.filter(s => { return s.length > 2; }).length;  // Split by whitespace
+
+  const readingSpeed = 200; // Words per minute
+  const readingTime = Math.ceil(wordCount / readingSpeed);  // Reading time in minutes
+
+  // Display the result
+  const $el = document.createElement("small");
+  $el.id = "quarto-header-word-count";
+  $el.innerHTML = `Word count: ${wordCount} (Estimated reading time: ${readingTime} min)`;
+  $title.appendChild($el);
+}
 
 
 function registerWindowReady(funcName, baseObj) {
@@ -285,6 +315,9 @@ function registerWindowReady(funcName, baseObj) {
 registerWindowReady("docReady", window);
 
 window.docReady(function() {
+
+  estimateWordCount();
+
   transformLinks();
 
   registerMarginNotes();
