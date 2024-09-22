@@ -63,7 +63,7 @@ If you use YAEL for electrode localization, please cite:
 
 ## Installation
 
-Please check our full installation guide here: <https://openwetware.org/wiki/RAVE:Install>
+Please check our [full installation guide here.](posts/installation/installation.html)
 
 ## Publications
 

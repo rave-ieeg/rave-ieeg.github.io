@@ -18,6 +18,10 @@ thead th {
   text-transform: none !important;
 }
 
+.quarto-listing-table.table .card-img-top {
+  min-width: 100px;
+}
+
 .figure {
   margin: 0 0 1rem;
 }
