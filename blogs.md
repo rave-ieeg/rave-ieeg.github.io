@@ -14,13 +14,13 @@ listing:
       - reading-time
   - id: full-listings
     contents: posts
+    type: grid
     sort: "date desc"
-    type: table
     categories: true
     sort-ui: true
     filter-ui: true
     page-size: 5
-    image-height: 60px
+    grid-columns: 3
     table-hover: true
     exclude:
       categories: 
@@ -32,6 +32,7 @@ listing:
       - description
       - reading-time
       - categories
+      - date
 execute:
   freeze: false
 page-layout: full
