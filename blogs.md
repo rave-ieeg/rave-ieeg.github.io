@@ -1,6 +1,7 @@
 ---
-title: |
-  <p style="padding-left:0;">Documentations</p>
+title: Documentations
+Description: |
+  asdadasdasd
   <p style="padding-left:8rem;">Showcases</p>
   <p style="padding-left:16rem;">Examples</p>
 listing:
@@ -8,10 +9,10 @@ listing:
   sort: "date desc"
   type: default
   categories: true
-  sort-ui: false
+  sort-ui: true
   filter-ui: false
+execute:
+  freeze: false
 page-layout: full
 title-block-banner: true
 ---
-
-

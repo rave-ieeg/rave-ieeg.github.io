@@ -12,6 +12,7 @@ project:
 website:
   title: "RAVE"
   favicon: favicon.ico
+  reader-mode: true
   repo-url: https://github.com/rave-ieeg/rave-ieeg.github.io
   repo-actions: [edit, source, issue]
   repo-link-target: "_blank"
@@ -32,7 +33,7 @@ website:
         href: https://github.com/rave-ieeg/
         target: "_blank"
         size: 3
-  sidebar: false
+  sidebar: true
   page-footer:
     center: "{{< fa regular copyright >}} Copyright 2024, [BeauchampLab](https://beauchamplab.med.upenn.edu){target='_blank'}."
     right: "Created by [Zhengjia Wang](https://dipterix.org){target='_blank'}. Hosted by [Github](https://pages.github.com/){target='_blank'}"

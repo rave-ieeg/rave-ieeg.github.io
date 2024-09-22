@@ -7,16 +7,11 @@ freeze: auto
 # Enable banner style title blocks
 title-block-banner: true
 
-website:
-  sidebar: true
-
 format:
   html:
     toc: true
     page-layout: full
     code-copy: true
-execute:
-  freeze: false
 license: "CC BY"
 filters:
   - webr

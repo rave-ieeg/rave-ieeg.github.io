@@ -44,8 +44,8 @@ template <- threeBrain::merge_brain(
 )
 
 # set electrode values
-b1$set_electrode_values()
-b2$set_electrode_values()
+invisible(b1$set_electrode_values())
+invisible(b2$set_electrode_values())
 
 # plot with options
 template$plot(

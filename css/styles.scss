@@ -27,6 +27,12 @@ thead th {
   font-size: x-large;
 }
 
+#quarto-header-word-count {
+  font-size: small;
+  font-style: italic;
+  color: var(--bs-dark-text-emphasis);
+}
+
 
 .publications .bibliography {
   padding: 0;

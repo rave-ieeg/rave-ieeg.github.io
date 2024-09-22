@@ -50,7 +50,7 @@ If you want to include your own figures, please upload figures from Github. Make
 
 #### Videos
 
-You can include videos in documents using the `{{{< video >}}}` [shortcode](shortcodes.qmd). For example, here we embed a YouTube video:
+You can include videos in documents using the `{{{< video >}}}` shortcode. For example, here we embed a YouTube video:
 
 ``` {.markdown shortcodes="false"}
 {{< video https://www.youtube.com/watch?v=hfHZMfqIaGY >}}
