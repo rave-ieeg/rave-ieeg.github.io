@@ -92,7 +92,7 @@ class GlobalModal {
     const modalContents = document.querySelectorAll(".rave-modal");
 
     modalContents.forEach(modalContent => {
-      const type = modalContent.getAttribute("data-type") || "botton";
+      const type = modalContent.getAttribute("data-type") || "button";
       const cls = modalContent.getAttribute("data-class") || "";
       let text = modalContent.getAttribute("data-label");
       if( typeof text !== "string" || text.length === 0 ) {
@@ -120,10 +120,77 @@ class GlobalModal {
         });
       });
 
+      modalContent.classList.remove("rave-modal");
       modalContent.replaceWith(btn);
     });
   }
 
+}
+
+function registerMarginNotes() {
+  const elems = document.querySelectorAll(".column-margin.rave-margin, .column-margin .rave-margin");
+
+  elems.forEach(content => {
+
+    content.classList.add("hidden");
+    content.classList.remove("rave-margin");
+
+    const type = content.getAttribute("data-type") || "button";
+    const cls = content.getAttribute("data-class") || "";
+    const insertTarget = content.getAttribute("data-target") || "";
+    let text = content.getAttribute("data-label");
+    if( typeof text !== "string" || text.length === 0 ) {
+      text = "(No `data-label`)";
+    }
+
+    const btn = document.createElement(type);
+    btn.className = `${cls}`;
+    let needSpan = false;
+    if( type === "button" ) {
+      btn.setAttribute("type", "button");
+      needSpan = true;
+    } else if ( type === "a" ) {
+      btn.setAttribute("href", "#");
+      needSpan = true;
+    }
+
+    btn.innerHTML = text;
+
+    let wrapper = btn;
+    if( needSpan ) {
+      wrapper = document.createElement("span");
+      wrapper.appendChild(btn);
+    }
+
+    let pnode
+    if( insertTarget !== "" ) {
+      pnode = document.getElementById(insertTarget);
+      if( pnode ) {
+        pnode.appendChild(wrapper);
+      }
+    } else {
+      pnode = content;
+      if( !pnode.classList.contains("column-margin") ) {
+        pnode = pnode.closest(".column-margin");
+      }
+
+      pnode.parentNode.insertBefore(wrapper, pnode);
+    }
+
+
+    btn.addEventListener("click", () => {
+      elems.forEach(el => {
+        if(el !== content) {
+          el.classList.add("hidden");
+        }
+      });
+
+      content.classList.toggle("hidden");
+    });
+
+
+
+  })
 }
 
 function transformLinks() {
@@ -219,6 +286,8 @@ registerWindowReady("docReady", window);
 
 window.docReady(function() {
   transformLinks();
+
+  registerMarginNotes();
 
   const raveModal = new GlobalModal();
   raveModal.register();
