@@ -12,6 +12,11 @@ categories:
 copyright: 
   holder: Beauchamp's Lab
   year: 2024
+format:
+  html:
+    toc: true
+    page-layout: full
+    code-copy: false
 ---
 
 This post is an introduction on how to edit the website (rave.wiki), which completely runs on Github with no dedicated hosting servers.
@@ -62,12 +67,89 @@ On Github, "saving the work" is called `Commit changes`. To commit the pages you
 
 This website is based on `Pandoc` and uses its variation of markdown as its underlying document syntax. Markdown is a plain text format that is designed to be easy to write, and, even more importantly, easy to read.
 
-There are many tutorials on how to edit markdown files, for example, see [here](https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) and [there](https://quarto.org/docs/authoring/markdown-basics.html). Most of the time you only need to remember the basics such as text formatting, headings, list, links and images.
+There are many tutorials on how to edit markdown files. The following tutorial comes from [quarto documentation](https://quarto.org/docs/authoring/markdown-basics.html). Most of the time you only need to remember the basics such as text formatting, headings, list, links and images.
+
+Here is a list of common types. Pick one to see the format:
+
+::: {.callout collapse="true" appearance="simple"}
+### **Headings**
+
+{{< include _markdown-basics-heading.md >}}
+:::
+
+::: {.callout collapse="true" appearance="simple"}
+### _Text ~~Formatting~~_
+
+{{< include _markdown-basics-text.md >}}
+:::
+
+::: {.callout collapse="true" appearance="simple"}
+### Lists
+
+{{< include _markdown-basics-lists.md >}}
+:::
+
+::: {.callout collapse="true" appearance="simple"}
+### Footnotes[^*]
+
+[^*]: Here's a footnode.
+
+{{< include _markdown-basics-footnotes.md >}}
+:::
+
+::: {.callout collapse="true" appearance="simple"}
+### Media ([link](#), figure, video, ...) ![](/favicon.ico){width="16px"}
+
+{{< include _markdown-basics-media.md >}}
+:::
+
+::: {.callout collapse="true" appearance="simple"}
+### Tables
+
+{{< include _markdown-basics-table.md >}}
+:::
+
+::: {.callout collapse="true" appearance="simple"}
+### `Source Code`
+
+{{< include _markdown-basics-sourcecode.md >}}
+:::
+
+::: {.callout collapse="true" appearance="simple"}
+### $E_{quations}$
+
+{{< include _markdown-basics-equation.md >}}
+:::
+
+Here are some advanced usages:
+
+::: {.callout collapse="true" appearance="simple"}
+### `<`HTML code`>`
+
+{{< include _markdown-advanced-html.md >}}
+:::
+
+::: {.callout-tip collapse="true" appearance="simple"}
+### Callouts (collapsible content)
+
+{{< include _markdown-advanced-callout.md >}}
+:::
+
+::: {.callout collapse="true" appearance="simple"}
+### [Pop-up dialogue (modal)]{.badge .text-bg-primary}
+
+{{< include _markdown-advanced-modal.md >}}
+:::
+
+::: {.callout collapse="true" appearance="simple"}
+### Document `{`snippets`}` 
+
+{{< include _markdown-advanced-snippet.md >}}
+:::
 
 ## 4. View the results
 
-
-#### Preview during the editing
+### 4.1 Preview during the editing
 
 Github online editor provides a decent tool for previewing the results before publishing changes. This feature allows you to test different formatting ideas before saving changes. To preview the page, scroll up to the top of the editor and click on the `Preview` button right next to `Edit`. The markdown pre-render results will show up. To continue editing the pages, click on `Edit` button and the viewer will switch back.
 
@@ -75,7 +157,7 @@ Github online editor provides a decent tool for previewing the results before pu
 |:----------------------------------:|:----------------------------------:|
 | ![Left: "Edit" mode](figure-edit-mode.png){width="100%"} | ![Right: "Preview" mode](figure-preview-mode.png){width="100%"} |
 
-#### View the final results
+### 4.2 View the final results
 
 When you commit (save) the changes to the Github `main` repository branch, an Github bot will be invoked to render the whole website. This process is completely automatic and normally requires no manual intervention. Here is the link if you would like to track the progress out of curiosity: <https://github.com/rave-ieeg/rave-ieeg.github.io/actions>. The rendering process usually costs several minutes before the updates are deployed to RAVE website.
 
