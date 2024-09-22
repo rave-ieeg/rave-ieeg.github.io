@@ -90,4 +90,3 @@ ravemanager::configure_python()
 ```
 
 Some advanced RAVE features (such as CT to MRI alignment via `ANTs`) call Python libraries. To prevent conflicts with existing Python installations and ensure stability and reliability, this step uses `Miniconda` to install an isolated Python environment and useful Python packages (`numpy`, `scipy`, `jupyterlab`, `mne`, `pynwb`, `antspyx`).
-

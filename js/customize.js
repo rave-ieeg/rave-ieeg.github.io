@@ -122,6 +122,12 @@ class GlobalModal {
 
       modalContent.classList.remove("rave-modal");
       modalContent.replaceWith(btn);
+
+      // query and make sure we remove code-copy-button
+      const copyButtons = modalContent.querySelectorAll(".code-copy-button");
+      copyButtons.forEach(copyButton => {
+        copyButton.classList.add("hidden");
+      });
     });
   }
 
