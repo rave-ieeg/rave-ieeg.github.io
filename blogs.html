@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Documentations – RAVE</title>
+<title>Documentations &amp; Examples – RAVE</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,20 +74,48 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-quick-access .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-description','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-quick-access'] = new List('listing-quick-access', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-full-listings .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-title','listing-description','listing-reading-time','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-full-listings'] = new List('listing-full-listings', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -184,7 +212,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
-      <h1 class="title">Documentations</h1>
+      <h1 class="title">Documentations &amp; Examples</h1>
                       </div>
   </div>
     
@@ -201,8 +229,15 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="3D Viewer">3D Viewer <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Editor Notes">Editor Notes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Installation">Installation <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Interactive Module">Interactive Module <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Signal Processing">Signal Processing <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/blogs.md" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/blogs.md" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="3D Viewer">3D Viewer <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Installation">Installation <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Interactive Module">Interactive Module <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Signal Processing">Signal Processing <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -210,239 +245,160 @@ window.Quarto = {
 
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-author" data-direction="asc">
-          Author
-        </option>
-     </select>
-  </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Signal Processing,Interactive Module" data-listing-date-sort="1726617600000" data-listing-file-modified-sort="1726978077206" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="315">
-<div class="thumbnail">
-<p><a href="./posts/signal_processing/signal-filter.html" class="no-external"></a></p><a href="./posts/signal_processing/signal-filter.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/signal_processing/signal-filter.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/signal_processing/signal-filter.html" class="no-external">Basic Signal Filters</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/signal_processing/signal-filter.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Signal Processing'); return false;">
-Signal Processing
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Interactive Module'); return false;">
-Interactive Module
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/signal_processing/signal-filter.html" class="no-external">High-level functions to design and apply filters in RAVE </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/signal_processing/signal-filter.html" class="no-external">
-<div class="listing-date">
-Sep 18, 2024
-</div>
-<div class="listing-author">
-Zhengjia Wang
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="3D Viewer,Interactive Module" data-listing-date-sort="1726444800000" data-listing-file-modified-sort="1726978077201" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1037">
-<div class="thumbnail">
-<p><a href="./posts/3dviewer/viewer201.html" class="no-external"></a></p><a href="./posts/3dviewer/viewer201.html" class="no-external">
-<p class="card-img-top"><img src="posts/3dviewer/preview-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/3dviewer/viewer201.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/3dviewer/viewer201.html" class="no-external">Customize 3D Viewer Color Palette</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/3dviewer/viewer201.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('3D Viewer'); return false;">
-3D Viewer
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Interactive Module'); return false;">
-Interactive Module
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/3dviewer/viewer201.html" class="no-external">Create basic 3D viewer and render with colors </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/3dviewer/viewer201.html" class="no-external">
-<div class="listing-date">
-Sep 16, 2024
-</div>
-<div class="listing-author">
-Zhengjia Wang
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="3D Viewer" data-listing-date-sort="1726444800000" data-listing-file-modified-sort="1726978077201" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1037">
-<div class="thumbnail">
-<p><a href="./posts/3dviewer/viewer301.html" class="no-external"></a></p><a href="./posts/3dviewer/viewer301.html" class="no-external">
-<p class="card-img-top"><img src="posts/3dviewer/preview-mni.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/3dviewer/viewer301.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/3dviewer/viewer301.html" class="no-external">Make a group brain</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/3dviewer/viewer301.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('3D Viewer'); return false;">
-3D Viewer
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/3dviewer/viewer301.html" class="no-external">Create a group-level 3D viewer </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/3dviewer/viewer301.html" class="no-external">
-<div class="listing-date">
-Sep 16, 2024
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Installation" data-listing-date-sort="1726358400000" data-listing-file-modified-sort="1726978077206" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="279">
-<div class="thumbnail">
-<p><a href="./posts/from_wiki/update.html" class="no-external"></a></p><a href="./posts/from_wiki/update.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/from_wiki/update.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/from_wiki/update.html" class="no-external">Updating and Upgrading Guide</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/from_wiki/update.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Installation'); return false;">
-Installation
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/from_wiki/update.html" class="no-external">Update RAVE today! </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/from_wiki/update.html" class="no-external">
-<div class="listing-date">
-Sep 15, 2024
-</div>
-<div class="listing-author">
-Zhengjia Wang, John Magnotti, Xiang Zhang, Michael Beauchamp
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Installation" data-listing-date-sort="1726272000000" data-listing-file-modified-sort="1726978077206" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="368">
-<div class="thumbnail">
-<p><a href="./posts/from_wiki/installation.html" class="no-external"></a></p><a href="./posts/from_wiki/installation.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/from_wiki/installation.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/from_wiki/installation.html" class="no-external">Installation Guide</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/from_wiki/installation.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Installation'); return false;">
-Installation
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/from_wiki/installation.html" class="no-external">Try RAVE today! </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/from_wiki/installation.html" class="no-external">
-<div class="listing-date">
-Sep 14, 2024
-</div>
-<div class="listing-author">
-Zhengjia Wang, John Magnotti, Xiang Zhang, Michael Beauchamp
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="Editor Notes" data-listing-date-sort="1725148800000" data-listing-file-modified-sort="1726978077205" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1093">
-<div class="thumbnail">
-<p><a href="./posts/editor-notes/how-to-edit-this-website.html" class="no-external"></a></p><a href="./posts/editor-notes/how-to-edit-this-website.html" class="no-external">
-<p class="card-img-top"><img src="posts/editor-notes/figure-preview-mode.png" alt="Right: “Preview” mode"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/editor-notes/how-to-edit-this-website.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/editor-notes/how-to-edit-this-website.html" class="no-external">How to Edit this Website</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/editor-notes/how-to-edit-this-website.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Editor Notes'); return false;">
-Editor Notes
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/editor-notes/how-to-edit-this-website.html" class="no-external">This post is an introduction on how to edit the website (rave.wiki), which completely runs on Github with no dedicated hosting servers.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/editor-notes/how-to-edit-this-website.html" class="no-external">
-<div class="listing-date">
-Sep 1, 2024
-</div>
-<div class="listing-author">
-Zhengjia Wang
-</div>
-</a>
-</div>
-</div>
-</div>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<div id="listing-quick-access" class="quarto-listing quarto-listing-container-table">
+<table class="quarto-listing-table table table-hover">
+<thead>
+<tr>
+<th>
+Title
+</th>
+<th>
+Description
+</th>
+<th>
+Reading Time
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-categories="Installation" data-listing-date-sort="1726272000000" data-listing-file-modified-sort="1726981483876" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="368" data-listing-title-sort="Installation Guide" data-listing-filename-sort="installation.md" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td>
+<a href="./posts/installation/installation.html" class="title listing-title">Installation Guide</a>
+</td>
+<td>
+<span class="listing-description">Try RAVE today! </span>
+</td>
+<td>
+<span class="listing-reading-time">2 min</span>
+</td>
+</tr>
+<tr data-index="1" data-categories="Installation" data-listing-date-sort="1726358400000" data-listing-file-modified-sort="1726981483876" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="279" data-listing-title-sort="Updating and Upgrading Guide" data-listing-filename-sort="update.md" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td>
+<a href="./posts/installation/update.html" class="title listing-title">Updating and Upgrading Guide</a>
+</td>
+<td>
+<span class="listing-description">Update RAVE today! </span>
+</td>
+<td>
+<span class="listing-reading-time">2 min</span>
+</td>
+</tr>
+</tbody>
+</table>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div></main> <!-- /main -->
+</div>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<div id="listing-full-listings" class="quarto-listing quarto-listing-container-table">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-full-listings-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-full-listings'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title-sort" data-direction="asc">
+          Title
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+<table class="quarto-listing-table table table-hover">
+<thead>
+<tr>
+<th>
+</th>
+<th>
+<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
+</th>
+<th>
+Description
+</th>
+<th>
+Reading Time
+</th>
+<th>
+Categories
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-categories="Signal Processing,Interactive Module" data-listing-date-sort="1726617600000" data-listing-file-modified-sort="1726981483876" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="315" data-listing-title-sort="Basic Signal Filters" data-listing-filename-sort="signal-filter.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td>
+<span class="listing-image"><div class="listing-item-img-placeholder card-img-top" style="height: 60px;">&nbsp;</div></span>
+</td>
+<td>
+<a href="./posts/signal_processing/signal-filter.html" class="title listing-title">Basic Signal Filters</a>
+</td>
+<td>
+<span class="listing-description">High-level functions to design and apply filters in RAVE </span>
+</td>
+<td>
+<span class="listing-reading-time">2 min</span>
+</td>
+<td>
+<span class="listing-categories">Signal Processing, Interactive Module</span>
+</td>
+</tr>
+<tr data-index="1" data-categories="3D Viewer,Interactive Module" data-listing-date-sort="1726444800000" data-listing-file-modified-sort="1726981483871" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1037" data-listing-title-sort="Customize 3D Viewer Color Palette" data-listing-filename-sort="viewer201.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td>
+<span class="listing-image"><p class="card-img-top"><img src="posts/3dviewer/preview-1.png" style="height: 60px;"  class="thumbnail-image card-img"/></p></span>
+</td>
+<td>
+<a href="./posts/3dviewer/viewer201.html" class="title listing-title">Customize 3D Viewer Color Palette</a>
+</td>
+<td>
+<span class="listing-description">Create basic 3D viewer and render with colors </span>
+</td>
+<td>
+<span class="listing-reading-time">6 min</span>
+</td>
+<td>
+<span class="listing-categories">3D Viewer, Interactive Module</span>
+</td>
+</tr>
+<tr data-index="2" data-categories="3D Viewer" data-listing-date-sort="1726444800000" data-listing-file-modified-sort="1726981483871" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1037" data-listing-title-sort="Make a group brain" data-listing-filename-sort="viewer301.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td>
+<span class="listing-image"><p class="card-img-top"><img src="posts/3dviewer/preview-mni.png" style="height: 60px;"  class="thumbnail-image card-img"/></p></span>
+</td>
+<td>
+<a href="./posts/3dviewer/viewer301.html" class="title listing-title">Make a group brain</a>
+</td>
+<td>
+<span class="listing-description">Create a group-level 3D viewer </span>
+</td>
+<td>
+<span class="listing-reading-time">6 min</span>
+</td>
+<td>
+<span class="listing-categories">3D Viewer</span>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -871,7 +827,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p><i class="fa-regular fa-copyright" aria-label="copyright"></i> Copyright 2024, <a href="https://beauchamplab.med.upenn.edu" target="_blank">BeauchampLab</a>.</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/blogs.md" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/blogs.md" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/blogs.md" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/blogs.md" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Created by <a href="https://dipterix.org" target="_blank">Zhengjia Wang</a>. Hosted by <a href="https://pages.github.com/" target="_blank">Github</a></p>
 </div>

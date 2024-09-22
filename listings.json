@@ -2,12 +2,11 @@
   {
     "listing": "/blogs.html",
     "items": [
+      "/posts/installation/installation.html",
+      "/posts/installation/update.html",
       "/posts/signal_processing/signal-filter.html",
       "/posts/3dviewer/viewer201.html",
-      "/posts/3dviewer/viewer301.html",
-      "/posts/from_wiki/update.html",
-      "/posts/from_wiki/installation.html",
-      "/posts/editor-notes/how-to-edit-this-website.html"
+      "/posts/3dviewer/viewer301.html"
     ]
   }
 ]
