@@ -363,7 +363,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"fig-width":7,"comment":"","output":"true","editor-font-scale":"1","fig-height":5,"classes":"","context":"interactive","editor-word-wrap":"true","warning":"true","read-only":"false","results":"markup","editor-quick-suggestions":"TRUE","out-width":"700px","dpi":72,"out-height":"","message":"true","autorun":"true","label":"unnamed-chunk-1","fig-cap":"","editor-max-height":"500"},"code":"library(ravetools)\nsample_rate <- 200\nt <- seq(0, 10, by = 1 / sample_rate)\nnoise <- cumsum(rnorm(length(t), sd = 0.4)) / sqrt(seq_len(length(t)))\nx <- 0.2 * sin(t * 4 * pi) + 0.02 * sin(t * 20 * pi) +\n  0.005 * sin(t * 120 * pi) + noise\n\n# Plot the signal\nravetools::diagnose_channel(\n  x,\n  srate = sample_rate,\n  name = \"Sample signal\",\n  window = 2 * sample_rate,\n  noverlap = sample_rate\n)"},{"id":2,"options":{"fig-width":7,"comment":"","output":"true","editor-font-scale":"1","fig-height":5,"classes":"","context":"interactive","editor-word-wrap":"true","warning":"true","read-only":"false","results":"markup","editor-quick-suggestions":"TRUE","out-width":"700px","dpi":72,"out-height":"","message":"true","autorun":"true","label":"unnamed-chunk-2","fig-cap":"","editor-max-height":"500"},"code":"# Low-pass filter\nf1 <- design_filter(\n  data_size = length(x),\n  sample_rate = sample_rate,\n  low_pass_freq = 3, low_pass_trans_freq = 0.5\n)\nf1"},{"id":3,"options":{"fig-width":7,"comment":"","output":"true","editor-font-scale":"1","fig-height":5,"classes":"","context":"interactive","editor-word-wrap":"true","warning":"true","read-only":"false","results":"markup","editor-quick-suggestions":"TRUE","out-width":"700px","dpi":72,"out-height":"","message":"true","autorun":"true","label":"unnamed-chunk-3","fig-cap":"","editor-max-height":"500"},"code":"y1 <- filtfilt(b = f1$b, a = f1$a, x = x)\n\n# compare the results\nplot(t, x, type = 'l', xlab = \"Time\", ylab = \"\",\n    main = \"Mixture of 2, 10, and 60Hz\", xlim = c(0,1))\nlines(t, y1, col = 'red')\nlegend(\n  \"topleft\", c(\"Input\", \"Low: 3Hz\"),\n  col = c(par(\"fg\"), \"red\"), lty = 1\n)\n\n# plot welch-periodogram\npwelch(x, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 1, ylim = c(-100, 10))\npwelch(y1, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 2, col = \"red\")"}];
+globalThis.qwebrCellDetails = [{"code":"library(ravetools)\nsample_rate <- 200\nt <- seq(0, 10, by = 1 / sample_rate)\nnoise <- cumsum(rnorm(length(t), sd = 0.4)) / sqrt(seq_len(length(t)))\nx <- 0.2 * sin(t * 4 * pi) + 0.02 * sin(t * 20 * pi) +\n  0.005 * sin(t * 120 * pi) + noise\n\n# Plot the signal\nravetools::diagnose_channel(\n  x,\n  srate = sample_rate,\n  name = \"Sample signal\",\n  window = 2 * sample_rate,\n  noverlap = sample_rate\n)","id":1,"options":{"output":"true","fig-height":5,"out-height":"","comment":"","editor-word-wrap":"true","dpi":72,"read-only":"false","autorun":"true","classes":"","results":"markup","editor-max-height":"500","message":"true","fig-width":7,"editor-font-scale":"1","context":"interactive","label":"unnamed-chunk-1","out-width":"700px","warning":"true","fig-cap":"","editor-quick-suggestions":"TRUE"}},{"code":"# Low-pass filter\nf1 <- design_filter(\n  data_size = length(x),\n  sample_rate = sample_rate,\n  low_pass_freq = 3, low_pass_trans_freq = 0.5\n)\nf1","id":2,"options":{"output":"true","fig-height":5,"out-height":"","comment":"","editor-word-wrap":"true","dpi":72,"read-only":"false","autorun":"true","classes":"","results":"markup","editor-max-height":"500","message":"true","fig-width":7,"editor-font-scale":"1","context":"interactive","label":"unnamed-chunk-2","out-width":"700px","warning":"true","fig-cap":"","editor-quick-suggestions":"TRUE"}},{"code":"y1 <- filtfilt(b = f1$b, a = f1$a, x = x)\n\n# compare the results\nplot(t, x, type = 'l', xlab = \"Time\", ylab = \"\",\n    main = \"Mixture of 2, 10, and 60Hz\", xlim = c(0,1))\nlines(t, y1, col = 'red')\nlegend(\n  \"topleft\", c(\"Input\", \"Low: 3Hz\"),\n  col = c(par(\"fg\"), \"red\"), lty = 1\n)\n\n# plot welch-periodogram\npwelch(x, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 1, ylim = c(-100, 10))\npwelch(y1, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 2, col = \"red\")","id":3,"options":{"output":"true","fig-height":5,"out-height":"","comment":"","editor-word-wrap":"true","dpi":72,"read-only":"false","autorun":"true","classes":"","results":"markup","editor-max-height":"500","message":"true","fig-width":7,"editor-font-scale":"1","context":"interactive","label":"unnamed-chunk-3","out-width":"700px","warning":"true","fig-cap":"","editor-quick-suggestions":"TRUE"}}];
 
 </script>
 <script type="module">
@@ -1673,11 +1673,6 @@ globalThis.qwebrExecuteCode = async function (
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="https://github.com/rave-ieeg/" title="" class="quarto-navigation-tool px-1" aria-label="" target="_blank"><i class="bi bi-github"></i></a>
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
-  <div class="quarto-reader-toggle-btn">
-  <i class="bi"></i>
-  </div>
-</a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -2477,13 +2472,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-      &nbsp;
-    </div>   
+<p>Credit <a href="https://dipterix.org" target="_blank">Zhengjia Wang</a> for creating the website.</p>
+</div>   
     <div class="nav-footer-center">
 <p><i class="fa-regular fa-copyright" aria-label="copyright"></i> Copyright 2024, <a href="https://beauchamplab.med.upenn.edu" target="_blank">BeauchampLab</a>.</p>
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/posts/signal_processing/signal-filter.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/posts/signal_processing/signal-filter.qmd" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>Created by <a href="https://dipterix.org" target="_blank">Zhengjia Wang</a>. Hosted by <a href="https://pages.github.com/" target="_blank">Github</a></p>
+<p><a href="posts/editor-notes/how-to-edit-this-website.md" target="_blank">Guide to edit this website</a></p>
 </div>
   </div>
 </footer>
