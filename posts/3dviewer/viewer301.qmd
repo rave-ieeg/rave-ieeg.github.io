@@ -140,6 +140,14 @@ template$plot(
     app.canvas.sideCanvasList.sagittal.reset();
   }
   app.resize();
+  const appendix = document.getElementById("quarto-appendix");
+  if(appendix) {
+    appendix.style.display="none";
+  }
+  const header = document.getElementById("quarto-header");
+  if( header ) {
+    header.setAttribute('style', 'transform: translateY(0%) !important;');
+  }
   ]'
 )
 ```
