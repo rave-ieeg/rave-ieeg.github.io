@@ -10,6 +10,9 @@ globalThis.qwebrPackageRepoURLS = [{{RPACKAGEREPOURLS}}];
 globalThis.qwebrSetupRPackages = !(qwebrInstallRPackagesList.indexOf("") !== -1);
 globalThis.qwebrAutoloadRPackages = {{AUTOLOADRPACKAGES}};
 
+// Mount data from URL
+globalThis.qwebrMountDataList = {{MOUNTDATALIST}};
+
 // Display a startup message?
 globalThis.qwebrShowStartupMessage = {{SHOWSTARTUPMESSAGE}};
 globalThis.qwebrShowHeaderMessage = {{SHOWHEADERMESSAGE}};
@@ -18,7 +21,7 @@ globalThis.qwebrShowHeaderMessage = {{SHOWHEADERMESSAGE}};
 globalThis.qwebrCustomizedWebROptions = {
   "baseURL": "{{BASEURL}}",
   "serviceWorkerUrl": "{{SERVICEWORKERURL}}",
-  "homedir": "{{HOMEDIR}}", 
+  "homedir": "{{HOMEDIR}}",
   "channelType": "{{CHANNELTYPE}}"
 };
 

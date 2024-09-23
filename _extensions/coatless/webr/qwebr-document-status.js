@@ -86,7 +86,7 @@ function qwebrPlaceMessageContents(content, html_location = "title-block-header"
 
 
 function qwebrOffScreenCanvasSupportWarningMessage() {
-  
+
   // Verify canvas is supported.
   if(qwebrOffScreenCanvasSupport()) return;
 
@@ -134,7 +134,7 @@ function qwebrOffScreenCanvasSupportWarningMessage() {
   calloutContainer.appendChild(bodyContainer);
 
   // Append the main container div to the document depending on format
-  qwebrPlaceMessageContents(calloutContainer, "title-block-header"); 
+  qwebrPlaceMessageContents(calloutContainer, "title-block-header");
 
 }
 
@@ -147,7 +147,7 @@ function displayStartupMessage(showStartupMessage, showHeaderMessage) {
 
   // Create the outermost div element for metadata
   const quartoTitleMeta = document.createElement("div");
-  quartoTitleMeta.classList.add("quarto-title-meta");
+  quartoTitleMeta.classList.add("quarto-title-meta", "column-page-left");
 
   // Create the first inner div element
   const firstInnerDiv = document.createElement("div");
@@ -187,7 +187,7 @@ function displayStartupMessage(showStartupMessage, showHeaderMessage) {
   quartoTitleMeta.appendChild(firstInnerDiv);
 
   // Place message on webpage
-  qwebrPlaceMessageContents(quartoTitleMeta); 
+  qwebrPlaceMessageContents(quartoTitleMeta);
 }
 
 function qwebrAddCommandHistoryModal() {
@@ -210,7 +210,7 @@ function qwebrAddCommandHistoryModal() {
   var modalH1 = document.createElement('h1');
   modalH1.textContent = 'R History Command Contents';
 
-  // Create an anchor element for downloading the Rhistory file 
+  // Create an anchor element for downloading the Rhistory file
   var downloadLink = document.createElement('a');
   downloadLink.href = '#';
   downloadLink.id = 'qwebr-download-history-btn';
@@ -266,7 +266,7 @@ function qwebrRegisterRevealJSCommandHistoryModal() {
   let newLink = document.createElement('a');
   newLink.href = '#';
   newLink.id = 'qwebrRHistoryButton'; // Set the ID for the new link
-  
+
   // Create the <kbd> element inside the <a>
   let newKbd = document.createElement('kbd');
   newKbd.textContent = ' '; // Set to empty as we are not registering a keyboard shortcut
@@ -335,14 +335,14 @@ function qwebrCodeLinks() {
 
   // Append the container div to the element with the ID 'quarto-margin-sidebar'
   var sidebar = document.getElementById('quarto-margin-sidebar');
-    
+
   // If the sidebar element is not found, create it
   if(!sidebar) {
     qwebrPlaceQuartoSidebar();
   }
-  
+
   // Re-select the sidebar element (if it was just created)
-  sidebar = document.getElementById('quarto-margin-sidebar');   
+  sidebar = document.getElementById('quarto-margin-sidebar');
 
 
   // If the sidebar element exists, append the container div to it

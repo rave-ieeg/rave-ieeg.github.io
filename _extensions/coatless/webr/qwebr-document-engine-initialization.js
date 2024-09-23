@@ -43,6 +43,60 @@ async function qwebrProcessRPackagesWithStatus(packages, processType, displaySta
   }
 }
 
+function makeRequest(xhr) {
+  return new Promise(function (resolve, reject) {
+      xhr.onload = function () {
+          if (this.status >= 200 && this.status < 300) {
+              resolve(xhr.response);
+          } else {
+              reject({
+                  status: this.status,
+                  statusText: xhr.statusText
+              });
+          }
+      };
+      xhr.onerror = function () {
+          reject({
+              status: this.status,
+              statusText: xhr.statusText
+          });
+      };
+      xhr.send();
+  });
+}
+
+async function downloadFileContent(URL, headers = []) {
+  const request = new XMLHttpRequest();
+  request.open('GET', URL, true);
+  request.responseType = 'arraybuffer';
+
+  try {
+    headers.forEach((header) => {
+      const splitHeader = header.split(': ');
+      request.setRequestHeader(splitHeader[0], splitHeader[1]);
+    });
+  } catch {
+    const responseText = 'An error occurred setting headers in XMLHttpRequest';
+    console.error(responseText);
+    return { status: 400, response: responseText };
+  }
+
+  try {
+    await makeRequest(request);
+    const status = request.status;
+
+    if (status >= 200 && status < 300) {
+      return { status: status, response: request.response };
+    } else {
+      const responseText = new TextDecoder().decode(request.response);
+      console.error(`Error fetching ${URL} - ${responseText}`);
+      return { status: status, response: responseText };
+    }
+  } catch {
+    return { status: 400, response: 'An error occurred in XMLHttpRequest' };
+  }
+}
+
 // Start a timer
 const initializeWebRTimerStart = performance.now();
 
@@ -58,8 +112,105 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
     // Setup a shelter
     globalThis.mainWebRCodeShelter = await new mainWebR.Shelter();
 
+    const promiseTasks = [];
+
+    /** Added by Zhengjia to allow mounting data
+     * @date: 2024-09-22
+    /*/
+    window.mainWebR = mainWebR;
+    const doMount = async ({path, meta, data} = {}) => {
+      if(
+        typeof data === "string" &&
+        typeof meta === "string" &&
+        typeof path === "string"
+      ) {
+        qwebrUpdateStatusHeader(`Mounting Data... (${path})`);
+        // Create mountpoint
+        await mainWebR.FS.mkdir(path)
+        // Download image data
+        const dataResp = await downloadFileContent(data);
+        const metaResp = await downloadFileContent(meta);
+
+        const _data = dataResp.response;
+
+        const metaJSON = JSON.parse(new TextDecoder().decode(metaResp.response));
+
+        const rootArray = new Uint8Array(_data);
+
+        const rootDir = await mainWebR.FS.lookupPath("/");
+
+        const ensureParentDirectory = async (filePath) => {
+          const fpaths = filePath.split("/").filter(v => {
+            return v.trim() !== "";
+          });
+
+          // remove filename
+          const fileName = fpaths.pop();
+          let cpath = "";
+          let cdir = rootDir;
+
+          for(let fname of fpaths) {
+            cpath = `${cpath}/${fname}`;
+            try {
+              cdir = cdir.contents[ fname ];
+              if( !cdir ) {
+                try {
+                  await mainWebR.FS.mkdir(cpath);
+                } catch (e) {}
+                cdir = await mainWebR.FS.lookupPath(cpath);
+              }
+            } catch (e) {
+              try {
+                await mainWebR.FS.mkdir(cpath);
+                cdir = await mainWebR.FS.lookupPath(cpath);
+              } catch (e) {
+                // concurrent mkdir?
+              }
+            }
+            if( !cdir.isFolder ) {
+              throw new Error(`Path ${cpath} is not a folder.`);
+            }
+          }
+
+          return `${cpath}/${fileName}`;
+        }
+
+        await Promise.all(
+          metaJSON.files.map(async (fileDescriptor) => {
+            const subArray = rootArray.subarray(fileDescriptor.start, fileDescriptor.end);
+            const fileName = await ensureParentDirectory(`${path}/${fileDescriptor.filename}`);
+            await mainWebR.FS.writeFile(fileName, subArray);
+          })
+        )
+
+        /*/ Mount image data
+        const options = {
+          packages: [{
+            blob: new Blob([ dataResp.response ]),
+            metadata: metaJSON,
+          }],
+        }
+        // await mainWebR.FS.mount("WORKERFS", options, path);*/
+      }
+      return;
+    };
+
+    if( Array.isArray(qwebrMountDataList) ) {
+      const mountTask = Promise.all( qwebrMountDataList.map(doMount) );
+      promiseTasks.push( mountTask );
+    } else if (qwebrMountDataList && typeof qwebrMountDataList === "object") {
+      const mountTask = doMount(qwebrMountDataList);
+      promiseTasks.push( mountTask );
+    }
+
+    /**
+     * End webr mount
+     */
+
+
     // Setup a pager to allow processing help documentation
     await mainWebR.evalRVoid('webr::pager_install()');
+    await mainWebR.evalRVoid('webr::viewer_install()');
 
     // Override the existing install.packages() to use webr::install()
     await mainWebR.evalRVoid('webr::shim_install()');
@@ -74,39 +225,25 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
       )
     `);
 
-    /** Added by Zhengjia to allow loading copiled packages
-     * @date: 2024-09-18
-    //
-    console.log("👉 Loading R packages ----");
-
-    const libName = "webr_packages";
-    const dirPath = "/webr_packages";
-
-    // Create a custom lib so that we don't have to worry about
-    // overwriting any packages that are already installed.
-    await mainWebR.FS.mkdir(`/usr/lib/R/${libName}`);
-    // Mount the custom lib
-    await mainWebR.FS.mount("NODEFS", { root: dirPath }, `/usr/lib/R/${libName}`);
-    // Add the custom lib to the R search path
-    await mainWebR.evalR(`.libPaths(c('/usr/lib/R/${libName}', .libPaths()))`);
-
-    /**
-     * End webr injection
-     */
-
     // Check to see if any packages need to be installed
-    if (qwebrSetupRPackages) {
-      // Obtain only a unique list of packages
-      const uniqueRPackageList = Array.from(new Set(qwebrInstallRPackagesList));
+    const setupRPackagesImpl = async () => {
+      if (qwebrSetupRPackages) {
+        // Obtain only a unique list of packages
+        const uniqueRPackageList = Array.from(new Set(qwebrInstallRPackagesList));
 
-      // Install R packages one at a time (either silently or with a status update)
-      await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'install', qwebrShowStartupMessage);
+        // Install R packages one at a time (either silently or with a status update)
+        await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'install', qwebrShowStartupMessage)
 
-      if (qwebrAutoloadRPackages) {
-        // Load R packages one at a time (either silently or with a status update)
-        await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'load', qwebrShowStartupMessage);
+        if (qwebrAutoloadRPackages) {
+          // Load R packages one at a time (either silently or with a status update)
+          await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'load', qwebrShowStartupMessage);
+        }
       }
     }
+
+    promiseTasks.push( setupRPackagesImpl() );
+    await Promise.all( promiseTasks );
+
   }
 );
 
