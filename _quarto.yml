@@ -6,7 +6,7 @@ project:
     - "!data/"
   resources:
     - "images/*"
-    - "samples/*"
+    - "data/wasm/*"
     - "favicon.ico"
 
 website:

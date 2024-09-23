@@ -1361,14 +1361,9 @@
     },
     "threeBrain": {
       "Package": "threeBrain",
-      "Version": "1.1.1.9018",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "dipterix",
-      "RemoteRepo": "threeBrain",
-      "RemoteRef": "master",
-      "RemoteSha": "b07713ddcd6b59e246138bfc3db968056dbaad51",
+      "Version": "1.1.1.9019",
+      "Source": "Repository",
+      "Repository": "raveieeg",
       "Requirements": [
         "R6",
         "digest",
@@ -1388,7 +1383,7 @@
         "utils",
         "xml2"
       ],
-      "Hash": "a582c97e58090ac1910fc68136d66b0b"
+      "Hash": "342320be11c1be0278aff765efac6232"
     },
     "tibble": {
       "Package": "tibble",
