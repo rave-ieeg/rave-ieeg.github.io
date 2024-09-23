@@ -19,14 +19,13 @@ copyright:
 ## Step 1: Install prerequisites
 
 ::: {.alert .alert-warning role="alert"}
-Please please please, read and install the prerequisites.
+Please read and install the prerequisites.
 
 ❗The most common installation problem is that the prerequisites are not installed.❗
 
-❗❗❗If your installation fails, there's a 99.9% chance that the prerequisites are missing.❗❗❗
 :::
 
-First, choose your operating system below to start:
+Choose your operating system:
 
 ```{=html}
 <!-- 
