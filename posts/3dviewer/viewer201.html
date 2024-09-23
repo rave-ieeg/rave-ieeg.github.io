@@ -350,6 +350,9 @@ globalThis.qwebrPackageRepoURLS = ['https://rave-ieeg.r-universe.dev', 'https://
 globalThis.qwebrSetupRPackages = !(qwebrInstallRPackagesList.indexOf("") !== -1);
 globalThis.qwebrAutoloadRPackages = false;
 
+// Mount data from URL
+globalThis.qwebrMountDataList = [{"data":"https://zenodo.org/api/records/13825852/files/project-demo-minimal.data/content","meta":"https://zenodo.org/api/records/13825852/files/project-demo-minimal.js.metadata/content","path":"/home/web_user/rave_data"}];
+
 // Display a startup message?
 globalThis.qwebrShowStartupMessage = true;
 globalThis.qwebrShowHeaderMessage = false;
@@ -358,12 +361,12 @@ globalThis.qwebrShowHeaderMessage = false;
 globalThis.qwebrCustomizedWebROptions = {
   "baseURL": "https://webr.r-wasm.org/v0.4.2/",
   "serviceWorkerUrl": "",
-  "homedir": "/home/web_user", 
+  "homedir": "/home/web_user",
   "channelType": "ChannelType.ServiceWorker"
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"code":"# Let's mount a demo data to your browser:\nif(!dir.exists(\"~/rave_data/data_dir/demo\")) {\n  webr::mount(\n    normalizePath(\"~/rave_data\", mustWork = FALSE),\n    \"https://rave.wiki/samples/project-demo-minimal.data.gz\"\n  )\n}\nbrain <- raveio::rave_brain(\"demo/DemoSubject\")","options":{"fig-cap":"","dpi":72,"output":"true","context":"setup","out-height":"","autorun":"true","message":"true","fig-width":7,"results":"markup","editor-font-scale":"1","warning":"true","comment":"","fig-height":5,"classes":"","editor-word-wrap":"true","label":"unnamed-chunk-1","read-only":"false","editor-quick-suggestions":"false","out-width":"700px","editor-max-height":""}},{"id":2,"code":"brain <- raveio::rave_brain(\"demo/DemoSubject\")\n\n# See the output to the right for what's inside of the brain object\nbrain","options":{"fig-cap":"","dpi":72,"output":"true","context":"interactive","out-height":"","autorun":"false","message":"true","fig-width":7,"results":"markup","editor-font-scale":"1","warning":"true","comment":"","fig-height":5,"classes":"","editor-word-wrap":"true","label":"unnamed-chunk-2","read-only":"false","editor-quick-suggestions":"TRUE","out-width":"700px","editor-max-height":"500"}},{"id":3,"code":"brain$plot()","options":{"fig-cap":"","dpi":72,"output":"true","context":"interactive","out-height":"","autorun":"false","message":"true","fig-width":7,"results":"markup","editor-font-scale":"1","warning":"true","comment":"","fig-height":5,"classes":"","editor-word-wrap":"true","label":"unnamed-chunk-3","read-only":"false","editor-quick-suggestions":"TRUE","out-width":"700px","editor-max-height":"500"}},{"id":4,"code":"data_table <- data.frame(\n    Subject = \"DemoSubject\",\n    Electrode = c(13,14,15,16,24),\n    ContinuousValue = runif(5),\n    Categorical = letters[c(1,2,3,2,3)]\n)\n\nbrain$set_electrode_values(data_table)\n\nbrain$plot()","options":{"fig-cap":"","dpi":72,"output":"true","context":"interactive","out-height":"","autorun":"false","message":"true","fig-width":7,"results":"markup","editor-font-scale":"1","warning":"true","comment":"","fig-height":5,"classes":"","editor-word-wrap":"true","label":"unnamed-chunk-4","read-only":"false","editor-quick-suggestions":"TRUE","out-width":"700px","editor-max-height":"500"}},{"id":5,"code":"# Load brain\nbrain <- raveio::rave_brain(\"demo/DemoSubject\")\n\n# Set values with 2 variables: `ContinuousVal` and `CategoricalVal`\nbrain$set_electrode_values(\n  data.frame(\n    Subject = \"DemoSubject\",\n    Electrode = c(13:16,24,73:80),\n    ContinuousVal = rnorm(13),\n    CategoricalVal = sample(letters[1:4], size = 13, replace = TRUE),\n    PValue = c(0.15, 0.5, 0.9, 0.01, 0.05, 0.45, 0.8,\n               0.68, 0.6, 0.33, 0.001, 0.36, 0.83)\n  )\n)\n\n# Plot brain with options\nbrain$plot(\n  \n  # change color palettes: each variable requires a palette (if not default)\n  palettes = list(\n    \n    # discrete values require each category to be filled with a \n    # color. The order is alphabetic\n    CategoricalVal = c(\"red\", \"blue\", \"green\"),\n    \n    # continuous values requires at least 2 key colors\n    ContinuousVal = c(\"white\", \"purple\"),\n    \n    # p-value is not linearly scaled, R provides `colorRampPalette`\n    # to generate non-linear color palette from at least \n    # 3 key colors. \n    # This example used 5 key colors with bias = 2 so the\n    PValue = colorRampPalette(\n      c(\"red\", \"yellow\", \"cyan\", \"gray\", \"gray\"), bias = 2\n    )(100)\n    \n  ),\n  \n  # Change value range: sets the value range for variables that have\n  # bounded ranges, such as p-values\n  value_ranges = list(\n    \n    # p-value should range from 0-1 \n    PValue = c(0, 1),\n    \n    # We also want to trim the `ContinuousVal` to 95% CI\n    ContinuousVal = c(-2, 2)\n    \n  ),\n  \n  # Set initial controller status\n  controllers = list(\n    \n    # Display p-value \n    \"Display Data\" = \"PValue\",\n    \n    \n    # Overlay atlases from side canvas\n    \"Voxel Type\" = \"aparc_aseg\",\n    \"Voxel Display\" = \"side camera\",\n    \n    # Overlay axial slices with surfaces\n    \"Overlay Axial\" = TRUE,\n    \n    # Set surface opacity\n    \"Left Opacity\" = 0.4,\n    \"Left Mesh Clipping\" = 0.3,\n    \"Right Opacity\" = 0.4,\n    \"Right Mesh Clipping\" = 0.3,\n    \n    # Electrode outline\n    \"Outlines\" = \"on\",\n    \"Translucent\" = \"contact+outline\",\n    \n    # Background color and camera position\n    \"Background Color\" = \"#000000\",\n    \"Camera Position\" = \"superior\"\n    \n  )\n  \n)","options":{"fig-cap":"","dpi":72,"output":"true","context":"interactive","out-height":"","autorun":"false","message":"true","fig-width":7,"results":"markup","column":"page","editor-font-scale":"1","warning":"true","comment":"","fig-height":5,"classes":"","editor-word-wrap":"true","label":"unnamed-chunk-5","read-only":"false","editor-quick-suggestions":"TRUE","out-width":"700px","editor-max-height":"500"}}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"# webr::mount(\n      # - meta: \"http://localhost:3530/samples/project-demo-minimal.js.metadata\"\n    #   data: \"http://localhost:3530/samples/project-demo-minimal.data\"\n    #   path: \"/home/web_user/rave_data\"\n# )\nbrain <- raveio::rave_brain(\"demo/DemoSubject\")","options":{"dpi":72,"context":"setup","message":"true","label":"unnamed-chunk-1","editor-max-height":"","results":"markup","out-width":"700px","fig-width":7,"editor-font-scale":"1","read-only":"false","autorun":"true","editor-word-wrap":"true","fig-cap":"","output":"true","warning":"true","fig-height":5,"comment":"","editor-quick-suggestions":"false","classes":"","out-height":""}},{"id":2,"code":"brain <- raveio::rave_brain(\"demo/DemoSubject\")\n\n# See the output to the right for what's inside of the brain object\nbrain","options":{"dpi":72,"context":"interactive","message":"true","label":"unnamed-chunk-2","editor-max-height":"500","results":"markup","out-width":"700px","fig-width":7,"editor-font-scale":"1","read-only":"false","autorun":"false","editor-word-wrap":"true","fig-cap":"","output":"true","warning":"true","fig-height":5,"comment":"","editor-quick-suggestions":"TRUE","classes":"","out-height":""}},{"id":3,"code":"brain$plot()","options":{"dpi":72,"context":"interactive","message":"true","label":"unnamed-chunk-3","editor-max-height":"500","results":"markup","out-width":"700px","fig-width":7,"editor-font-scale":"1","read-only":"false","autorun":"false","editor-word-wrap":"true","fig-cap":"","output":"true","warning":"true","fig-height":5,"comment":"","editor-quick-suggestions":"TRUE","classes":"","out-height":""}},{"id":4,"code":"data_table <- data.frame(\n    Subject = \"DemoSubject\",\n    Electrode = c(13,14,15,16,24),\n    ContinuousValue = runif(5),\n    Categorical = letters[c(1,2,3,2,3)]\n)\n\nbrain$set_electrode_values(data_table)\n\nbrain$plot()","options":{"dpi":72,"context":"interactive","message":"true","label":"unnamed-chunk-4","editor-max-height":"500","results":"markup","out-width":"700px","fig-width":7,"editor-font-scale":"1","read-only":"false","autorun":"false","editor-word-wrap":"true","fig-cap":"","output":"true","warning":"true","fig-height":5,"comment":"","editor-quick-suggestions":"TRUE","classes":"","out-height":""}},{"id":5,"code":"# Load brain\nbrain <- raveio::rave_brain(\"demo/DemoSubject\")\n\n# Set values with 2 variables: `ContinuousVal` and `CategoricalVal`\nbrain$set_electrode_values(\n  data.frame(\n    Subject = \"DemoSubject\",\n    Electrode = c(13:16,24,73:80),\n    ContinuousVal = rnorm(13),\n    CategoricalVal = sample(letters[1:4], size = 13, replace = TRUE),\n    PValue = c(0.15, 0.5, 0.9, 0.01, 0.05, 0.45, 0.8,\n               0.68, 0.6, 0.33, 0.001, 0.36, 0.83)\n  )\n)\n\n# Plot brain with options\nbrain$plot(\n  \n  # change color palettes: each variable requires a palette (if not default)\n  palettes = list(\n    \n    # discrete values require each category to be filled with a \n    # color. The order is alphabetic\n    CategoricalVal = c(\"red\", \"blue\", \"green\"),\n    \n    # continuous values requires at least 2 key colors\n    ContinuousVal = c(\"white\", \"purple\"),\n    \n    # p-value is not linearly scaled, R provides `colorRampPalette`\n    # to generate non-linear color palette from at least \n    # 3 key colors. \n    # This example used 5 key colors with bias = 2 so the\n    PValue = colorRampPalette(\n      c(\"red\", \"yellow\", \"cyan\", \"gray\", \"gray\"), bias = 2\n    )(100)\n    \n  ),\n  \n  # Change value range: sets the value range for variables that have\n  # bounded ranges, such as p-values\n  value_ranges = list(\n    \n    # p-value should range from 0-1 \n    PValue = c(0, 1),\n    \n    # We also want to trim the `ContinuousVal` to 95% CI\n    ContinuousVal = c(-2, 2)\n    \n  ),\n  \n  # Set initial controller status\n  controllers = list(\n    \n    # Display p-value \n    \"Display Data\" = \"PValue\",\n    \n    \n    # Overlay atlases from side canvas\n    \"Voxel Type\" = \"aparc_aseg\",\n    \"Voxel Display\" = \"side camera\",\n    \n    # Overlay axial slices with surfaces\n    \"Overlay Axial\" = TRUE,\n    \n    # Set surface opacity\n    \"Left Opacity\" = 0.4,\n    \"Left Mesh Clipping\" = 0.3,\n    \"Right Opacity\" = 0.4,\n    \"Right Mesh Clipping\" = 0.3,\n    \n    # Electrode outline\n    \"Outlines\" = \"on\",\n    \"Translucent\" = \"contact+outline\",\n    \n    # Background color and camera position\n    \"Background Color\" = \"#000000\",\n    \"Camera Position\" = \"superior\"\n    \n  )\n  \n)","options":{"column":"page","dpi":72,"context":"interactive","message":"true","label":"unnamed-chunk-5","editor-max-height":"500","results":"markup","out-width":"700px","fig-width":7,"editor-font-scale":"1","read-only":"false","autorun":"false","editor-word-wrap":"true","fig-cap":"","output":"true","warning":"true","fig-height":5,"comment":"","editor-quick-suggestions":"TRUE","classes":"","out-height":""}}];
 
 </script>
 <script type="module">
@@ -455,7 +458,7 @@ function qwebrPlaceMessageContents(content, html_location = "title-block-header"
 
 
 function qwebrOffScreenCanvasSupportWarningMessage() {
-  
+
   // Verify canvas is supported.
   if(qwebrOffScreenCanvasSupport()) return;
 
@@ -503,7 +506,7 @@ function qwebrOffScreenCanvasSupportWarningMessage() {
   calloutContainer.appendChild(bodyContainer);
 
   // Append the main container div to the document depending on format
-  qwebrPlaceMessageContents(calloutContainer, "title-block-header"); 
+  qwebrPlaceMessageContents(calloutContainer, "title-block-header");
 
 }
 
@@ -516,7 +519,7 @@ function displayStartupMessage(showStartupMessage, showHeaderMessage) {
 
   // Create the outermost div element for metadata
   const quartoTitleMeta = document.createElement("div");
-  quartoTitleMeta.classList.add("quarto-title-meta");
+  quartoTitleMeta.classList.add("quarto-title-meta", "column-page-left");
 
   // Create the first inner div element
   const firstInnerDiv = document.createElement("div");
@@ -556,7 +559,7 @@ function displayStartupMessage(showStartupMessage, showHeaderMessage) {
   quartoTitleMeta.appendChild(firstInnerDiv);
 
   // Place message on webpage
-  qwebrPlaceMessageContents(quartoTitleMeta); 
+  qwebrPlaceMessageContents(quartoTitleMeta);
 }
 
 function qwebrAddCommandHistoryModal() {
@@ -579,7 +582,7 @@ function qwebrAddCommandHistoryModal() {
   var modalH1 = document.createElement('h1');
   modalH1.textContent = 'R History Command Contents';
 
-  // Create an anchor element for downloading the Rhistory file 
+  // Create an anchor element for downloading the Rhistory file
   var downloadLink = document.createElement('a');
   downloadLink.href = '#';
   downloadLink.id = 'qwebr-download-history-btn';
@@ -635,7 +638,7 @@ function qwebrRegisterRevealJSCommandHistoryModal() {
   let newLink = document.createElement('a');
   newLink.href = '#';
   newLink.id = 'qwebrRHistoryButton'; // Set the ID for the new link
-  
+
   // Create the <kbd> element inside the <a>
   let newKbd = document.createElement('kbd');
   newKbd.textContent = ' '; // Set to empty as we are not registering a keyboard shortcut
@@ -704,14 +707,14 @@ function qwebrCodeLinks() {
 
   // Append the container div to the element with the ID 'quarto-margin-sidebar'
   var sidebar = document.getElementById('quarto-margin-sidebar');
-    
+
   // If the sidebar element is not found, create it
   if(!sidebar) {
     qwebrPlaceQuartoSidebar();
   }
-  
+
   // Re-select the sidebar element (if it was just created)
-  sidebar = document.getElementById('quarto-margin-sidebar');   
+  sidebar = document.getElementById('quarto-margin-sidebar');
 
 
   // If the sidebar element exists, append the container div to it
@@ -735,6 +738,7 @@ qwebrAddCommandHistoryModal();
 
 displayStartupMessage(qwebrShowStartupMessage, qwebrShowHeaderMessage);
 qwebrOffScreenCanvasSupportWarningMessage();
+
 </script>
 <script type="module">
 // Define a global storage and retrieval solution ----
@@ -1170,6 +1174,60 @@ async function qwebrProcessRPackagesWithStatus(packages, processType, displaySta
   }
 }
 
+function makeRequest(xhr) {
+  return new Promise(function (resolve, reject) {
+      xhr.onload = function () {
+          if (this.status >= 200 && this.status < 300) {
+              resolve(xhr.response);
+          } else {
+              reject({
+                  status: this.status,
+                  statusText: xhr.statusText
+              });
+          }
+      };
+      xhr.onerror = function () {
+          reject({
+              status: this.status,
+              statusText: xhr.statusText
+          });
+      };
+      xhr.send();
+  });
+}
+
+async function downloadFileContent(URL, headers = []) {
+  const request = new XMLHttpRequest();
+  request.open('GET', URL, true);
+  request.responseType = 'arraybuffer';
+
+  try {
+    headers.forEach((header) => {
+      const splitHeader = header.split(': ');
+      request.setRequestHeader(splitHeader[0], splitHeader[1]);
+    });
+  } catch {
+    const responseText = 'An error occurred setting headers in XMLHttpRequest';
+    console.error(responseText);
+    return { status: 400, response: responseText };
+  }
+
+  try {
+    await makeRequest(request);
+    const status = request.status;
+
+    if (status >= 200 && status < 300) {
+      return { status: status, response: request.response };
+    } else {
+      const responseText = new TextDecoder().decode(request.response);
+      console.error(`Error fetching ${URL} - ${responseText}`);
+      return { status: status, response: responseText };
+    }
+  } catch {
+    return { status: 400, response: 'An error occurred in XMLHttpRequest' };
+  }
+}
+
 // Start a timer
 const initializeWebRTimerStart = performance.now();
 
@@ -1185,8 +1243,105 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
     // Setup a shelter
     globalThis.mainWebRCodeShelter = await new mainWebR.Shelter();
 
+    const promiseTasks = [];
+
+    /** Added by Zhengjia to allow mounting data
+     * @date: 2024-09-22
+    /*/
+    window.mainWebR = mainWebR;
+    const doMount = async ({path, meta, data} = {}) => {
+      if(
+        typeof data === "string" &&
+        typeof meta === "string" &&
+        typeof path === "string"
+      ) {
+        qwebrUpdateStatusHeader(`Mounting Data... (${path})`);
+        // Create mountpoint
+        await mainWebR.FS.mkdir(path)
+        // Download image data
+        const dataResp = await downloadFileContent(data);
+        const metaResp = await downloadFileContent(meta);
+
+        const _data = dataResp.response;
+
+        const metaJSON = JSON.parse(new TextDecoder().decode(metaResp.response));
+
+        const rootArray = new Uint8Array(_data);
+
+        const rootDir = await mainWebR.FS.lookupPath("/");
+
+        const ensureParentDirectory = async (filePath) => {
+          const fpaths = filePath.split("/").filter(v => {
+            return v.trim() !== "";
+          });
+
+          // remove filename
+          const fileName = fpaths.pop();
+          let cpath = "";
+          let cdir = rootDir;
+
+          for(let fname of fpaths) {
+            cpath = `${cpath}/${fname}`;
+            try {
+              cdir = cdir.contents[ fname ];
+              if( !cdir ) {
+                try {
+                  await mainWebR.FS.mkdir(cpath);
+                } catch (e) {}
+                cdir = await mainWebR.FS.lookupPath(cpath);
+              }
+            } catch (e) {
+              try {
+                await mainWebR.FS.mkdir(cpath);
+                cdir = await mainWebR.FS.lookupPath(cpath);
+              } catch (e) {
+                // concurrent mkdir?
+              }
+            }
+            if( !cdir.isFolder ) {
+              throw new Error(`Path ${cpath} is not a folder.`);
+            }
+          }
+
+          return `${cpath}/${fileName}`;
+        }
+
+        await Promise.all(
+          metaJSON.files.map(async (fileDescriptor) => {
+            const subArray = rootArray.subarray(fileDescriptor.start, fileDescriptor.end);
+            const fileName = await ensureParentDirectory(`${path}/${fileDescriptor.filename}`);
+            await mainWebR.FS.writeFile(fileName, subArray);
+          })
+        )
+
+        /*/ Mount image data
+        const options = {
+          packages: [{
+            blob: new Blob([ dataResp.response ]),
+            metadata: metaJSON,
+          }],
+        }
+        // await mainWebR.FS.mount("WORKERFS", options, path);*/
+      }
+      return;
+    };
+
+    if( Array.isArray(qwebrMountDataList) ) {
+      const mountTask = Promise.all( qwebrMountDataList.map(doMount) );
+      promiseTasks.push( mountTask );
+    } else if (qwebrMountDataList && typeof qwebrMountDataList === "object") {
+      const mountTask = doMount(qwebrMountDataList);
+      promiseTasks.push( mountTask );
+    }
+
+    /**
+     * End webr mount
+     */
+
+
     // Setup a pager to allow processing help documentation
     await mainWebR.evalRVoid('webr::pager_install()');
+    await mainWebR.evalRVoid('webr::viewer_install()');
 
     // Override the existing install.packages() to use webr::install()
     await mainWebR.evalRVoid('webr::shim_install()');
@@ -1201,39 +1356,25 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
       )
     `);
 
-    /** Added by Zhengjia to allow loading copiled packages
-     * @date: 2024-09-18
-    //
-    console.log("👉 Loading R packages ----");
-
-    const libName = "webr_packages";
-    const dirPath = "/webr_packages";
-
-    // Create a custom lib so that we don't have to worry about
-    // overwriting any packages that are already installed.
-    await mainWebR.FS.mkdir(`/usr/lib/R/${libName}`);
-    // Mount the custom lib
-    await mainWebR.FS.mount("NODEFS", { root: dirPath }, `/usr/lib/R/${libName}`);
-    // Add the custom lib to the R search path
-    await mainWebR.evalR(`.libPaths(c('/usr/lib/R/${libName}', .libPaths()))`);
-
-    /**
-     * End webr injection
-     */
-
     // Check to see if any packages need to be installed
-    if (qwebrSetupRPackages) {
-      // Obtain only a unique list of packages
-      const uniqueRPackageList = Array.from(new Set(qwebrInstallRPackagesList));
+    const setupRPackagesImpl = async () => {
+      if (qwebrSetupRPackages) {
+        // Obtain only a unique list of packages
+        const uniqueRPackageList = Array.from(new Set(qwebrInstallRPackagesList));
 
-      // Install R packages one at a time (either silently or with a status update)
-      await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'install', qwebrShowStartupMessage);
+        // Install R packages one at a time (either silently or with a status update)
+        await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'install', qwebrShowStartupMessage)
 
-      if (qwebrAutoloadRPackages) {
-        // Load R packages one at a time (either silently or with a status update)
-        await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'load', qwebrShowStartupMessage);
+        if (qwebrAutoloadRPackages) {
+          // Load R packages one at a time (either silently or with a status update)
+          await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'load', qwebrShowStartupMessage);
+        }
       }
     }
+
+    promiseTasks.push( setupRPackagesImpl() );
+    await Promise.all( promiseTasks );
+
   }
 );
 
@@ -2039,7 +2180,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 <section id="prerequisites" class="level2">
 <h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
-<p>This post assumes that you have already imported subject’s imaging data to RAVE and finished the electrode localization. If you haven’t done so, please check (TODO) for instructions.</p>
+<p>This post assumes that you have already imported subject’s imaging data to RAVE and finished the electrode localization. If you haven’t done so, please im.</p>
 </section>
 <section id="simple-3d-viewer" class="level2">
 <h2 class="anchored" data-anchor-id="simple-3d-viewer">1. Simple 3D viewer</h2>
