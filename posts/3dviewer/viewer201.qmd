@@ -14,6 +14,8 @@ categories:
 copyright: 
   holder: Zhengjia Wang
   year: 2024
+execute:
+  freeze: false
 webr:
   packages: ['raveio']
   repos: 
@@ -23,32 +25,33 @@ webr:
   version: 0.4.2
   channel-type: "service-worker"
   autoload-packages: false
+  mount-url: 
+    # - meta: "http://localhost:4834/samples/project-demo-minimal.js.metadata"
+    #   data: "http://localhost:4834/samples/project-demo-minimal.data"
+    #   path: "/home/web_user/rave_data"
+    - meta: "https://zenodo.org/api/records/13825852/files/project-demo-minimal.js.metadata/content"
+      data: "https://zenodo.org/api/records/13825852/files/project-demo-minimal.data/content"
+      path: "/home/web_user/rave_data"
 ---
 
 ::: {.alert .alert-warning role="alert"}
-This post contains interactive components (experimental) that allows you to execute RAVE code from the web browsers. If you would like to try this feature and customize/play with the code, please be patient. 
-It might take a while for the browser to finish setting up (depending on your network speed).
-Once the script is ready, you will see "WEBR STATUS: 🟢 Ready!" in the above banner. 
+This post contains interactive components (experimental) that allows you to execute RAVE code from the web browsers. If you would like to try this feature and customize/play with the code, please be patient. It might take a while for the browser to finish setting up (depending on your network speed). Once the script is ready, you will see "WEBR STATUS: 🟢 Ready!" in the above banner.
 
 ```{webr-r}
 #| context: setup
 #| autorun: true
-# Let's mount a demo data to your browser:
-if(!dir.exists("~/rave_data/data_dir/demo")) {
-  webr::mount(
-    normalizePath("~/rave_data", mustWork = FALSE),
-    "https://rave.wiki/samples/project-demo-minimal.data.gz"
-  )
-}
+# webr::mount(
+      # - meta: "http://localhost:3530/samples/project-demo-minimal.js.metadata"
+    #   data: "http://localhost:3530/samples/project-demo-minimal.data"
+    #   path: "/home/web_user/rave_data"
+# )
 brain <- raveio::rave_brain("demo/DemoSubject")
 ```
-
 :::
 
 ## Prerequisites
 
-
-This post assumes that you have already imported subject's imaging data to RAVE and finished the electrode localization. If you haven't done so, please check (TODO) for instructions.
+This post assumes that you have already imported subject's imaging data to RAVE and finished the electrode localization. If you haven't done so, please im.
 
 ## 1. Simple 3D viewer
 
