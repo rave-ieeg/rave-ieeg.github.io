@@ -24,9 +24,6 @@ website:
         text: Demo
       - href: blogs.md
         text: Documentation
-      - href: https://openwetware.org/wiki/RAVE
-        text: Wiki
-        target: "_blank"
     tools:
       - icon: github
         href: https://github.com/rave-ieeg/
