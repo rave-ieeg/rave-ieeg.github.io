@@ -10,7 +10,7 @@ carousel:
   class: carousel-fade
   interval: 5000
   items:
-    - image: "images/hero.png"
+    - image: "images/news/cns2024-iahn.webp"
       index: 0
       active: true
       interval: 10000
@@ -24,6 +24,11 @@ carousel:
         Date: Sunday, October 6, 2024 <br />
         Time: 6:30-9:00 p.m. CT <br />
         Location: [Grant Park, Hyatt Regency McCormick Place, Chicago, IL](https://maps.app.goo.gl/5mbTWCFopC31YSWU7){target="_blank"}
+        </p>
+        <p class="text-sm-end">
+          <span class="fst-italic fw-lighter">
+            Background photo: RAVE highlighted at <br />CNS 2024
+          </small>
         </p>
     - image: "images/power-explorer.webp"
       index: 1

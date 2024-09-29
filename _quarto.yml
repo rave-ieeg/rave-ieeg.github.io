@@ -6,6 +6,8 @@ project:
     - "!data/"
   resources:
     - "images/*"
+    - "images/abstracts/*"
+    - "images/news/*"
     - "data/wasm/*"
     - "favicon.ico"
 
