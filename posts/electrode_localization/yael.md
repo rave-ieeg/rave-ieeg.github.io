@@ -119,7 +119,7 @@ More videos are available here:
     {{< video https://youtu.be/I-iNEOD_DgM >}}
     :::
 
--   ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Tutorials make by Neurocognition of Language Lab" data-title="Tutorial made by Neurocognition of Language Lab"}
+-   ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Tutorials made by Neurocognition of Language Lab" data-title="Tutorial made by Neurocognition of Language Lab"}
     Credit: Sarah (Ivi) Fung
     {{< video https://youtu.be/16Bi7Ptbohg >}} {{< video https://youtu.be/qNEEotkbi1I >}} 
     :::
