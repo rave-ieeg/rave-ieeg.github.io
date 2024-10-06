@@ -18,6 +18,8 @@ copyright:
 
 ## Overview
 
+![](yael.png){.hidden}
+
 Electrode localization is a critical step for getting spatial information of iEEG and DBS electrodes. YAEL (*Your Advanced Electrode Localizer*) provides a fully integrated pipeline that takes in raw DICOM or NIfTI images and outputs the electrode coordinates and atlas labels. The pipeline is divided into two parts:
 
 -   Input: T1 pre-operative MRI and post-surgery CT

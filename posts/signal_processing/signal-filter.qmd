@@ -25,6 +25,8 @@ webr:
   autoload-packages: false
 ---
 
+![](signal-filter.png){.hidden}
+
 ::: {.alert .alert-warning role="alert"}
 This post contains interactive components (experimental) that allows you to execute RAVE code from the web browsers. If you would like to try this feature and customize/play with the code, please be patient. It might take a while for the browser to finish setting up (depending on your network speed). Once the script is ready, you will see "WEBR STATUS: 🟢 Ready!" in the above banner.
 :::
