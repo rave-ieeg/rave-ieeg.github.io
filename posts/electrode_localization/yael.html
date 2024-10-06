@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Zhengjia Wang">
+<meta name="dcterms.date" content="2024-10-06">
+<meta name="description" content="Create basic 3D viewer and render with colors">
 
-<title>Documentations &amp; Examples – RAVE</title>
+<title>YAEL - Your Advanced Electrode Localizer – RAVE</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,30 +23,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./favicon.ico" rel="icon">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,94 +106,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
+<script type="text/javascript" src="../../js/customize.js"></script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-quick-access .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-quick-access'] = new List('listing-quick-access', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-full-listings .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-title','listing-description','listing-reading-time','listing-categories','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-full-listings'] = new List('listing-full-listings', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-<script type="text/javascript" src="./js/customize.js"></script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -169,7 +118,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">RAVE</span>
     </a>
   </div>
@@ -180,15 +129,15 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts/3dviewer/viewer301.html?viewer=full"> 
+    <a class="nav-link" href="../../posts/3dviewer/viewer301.html?viewer=full"> 
 <span class="menu-text">Demo</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blogs.html" aria-current="page"> 
+    <a class="nav-link" href="../../blogs.html"> 
 <span class="menu-text">Documentation</span></a>
   </li>  
 </ul>
@@ -203,14 +152,42 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
-      <h1 class="title">Documentations &amp; Examples</h1>
-                      </div>
+      <h1 class="title">YAEL - Your Advanced Electrode Localizer</h1>
+                  <div>
+        <div class="description">
+          <p>Create basic 3D viewer and render with colors</p>
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Electrode Localization</div>
+                <div class="quarto-category">Featured</div>
+              </div>
+                  </div>
   </div>
     
-  
+  <div class="quarto-title-meta-author column-page-left">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author">Zhengjia Wang <a href="https://orcid.org/0000-0001-5629-1116" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              Dept. of Neurosurgery, University of Pennsylvania
+            </p>
+        </div>
+    </div>
+
   <div class="quarto-title-meta column-page-left">
 
-      
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 6, 2024</p>
+      </div>
+    </div>
     
       
     </div>
@@ -224,11 +201,12 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#step-1-imaging-preprocess" id="toc-step-1-imaging-preprocess" class="nav-link" data-scroll-target="#step-1-imaging-preprocess">Step 1: Imaging Preprocess</a></li>
+  <li><a href="#step-2-interactive-3d-electrode-localization" id="toc-step-2-interactive-3d-electrode-localization" class="nav-link" data-scroll-target="#step-2-interactive-3d-electrode-localization">Step 2: Interactive 3D electrode localization</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/blogs.md" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/blogs.md" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="3D Viewer">3D Viewer <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Electrode Localization">Electrode Localization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Featured">Featured <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Installation">Installation <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Interactive Module">Interactive Module <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Signal Processing">Signal Processing <span class="quarto-category-count">(1)</span></div></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/posts/electrode_localization/yael.md" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/posts/electrode_localization/yael.md" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -236,213 +214,91 @@ window.Quarto = {
 
 
 
-<section id="installation" class="level2">
-<h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<div id="listing-quick-access" class="quarto-listing quarto-listing-container-table">
-<table class="quarto-listing-table table table-hover">
-<thead>
-<tr>
-<th>
-Title
-</th>
-<th>
-Description
-</th>
-<th>
-Reading Time
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-categories="Installation" data-listing-date-sort="1726272000000" data-listing-file-modified-sort="1728240320965" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="350" data-listing-title-sort="Installation Guide" data-listing-filename-sort="installation.md" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./posts/installation/installation.html" class="title listing-title">Installation Guide</a>
-</td>
-<td>
-<span class="listing-description">Try RAVE today! </span>
-</td>
-<td>
-<span class="listing-reading-time">2 min</span>
-</td>
-</tr>
-<tr data-index="1" data-categories="Installation" data-listing-date-sort="1726358400000" data-listing-file-modified-sort="1728240320965" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="279" data-listing-title-sort="Updating and Upgrading Guide" data-listing-filename-sort="update.md" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./posts/installation/update.html" class="title listing-title">Updating and Upgrading Guide</a>
-</td>
-<td>
-<span class="listing-description">Update RAVE today! </span>
-</td>
-<td>
-<span class="listing-reading-time">2 min</span>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Electrode localization is a critical step for getting spatial information of iEEG and DBS electrodes. YAEL (<em>Your Advanced Electrode Localizer</em>) provides a fully integrated pipeline that takes in raw DICOM or NIfTI images and outputs the electrode coordinates and atlas labels. The pipeline is divided into two parts:</p>
+<ul>
+<li><p>Input: T1 pre-operative MRI and post-surgery CT</p></li>
+<li><p>Step 1: Imaging preprocess</p></li>
+<li><p>Step 2: Interactive 3D electrode localization</p></li>
+<li><p>Output: electrode coordinate table and RAVE 3D viewer</p></li>
+</ul>
+<p>For more high-level information, <a href="https://doi.org/10.1523/ENEURO.0328-23.2023">please check our paper</a>. Click on the ‘Prerequisites’ button to check data and system requirements:</p>
+<div class="rave-modal" data-type="botton" data-class="btn btn-primary" data-label="Prerequisites" data-title="Prerequisites">
+<section id="data" class="level4">
+<h4 class="anchored" data-anchor-id="data">1. Data</h4>
+<p>The full pipeline requires T1 MRI (pre-op) and CT (post-op) with electrodes implanted. YAEL supports either DICOM or NIfTI imaging formats.</p>
+</section>
+<section id="rave-py-environment" class="level4">
+<h4 class="anchored" data-anchor-id="rave-py-environment">2. RAVE-Py environment</h4>
+<p>Some methods such as <code>ANTs</code> for CT-MR co-registration are developed in Python. We highly recommend that you run the following R command:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">validate_python</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Initializing python environment: </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ants: 0.5.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you see output <code>ants:</code> followed by a valid version number, that means <code>ANTs</code> is properly configured, otherwise run the following command to configure. RAVE will create an isolated <code>Python</code> environment that will not affect your current system.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">configure_python</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Please make sure the computer has access to the internet.</p>
+</section>
+<section id="freesurfer" class="level4">
+<h4 class="anchored" data-anchor-id="freesurfer">3. FreeSurfer</h4>
+<p><code>FreeSurfer</code> is highly recommended if you want to reconstruct brain surface models. The program also comes with commonly used brain parcelation and sub-cortical segmentation methods. Please check their official website on how to download and configure. Make sure you also register and download a license file (it’s free):</p>
+<ul>
+<li>Download page: <a href="https://surfer.nmr.mgh.harvard.edu/fswiki/DownloadAndInstall" class="uri">https://surfer.nmr.mgh.harvard.edu/fswiki/DownloadAndInstall</a></li>
+<li>Free license application: <a href="https://surfer.nmr.mgh.harvard.edu/registration.html" class="uri">https://surfer.nmr.mgh.harvard.edu/registration.html</a></li>
+</ul>
+<p>If you are using Windows, please consider using docker <a href="https://hub.docker.com/r/freesurfer/freesurfer" class="uri">https://hub.docker.com/r/freesurfer/freesurfer</a> to run FreeSurfer reconstruction on your own. See (TBD) for how to bring your own FreeSurfer folder to YAEL.</p>
+</section>
 </div>
 </section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<div id="listing-full-listings" class="quarto-listing quarto-listing-container-grid">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-full-listings-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-full-listings'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
+<section id="step-1-imaging-preprocess" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-imaging-preprocess">Step 1: Imaging Preprocess</h2>
+<p>The imaging preprocess module in YAEL contains the following two parts. If you would like to substitute any part (or even the entire module) with your existing pipelines, see ‘Alternative Preprocess’ below.</p>
+<ul>
+<li>T1 image preprocess</li>
+<li>CT-MR co-registration</li>
+</ul>
+<p>Here is a video tutorial using NIfTI T1 and CT as input:</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/tohmBR_MtP0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<!--  DICOM images -->
+<!-- To start, go to the RAVE 'raw directory' (the default location is under the home directory > `rave_data` > `raw_dir`), create a subject folder named by the subject code.  -->
+<!-- {.alert .alert-info role="info"} -->
+<!-- The default RAVE 'raw directory' is under the user home directory > `rave_data` > `raw_dir`. You can always use R command `raveio::raveio_getopt("raw_data_dir")` to obtain the full path to the raw directory. -->
+<!-- When a patient is being enrolled to an experiment, normally this patient will be given a code to avoid their personal information being exposed to the public. For example, a patient is given a subject code `"DBNLP001"`. To create the preprocessing folder for this subject,  -->
+<!-- to create a subject code `` -->
+<!-- to create a subject with code `DBNLP001` under the default settings, the following file path should be created: -->
+<!-- ``` -->
+<!-- ~/rave_data/raw_dir/DBNLP001 -->
+<!-- ``` -->
+<!-- -->
+</section>
+<section id="step-2-interactive-3d-electrode-localization" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-interactive-3d-electrode-localization">Step 2: Interactive 3D electrode localization</h2>
+<p>(This section needs to be polished. The video is slightly outdated and need to add tutorials for DBS leads)</p>
+<p>Here is an introductory video of using YAEL interactive 3D viewer for electrode localization.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/hfHZMfqIaGY" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>More videos are available here:</p>
+<ul>
+<li><div class="rave-modal" data-type="span" data-class="text-decoration-underline" data-label="Training video for localizing segmented DBS electrodes" data-title="Localize DBS electrodes">
+<div class="alert alert-info">
+<p>The steps to localize a DBS lead contains 3 steps:</p>
+<ol type="1">
+<li>Register the first (inner-most) electrode contact</li>
+<li>Register the lead direction (anywhere along the probe)</li>
+<li>Use keyboard shortcut (<code>4</code> or <code>shift+4</code>) to rotate the electrode so the guided arrow aligns with CT artifacts.</li>
+</ol>
 </div>
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Electrode Localization,Featured" data-listing-date-sort="1728172800000" data-listing-file-modified-sort="1728240320964" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="683">
-<a href="./posts/electrode_localization/yael.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-YAEL - Your Advanced Electrode Localizer
-</h5>
-<div class="listing-reading-time card-text text-muted">
-4 min
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Electrode Localization'); return false;">
-Electrode Localization
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Featured'); return false;">
-Featured
-</div>
-</div>
-<div class="card-text listing-description">
-<p>Create basic 3D viewer and render with colors</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Oct 6, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="Signal Processing,Interactive Module" data-listing-date-sort="1726617600000" data-listing-file-modified-sort="1728240320965" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="315">
-<a href="./posts/signal_processing/signal-filter.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Basic Signal Filters
-</h5>
-<div class="listing-reading-time card-text text-muted">
-2 min
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Signal Processing'); return false;">
-Signal Processing
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Interactive Module'); return false;">
-Interactive Module
-</div>
-</div>
-<div class="card-text listing-description">
-<p>High-level functions to design and apply filters in RAVE</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Sep 18, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="3D Viewer,Interactive Module" data-listing-date-sort="1726444800000" data-listing-file-modified-sort="1728240320962" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1044">
-<a href="./posts/3dviewer/viewer201.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/3dviewer/preview-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Customize 3D Viewer Color Palette
-</h5>
-<div class="listing-reading-time card-text text-muted">
-6 min
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('3D Viewer'); return false;">
-3D Viewer
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Interactive Module'); return false;">
-Interactive Module
-</div>
-</div>
-<div class="card-text listing-description">
-<p>Create basic 3D viewer and render with colors</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Sep 16, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="3D Viewer" data-listing-date-sort="1726444800000" data-listing-file-modified-sort="1728240320962" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1072">
-<a href="./posts/3dviewer/viewer301.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="posts/3dviewer/preview-mni.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Make a group brain
-</h5>
-<div class="listing-reading-time card-text text-muted">
-6 min
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('3D Viewer'); return false;">
-3D Viewer
-</div>
-</div>
-<div class="card-text listing-description">
-<p>Create a group-level 3D viewer</p>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Sep 16, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/I-iNEOD_DgM" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div></li>
+<li><div class="rave-modal" data-type="span" data-class="text-decoration-underline" data-label="Tutorials make by Neurocognition of Language Lab" data-title="Tutorial make by Neurocognition of Language Lab">
+<p></p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/16Bi7Ptbohg" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div> <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/qNEEotkbi1I" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div> Credit: Sarah (Ivi) Fung<p></p>
+</div></li>
+</ul>
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -871,7 +727,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
 <p><i class="fa-regular fa-copyright" aria-label="copyright"></i> Copyright 2024, <a href="https://beauchamplab.med.upenn.edu" target="_blank">BeauchampLab</a>.</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/blogs.md" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/blogs.md" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/posts/electrode_localization/yael.md" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/posts/electrode_localization/yael.md" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p><a href="https://rave.wiki/posts/editor-notes/how-to-edit-this-website.html" target="_blank">Guide to edit this website</a></p>
 </div>
