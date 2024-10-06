@@ -88,14 +88,14 @@
     "href": "posts/electrode_localization/yael.html#step-1-imaging-preprocess",
     "title": "YAEL - Your Advanced Electrode Localizer",
     "section": "Step 1: Imaging Preprocess",
-    "text": "Step 1: Imaging Preprocess\nThe imaging preprocess module in YAEL contains the following two parts. If you would like to substitute any part (or even the entire module) with your existing pipelines, see ‘Alternative Preprocess’ below.\n\nT1 image preprocess\nCT-MR co-registration\n\nHere is a video tutorial using NIfTI T1 and CT as input:"
+    "text": "Step 1: Imaging Preprocess\nThe imaging preprocess module in YAEL contains the following two parts. If you would like to substitute any part (or even the entire module) with your existing pipelines, see ‘Alternative Preprocess’ (TBD) below.\n\nT1 image preprocess\nCT-MR co-registration\n\nHere is a video tutorial using NIfTI T1 and CT as input:"
   },
   {
     "objectID": "posts/electrode_localization/yael.html#step-2-interactive-3d-electrode-localization",
     "href": "posts/electrode_localization/yael.html#step-2-interactive-3d-electrode-localization",
     "title": "YAEL - Your Advanced Electrode Localizer",
     "section": "Step 2: Interactive 3D electrode localization",
-    "text": "Step 2: Interactive 3D electrode localization\n(This section needs to be polished. The video is slightly outdated and need to add tutorials for DBS leads)\nHere is an introductory video of using YAEL interactive 3D viewer for electrode localization.\n\nMore videos are available here:\n\n\n\nThe steps to localize a DBS lead contains 3 steps:\n\nRegister the first (inner-most) electrode contact\nRegister the lead direction (anywhere along the probe)\nUse keyboard shortcut (4 or shift+4) to rotate the electrode so the guided arrow aligns with CT artifacts.\n\n\n\n\n\n  Credit: Sarah (Ivi) Fung"
+    "text": "Step 2: Interactive 3D electrode localization\n(This section needs to be polished. The video is slightly outdated)\nHere is an introductory video of using YAEL interactive 3D viewer for electrode localization.\n\nMore videos are available here:\n\n\n\nThe steps to localize a DBS lead contains 3 steps:\n\nRegister the first (inner-most) electrode contact\nRegister the lead direction (anywhere along the probe)\nUse keyboard shortcut (4 or shift+4) to rotate the electrode so the guided arrow aligns with CT artifacts.\n\n\n\n\n\nCredit: Sarah (Ivi) Fung"
   },
   {
     "objectID": "blogs.html",
