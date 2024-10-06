@@ -66,7 +66,7 @@ If you are using Windows, please consider using docker <https://hub.docker.com/r
 
 ## Step 1: Imaging Preprocess
 
-The imaging preprocess module in YAEL contains the following two parts. If you would like to substitute any part (or even the entire module) with your existing pipelines, see 'Alternative Preprocess' below.
+The imaging preprocess module in YAEL contains the following two parts. If you would like to substitute any part (or even the entire module) with your existing pipelines, see 'Alternative Preprocess' (TBD) below.
 
 -   T1 image preprocess
 -   CT-MR co-registration
@@ -99,7 +99,7 @@ Here is a video tutorial using NIfTI T1 and CT as input:
 
 ## Step 2: Interactive 3D electrode localization
 
-(This section needs to be polished. The video is slightly outdated and need to add tutorials for DBS leads)
+(This section needs to be polished. The video is slightly outdated)
 
 Here is an introductory video of using YAEL interactive 3D viewer for electrode localization.
 
@@ -119,6 +119,7 @@ More videos are available here:
     {{< video https://youtu.be/I-iNEOD_DgM >}}
     :::
 
--   ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Tutorials make by Neurocognition of Language Lab" data-title="Tutorial make by Neurocognition of Language Lab"}
-    {{< video https://youtu.be/16Bi7Ptbohg >}} {{< video https://youtu.be/qNEEotkbi1I >}} Credit: Sarah (Ivi) Fung
+-   ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Tutorials make by Neurocognition of Language Lab" data-title="Tutorial made by Neurocognition of Language Lab"}
+    Credit: Sarah (Ivi) Fung
+    {{< video https://youtu.be/16Bi7Ptbohg >}} {{< video https://youtu.be/qNEEotkbi1I >}} 
     :::
