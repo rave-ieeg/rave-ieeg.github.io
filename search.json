@@ -210,13 +210,6 @@
     "text": "Step 4 (optional but recommended): Install Isolated Python Environment\nCopy and paste the following command into the “R” console:\nravemanager::configure_python()\nSome advanced RAVE features (such as CT to MRI alignment via ANTs) call Python libraries. To prevent conflicts with existing Python installations and ensure stability and reliability, this step uses Miniconda to install an isolated Python environment and useful Python packages (numpy, scipy, jupyterlab, mne, pynwb, antspyx)."
   },
   {
-    "objectID": "posts/signal_processing/signal-filter.html",
-    "href": "posts/signal_processing/signal-filter.html",
-    "title": "Basic Signal Filters",
-    "section": "",
-    "text": "This post contains interactive components (experimental) that allows you to execute RAVE code from the web browsers. If you would like to try this feature and customize/play with the code, please be patient. It might take a while for the browser to finish setting up (depending on your network speed). Once the script is ready, you will see “WEBR STATUS: 🟢 Ready!” in the above banner."
-  },
-  {
     "objectID": "posts/signal_processing/signal-filter.html#preparation",
     "href": "posts/signal_processing/signal-filter.html#preparation",
     "title": "Basic Signal Filters",
