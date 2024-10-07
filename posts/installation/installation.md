@@ -80,7 +80,17 @@ rave::start_rave2()
 
 In a few seconds a web browser window showing RAVE should appear. Success! Explore RAVE by clicking on one of the module names on the left-hand side such as "Subject 3D Viewer" to view a brain or "Power Explorer" to view sample iEEG data.
 
-## Step 4 (optional but recommended): Install Isolated Python Environment
+
+## Step 4: Analyze your data with RAVE
+
+The RAVE team is happy to help users get up and running with their own data.
+Email help@rave.wiki
+to schedule a Zoom session to get help analyzing your own data.
+
+
+---------------------------------
+
+#### (optional but recommended): Install Isolated Python Environment
 
 Copy and paste the following command into the "R" console:
 
