@@ -203,11 +203,11 @@
     "text": "Step 3: Launch RAVE\nCopy and paste the following command into the R console:\nrave::start_rave2()\nIn a few seconds a web browser window showing RAVE should appear. Success! Explore RAVE by clicking on one of the module names on the left-hand side such as “Subject 3D Viewer” to view a brain or “Power Explorer” to view sample iEEG data."
   },
   {
-    "objectID": "posts/installation/installation.html#step-4-optional-but-recommended-install-isolated-python-environment",
-    "href": "posts/installation/installation.html#step-4-optional-but-recommended-install-isolated-python-environment",
+    "objectID": "posts/installation/installation.html#step-4-analyze-your-data-with-rave",
+    "href": "posts/installation/installation.html#step-4-analyze-your-data-with-rave",
     "title": "Installation Guide",
-    "section": "Step 4 (optional but recommended): Install Isolated Python Environment",
-    "text": "Step 4 (optional but recommended): Install Isolated Python Environment\nCopy and paste the following command into the “R” console:\nravemanager::configure_python()\nSome advanced RAVE features (such as CT to MRI alignment via ANTs) call Python libraries. To prevent conflicts with existing Python installations and ensure stability and reliability, this step uses Miniconda to install an isolated Python environment and useful Python packages (numpy, scipy, jupyterlab, mne, pynwb, antspyx)."
+    "section": "Step 4: Analyze your data with RAVE",
+    "text": "Step 4: Analyze your data with RAVE\nThe RAVE team is happy to help users get up and running with their own data. Email help@rave.wiki to schedule a Zoom session to get help analyzing your own data.\n\n\n(optional but recommended): Install Isolated Python Environment\nCopy and paste the following command into the “R” console:\nravemanager::configure_python()\nSome advanced RAVE features (such as CT to MRI alignment via ANTs) call Python libraries. To prevent conflicts with existing Python installations and ensure stability and reliability, this step uses Miniconda to install an isolated Python environment and useful Python packages (numpy, scipy, jupyterlab, mne, pynwb, antspyx)."
   },
   {
     "objectID": "posts/signal_processing/signal-filter.html#preparation",

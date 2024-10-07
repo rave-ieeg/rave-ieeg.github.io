@@ -203,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#step-1-install-prerequisites" id="toc-step-1-install-prerequisites" class="nav-link active" data-scroll-target="#step-1-install-prerequisites">Step 1: Install prerequisites</a></li>
   <li><a href="#step-2-install-rave-for-the-first-time" id="toc-step-2-install-rave-for-the-first-time" class="nav-link" data-scroll-target="#step-2-install-rave-for-the-first-time">Step 2: Install RAVE for the First Time</a></li>
   <li><a href="#step-3-launch-rave" id="toc-step-3-launch-rave" class="nav-link" data-scroll-target="#step-3-launch-rave">Step 3: Launch RAVE</a></li>
-  <li><a href="#step-4-optional-but-recommended-install-isolated-python-environment" id="toc-step-4-optional-but-recommended-install-isolated-python-environment" class="nav-link" data-scroll-target="#step-4-optional-but-recommended-install-isolated-python-environment">Step 4 (optional but recommended): Install Isolated Python Environment</a></li>
+  <li><a href="#step-4-analyze-your-data-with-rave" id="toc-step-4-analyze-your-data-with-rave" class="nav-link" data-scroll-target="#step-4-analyze-your-data-with-rave">Step 4: Analyze your data with RAVE</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/posts/installation/installation.md" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/posts/installation/installation.md" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -388,13 +388,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rave<span class="sc">::</span><span class="fu">start_rave2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In a few seconds a web browser window showing RAVE should appear. Success! Explore RAVE by clicking on one of the module names on the left-hand side such as “Subject 3D Viewer” to view a brain or “Power Explorer” to view sample iEEG data.</p>
 </section>
-<section id="step-4-optional-but-recommended-install-isolated-python-environment" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-optional-but-recommended-install-isolated-python-environment">Step 4 (optional but recommended): Install Isolated Python Environment</h2>
+<section id="step-4-analyze-your-data-with-rave" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-analyze-your-data-with-rave">Step 4: Analyze your data with RAVE</h2>
+<p>The RAVE team is happy to help users get up and running with their own data. Email help@rave.wiki to schedule a Zoom session to get help analyzing your own data.</p>
+<hr>
+<section id="optional-but-recommended-install-isolated-python-environment" class="level4">
+<h4 class="anchored" data-anchor-id="optional-but-recommended-install-isolated-python-environment">(optional but recommended): Install Isolated Python Environment</h4>
 <p>Copy and paste the following command into the “R” console:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">configure_python</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Some advanced RAVE features (such as CT to MRI alignment via <code>ANTs</code>) call Python libraries. To prevent conflicts with existing Python installations and ensure stability and reliability, this step uses <code>Miniconda</code> to install an isolated Python environment and useful Python packages (<code>numpy</code>, <code>scipy</code>, <code>jupyterlab</code>, <code>mne</code>, <code>pynwb</code>, <code>antspyx</code>).</p>
 
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
