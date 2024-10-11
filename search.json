@@ -95,7 +95,7 @@
     "href": "posts/electrode_localization/yael.html#step-2-interactive-3d-electrode-localization",
     "title": "YAEL - Your Advanced Electrode Localizer",
     "section": "Step 2: Interactive 3D electrode localization",
-    "text": "Step 2: Interactive 3D electrode localization\n(This section needs to be polished. The video is slightly outdated)\nHere is an introductory video of using YAEL interactive 3D viewer for electrode localization.\n\nMore videos are available here:\n\n\n\nThe steps to localize a DBS lead contains 3 steps:\n\nRegister the first (inner-most) electrode contact\nRegister the lead direction (anywhere along the probe)\nUse keyboard shortcut (4 or shift+4) to rotate the electrode so the guided arrow aligns with CT artifacts.\n\n\n\n\n\nCredit: Sarah (Ivi) Fung"
+    "text": "Step 2: Interactive 3D electrode localization\nHere is an introductory video of using YAEL interactive 3D viewer for electrode localization.\n\nMore videos are available here:\n\n\n\n\n\nCredit: Sarah (Ivi) Fung"
   },
   {
     "objectID": "blogs.html",
