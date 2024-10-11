@@ -101,24 +101,14 @@ Here is a video tutorial using NIfTI T1 and CT as input:
 
 ## Step 2: Interactive 3D electrode localization
 
-(This section needs to be polished. The video is slightly outdated)
-
 Here is an introductory video of using YAEL interactive 3D viewer for electrode localization.
 
 {{< video https://youtu.be/hfHZMfqIaGY >}}
 
 More videos are available here:
 
--   ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Training video for localizing segmented DBS electrodes" data-title="Localize DBS electrodes"}
-    ::: {.alert .alert-info}
-    The steps to localize a DBS lead contains 3 steps:
-
-    1.  Register the first (inner-most) electrode contact
-    2.  Register the lead direction (anywhere along the probe)
-    3.  Use keyboard shortcut (`4` or `shift+4`) to rotate the electrode so the guided arrow aligns with CT artifacts.
-    :::
-
-    {{< video https://youtu.be/I-iNEOD_DgM >}}
+-   ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="YAEL tricks: using pre-defined sEEG/DBS electrode geometries" data-title="YAEL tricks: using pre-defined sEEG/DBS electrode geometries"}
+    {{< video https://youtu.be/ZfhJu_e63L0 >}}
     :::
 
 -   ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Tutorials made by Neurocognition of Language Lab" data-title="Tutorial made by Neurocognition of Language Lab"}
