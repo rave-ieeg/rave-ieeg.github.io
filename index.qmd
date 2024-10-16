@@ -60,11 +60,11 @@ Join our growing RAVE-iEEG community on Slack {{< fa brands slack >}}. E-mail [s
 
 RAVE has been developed since 2017 with funding provided by NIH `R01MH133717` , `U01NS113339`, and `1R24MH117529`. If you use RAVE for a publication, please cite:
 
-> Magnotti JF, Wang Z, Beauchamp MS. RAVE: comprehensive open-source software for reproducible analysis and visualization of intracranial EEG data. NeuroImage (2020) 223:117341. \[Click here for the journal full text\] \[Click here for the PDF\] \[Click here for the preprint\].
+> Magnotti JF, Wang Z, Beauchamp MS. RAVE: comprehensive open-source software for reproducible analysis and visualization of intracranial EEG data. NeuroImage (2020) 223:117341. \[[Click here for the journal full text](https://www.sciencedirect.com/science/article/pii/S1053811920308272)\] \[[Click here for the PDF](https://s3-us-west-2.amazonaws.com/oww-files-public/d/da/Magnotti_Wang_Beauchamp_Neuroimage2020_RAVE.pdf)\] \[[Click here for the preprint](https://www.biorxiv.org/content/10.1101/2020.06.02.129676v1)\].
 
 If you use YAEL for electrode localization, please cite:
 
-> Wang Z, Magnotti JF, Zhang X, Beauchamp MS. YAEL: Your Advanced Electrode Localizer. Eneuro. 2023 Oct 1;10(10). \[Click here for the journal full text\] \[Click here for the PDF\].
+> Wang Z, Magnotti JF, Zhang X, Beauchamp MS. YAEL: Your Advanced Electrode Localizer. Eneuro. 2023 Oct 1;10(10). \[[Click here for the journal full text](https://www.eneuro.org/content/10/10/ENEURO.0328-23.2023)\] \[[Click here for the PDF](https://s3-us-west-2.amazonaws.com/oww-files-public/7/76/Wang_Magnotti_Zhang_Beauchamp_eNeuro_2023.pdf)\] \[[Click here for the preprint](https://www.biorxiv.org/content/10.1101/2023.08.04.552023v1)\].
 
 ## Installation
 
