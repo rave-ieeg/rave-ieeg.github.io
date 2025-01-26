@@ -128,10 +128,14 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
       ) {
         console.log(`Mounting Data... (${path})`);
         qwebrUpdateStatusHeader(`Mounting Data... (${path})`);
-        // Create mountpoint
-        await mainWebR.FS.mkdir(path)
+        // Create mountpoint later
+        // await mainWebR.FS.mkdir(path)
+
         // Download image data
+        console.log(`const dataResp = await downloadFileContent('${ data }');`);
         const dataResp = await downloadFileContent(data);
+
+        console.log(`const metaResp = await downloadFileContent('${ meta }');`);
         const metaResp = await downloadFileContent(meta);
 
         const _data = dataResp.response;
@@ -140,10 +144,13 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
         window.metaResp = metaResp;
 
         const metaJSON = JSON.parse(new TextDecoder().decode(metaResp.response));
+        console.log(metaJSON)
 
         const rootArray = new Uint8Array(_data);
+        console.log(rootArray.length)
 
         const rootDir = await mainWebR.FS.lookupPath("/");
+        console.log(rootDir)
 
         const ensureParentDirectory = async (filePath) => {
           const fpaths = filePath.split("/").filter(v => {
@@ -194,6 +201,9 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
             }
           })
         )
+
+        console.log(`Done Mounting Data! (${path})`);
+        qwebrUpdateStatusHeader(`Done Mounting Data! (${path})`);
 
         /*/ Mount image data
         const options = {
