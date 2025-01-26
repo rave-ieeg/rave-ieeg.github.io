@@ -53,7 +53,7 @@
     },
     "Matrix": {
       "Package": "Matrix",
-      "Version": "1.7-0",
+      "Version": "1.7-1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -66,7 +66,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "1920b2f11133b12350024297d8a4ff4a"
+      "Hash": "5122bb14d8736372411f955e1b16bc8a"
     },
     "R.matlab": {
       "Package": "R.matlab",
@@ -405,9 +405,9 @@
     },
     "dipsaus": {
       "Package": "dipsaus",
-      "Version": "0.2.9",
+      "Version": "0.3.0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "https://rave-ieeg.r-universe.dev",
       "Requirements": [
         "R",
         "R6",
@@ -430,7 +430,7 @@
         "stringr",
         "utils"
       ],
-      "Hash": "61425ee9bf0eee8501a66e2be46d8fff"
+      "Hash": "a1622f871c164cebe5af53068f2f1b04"
     },
     "downloader": {
       "Package": "downloader",
@@ -485,9 +485,9 @@
     },
     "filearray": {
       "Package": "filearray",
-      "Version": "0.1.8",
+      "Version": "0.1.9",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "https://rave-ieeg.r-universe.dev",
       "Requirements": [
         "BH",
         "Rcpp",
@@ -496,7 +496,7 @@
         "methods",
         "uuid"
       ],
-      "Hash": "72c9d20f9fd97a6e4896dd530aef3b3b"
+      "Hash": "ee6d1c271591568ecc279aaa6d57aa61"
     },
     "fontawesome": {
       "Package": "fontawesome",
@@ -1040,9 +1040,9 @@
     },
     "raveio": {
       "Package": "raveio",
-      "Version": "0.9.0.71",
+      "Version": "0.9.0.82",
       "Source": "Repository",
-      "Repository": "raveieeg",
+      "Repository": "https://rave-ieeg.r-universe.dev",
       "Requirements": [
         "R.matlab",
         "R6",
@@ -1066,13 +1066,13 @@
         "utils",
         "yaml"
       ],
-      "Hash": "40f2851b5e03c5a30fc4be348878a417"
+      "Hash": "8f60774b174778a2d28662adfbd41f05"
     },
     "ravetools": {
       "Package": "ravetools",
-      "Version": "0.1.8",
+      "Version": "0.2.1",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "https://rave-ieeg.r-universe.dev",
       "Requirements": [
         "R",
         "R6",
@@ -1088,7 +1088,7 @@
         "stats",
         "waveslim"
       ],
-      "Hash": "25144d4575d2bcede47f7b71dc6fcffe"
+      "Hash": "0c647b3c32b23f3d6c5460a0725c604e"
     },
     "remotes": {
       "Package": "remotes",
@@ -1361,9 +1361,9 @@
     },
     "threeBrain": {
       "Package": "threeBrain",
-      "Version": "1.1.1.9019",
+      "Version": "1.2.0.9012",
       "Source": "Repository",
-      "Repository": "raveieeg",
+      "Repository": "https://rave-ieeg.r-universe.dev",
       "Requirements": [
         "R6",
         "digest",
@@ -1383,7 +1383,7 @@
         "utils",
         "xml2"
       ],
-      "Hash": "342320be11c1be0278aff765efac6232"
+      "Hash": "40eed6f89fd6171f20fdcae92cec22e8"
     },
     "tibble": {
       "Package": "tibble",
