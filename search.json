@@ -116,7 +116,7 @@
     "href": "posts/3dviewer/viewer201.html#prerequisites",
     "title": "Customize 3D Viewer Color Palette",
     "section": "Prerequisites",
-    "text": "Prerequisites\nThis post assumes that you have already imported subject’s imaging data to RAVE and finished the electrode localization. If you haven’t done so, please im."
+    "text": "Prerequisites\nThis post assumes that you have already imported subject’s imaging data to RAVE and finished the electrode localization."
   },
   {
     "objectID": "posts/3dviewer/viewer201.html#simple-3d-viewer",
