@@ -34,13 +34,13 @@ webr:
     #   path: "/home/web_user/rave_data"
     - meta: "/data/wasm/samples/project-demo-datadir.js.metadata/content"
       data: "/data/wasm/samples/project-demo-datadir.data/content"
-      path: "/home/web_user/rave_data/data_dir"
+      path: "/home/web_user/"
     - meta: "/data/wasm/samples/project-demo-rawdir.js.metadata/content"
       data: "/data/wasm/samples/project-demo-rawdir.data/content"
-      path: "/home/web_user/rave_data/raw_dir"
+      path: "/home/web_user/"
     - meta: "/data/wasm/samples/project-demo-fsaverage.js.metadata/content"
       data: "/data/wasm/samples/project-demo-fsaverage.data/content"
-      path: "/home/web_user/rave_data/others/three_brain/fsaverage/"
+      path: "/home/web_user/"
 ---
 
 ::: {.alert .alert-warning role="alert"}
@@ -54,13 +54,15 @@ This post contains interactive components (experimental) that allows you to exec
     #   data: "http://localhost:3530/samples/project-demo-minimal.data"
     #   path: "/home/web_user/rave_data"
 # )
-brain <- raveio::rave_brain("demo/DemoSubject")
+tryCatch({
+  brain <- raveio::rave_brain("demo/DemoSubject")
+}, error = function(e) {})
 ```
 :::
 
 ## Prerequisites
 
-This post assumes that you have already imported subject's imaging data to RAVE and finished the electrode localization. If you haven't done so, please im.
+This post assumes that you have already imported subject's imaging data to RAVE and finished the electrode localization. 
 
 ## 1. Simple 3D viewer
 

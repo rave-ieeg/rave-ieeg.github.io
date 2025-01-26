@@ -1361,7 +1361,7 @@
     },
     "threeBrain": {
       "Package": "threeBrain",
-      "Version": "1.2.0.9012",
+      "Version": "1.2.0.9014",
       "Source": "Repository",
       "Repository": "https://rave-ieeg.r-universe.dev",
       "Requirements": [
@@ -1383,7 +1383,7 @@
         "utils",
         "xml2"
       ],
-      "Hash": "40eed6f89fd6171f20fdcae92cec22e8"
+      "Hash": "d69517a14c4fe936692300f0f2a15b90"
     },
     "tibble": {
       "Package": "tibble",

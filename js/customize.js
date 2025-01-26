@@ -245,6 +245,50 @@ function estimateWordCount() {
   $title.appendChild($el);
 }
 
+function linkWASMLinks() {
+
+  const downloadWASMData = function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if( !window.mainWebR ) { return; }
+    const link = this.getAttribute("data-wasm-link");
+    const filename = link.split(/[\/\\\\]/g).pop();
+
+    window.mainWebR.FS.readFile(link)
+      .then(data => {
+        const content = new TextDecoder().decode(data);
+        const blob = new Blob([content]);
+        const url = URL.createObjectURL(blob);
+
+        const $link = document.createElement("a");
+        $link.href = url;
+        $link.download = filename; // The filename the browser will use
+        document.body.appendChild($link);
+        $link.click();
+        $link.style.display = "hidden !important";
+      });
+  }
+
+  const wasmLinks = document.querySelectorAll("a[data-wasm-link]");
+  wasmLinks.forEach( $link => {
+    $link.classList.add("text-decoration-line-through");
+    $link.onclick = downloadWASMData;
+  });
+
+  // make sure window.mainWebR is present
+  checkWebR = () => {
+    if( !window.mainWebR ) {
+      console.log("No WASM");
+      setTimeout(checkWebR, 3000);
+      return;
+    }
+
+    wasmLinks.forEach( $link => { $link.classList.remove("text-decoration-line-through"); });
+  }
+  checkWebR();
+}
+
 
 function registerWindowReady(funcName, baseObj) {
     // The public function name defaults to window.docReady
@@ -330,4 +374,6 @@ window.docReady(function() {
 
   const raveModal = new GlobalModal();
   raveModal.register();
+
+  linkWASMLinks();
 })
