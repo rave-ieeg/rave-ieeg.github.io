@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -39,10 +39,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a3a8a380b39e75ae6f703b43d25e1ef7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -366,7 +366,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"message":"true","fig-cap":"","warning":"true","editor-quick-suggestions":"TRUE","out-width":"700px","fig-width":7,"dpi":72,"fig-height":5,"editor-max-height":"500","comment":"","autorun":"true","context":"interactive","read-only":"false","editor-word-wrap":"true","results":"markup","out-height":"","label":"unnamed-chunk-1","classes":"","output":"true","editor-font-scale":"1"},"code":"library(ravetools)\nsample_rate <- 200\nt <- seq(0, 10, by = 1 / sample_rate)\nnoise <- cumsum(rnorm(length(t), sd = 0.4)) / sqrt(seq_len(length(t)))\nx <- 0.2 * sin(t * 4 * pi) + 0.02 * sin(t * 20 * pi) +\n  0.005 * sin(t * 120 * pi) + noise\n\n# Plot the signal\nravetools::diagnose_channel(\n  x,\n  srate = sample_rate,\n  name = \"Sample signal\",\n  window = 2 * sample_rate,\n  noverlap = sample_rate\n)","id":1},{"options":{"message":"true","fig-cap":"","warning":"true","editor-quick-suggestions":"TRUE","out-width":"700px","fig-width":7,"dpi":72,"fig-height":5,"editor-max-height":"500","comment":"","autorun":"true","context":"interactive","read-only":"false","editor-word-wrap":"true","results":"markup","out-height":"","label":"unnamed-chunk-2","classes":"","output":"true","editor-font-scale":"1"},"code":"# Low-pass filter\nf1 <- design_filter(\n  data_size = length(x),\n  sample_rate = sample_rate,\n  low_pass_freq = 3, low_pass_trans_freq = 0.5\n)\nf1","id":2},{"options":{"message":"true","fig-cap":"","warning":"true","editor-quick-suggestions":"TRUE","out-width":"700px","fig-width":7,"dpi":72,"fig-height":5,"editor-max-height":"500","comment":"","autorun":"true","context":"interactive","read-only":"false","editor-word-wrap":"true","results":"markup","out-height":"","label":"unnamed-chunk-3","classes":"","output":"true","editor-font-scale":"1"},"code":"y1 <- filtfilt(b = f1$b, a = f1$a, x = x)\n\n# compare the results\nplot(t, x, type = 'l', xlab = \"Time\", ylab = \"\",\n    main = \"Mixture of 2, 10, and 60Hz\", xlim = c(0,1))\nlines(t, y1, col = 'red')\nlegend(\n  \"topleft\", c(\"Input\", \"Low: 3Hz\"),\n  col = c(par(\"fg\"), \"red\"), lty = 1\n)\n\n# plot welch-periodogram\npwelch(x, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 1, ylim = c(-100, 10))\npwelch(y1, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 2, col = \"red\")","id":3}];
+globalThis.qwebrCellDetails = [{"code":"library(ravetools)\nsample_rate <- 200\nt <- seq(0, 10, by = 1 / sample_rate)\nnoise <- cumsum(rnorm(length(t), sd = 0.4)) / sqrt(seq_len(length(t)))\nx <- 0.2 * sin(t * 4 * pi) + 0.02 * sin(t * 20 * pi) +\n  0.005 * sin(t * 120 * pi) + noise\n\n# Plot the signal\nravetools::diagnose_channel(\n  x,\n  srate = sample_rate,\n  name = \"Sample signal\",\n  window = 2 * sample_rate,\n  noverlap = sample_rate\n)","id":1,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"500","editor-quick-suggestions":"TRUE","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# Low-pass filter\nf1 <- design_filter(\n  data_size = length(x),\n  sample_rate = sample_rate,\n  low_pass_freq = 3, low_pass_trans_freq = 0.5\n)\nf1","id":2,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"500","editor-quick-suggestions":"TRUE","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"y1 <- filtfilt(b = f1$b, a = f1$a, x = x)\n\n# compare the results\nplot(t, x, type = 'l', xlab = \"Time\", ylab = \"\",\n    main = \"Mixture of 2, 10, and 60Hz\", xlim = c(0,1))\nlines(t, y1, col = 'red')\nlegend(\n  \"topleft\", c(\"Input\", \"Low: 3Hz\"),\n  col = c(par(\"fg\"), \"red\"), lty = 1\n)\n\n# plot welch-periodogram\npwelch(x, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 1, ylim = c(-100, 10))\npwelch(y1, fs = sample_rate, window = sample_rate * 2,\n    noverlap = sample_rate, plot = 2, col = \"red\")","id":3,"options":{"autorun":"true","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"500","editor-quick-suggestions":"TRUE","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1249,12 +1249,15 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
      * @date: 2024-09-22
     /*/
     window.mainWebR = mainWebR;
+    window.downloadFileContent = downloadFileContent;
+
     const doMount = async ({path, meta, data} = {}) => {
       if(
         typeof data === "string" &&
         typeof meta === "string" &&
         typeof path === "string"
       ) {
+        console.log(`Mounting Data... (${path})`);
         qwebrUpdateStatusHeader(`Mounting Data... (${path})`);
         // Create mountpoint
         await mainWebR.FS.mkdir(path)
@@ -1263,6 +1266,9 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
         const metaResp = await downloadFileContent(meta);
 
         const _data = dataResp.response;
+
+
+        window.metaResp = metaResp;
 
         const metaJSON = JSON.parse(new TextDecoder().decode(metaResp.response));
 
@@ -1308,9 +1314,15 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
 
         await Promise.all(
           metaJSON.files.map(async (fileDescriptor) => {
-            const subArray = rootArray.subarray(fileDescriptor.start, fileDescriptor.end);
-            const fileName = await ensureParentDirectory(`${path}/${fileDescriptor.filename}`);
-            await mainWebR.FS.writeFile(fileName, subArray);
+            try {
+              console.log(`Extracting Data... (${fileDescriptor.filename})`);
+              qwebrUpdateStatusHeader(`Extracting Data... (${fileDescriptor.filename})`);
+              const subArray = rootArray.subarray(fileDescriptor.start, fileDescriptor.end);
+              const fileName = await ensureParentDirectory(`${path}/${fileDescriptor.filename}`);
+              await mainWebR.FS.writeFile(fileName, subArray);
+            } catch (e) {
+              console.warn(e);
+            }
           })
         )
 
@@ -2268,8 +2280,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -2380,7 +2390,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
