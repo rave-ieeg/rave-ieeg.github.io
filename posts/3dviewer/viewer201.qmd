@@ -29,9 +29,18 @@ webr:
     # - meta: "http://localhost:4834/samples/project-demo-minimal.js.metadata"
     #   data: "http://localhost:4834/samples/project-demo-minimal.data"
     #   path: "/home/web_user/rave_data"
-    - meta: "https://zenodo.org/api/records/13825852/files/project-demo-minimal.js.metadata/content"
-      data: "https://zenodo.org/api/records/13825852/files/project-demo-minimal.data/content"
-      path: "/home/web_user/rave_data"
+    # - meta: "https://zenodo.org/api/records/13825852/files/project-demo-minimal.js.metadata/content"
+    #   data: "https://zenodo.org/api/records/13825852/files/project-demo-minimal.data/content"
+    #   path: "/home/web_user/rave_data"
+    - meta: "/data/wasm/samples/project-demo-datadir.js.metadata/content"
+      data: "/data/wasm/samples/project-demo-datadir.data/content"
+      path: "/home/web_user/rave_data/data_dir"
+    - meta: "/data/wasm/samples/project-demo-rawdir.js.metadata/content"
+      data: "/data/wasm/samples/project-demo-rawdir.data/content"
+      path: "/home/web_user/rave_data/raw_dir"
+    - meta: "/data/wasm/samples/project-demo-fsaverage.js.metadata/content"
+      data: "/data/wasm/samples/project-demo-fsaverage.data/content"
+      path: "/home/web_user/rave_data/others/three_brain/fsaverage/"
 ---
 
 ::: {.alert .alert-warning role="alert"}

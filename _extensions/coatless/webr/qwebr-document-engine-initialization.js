@@ -118,12 +118,15 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
      * @date: 2024-09-22
     /*/
     window.mainWebR = mainWebR;
+    window.downloadFileContent = downloadFileContent;
+
     const doMount = async ({path, meta, data} = {}) => {
       if(
         typeof data === "string" &&
         typeof meta === "string" &&
         typeof path === "string"
       ) {
+        console.log(`Mounting Data... (${path})`);
         qwebrUpdateStatusHeader(`Mounting Data... (${path})`);
         // Create mountpoint
         await mainWebR.FS.mkdir(path)
@@ -132,6 +135,9 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
         const metaResp = await downloadFileContent(meta);
 
         const _data = dataResp.response;
+
+
+        window.metaResp = metaResp;
 
         const metaJSON = JSON.parse(new TextDecoder().decode(metaResp.response));
 
@@ -177,9 +183,15 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
 
         await Promise.all(
           metaJSON.files.map(async (fileDescriptor) => {
-            const subArray = rootArray.subarray(fileDescriptor.start, fileDescriptor.end);
-            const fileName = await ensureParentDirectory(`${path}/${fileDescriptor.filename}`);
-            await mainWebR.FS.writeFile(fileName, subArray);
+            try {
+              console.log(`Extracting Data... (${fileDescriptor.filename})`);
+              qwebrUpdateStatusHeader(`Extracting Data... (${fileDescriptor.filename})`);
+              const subArray = rootArray.subarray(fileDescriptor.start, fileDescriptor.end);
+              const fileName = await ensureParentDirectory(`${path}/${fileDescriptor.filename}`);
+              await mainWebR.FS.writeFile(fileName, subArray);
+            } catch (e) {
+              console.warn(e);
+            }
           })
         )
 
