@@ -257,8 +257,7 @@ function linkWASMLinks() {
 
     window.mainWebR.FS.readFile(link)
       .then(data => {
-        const content = new TextDecoder().decode(data);
-        const blob = new Blob([content]);
+        const blob = new Blob([data]);
         const url = URL.createObjectURL(blob);
 
         const $link = document.createElement("a");
