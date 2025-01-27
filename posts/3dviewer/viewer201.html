@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-a3a8a380b39e75ae6f703b43d25e1ef7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c964d8f7d895abf25d42d9d431ecb175.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -366,7 +366,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"# webr::mount(\n      # - meta: \"http://localhost:3530/samples/project-demo-minimal.js.metadata\"\n    #   data: \"http://localhost:3530/samples/project-demo-minimal.data\"\n    #   path: \"/home/web_user/rave_data\"\n# )\ntryCatch({\n  brain <- raveio::rave_brain(\"demo/DemoSubject\")\n}, error = function(e) {})","id":1,"options":{"autorun":"true","classes":"","comment":"","context":"setup","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"brain <- raveio::rave_brain(\"demo/DemoSubject\")\n\n# See the output to the right for what's inside of the brain object\nbrain","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"500","editor-quick-suggestions":"TRUE","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"brain$plot()","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"500","editor-quick-suggestions":"TRUE","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"data_table <- data.frame(\n    Subject = \"DemoSubject\",\n    Electrode = c(13,14,15,16,24),\n    ContinuousValue = runif(5),\n    Categorical = letters[c(1,2,3,2,3)]\n)\n\nbrain$set_electrode_values(data_table)\n\nbrain$plot()","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"500","editor-quick-suggestions":"TRUE","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# Load brain\nbrain <- raveio::rave_brain(\"demo/DemoSubject\")\n\n# Set values with 2 variables: `ContinuousVal` and `CategoricalVal`\nbrain$set_electrode_values(\n  data.frame(\n    Subject = \"DemoSubject\",\n    Electrode = c(13:16,24,73:80),\n    ContinuousVal = rnorm(13),\n    CategoricalVal = sample(letters[1:4], size = 13, replace = TRUE),\n    PValue = c(0.15, 0.5, 0.9, 0.01, 0.05, 0.45, 0.8,\n               0.68, 0.6, 0.33, 0.001, 0.36, 0.83)\n  )\n)\n\n# Plot brain with options\nbrain$plot(\n  \n  # change color palettes: each variable requires a palette (if not default)\n  palettes = list(\n    \n    # discrete values require each category to be filled with a \n    # color. The order is alphabetic\n    CategoricalVal = c(\"red\", \"blue\", \"green\"),\n    \n    # continuous values requires at least 2 key colors\n    ContinuousVal = c(\"white\", \"purple\"),\n    \n    # p-value is not linearly scaled, R provides `colorRampPalette`\n    # to generate non-linear color palette from at least \n    # 3 key colors. \n    # This example used 5 key colors with bias = 2 so the\n    PValue = colorRampPalette(\n      c(\"red\", \"yellow\", \"cyan\", \"gray\", \"gray\"), bias = 2\n    )(100)\n    \n  ),\n  \n  # Change value range: sets the value range for variables that have\n  # bounded ranges, such as p-values\n  value_ranges = list(\n    \n    # p-value should range from 0-1 \n    PValue = c(0, 1),\n    \n    # We also want to trim the `ContinuousVal` to 95% CI\n    ContinuousVal = c(-2, 2)\n    \n  ),\n  \n  # Set initial controller status\n  controllers = list(\n    \n    # Display p-value \n    \"Display Data\" = \"PValue\",\n    \n    \n    # Overlay atlases from side canvas\n    \"Voxel Type\" = \"aparc_aseg\",\n    \"Voxel Display\" = \"side camera\",\n    \n    # Overlay axial slices with surfaces\n    \"Overlay Axial\" = TRUE,\n    \n    # Set surface opacity\n    \"Left Opacity\" = 0.4,\n    \"Left Mesh Clipping\" = 0.3,\n    \"Right Opacity\" = 0.4,\n    \"Right Mesh Clipping\" = 0.3,\n    \n    # Electrode outline\n    \"Outlines\" = \"on\",\n    \"Translucent\" = \"contact+outline\",\n    \n    # Background color and camera position\n    \"Background Color\" = \"#000000\",\n    \"Camera Position\" = \"superior\"\n    \n  )\n  \n)","id":5,"options":{"autorun":"false","classes":"","column":"page","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"500","editor-quick-suggestions":"TRUE","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"# webr::mount(\n      # - meta: \"http://localhost:3530/samples/project-demo-minimal.js.metadata\"\n    #   data: \"http://localhost:3530/samples/project-demo-minimal.data\"\n    #   path: \"/home/web_user/rave_data\"\n# )\ntryCatch({\n  brain <- raveio::rave_brain(\"demo/DemoSubject\")\n}, error = function(e) {})\nutils::write.csv(\n  data.frame(\n    Subject = \"DemoSubject\",\n    Electrode = 1:84,\n    tValue = rnorm(84),\n    Cluster = sample(c(\"A\", \"B\", \"C\"), size = 84, replace = TRUE)\n  ),\n  \"~/example_electrode_value.csv\"\n)","id":1,"options":{"autorun":"true","classes":"","comment":"","context":"setup","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"brain <- raveio::rave_brain(\"demo/DemoSubject\")\n\n# See the output to the right for what's inside of the brain object\nbrain","id":2,"options":{"autorun":"false","classes":"column-page-inset","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"250","editor-quick-suggestions":"TRUE","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"brain$plot()","id":3,"options":{"autorun":"false","classes":"column-page-inset","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"500","editor-quick-suggestions":"TRUE","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-3","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"data_table <- data.frame(\n    Subject = \"DemoSubject\",\n    Electrode = c(13,14,15,16,24),\n    ContinuousValue = runif(5),\n    Categorical = letters[c(1,2,3,2,3)]\n)\n\nbrain$set_electrode_values(data_table)\n\nbrain$plot()","id":4,"options":{"autorun":"false","classes":"column-page-inset","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"500","editor-quick-suggestions":"TRUE","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-4","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# Load brain\nbrain <- raveio::rave_brain(\"demo/DemoSubject\")\n\n# Set values with 2 variables: `ContinuousVal` and `CategoricalVal`\nbrain$set_electrode_values(\n  data.frame(\n    Subject = \"DemoSubject\",\n    Electrode = c(13:16,24,73:80),\n    ContinuousVal = rnorm(13),\n    CategoricalVal = sample(letters[1:4], size = 13, replace = TRUE),\n    PValue = c(0.15, 0.5, 0.9, 0.01, 0.05, 0.45, 0.8,\n               0.68, 0.6, 0.33, 0.001, 0.36, 0.83)\n  )\n)\n\n# Plot brain with options\nbrain$plot(\n  \n  # change color palettes: each variable requires a palette (if not default)\n  palettes = list(\n    \n    # discrete values require each category to be filled with a \n    # color. The order is alphabetic\n    CategoricalVal = c(\"red\", \"blue\", \"green\"),\n    \n    # continuous values requires at least 2 key colors\n    ContinuousVal = c(\"white\", \"purple\"),\n    \n    # p-value is not linearly scaled, R provides `colorRampPalette`\n    # to generate non-linear color palette from at least \n    # 3 key colors. \n    # This example used 5 key colors with bias = 2 so the\n    PValue = colorRampPalette(\n      c(\"red\", \"yellow\", \"cyan\", \"gray\", \"gray\"), bias = 2\n    )(100)\n    \n  ),\n  \n  # Change value range: sets the value range for variables that have\n  # bounded ranges, such as p-values\n  value_ranges = list(\n    \n    # p-value should range from 0-1 \n    PValue = c(0, 1),\n    \n    # We also want to trim the `ContinuousVal` to 95% CI\n    ContinuousVal = c(-2, 2)\n    \n  ),\n  \n  # Set initial controller status\n  controllers = list(\n    \n    # Display p-value \n    \"Display Data\" = \"PValue\",\n    \n    \n    # Overlay atlases from side canvas\n    \"Voxel Type\" = \"aparc_aseg\",\n    \"Voxel Display\" = \"side camera\",\n    \n    # Overlay axial slices with surfaces\n    \"Overlay Axial\" = TRUE,\n    \n    # Set surface opacity\n    \"Left Opacity\" = 0.4,\n    \"Left Mesh Clipping\" = 0.3,\n    \"Right Opacity\" = 0.4,\n    \"Right Mesh Clipping\" = 0.3,\n    \n    # Electrode outline\n    \"Outlines\" = \"on\",\n    \"Translucent\" = \"contact+outline\",\n    \n    # Background color and camera position\n    \"Background Color\" = \"#000000\",\n    \"Camera Position\" = \"superior\"\n    \n  )\n  \n)","id":5,"options":{"autorun":"false","classes":"column-page-inset","column":"page","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"500","editor-quick-suggestions":"TRUE","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-5","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1839,7 +1839,7 @@ globalThis.qwebrExecuteCode = async function (
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
+    <div class="quarto-title column-body">
       <h1 class="title">Customize 3D Viewer Color Palette</h1>
                   <div>
         <div class="description">
@@ -1853,7 +1853,7 @@ globalThis.qwebrExecuteCode = async function (
                   </div>
   </div>
     
-  <div class="quarto-title-meta-author column-page-left">
+  <div class="quarto-title-meta-author column-body">
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-heading">Affiliation</div>
     
@@ -1867,7 +1867,7 @@ globalThis.qwebrExecuteCode = async function (
         </div>
     </div>
 
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta column-body">
 
         
       <div>
@@ -1901,7 +1901,7 @@ globalThis.qwebrExecuteCode = async function (
 <div class="toc-actions"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/posts/3dviewer/viewer201.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/posts/3dviewer/viewer201.qmd" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full column-body" id="quarto-document-content">
 <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.47.0/min/vs/loader.js"></script>
 <script type="module" id="qwebr-monaco-editor-init">
 
@@ -2200,14 +2200,18 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
 <p>This post assumes that you have already imported subject’s imaging data to RAVE and finished the electrode localization.</p>
 </section>
-<section id="simple-3d-viewer" class="level2">
+<section id="simple-3d-viewer" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="simple-3d-viewer">1. Simple 3D viewer</h2>
 <p>Library <code>raveio</code> provides simple high-level function <a href="#function-rave_brain"><code>rave_brain</code></a> to load 3D brain object.</p>
+<div class="column-page">
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
 <p>Use <code>brain$plot(&lt;your arguments...&gt;)</code> to show the viewer:</p>
+<div class="column-page">
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="preview-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -2215,9 +2219,9 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </figure>
 </div>
 </section>
-<section id="render-electrodes-with-values" class="level2">
+<section id="render-electrodes-with-values" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="render-electrodes-with-values">2. Render electrodes with values</h2>
-<p><code>brain$set_electrode_values(table_or_path)</code> allows users to load a data table and render electrodes with colors. Users can create a <code>csv</code> table using Excel or their favorite programming languages, as long as the table follows the following format:</p>
+<p><code>brain$set_electrode_values(table_or_path)</code> allows users to load a data table and render electrodes with colors. Users can create a <code>csv</code> table using Excel or their favorite programming languages, as long as the table follows the following format (See <a href="#" data-wasm-link="/home/web_user/example_electrode_value.csv">example data table</a>):</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -2254,9 +2258,10 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li>The variable values must not be numerical if the intent is categorical. For example cluster values such as <code>1</code>, <code>2</code>, <code>3</code>, … should be avoided and users should use <code>Cluster 1</code>, <code>Cluster 2</code>, <code>Cluster 3</code>, …, or <code>A</code>, <code>B</code>, <code>C</code>, … instead</li>
 </ul></li>
 </ul>
-<p>Here’s an example data table</p>
+<div class="column-page">
 <div id="qwebr-insertion-location-4"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="preview-2.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -2264,7 +2269,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </figure>
 </div>
 </section>
-<section id="render-options" class="level2">
+<section id="render-options" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="render-options">3. Render options</h2>
 <p><code>brain$plot</code> allows users to provide render options to change the following components:</p>
 <ul>
@@ -2273,8 +2278,10 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li>Control panels</li>
 </ul>
 <p>Here’s a full example:</p>
+<div class="column-page">
 <div id="qwebr-insertion-location-5"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
 </section>
 <section id="key-documentations" class="level2">
 <h2 class="anchored" data-anchor-id="key-documentations">Key Documentations</h2>
