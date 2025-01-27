@@ -1,0 +1,89 @@
+
+## Misc: some RAVE tools for object conversion
+
+#### Tool 1: Generate surface from a volumetric mask file
+
+::::::{}
+
+::: {.dropZone data-wasm-path="/home/web_user/uploaded/volume_viewer/" data-wasm-preclean="true" data-wasm-autorun="target-wasm-1"}
+Drop any NIfTI (`*.nii`, `*.nii.gz`) or MGZ (`*.mgz`) file here.
+:::
+
+::::::
+
+:::{.column-page}
+
+```{webr-r}
+#| editor-max-height: 250
+#| editor-quick-suggestions: TRUE
+#| fig-width: 9
+#| fig-height: 3
+#| classes: "column-page-inset"
+#| label: "target-wasm-1"
+#| dpi: 72
+#| out-width: "100%"
+
+# ---- Play with the inputs --------------------
+# Threshold volume - lower bound
+threshold_lb <- 0.5
+# Threshold volume - upper bound
+threshold_ub <- NA
+# Resample to 128^3 before generating surface
+resample <- c(128, 128, 128)
+# ---- Widget code -----------------------------
+root_dir <- "/home/web_user/uploaded/volume_viewer"
+
+# create a working directory
+work_dir <- file.path(root_dir, "_workdir")
+dir.create(work_dir, showWarnings = FALSE, recursive = TRUE)
+
+# Find what's uploaded
+volume_path <- list.files(
+  root_dir,
+  pattern = "\\.(nii|gz|mgz)$",
+  full.names = TRUE,
+  recursive = FALSE,
+  include.dirs = FALSE,
+  ignore.case = FALSE
+)
+
+if( length(volume_path) ) {
+  # Load the first volume
+  volume_path <- volume_path[[1]]
+} else {
+  stop("No volume file found. Please drop in a file first.")
+}
+
+
+volume <- ieegio::read_volume(volume_path)
+
+# To save memory in the browser environment
+# if you run it locally, choose a higher `resample` resolution
+downsampled <- ieegio:::resample_volume_naive(volume, new_dim = resample)
+
+# write to disk
+downsampled_path <- file.path(work_dir, "downsampled.nii.gz")
+dummy <- ieegio::write_volume(downsampled, downsampled_path)
+rm(downsampled)
+rm(volume)
+
+# compute surface mesh and save to `surface_path` as GIfTI
+surface_path <- file.path(work_dir, "isosurface.gii")
+dummy <- threeBrain::volume_to_surf(
+  downsampled_path,
+  threshold_lb = threshold_lb,
+  threshold_ub = threshold_ub,
+  save_to = surface_path
+)
+
+# view
+mesh <- ieegio::read_surface(surface_path)
+ravemanager::webr_view(ieegio:::plot.ieegio_surface(mesh, "rgl_basic"))
+```
+
+
+:::
+
+Want to check out the result? [Click here to download the surface](#){data-wasm-link="/home/web_user/uploaded/volume_viewer/_workdir/isosurface.gii"}
+
+</details>
