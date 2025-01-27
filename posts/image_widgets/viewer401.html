@@ -366,7 +366,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"","id":1,"options":{"autorun":"true","classes":"","comment":"","context":"setup","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"template <- threeBrain::merge_brain(\n  template_subject = \"cvs_avg35_inMNI152\",\n  template_surface_types = c(\"pial\", \"inflated\")\n)\nwidget <- template$plot(\n  controllers = list(\n    \"Left Opacity\" = 0.1,\n    \"Right Opacity\" = 0.1,\n    \"Left Mesh Clipping\" = 0.3,\n    \"Right Mesh Clipping\" = 0.3\n  )\n)\n\n# (optional) save the widget so you can download\npath <- threeBrain::save_brain(\n  widget = widget,\n  path = \"~/RAVE_MNI_template.html\",\n  title = \"RAVE-MNI152 Template\"\n)\n# Show the viewer\nwidget","id":2,"options":{"autorun":"true","classes":"column-page-inset","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"200","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# ---- Play with the inputs --------------------\n# Threshold volume - lower bound\nthreshold_lb <- 0.5\n# Threshold volume - upper bound\nthreshold_ub <- NA\n# Resample to 128^3 before generating surface\nresample <- c(128, 128, 128)\n# ---- Widget code -----------------------------\nroot_dir <- \"/home/web_user/uploaded/volume_viewer\"\n\n# create a working directory\nwork_dir <- file.path(root_dir, \"_workdir\")\ndir.create(work_dir, showWarnings = FALSE, recursive = TRUE)\n\n# Find what's uploaded\nvolume_path <- list.files(\n  root_dir,\n  pattern = \"\\\\.(nii|gz|mgz)$\",\n  full.names = TRUE,\n  recursive = FALSE,\n  include.dirs = FALSE,\n  ignore.case = FALSE\n)\n\nif( length(volume_path) ) {\n  # Load the first volume\n  volume_path <- volume_path[[1]]\n} else {\n  stop(\"No volume file found. Please drop in a file first.\")\n}\n\n\nvolume <- ieegio::read_volume(volume_path)\n\n# To save memory in the browser environment\n# if you run it locally, choose a higher `resample` resolution\ndownsampled <- ieegio:::resample_volume_naive(volume, new_dim = resample)\n\n# write to disk\ndownsampled_path <- file.path(work_dir, \"downsampled.nii.gz\")\ndummy <- ieegio::write_volume(downsampled, downsampled_path)\nrm(downsampled)\nrm(volume)\n\n# compute surface mesh and save to `surface_path` as GIfTI\nsurface_path <- file.path(work_dir, \"isosurface.gii\")\ndummy <- threeBrain::volume_to_surf(\n  downsampled_path,\n  threshold_lb = threshold_lb,\n  threshold_ub = threshold_ub,\n  save_to = surface_path\n)\n\n# view\nmesh <- ieegio::read_surface(surface_path)\nravemanager::webr_view(ieegio:::plot.ieegio_surface(mesh, \"rgl_basic\"))","id":3,"options":{"autorun":"false","classes":"column-page-inset","comment":"","context":"interactive","dpi":"72","editor-font-scale":"1","editor-max-height":"250","editor-quick-suggestions":"TRUE","editor-word-wrap":"true","fig-cap":"","fig-height":"3","fig-width":"9","label":"target-wasm-1","message":"true","out-height":"","out-width":"100%","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"","id":1,"options":{"autorun":"true","classes":"","comment":"","context":"setup","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"template <- threeBrain::merge_brain(\n  template_subject = \"cvs_avg35_inMNI152\",\n  template_surface_types = c(\"pial\", \"inflated\")\n)\nwidget <- template$plot(\n  controllers = list(\n    \"Left Opacity\" = 0.1,\n    \"Right Opacity\" = 0.1,\n    \"Left Mesh Clipping\" = 0.3,\n    \"Right Mesh Clipping\" = 0.3\n  )\n)\n\n# (optional) save the widget so you can download\npath <- threeBrain::save_brain(\n  widget = widget,\n  path = \"~/RAVE_MNI_template.html\",\n  title = \"RAVE-MNI152 Template\"\n)\n# Show the viewer\nwidget","id":2,"options":{"autorun":"true","classes":"column-page-inset","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"200","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1890,7 +1890,6 @@ globalThis.qwebrExecuteCode = async function (
    
   <ul>
   <li><a href="#how-to-use-this-demo" id="toc-how-to-use-this-demo" class="nav-link active" data-scroll-target="#how-to-use-this-demo">How to use this demo</a></li>
-  <li><a href="#misc-some-rave-tools-for-object-conversion" id="toc-misc-some-rave-tools-for-object-conversion" class="nav-link" data-scroll-target="#misc-some-rave-tools-for-object-conversion">Misc: some RAVE tools for object conversion</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/posts/image_widgets/viewer401.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/posts/image_widgets/viewer401.qmd" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -2291,25 +2290,8 @@ Download <a href="dragdrop-state-transition.json">this example file</a> and try 
 </ul>
 </div></li>
 </ul>
-</section>
-<section id="misc-some-rave-tools-for-object-conversion" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="misc-some-rave-tools-for-object-conversion">Misc: some RAVE tools for object conversion</h2>
-<section id="tool-1-generate-surface-from-a-volumetric-mask-file" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="tool-1-generate-surface-from-a-volumetric-mask-file">Tool 1: Generate surface from a volumetric mask file</h4>
-<div>
-<div class="dropZone" data-wasm-path="/home/web_user/uploaded/volume_viewer/" data-wasm-preclean="true" data-wasm-autorun="target-wasm-1">
-<p>Drop any NIfTI (<code>*.nii</code>, <code>*.nii.gz</code>) or MGZ (<code>*.mgz</code>) file here.</p>
-</div>
-</div>
-<div class="column-page">
-<div id="qwebr-insertion-location-3"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</div>
-<p>Want to check out the result? <a href="#" data-wasm-link="/home/web_user/uploaded/volume_viewer/_workdir/isosurface.gii">Click here to download the surface</a></p>
 
 
-
-</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
