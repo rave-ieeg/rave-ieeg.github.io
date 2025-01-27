@@ -9,6 +9,16 @@ project:
     - "images/abstracts/*"
     - "images/news/*"
     - "data/wasm/*"
+    - "data/wasm/samples/project-demo-datadir.data/content"
+    - "data/wasm/samples/project-demo-datadir.js.metadata/content"
+    - "data/wasm/samples/project-demo-fsaverage.data/content"
+    - "data/wasm/samples/project-demo-fsaverage.js.metadata/content"
+    - "data/wasm/samples/project-demo-mni152.data/content"
+    - "data/wasm/samples/project-demo-mni152.js.metadata/content"
+    - "data/wasm/samples/project-demo-n27.data/content"
+    - "data/wasm/samples/project-demo-n27.js.metadata/content"
+    - "data/wasm/samples/project-demo-rawdir.data/content"
+    - "data/wasm/samples/project-demo-rawdir.js.metadata/content"
     - "favicon.ico"
 
 website:
