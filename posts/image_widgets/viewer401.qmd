@@ -53,7 +53,10 @@ This post contains interactive components (experimental) that allows you to exec
 ```{webr-r}
 #| autorun: true
 #| classes: "column-page-inset"
-template <- threeBrain::merge_brain(template_subject = "cvs_avg35_inMNI152")
+template <- threeBrain::merge_brain(
+  template_subject = "cvs_avg35_inMNI152",
+  template_surface_types = c("pial", "inflated")
+)
 template$plot(
   controllers = list(
     "Left Opacity" = 0.1,
@@ -71,19 +74,80 @@ template$plot(
 The 3D viewer supports dragging & dropping files for quick adhoc visualizations. Click on the links below to see different use-cases:
 
 * ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Basic: drop in a surface mesh" data-title="Basic: drop in a surface mesh"}
+  ![](dragdrop-basic-1.webp){width="100%"}
+  <hr />
+  [Example file for this demo](Cingulum_Frontal_Parahippocampal_L.gii)
   * Drop GIfTI (`*.gii`), STL (`*.stl`), or FreeSurfer mesh files (`*h.pial`, `*h.white`, `*h.smoothwm`, `*h.inflated`, ...)
   * To clear the object, open `Configure ROI Surfaces` > `Clear Uploaded Surfaces`
-  ![](dragdrop-basic-1.webp){width="100%"}
+  :::
+* ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Drop in surface annotation files" data-title="Drop in surface annotation files"}
+  ![](dragdrop-annot.webp){width="100%"}
+  <hr />
+  Example files: [left hemisphere](lh.aparc.a2009s.annot) and [right hemisphere](rh.aparc.a2009s.annot)
+  * Drop FreeSurfer annotation (`*.annot`) or curvature files (`*.curv` or `*.sulc`)
+  * To clear the object, open `Configure ROI Surfaces` > `Clear Uploaded Surfaces`
   :::
 * ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Drop in continuous volume" data-title="Drop in continuous volume"}
   ![](dragdrop-basic-2.webp){width="100%"}
+  <hr />
+  [Example file for this demo](Cingulum_Frontal_Parahippocampal_L.nii.gz)
+  * Drop in a NIfTI (`*.nii`, `*.nii.gz`) or a MGZ (`*.mgz`) file
+  * Clamp volume via threshold using `Clipping Min/Max`
+  * Set color map to "continuous" or "single color"
   :::
 * ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Drop in atlas volume & make surface objects" data-title="Drop in atlas volume & make surface objects"}
   ![](dragdrop-basic-3.webp){width="100%"}
+  <hr />
+  [Example file for this demo](aparc.a2009s+aseg.mgz)
+  * Drop in a NIfTI (`*.nii`, `*.nii.gz`) or a MGZ (`*.mgz`) file
+  * Set color map to "discrete"
+  * Subset and enter the atlas labels in `Volume Settings` > `Voxel Label`
+  * Generate quick surface from the labels by clicking `Update ISO Surface`
+  :::
+* ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Drop in and visualize electrodes coordinates" data-title="Drop in and visualize electrodes coordinates"}
+  ![](dragdrop-basic-4.webp){width="100%"}
+  <hr />
+  [Example file for this demo](electrodes-dragdrop-template.csv)
+  * Prepare an electrode coordinate file (see an example from the link above). The bare minimum columns are `Electrode` (channel number), `Label` (contact label), and anatomical coordinates (see below)
+    * For visualizing on template brain, please specify either column set `MNI152_x`, `MNI152_y`, `MNI152_z` (known as the MNI coordinate) or `MNI305_x`, `MNI305_y`, `MNI305_z` (known as fsaverage coordinate)
+    * For visualizing on native brain, specify `T1R`, `T1A`, `T1S` (scanner RAS coordinate) or `Coord_x`, `Coord_y`, `Coord_z` (surface, or FreeSurfer tk-registered coordinate)
+  :::
+* ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Drop in and animate electrodes" data-title="Drop in and animate electrodes"}
+  ![](dragdrop-basic-5.webp){width="100%"}
+  <hr />
+  [Example coordinate file](electrodes-dragdrop-template.csv) & [value table](electroanimation-dragdrop-template.csv)
+  * First, drop in an electrode coordinate file (see the example coordinate file above)
+  * Then, drop in an electrode value table with `Electrode`, `Time`, and one or more variable columns (see the example value table above)
+  * Finally, turn on `Data Visualization` > `Play/Pause` to start animation
+  * (Optional) to hide inactive electrodes, go to `Electrode Settings` > `Visibility`, and set to "hide inactives"
+  :::
+* ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Drop in to set viewer state" data-title="Drop in to set viewer state"}
+  ![](dragdrop-setstate.webp){width="100%"}
+  <hr />
+  [Example file for this demo](dragdrop-controller-state.json)
+  * Go to `Default` > `Copy Controller State`, the viewer state will be copied to the clipboard (download the example data to see what is inside)
+  * You can directly copy the state string to the text box (`Default` > `Paste to set State`) or save the string to a `json` file and drag & drop in
+  :::
+* ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Drop in state transition file" data-title="Drop in state transition file"}
+  {{< video https://www.youtube-nocookie.com/embed/G98b09QZCwc >}}
+  <hr />
+  Download [this example file](dragdrop-state-transition.json) and try out! The file is essentially a `json` file with one flag, some global parameters and settings for each transition.
+  * The flag is `"isThreeBrainTransition": true`, allowing RAVE to know how to handle the file
+  * Global parameters include
+    * `resetCanvas`: whether to reset canvas to its default state before applying transition animation
+    * `loops`: number of additional loops
+    * `trasitionDuration`: duration of a transition, can be set at stage-level
+    * `transitionTimeout`: total timeout for each transition before switching to the next state, can be set at stage-level
+  * The transition data is an array of states:
+    * `background`: the canvas background
+    * `cameraMain`: contains camera `position`, `up` direction, and `zoom` level
+    * Each `controllers` list sets the controller values at beginning of the transition (`immediate`), interpolated animation (`animated`), and at the end of the transition (`delayed`)
   :::
 
+  
+## Misc: some RAVE tools for object conversion
 
-## Tool 1: Generate surface from a volumetric mask file
+#### Tool 1: Generate surface from a volumetric mask file
 
 ::::::{}
 
@@ -106,16 +170,12 @@ Drop any NIfTI (`*.nii`, `*.nii.gz`) or MGZ (`*.mgz`) file here.
 #| out-width: "100%"
 
 # ---- Play with the inputs --------------------
-
 # Threshold volume - lower bound
 threshold_lb <- 0.5
-
 # Threshold volume - upper bound
 threshold_ub <- NA
-
 # Resample to 128^3 before generating surface
 resample <- c(128, 128, 128)
-
 # ---- Widget code -----------------------------
 root_dir <- "/home/web_user/uploaded/volume_viewer"
 
@@ -172,3 +232,4 @@ ravemanager::webr_view(ieegio:::plot.ieegio_surface(mesh, "rgl_basic"))
 
 Want to check out the result? [Click here to download the surface](#){data-wasm-link="/home/web_user/uploaded/volume_viewer/_workdir/isosurface.gii"}
 
+</details>

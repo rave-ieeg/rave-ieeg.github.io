@@ -1,0 +1,144 @@
+{
+  "isThreeBrainTransition": true,
+  "parameters": {
+    "resetCanvas": false,
+    "loops": 0,
+    "trasitionDuration": 3,
+    "transitionTimeout": 5
+  },
+  "transitionData": [
+    {
+      "trasitionDuration": 3,
+      "transitionTimeout": 0.5,
+      "background": "#ffffff",
+      "cameraMain": {
+        "position": {
+          "x": -500,
+          "y": 0,
+          "z": 0
+        },
+        "up": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        },
+        "zoom": 1
+      },
+      "controllers": {
+        "immediate": {
+          "Play/Pause": false,
+          "Clipping Plane": "disabled",
+          "Overlay Sagittal": false,
+          "Overlay Axial": false,
+          "Overlay Coronal": false,
+          "Surface Type": "pial",
+          "Voxel Type": "none"
+        },
+	"animated": {
+          "Left Opacity": 0.3,
+          "Right Opacity": 0.3,
+          "Left Mesh Clipping": 1.0,
+          "Right Mesh Clipping": 1.0,
+          "Sagittal (L - R)": 0.0
+        },
+        "delayed": {}
+      }
+    },
+    {
+      "trasitionDuration": 3,
+      "background": "#ccff99",
+      "cameraMain": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": -500
+        },
+        "up": {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        "zoom": 0.5
+      },
+      "controllers": {
+        "delayed": {
+          "Surface Type": "inflated"
+        },
+        "animated": {
+          "Left Opacity": 1.0,
+          "Right Opacity": 1.0,
+          "Left Mesh Clipping": 1.0,
+          "Right Mesh Clipping": 1.0,
+          "Sagittal (L - R)": 0.0
+        }
+      }
+    },
+    {
+      "transitionTimeout": 3.5,
+      "background": "#000000",
+      "cameraMain": {
+        "position": {
+          "x": 500,
+          "y": 0,
+          "z": 0
+        },
+        "up": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        },
+        "zoom": 1
+      },
+      "controllers": {
+        "immediate": {
+          "Surface Type": "pial",
+          "Voxel Display": "anat. slices"
+        },
+	"animated": {
+          "Left Opacity": 1.0,
+          "Right Opacity": 1.0,
+          "Left Mesh Clipping": 1.0,
+          "Right Mesh Clipping": 1.0,
+          "Sagittal (L - R)": 75
+        },
+        "delayed": {
+          "Voxel Type": "wmparc",
+          "Clipping Plane": "disabled"
+        }
+      }
+    },
+    {
+      "transitionTimeout": 0.5,
+      "background": "#000000",
+      "cameraMain": {
+        "position": {
+          "x": 213,
+          "y": 246,
+          "z": 347
+        },
+        "up": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        },
+        "zoom": 1
+      },
+      "controllers": {
+        "immediate": {
+          "Overlay Axial": true,
+          "Overlay Sagittal": true,
+          "Overlay Coronal": true
+        },
+	"animated": {
+          "Left Opacity": 0.1,
+          "Right Opacity": 0.1,
+          "Left Mesh Clipping": 0.1,
+          "Right Mesh Clipping": 0.1,
+          "Sagittal (L - R)": -42,
+          "Axial (I - S)": -36,
+          "Coronal (P - A)": -36
+        }
+      }
+    }
+  ]
+} 
