@@ -366,7 +366,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"","id":1,"options":{"autorun":"true","classes":"","comment":"","context":"setup","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"template <- threeBrain::merge_brain(template_subject = \"cvs_avg35_inMNI152\")\ntemplate$plot(\n  controllers = list(\n    \"Left Opacity\" = 0.1,\n    \"Right Opacity\" = 0.1,\n    \"Left Mesh Clipping\" = 0.3,\n    \"Right Mesh Clipping\" = 0.3\n  )\n)","id":2,"options":{"autorun":"true","classes":"column-page-inset","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# ---- Play with the inputs --------------------\n\n# Threshold volume - lower bound\nthreshold_lb <- 0.5\n\n# Threshold volume - upper bound\nthreshold_ub <- NA\n\n# Resample to 128^3 before generating surface\nresample <- c(128, 128, 128)\n\n# ---- Widget code -----------------------------\nroot_dir <- \"/home/web_user/uploaded/volume_viewer\"\n\n# create a working directory\nwork_dir <- file.path(root_dir, \"_workdir\")\ndir.create(work_dir, showWarnings = FALSE, recursive = TRUE)\n\n# Find what's uploaded\nvolume_path <- list.files(\n  root_dir,\n  pattern = \"\\\\.(nii|gz|mgz)$\",\n  full.names = TRUE,\n  recursive = FALSE,\n  include.dirs = FALSE,\n  ignore.case = FALSE\n)\n\nif( length(volume_path) ) {\n  # Load the first volume\n  volume_path <- volume_path[[1]]\n} else {\n  stop(\"No volume file found. Please drop in a file first.\")\n}\n\n\nvolume <- ieegio::read_volume(volume_path)\n\n# To save memory in the browser environment\n# if you run it locally, choose a higher `resample` resolution\ndownsampled <- ieegio:::resample_volume_naive(volume, new_dim = resample)\n\n# write to disk\ndownsampled_path <- file.path(work_dir, \"downsampled.nii.gz\")\ndummy <- ieegio::write_volume(downsampled, downsampled_path)\nrm(downsampled)\nrm(volume)\n\n# compute surface mesh and save to `surface_path` as GIfTI\nsurface_path <- file.path(work_dir, \"isosurface.gii\")\ndummy <- threeBrain::volume_to_surf(\n  downsampled_path,\n  threshold_lb = threshold_lb,\n  threshold_ub = threshold_ub,\n  save_to = surface_path\n)\n\n# view\nmesh <- ieegio::read_surface(surface_path)\nravemanager::webr_view(ieegio:::plot.ieegio_surface(mesh, \"rgl_basic\"))","id":3,"options":{"autorun":"false","classes":"column-page-inset","comment":"","context":"interactive","dpi":"72","editor-font-scale":"1","editor-max-height":"250","editor-quick-suggestions":"TRUE","editor-word-wrap":"true","fig-cap":"","fig-height":"3","fig-width":"9","label":"target-wasm-1","message":"true","out-height":"","out-width":"100%","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+globalThis.qwebrCellDetails = [{"code":"","id":1,"options":{"autorun":"true","classes":"","comment":"","context":"setup","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-1","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"template <- threeBrain::merge_brain(\n  template_subject = \"cvs_avg35_inMNI152\",\n  template_surface_types = c(\"pial\", \"inflated\")\n)\ntemplate$plot(\n  controllers = list(\n    \"Left Opacity\" = 0.1,\n    \"Right Opacity\" = 0.1,\n    \"Left Mesh Clipping\" = 0.3,\n    \"Right Mesh Clipping\" = 0.3\n  )\n)","id":2,"options":{"autorun":"true","classes":"column-page-inset","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"unnamed-chunk-2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"# ---- Play with the inputs --------------------\n# Threshold volume - lower bound\nthreshold_lb <- 0.5\n# Threshold volume - upper bound\nthreshold_ub <- NA\n# Resample to 128^3 before generating surface\nresample <- c(128, 128, 128)\n# ---- Widget code -----------------------------\nroot_dir <- \"/home/web_user/uploaded/volume_viewer\"\n\n# create a working directory\nwork_dir <- file.path(root_dir, \"_workdir\")\ndir.create(work_dir, showWarnings = FALSE, recursive = TRUE)\n\n# Find what's uploaded\nvolume_path <- list.files(\n  root_dir,\n  pattern = \"\\\\.(nii|gz|mgz)$\",\n  full.names = TRUE,\n  recursive = FALSE,\n  include.dirs = FALSE,\n  ignore.case = FALSE\n)\n\nif( length(volume_path) ) {\n  # Load the first volume\n  volume_path <- volume_path[[1]]\n} else {\n  stop(\"No volume file found. Please drop in a file first.\")\n}\n\n\nvolume <- ieegio::read_volume(volume_path)\n\n# To save memory in the browser environment\n# if you run it locally, choose a higher `resample` resolution\ndownsampled <- ieegio:::resample_volume_naive(volume, new_dim = resample)\n\n# write to disk\ndownsampled_path <- file.path(work_dir, \"downsampled.nii.gz\")\ndummy <- ieegio::write_volume(downsampled, downsampled_path)\nrm(downsampled)\nrm(volume)\n\n# compute surface mesh and save to `surface_path` as GIfTI\nsurface_path <- file.path(work_dir, \"isosurface.gii\")\ndummy <- threeBrain::volume_to_surf(\n  downsampled_path,\n  threshold_lb = threshold_lb,\n  threshold_ub = threshold_ub,\n  save_to = surface_path\n)\n\n# view\nmesh <- ieegio::read_surface(surface_path)\nravemanager::webr_view(ieegio:::plot.ieegio_surface(mesh, \"rgl_basic\"))","id":3,"options":{"autorun":"false","classes":"column-page-inset","comment":"","context":"interactive","dpi":"72","editor-font-scale":"1","editor-max-height":"250","editor-quick-suggestions":"TRUE","editor-word-wrap":"true","fig-cap":"","fig-height":"3","fig-width":"9","label":"target-wasm-1","message":"true","out-height":"","out-width":"100%","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1890,7 +1890,7 @@ globalThis.qwebrExecuteCode = async function (
    
   <ul>
   <li><a href="#how-to-use-this-viewer" id="toc-how-to-use-this-viewer" class="nav-link active" data-scroll-target="#how-to-use-this-viewer">How to use this viewer</a></li>
-  <li><a href="#tool-1-generate-surface-from-a-volumetric-mask-file" id="toc-tool-1-generate-surface-from-a-volumetric-mask-file" class="nav-link" data-scroll-target="#tool-1-generate-surface-from-a-volumetric-mask-file">Tool 1: Generate surface from a volumetric mask file</a></li>
+  <li><a href="#misc-some-rave-tools-for-object-conversion" id="toc-misc-some-rave-tools-for-object-conversion" class="nav-link" data-scroll-target="#misc-some-rave-tools-for-object-conversion">Misc: some RAVE tools for object conversion</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/edit/main/posts/image_widgets/viewer401.qmd" target="_blank" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/blob/main/posts/image_widgets/viewer401.qmd" target="_blank" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/rave-ieeg/rave-ieeg.github.io/issues/new" target="_blank" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -2199,21 +2199,103 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>The 3D viewer supports dragging &amp; dropping files for quick adhoc visualizations. Click on the links below to see different use-cases:</p>
 <ul>
 <li><div class="rave-modal" data-type="span" data-class="text-decoration-underline" data-label="Basic: drop in a surface mesh" data-title="Basic: drop in a surface mesh">
+<img src="dragdrop-basic-1.webp" class="img-fluid" style="width:100.0%">
+<hr>
+<a href="Cingulum_Frontal_Parahippocampal_L.gii">Example file for this demo</a>
 <ul>
 <li>Drop GIfTI (<code>*.gii</code>), STL (<code>*.stl</code>), or FreeSurfer mesh files (<code>*h.pial</code>, <code>*h.white</code>, <code>*h.smoothwm</code>, <code>*h.inflated</code>, …)</li>
-<li>To clear the object, open <code>Configure ROI Surfaces</code> &gt; <code>Clear Uploaded Surfaces</code> <img src="dragdrop-basic-1.webp" class="img-fluid" style="width:100.0%"></li>
+<li>To clear the object, open <code>Configure ROI Surfaces</code> &gt; <code>Clear Uploaded Surfaces</code></li>
+</ul>
+</div></li>
+<li><div class="rave-modal" data-type="span" data-class="text-decoration-underline" data-label="Drop in surface annotation files" data-title="Drop in surface annotation files">
+<img src="dragdrop-annot.webp" class="img-fluid" style="width:100.0%">
+<hr>
+Example files: <a href="lh.aparc.a2009s.annot">left hemisphere</a> and <a href="rh.aparc.a2009s.annot">right hemisphere</a>
+<ul>
+<li>Drop FreeSurfer annotation (<code>*.annot</code>) or curvature files (<code>*.curv</code> or <code>*.sulc</code>)</li>
+<li>To clear the object, open <code>Configure ROI Surfaces</code> &gt; <code>Clear Uploaded Surfaces</code></li>
 </ul>
 </div></li>
 <li><div class="rave-modal" data-type="span" data-class="text-decoration-underline" data-label="Drop in continuous volume" data-title="Drop in continuous volume">
-<p><img src="dragdrop-basic-2.webp" class="img-fluid" style="width:100.0%"></p>
+<img src="dragdrop-basic-2.webp" class="img-fluid" style="width:100.0%">
+<hr>
+<a href="Cingulum_Frontal_Parahippocampal_L.nii.gz">Example file for this demo</a>
+<ul>
+<li>Drop in a NIfTI (<code>*.nii</code>, <code>*.nii.gz</code>) or a MGZ (<code>*.mgz</code>) file</li>
+<li>Clamp volume via threshold using <code>Clipping Min/Max</code></li>
+<li>Set color map to “continuous” or “single color”</li>
+</ul>
 </div></li>
 <li><div class="rave-modal" data-type="span" data-class="text-decoration-underline" data-label="Drop in atlas volume &amp; make surface objects" data-title="Drop in atlas volume &amp; make surface objects">
-<p><img src="dragdrop-basic-3.webp" class="img-fluid" style="width:100.0%"></p>
+<img src="dragdrop-basic-3.webp" class="img-fluid" style="width:100.0%">
+<hr>
+<a href="aparc.a2009s+aseg.mgz">Example file for this demo</a>
+<ul>
+<li>Drop in a NIfTI (<code>*.nii</code>, <code>*.nii.gz</code>) or a MGZ (<code>*.mgz</code>) file</li>
+<li>Set color map to “discrete”</li>
+<li>Subset and enter the atlas labels in <code>Volume Settings</code> &gt; <code>Voxel Label</code></li>
+<li>Generate quick surface from the labels by clicking <code>Update ISO Surface</code></li>
+</ul>
+</div></li>
+<li><div class="rave-modal" data-type="span" data-class="text-decoration-underline" data-label="Drop in and visualize electrodes coordinates" data-title="Drop in and visualize electrodes coordinates">
+<img src="dragdrop-basic-4.webp" class="img-fluid" style="width:100.0%">
+<hr>
+<a href="electrodes-dragdrop-template.csv">Example file for this demo</a>
+<ul>
+<li>Prepare an electrode coordinate file (see an example from the link above). The bare minimum columns are <code>Electrode</code> (channel number), <code>Label</code> (contact label), and anatomical coordinates (see below)
+<ul>
+<li>For visualizing on template brain, please specify either column set <code>MNI152_x</code>, <code>MNI152_y</code>, <code>MNI152_z</code> (known as the MNI coordinate) or <code>MNI305_x</code>, <code>MNI305_y</code>, <code>MNI305_z</code> (known as fsaverage coordinate)</li>
+<li>For visualizing on native brain, specify <code>T1R</code>, <code>T1A</code>, <code>T1S</code> (scanner RAS coordinate) or <code>Coord_x</code>, <code>Coord_y</code>, <code>Coord_z</code> (surface, or FreeSurfer tk-registered coordinate)</li>
+</ul></li>
+</ul>
+</div></li>
+<li><div class="rave-modal" data-type="span" data-class="text-decoration-underline" data-label="Drop in and animate electrodes" data-title="Drop in and animate electrodes">
+<img src="dragdrop-basic-5.webp" class="img-fluid" style="width:100.0%">
+<hr>
+<a href="electrodes-dragdrop-template.csv">Example coordinate file</a> &amp; <a href="electroanimation-dragdrop-template.csv">value table</a>
+<ul>
+<li>First, drop in an electrode coordinate file (see the example coordinate file above)</li>
+<li>Then, drop in an electrode value table with <code>Electrode</code>, <code>Time</code>, and one or more variable columns (see the example value table above)</li>
+<li>Finally, turn on <code>Data Visualization</code> &gt; <code>Play/Pause</code> to start animation</li>
+<li>(Optional) to hide inactive electrodes, go to <code>Electrode Settings</code> &gt; <code>Visibility</code>, and set to “hide inactives”</li>
+</ul>
+</div></li>
+<li><div class="rave-modal" data-type="span" data-class="text-decoration-underline" data-label="Drop in to set viewer state" data-title="Drop in to set viewer state">
+<img src="dragdrop-setstate.webp" class="img-fluid" style="width:100.0%">
+<hr>
+<a href="dragdrop-controller-state.json">Example file for this demo</a>
+<ul>
+<li>Go to <code>Default</code> &gt; <code>Copy Controller State</code>, the viewer state will be copied to the clipboard (download the example data to see what is inside)</li>
+<li>You can directly copy the state string to the text box (<code>Default</code> &gt; <code>Paste to set State</code>) or save the string to a <code>json</code> file and drag &amp; drop in</li>
+</ul>
+</div></li>
+<li><div class="rave-modal" data-type="span" data-class="text-decoration-underline" data-label="Drop in state transition file" data-title="Drop in state transition file">
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/G98b09QZCwc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<hr>
+Download <a href="dragdrop-state-transition.json">this example file</a> and try out! The file is essentially a <code>json</code> file with one flag, some global parameters and settings for each transition.
+<ul>
+<li>The flag is <code>"isThreeBrainTransition": true</code>, allowing RAVE to know how to handle the file</li>
+<li>Global parameters include
+<ul>
+<li><code>resetCanvas</code>: whether to reset canvas to its default state before applying transition animation</li>
+<li><code>loops</code>: number of additional loops</li>
+<li><code>trasitionDuration</code>: duration of a transition, can be set at stage-level</li>
+<li><code>transitionTimeout</code>: total timeout for each transition before switching to the next state, can be set at stage-level</li>
+</ul></li>
+<li>The transition data is an array of states:
+<ul>
+<li><code>background</code>: the canvas background</li>
+<li><code>cameraMain</code>: contains camera <code>position</code>, <code>up</code> direction, and <code>zoom</code> level</li>
+<li>Each <code>controllers</code> list sets the controller values at beginning of the transition (<code>immediate</code>), interpolated animation (<code>animated</code>), and at the end of the transition (<code>delayed</code>)</li>
+</ul></li>
+</ul>
 </div></li>
 </ul>
 </section>
-<section id="tool-1-generate-surface-from-a-volumetric-mask-file" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="tool-1-generate-surface-from-a-volumetric-mask-file">Tool 1: Generate surface from a volumetric mask file</h2>
+<section id="misc-some-rave-tools-for-object-conversion" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="misc-some-rave-tools-for-object-conversion">Misc: some RAVE tools for object conversion</h2>
+<section id="tool-1-generate-surface-from-a-volumetric-mask-file" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="tool-1-generate-surface-from-a-volumetric-mask-file">Tool 1: Generate surface from a volumetric mask file</h4>
 <div>
 <div class="dropZone" data-wasm-path="/home/web_user/uploaded/volume_viewer/" data-wasm-preclean="true" data-wasm-autorun="target-wasm-1">
 <p>Drop any NIfTI (<code>*.nii</code>, <code>*.nii.gz</code>) or MGZ (<code>*.mgz</code>) file here.</p>
@@ -2226,6 +2308,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <p>Want to check out the result? <a href="#" data-wasm-link="/home/web_user/uploaded/volume_viewer/_workdir/isosurface.gii">Click here to download the surface</a></p>
 
 
+
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
