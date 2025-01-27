@@ -51,13 +51,14 @@ This post contains interactive components (experimental) that allows you to exec
 :::{.column-page}
 
 ```{webr-r}
+#| editor-max-height: 200
 #| autorun: true
 #| classes: "column-page-inset"
 template <- threeBrain::merge_brain(
   template_subject = "cvs_avg35_inMNI152",
   template_surface_types = c("pial", "inflated")
 )
-template$plot(
+widget <- template$plot(
   controllers = list(
     "Left Opacity" = 0.1,
     "Right Opacity" = 0.1,
@@ -65,13 +66,22 @@ template$plot(
     "Right Mesh Clipping" = 0.3
   )
 )
+
+# (optional) save the widget so you can download
+path <- threeBrain::save_brain(
+  widget = widget,
+  path = "~/RAVE_MNI_template.html",
+  title = "RAVE-MNI152 Template"
+)
+# Show the viewer
+widget
 ```
 
 :::
 
-## How to use this viewer
+## How to use this demo
 
-The 3D viewer supports dragging & dropping files for quick adhoc visualizations. Click on the links below to see different use-cases:
+The 3D viewer supports dragging & dropping files for quick adhoc visualizations. Click on the links below to see different use-cases. If you would like to open the viewer locally and try it out, please [download an offline version](#){data-wasm-link="/home/web_user/RAVE_MNI_template.html"} once the viewer is ready.
 
 * ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Basic: drop in a surface mesh" data-title="Basic: drop in a surface mesh"}
   ![](dragdrop-basic-1.webp){width="100%"}
