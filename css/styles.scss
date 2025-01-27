@@ -200,3 +200,21 @@ thead th {
 .column-margin .cell-output pre {
   overflow: visible;
 }
+
+
+.dropZone {
+  flex: 1;
+  min-width: 32%;
+  min-height: 50px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 50px;
+  color: #999;
+  margin: 15px auto;
+  &.dragover {
+    border-color: #666;
+    color: #666;
+    background-color: #fafafa;
+  }
+}

@@ -54,6 +54,7 @@ format:
       - zephyr
       - css/styles.scss
     toc: true
+    page-layout: full
 include-in-header:
   text: <script type="text/javascript" type="module" src="/js/customize.js"></script>
 

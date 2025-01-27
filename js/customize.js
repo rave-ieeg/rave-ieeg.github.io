@@ -247,12 +247,15 @@ function estimateWordCount() {
 
 function linkWASMLinks() {
 
-  const downloadWASMData = function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-
+  document.addEventListener('click', function(event) {
     if( !window.mainWebR ) { return; }
-    const link = this.getAttribute("data-wasm-link");
+
+    // Get the element that was clicked
+    const clickedElement = event.target;
+
+    if( !clickedElement.hasAttribute("data-wasm-link") ) { return; }
+    const link = clickedElement.getAttribute("data-wasm-link").trim();
+    if( link === "" ) { return; }
     const filename = link.split(/[\/\\\\]/g).pop();
 
     window.mainWebR.FS.readFile(link)
@@ -267,12 +270,11 @@ function linkWASMLinks() {
         $link.click();
         $link.style.display = "hidden !important";
       });
-  }
+  });
 
   const wasmLinks = document.querySelectorAll("a[data-wasm-link]");
   wasmLinks.forEach( $link => {
     $link.classList.add("text-decoration-line-through");
-    $link.onclick = downloadWASMData;
   });
 
   // make sure window.mainWebR is present
@@ -286,6 +288,167 @@ function linkWASMLinks() {
     wasmLinks.forEach( $link => { $link.classList.remove("text-decoration-line-through"); });
   }
   checkWebR();
+}
+
+async function ensurePath(filePath) {
+  const mainWebR = window.mainWebR;
+  const rootDir = await mainWebR.FS.lookupPath("/");
+  const ensureParentDirectory = async (filePath) => {
+    const fpaths = filePath.split("/").filter(v => {
+      return v.trim() !== "";
+    });
+
+    // remove filename
+    const fileName = fpaths.pop();
+    let cpath = "";
+    let cdir = rootDir;
+
+    for(let fname of fpaths) {
+      cpath = `${cpath}/${fname}`;
+      try {
+        cdir = cdir.contents[ fname ];
+        if( !cdir ) {
+          try {
+            await mainWebR.FS.mkdir(cpath);
+          } catch (e) {}
+          cdir = await mainWebR.FS.lookupPath(cpath);
+        }
+      } catch (e) {
+        try {
+          await mainWebR.FS.mkdir(cpath);
+          cdir = await mainWebR.FS.lookupPath(cpath);
+        } catch (e) {
+          // concurrent mkdir?
+        }
+      }
+      if( !cdir.isFolder ) {
+        throw new Error(`Path ${cpath} is not a folder.`);
+      }
+    }
+
+    return `${cpath}/${fileName}`;
+  };
+  return await ensureParentDirectory(filePath);
+}
+
+async function webRRemoveFiles(path) {
+  const FS = window.mainWebR.FS;
+
+  try {
+    const stat = await FS.lookupPath(path);
+
+    let entries = [];
+    if (stat.isFolder) {
+      entries = Object.keys( stat.contents );
+    } else {
+      entries = [path];
+    }
+
+    for (const entry of entries) {
+      if (entry === '.' || entry === '..') {
+        continue; // Skip special entries
+      }
+
+      const fullPath = `${path}/${entry}`;
+      const entryStat = await FS.lookupPath(fullPath);
+
+      if (entryStat.isFolder) {
+        // Recursively remove subdirectory
+        await webRRemoveFiles(fullPath);
+      } else {
+        // Remove file
+        await FS.unlink(fullPath);
+      }
+    }
+
+    // Now the directory is empty, so remove it
+    await FS.rmdir(path);
+  } catch (err) {
+    console.warn(`Failed to remove folder '${path}':`, err);
+  }
+}
+
+function registerDropZones() {
+
+  const dropZones = document.querySelectorAll(".dropZone");
+  dropZones.forEach(dropZone => {
+    // Prevent default behaviors on dragover (to allow drop)
+    dropZone.ondragover = (event) => {
+      event.preventDefault();
+      dropZone.classList.add("dragover");
+    };
+    dropZone.ondragleave = (event) => {
+      dropZone.classList.remove("dragover");
+    };
+    // Handle the 'drop' event
+    dropZone.ondrop = (event) => {
+      event.preventDefault();
+      dropZone.classList.remove("dragover");
+
+      const files = [...(
+        event.dataTransfer.files || event.dataTransfer.items
+      )];
+
+      if(files.length === 0) { return; }
+
+      const targetDir = dropZone.getAttribute("data-wasm-path");
+      const preclean = dropZone.getAttribute("data-wasm-preclean") === "true";
+      const filePaths = [];
+      dropZone.lastUploaded = filePaths;
+
+
+      const handleFiles = async () => {
+        if( preclean ) {
+          await webRRemoveFiles(targetDir);
+        }
+        await ensurePath(targetDir + "/placeholder");
+        const promises = files.map((item) => {
+          let file = item;
+          if ( file.kind === "file" ) {
+            // item is not file, and needs to unwrap
+            // [...ev.dataTransfer.items].forEach(...)
+            file = file.getAsFile();
+          }
+          const reader = new FileReader();
+          // When FileReader finishes, write the file to the WASM FS
+          return new Promise((resolve) => {
+            reader.onload = (e) => {
+              const arrayBuffer = e.target.result;
+              const typedArray = new Uint8Array(arrayBuffer);
+
+              // Write the file to the virtual filesystem
+              // The file name will be file.name (e.g., "image.png")
+              const path = targetDir + "/" + file.name;
+              window.mainWebR.FS.writeFile(path, typedArray);
+
+              console.log(`File '${path}' saved to WASM FS!`);
+
+              filePaths.push(file.name);
+              resolve();
+            };
+
+            // Read as ArrayBuffer for binary-safe reading
+            reader.readAsArrayBuffer(file);
+          })
+        })
+        try {
+          await Promise.all(promises);
+        } catch (e) {}
+        // TODO: signal event
+
+        const targetLabel = (dropZone.getAttribute("data-wasm-autorun") ?? "").trim();
+        if( typeof targetLabel === "string" && targetLabel !== "" ) {
+          document.querySelectorAll(`[data-id="${ targetLabel }"] .qwebr-button-run`).forEach(el => { el.click(); });
+        }
+      };
+
+      handleFiles();
+
+
+    };
+  });
+
+
 }
 
 
@@ -373,6 +536,8 @@ window.docReady(function() {
 
   const raveModal = new GlobalModal();
   raveModal.register();
+
+  registerDropZones();
 
   linkWASMLinks();
 })
