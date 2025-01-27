@@ -1,0 +1,174 @@
+---
+title: "Drag & Drop Objects to 3D Viewer"
+description: |
+  This post demonstrates how to use the drag & drop feature using 3D viewer
+date: 2025-01-27
+author: 
+  - name: Zhengjia Wang
+    orcid: 0000-0001-5629-1116
+    affiliations: 
+      - name: "Dept. of Neurosurgery, University of Pennsylvania"
+categories:
+  - "3D Viewer"
+  - "Interactive Module"
+copyright: 
+  holder: Zhengjia Wang
+  year: 2025
+execute:
+  freeze: false
+webr:
+  packages: ['ieegio', 'ravetools', 'threeBrain', 'rgl', 'ravemanager']
+  repos: 
+    - 'https://rave-ieeg.r-universe.dev'
+    - 'https://dipterix.r-universe.dev'
+    - 'https://repo.r-wasm.org/'
+  version: 0.4.2
+  channel-type: "service-worker"
+  autoload-packages: false
+  mount-url: 
+    - meta: "/data/wasm/samples/project-demo-datadir.js.metadata/content"
+      data: "/data/wasm/samples/project-demo-datadir.data/content"
+      path: "/home/web_user/"
+    - meta: "/data/wasm/samples/project-demo-rawdir.js.metadata/content"
+      data: "/data/wasm/samples/project-demo-rawdir.data/content"
+      path: "/home/web_user/"
+    - meta: "/data/wasm/samples/project-demo-mni152.js.metadata/content"
+      data: "/data/wasm/samples/project-demo-mni152.data/content"
+      path: "/home/web_user/"
+---
+
+::: {.alert .alert-warning role="alert"}
+This post contains interactive components (experimental) that allows you to execute RAVE code from the web browsers. If you would like to try this feature and customize/play with the code, please be patient. It might take a while for the browser to finish setting up (depending on your network speed). Once the script is ready, you will see "WEBR STATUS: 🟢 Ready!" in the above banner.
+
+```{webr-r}
+#| context: setup
+#| autorun: true
+```
+
+:::
+
+
+:::{.column-page}
+
+```{webr-r}
+#| autorun: true
+#| classes: "column-page-inset"
+template <- threeBrain::merge_brain(template_subject = "cvs_avg35_inMNI152")
+template$plot(
+  controllers = list(
+    "Left Opacity" = 0.1,
+    "Right Opacity" = 0.1,
+    "Left Mesh Clipping" = 0.3,
+    "Right Mesh Clipping" = 0.3
+  )
+)
+```
+
+:::
+
+## How to use this viewer
+
+The 3D viewer supports dragging & dropping files for quick adhoc visualizations. Click on the links below to see different use-cases:
+
+* ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Basic: drop in a surface mesh" data-title="Basic: drop in a surface mesh"}
+  * Drop GIfTI (`*.gii`), STL (`*.stl`), or FreeSurfer mesh files (`*h.pial`, `*h.white`, `*h.smoothwm`, `*h.inflated`, ...)
+  * To clear the object, open `Configure ROI Surfaces` > `Clear Uploaded Surfaces`
+  ![](dragdrop-basic-1.webp){width="100%"}
+  :::
+* ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Drop in continuous volume" data-title="Drop in continuous volume"}
+  ![](dragdrop-basic-2.webp){width="100%"}
+  :::
+* ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Drop in atlas volume & make surface objects" data-title="Drop in atlas volume & make surface objects"}
+  ![](dragdrop-basic-3.webp){width="100%"}
+  :::
+
+
+## Tool 1: Generate surface from a volumetric mask file
+
+::::::{}
+
+::: {.dropZone data-wasm-path="/home/web_user/uploaded/volume_viewer/" data-wasm-preclean="true" data-wasm-autorun="target-wasm-1"}
+Drop any NIfTI (`*.nii`, `*.nii.gz`) or MGZ (`*.mgz`) file here.
+:::
+
+::::::
+
+:::{.column-page}
+
+```{webr-r}
+#| editor-max-height: 250
+#| editor-quick-suggestions: TRUE
+#| fig-width: 9
+#| fig-height: 3
+#| classes: "column-page-inset"
+#| label: "target-wasm-1"
+#| dpi: 72
+#| out-width: "100%"
+
+# ---- Play with the inputs --------------------
+
+# Threshold volume - lower bound
+threshold_lb <- 0.5
+
+# Threshold volume - upper bound
+threshold_ub <- NA
+
+# Resample to 128^3 before generating surface
+resample <- c(128, 128, 128)
+
+# ---- Widget code -----------------------------
+root_dir <- "/home/web_user/uploaded/volume_viewer"
+
+# create a working directory
+work_dir <- file.path(root_dir, "_workdir")
+dir.create(work_dir, showWarnings = FALSE, recursive = TRUE)
+
+# Find what's uploaded
+volume_path <- list.files(
+  root_dir,
+  pattern = "\\.(nii|gz|mgz)$",
+  full.names = TRUE,
+  recursive = FALSE,
+  include.dirs = FALSE,
+  ignore.case = FALSE
+)
+
+if( length(volume_path) ) {
+  # Load the first volume
+  volume_path <- volume_path[[1]]
+} else {
+  stop("No volume file found. Please drop in a file first.")
+}
+
+
+volume <- ieegio::read_volume(volume_path)
+
+# To save memory in the browser environment
+# if you run it locally, choose a higher `resample` resolution
+downsampled <- ieegio:::resample_volume_naive(volume, new_dim = resample)
+
+# write to disk
+downsampled_path <- file.path(work_dir, "downsampled.nii.gz")
+dummy <- ieegio::write_volume(downsampled, downsampled_path)
+rm(downsampled)
+rm(volume)
+
+# compute surface mesh and save to `surface_path` as GIfTI
+surface_path <- file.path(work_dir, "isosurface.gii")
+dummy <- threeBrain::volume_to_surf(
+  downsampled_path,
+  threshold_lb = threshold_lb,
+  threshold_ub = threshold_ub,
+  save_to = surface_path
+)
+
+# view
+mesh <- ieegio::read_surface(surface_path)
+ravemanager::webr_view(ieegio:::plot.ieegio_surface(mesh, "rgl_basic"))
+```
+
+
+:::
+
+Want to check out the result? [Click here to download the surface](#){data-wasm-link="/home/web_user/uploaded/volume_viewer/_workdir/isosurface.gii"}
+
