@@ -57,6 +57,15 @@ This post contains interactive components (experimental) that allows you to exec
 tryCatch({
   brain <- raveio::rave_brain("demo/DemoSubject")
 }, error = function(e) {})
+utils::write.csv(
+  data.frame(
+    Subject = "DemoSubject",
+    Electrode = 1:84,
+    tValue = rnorm(84),
+    Cluster = sample(c("A", "B", "C"), size = 84, replace = TRUE)
+  ),
+  "~/example_electrode_value.csv"
+)
 ```
 :::
 
@@ -68,28 +77,38 @@ This post assumes that you have already imported subject's imaging data to RAVE 
 
 Library `raveio` provides simple high-level function [`rave_brain`](#function-rave_brain) to load 3D brain object.
 
+:::{.column-page}
+
 ```{webr-r}
-#| editor-max-height: 500
+#| editor-max-height: 250
 #| editor-quick-suggestions: TRUE
+#| classes: "column-page-inset"
 brain <- raveio::rave_brain("demo/DemoSubject")
 
 # See the output to the right for what's inside of the brain object
 brain
 ```
 
+:::
+
 Use `brain$plot(<your arguments...>)` to show the viewer:
+
+:::{.column-page}
 
 ```{webr-r}
 #| editor-max-height: 500
 #| editor-quick-suggestions: TRUE
+#| classes: "column-page-inset"
 brain$plot()
 ```
+
+:::
 
 ![Preview of the result. See below if you want to play with the 3D viewer interactively](preview-1.png){fig-align="center" width="100%"}
 
 ## 2. Render electrodes with values
 
-`brain$set_electrode_values(table_or_path)` allows users to load a data table and render electrodes with colors. Users can create a `csv` table using Excel or their favorite programming languages, as long as the table follows the following format:
+`brain$set_electrode_values(table_or_path)` allows users to load a data table and render electrodes with colors. Users can create a `csv` table using Excel or their favorite programming languages, as long as the table follows the following format (See [example data table](#){data-wasm-link="/home/web_user/example_electrode_value.csv"}):
 
 | Subject     | Electrode | varname\* |
 |:------------|----------:|----------:|
@@ -105,11 +124,14 @@ Here is the explanation of the columns (case-sensitive):
     -   The variable name is recommended to only contain letters and digits. For example, `BetaBandPower` seems to be a good idea, while names like `75-150 Hz` should be avoided
     -   The variable values must not be numerical if the intent is categorical. For example cluster values such as `1`, `2`, `3`, ... should be avoided and users should use `Cluster 1`, `Cluster 2`, `Cluster 3`, ..., or `A`, `B`, `C`, ... instead
 
-Here's an example data table
+
+
+:::{.column-page}
 
 ```{webr-r}
 #| editor-max-height: 500
 #| editor-quick-suggestions: TRUE
+#| classes: "column-page-inset"
 data_table <- data.frame(
     Subject = "DemoSubject",
     Electrode = c(13,14,15,16,24),
@@ -121,6 +143,8 @@ brain$set_electrode_values(data_table)
 
 brain$plot()
 ```
+
+:::
 
 ![**Left**: continuous values with symmetric value range. The color palette transition from blue to white to red (default); **Right**: Categorical data with default color palette](preview-2.png){width="100%"}
 
@@ -134,10 +158,13 @@ brain$plot()
 
 Here's a full example:
 
+:::{.column-page}
+
 ```{webr-r}
 #| editor-max-height: 500
 #| editor-quick-suggestions: TRUE
 #| column: page
+#| classes: "column-page-inset"
 # Load brain
 brain <- raveio::rave_brain("demo/DemoSubject")
 
@@ -220,6 +247,8 @@ brain$plot(
   
 )
 ```
+
+:::
 
 ## Key Documentations
 
