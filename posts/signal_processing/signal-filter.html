@@ -1319,19 +1319,20 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
           return `${cpath}/${fileName}`;
         }
 
-        await Promise.all(
-          metaJSON.files.map(async (fileDescriptor) => {
-            try {
-              console.log(`Extracting Data... (${fileDescriptor.filename})`);
-              qwebrUpdateStatusHeader(`Extracting Data... (${fileDescriptor.filename})`);
-              const subArray = rootArray.subarray(fileDescriptor.start, fileDescriptor.end);
-              const fileName = await ensureParentDirectory(`${path}/${fileDescriptor.filename}`);
-              await mainWebR.FS.writeFile(fileName, subArray);
-            } catch (e) {
-              console.warn(e);
-            }
-          })
-        )
+        for(let ii = 0; ii < metaJSON.files.length; ii++) {
+          const fileDescriptor = metaJSON.files[ ii ];
+          try {
+            let filePath = `${path}/${fileDescriptor.filename}`;
+            filePath = filePath.replaceAll(/[\/]+/g, "/");
+            console.log(`Extracting Data... (${filePath})`);
+            qwebrUpdateStatusHeader(`Extracting Data... (${filePath})`);
+            await ensureParentDirectory(filePath);
+            const subArray = rootArray.subarray(fileDescriptor.start, fileDescriptor.end);
+            await mainWebR.FS.writeFile(filePath, subArray);
+          } catch (e) {
+            console.error(e);
+          }
+        }
 
         console.log(`Done Mounting Data! (${path})`);
         qwebrUpdateStatusHeader(`Done Mounting Data! (${path})`);
