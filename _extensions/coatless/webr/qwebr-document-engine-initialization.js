@@ -140,9 +140,6 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
 
         const _data = dataResp.response;
 
-
-        window.metaResp = metaResp;
-
         const metaJSON = JSON.parse(new TextDecoder().decode(metaResp.response));
         console.log(metaJSON)
 
@@ -218,12 +215,15 @@ globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs
       return;
     };
 
-    if( Array.isArray(qwebrMountDataList) ) {
-      const mountTask = Promise.all( qwebrMountDataList.map(doMount) );
-      promiseTasks.push( mountTask );
-    } else if (qwebrMountDataList && typeof qwebrMountDataList === "object") {
-      const mountTask = doMount(qwebrMountDataList);
-      promiseTasks.push( mountTask );
+    let mountDataList = [];
+    if( qwebrMountDataList && !Array.isArray(qwebrMountDataList) && qwebrMountDataList === "object" ) {
+      mountDataList.push(qwebrMountDataList);
+    } else {
+      mountDataList = qwebrMountDataList;
+    }
+
+    for(let ii = 0 ; ii < mountDataList.length; ii++) {
+      await doMount(mountDataList[ ii ]);
     }
 
     /**
