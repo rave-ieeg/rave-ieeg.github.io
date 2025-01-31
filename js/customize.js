@@ -280,7 +280,7 @@ function linkWASMLinks() {
   // make sure window.mainWebR is present
   checkWebR = () => {
     if( !window.mainWebR ) {
-      console.log("No WASM");
+      console.log("No WASM... Waiting");
       setTimeout(checkWebR, 3000);
       return;
     }
@@ -537,7 +537,10 @@ window.docReady(function() {
   const raveModal = new GlobalModal();
   raveModal.register();
 
-  registerDropZones();
+  // The followings need WASM
+  if( document.getElementById("no-wasm") === null ) {
+    registerDropZones();
+    linkWASMLinks();
+  }
 
-  linkWASMLinks();
 })
