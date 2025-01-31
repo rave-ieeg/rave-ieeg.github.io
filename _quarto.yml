@@ -47,6 +47,9 @@ website:
     center: "{{< fa regular copyright >}} Copyright 2024, [BeauchampLab](https://beauchamplab.med.upenn.edu){target='_blank'}."
     right: "[Guide to edit this website](https://rave.wiki/posts/editor-notes/how-to-edit-this-website.html){target='_blank'}"
     border: true
+  google-analytics:
+    tracking-id: GTM-MVX9KRN9
+    anonymize-ip: true
 
 format:
   html:

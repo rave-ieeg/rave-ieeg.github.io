@@ -46,11 +46,14 @@ carousel:
         RAVE module for automatic [localizing and visualizing electrodes in 3D brain](https://yael.wiki){target="_blank"}
 ---
 
+::: {.hidden id="no-wasm"}
+:::
+
 ## RAVE: Reproducible Analysis & Visualization of iEEG {{< ai open-access >}}
 
 RAVE is free and open-source software for the analysis of intracranial electroencephalogram (iEEG) data, including data collected using strips and grids (electrocorticography, ECoG) and depth electrodes (stereotactic EEG). A sister package to RAVE is the [YAEL electrode localization toolkit](https://yael.wiki).
 
-[<iframe width="480" height="270" src="https://www.youtube.com/embed/s6EnlqF-Q8E"
+[<iframe width="480" height="270" src="https://www.youtube-nocookie.com/embed/s6EnlqF-Q8E"
     title="RAVE Highlights" frameborder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     referrerpolicy="strict-origin-when-cross-origin" 

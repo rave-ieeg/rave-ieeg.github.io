@@ -53,7 +53,7 @@ If you want to include your own figures, please upload figures from Github. Make
 You can include videos in documents using the `{{{< video >}}}` shortcode. For example, here we embed a YouTube video:
 
 ``` {.markdown shortcodes="false"}
-{{< video https://www.youtube.com/watch?v=hfHZMfqIaGY >}}
+{{< video https://www.youtube-nocookie.com/embed/watch?v=hfHZMfqIaGY >}}
 ```
 
 Videos can refer to video files (e.g. MPEG) or can be links to videos published on YouTube, Vimeo, or Brightcove. Learn more in the article on [Videos](https://quarto.org/docs/authoring/videos.html).
