@@ -715,6 +715,34 @@
       ],
       "Hash": "d55aa087c47a63ead0f6fc10f8fa1ee0"
     },
+    "ieegio": {
+      "Package": "ieegio",
+      "Version": "0.0.3.9007",
+      "Source": "Repository",
+      "Repository": "raveieeg",
+      "Requirements": [
+        "R.matlab",
+        "R6",
+        "data.table",
+        "digest",
+        "fastmap",
+        "filearray",
+        "freesurferformats",
+        "fs",
+        "fst",
+        "gifti",
+        "grDevices",
+        "hdf5r",
+        "jsonlite",
+        "oro.nifti",
+        "readNSx",
+        "rpyANTs",
+        "stringr",
+        "utils",
+        "yaml"
+      ],
+      "Hash": "5dc050b1e6b87d043f9e2f4e534eac17"
+    },
     "igraph": {
       "Package": "igraph",
       "Version": "2.0.3",
@@ -1040,11 +1068,10 @@
     },
     "raveio": {
       "Package": "raveio",
-      "Version": "0.9.0.82",
+      "Version": "0.9.0.90",
       "Source": "Repository",
-      "Repository": "https://rave-ieeg.r-universe.dev",
+      "Repository": "raveieeg",
       "Requirements": [
-        "R.matlab",
         "R6",
         "callr",
         "checkmate",
@@ -1052,21 +1079,19 @@
         "dipsaus",
         "edfReader",
         "filearray",
-        "fst",
-        "globals",
         "glue",
-        "hdf5r",
+        "ieegio",
         "promises",
         "ravetools",
         "remotes",
-        "rpymat",
-        "stringr",
+        "rpyANTs",
+        "stats",
         "targets",
         "threeBrain",
         "utils",
         "yaml"
       ],
-      "Hash": "8f60774b174778a2d28662adfbd41f05"
+      "Hash": "4b7224a7a9a3dc5737f03d745231940a"
     },
     "ravetools": {
       "Package": "ravetools",
@@ -1089,6 +1114,21 @@
         "waveslim"
       ],
       "Hash": "0c647b3c32b23f3d6c5460a0725c604e"
+    },
+    "readNSx": {
+      "Package": "readNSx",
+      "Version": "0.0.5",
+      "Source": "Repository",
+      "Repository": "https://rave-ieeg.r-universe.dev",
+      "Requirements": [
+        "R6",
+        "cpp11",
+        "data.table",
+        "fastmap",
+        "hdf5r",
+        "jsonlite"
+      ],
+      "Hash": "b940d580640de99536387ab95b39154c"
     },
     "remotes": {
       "Package": "remotes",
@@ -1196,9 +1236,22 @@
       ],
       "Hash": "4c8415e0ec1e29f3f4f6fc108bef0144"
     },
+    "rpyANTs": {
+      "Package": "rpyANTs",
+      "Version": "0.0.4.4",
+      "Source": "Repository",
+      "Repository": "raveieeg",
+      "Requirements": [
+        "RNifti",
+        "grDevices",
+        "reticulate",
+        "rpymat"
+      ],
+      "Hash": "f132df9b2990bd31134ec3396aa819b8"
+    },
     "rpymat": {
       "Package": "rpymat",
-      "Version": "0.1.7",
+      "Version": "0.1.7.1",
       "Source": "Repository",
       "Repository": "raveieeg",
       "Requirements": [
@@ -1211,7 +1264,7 @@
         "rstudioapi",
         "utils"
       ],
-      "Hash": "8a9271a920771cec0032eaaf5e0ad633"
+      "Hash": "9a3ffe897672b3d51b78814e6ae9f66f"
     },
     "rstudioapi": {
       "Package": "rstudioapi",
@@ -1361,9 +1414,9 @@
     },
     "threeBrain": {
       "Package": "threeBrain",
-      "Version": "1.2.0.9014",
+      "Version": "1.2.0.9024",
       "Source": "Repository",
-      "Repository": "https://rave-ieeg.r-universe.dev",
+      "Repository": "raveieeg",
       "Requirements": [
         "R6",
         "digest",
@@ -1383,7 +1436,7 @@
         "utils",
         "xml2"
       ],
-      "Hash": "d69517a14c4fe936692300f0f2a15b90"
+      "Hash": "1e8d68b39f076da581015bb8b9a86232"
     },
     "tibble": {
       "Package": "tibble",
