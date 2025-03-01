@@ -2,42 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://rave.wiki/posts/signal_processing/signal-filter.html</loc>
-    <lastmod>2025-01-31T18:43:06.438Z</lastmod>
+    <lastmod>2025-03-01T03:26:33.328Z</lastmod>
   </url>
   <url>
     <loc>https://rave.wiki/posts/installation/installation.html</loc>
-    <lastmod>2025-01-31T18:43:06.437Z</lastmod>
+    <lastmod>2025-03-01T03:26:33.327Z</lastmod>
   </url>
   <url>
     <loc>https://rave.wiki/posts/electrode_localization/yael.html</loc>
-    <lastmod>2025-01-31T18:43:06.345Z</lastmod>
+    <lastmod>2025-03-01T03:26:33.231Z</lastmod>
   </url>
   <url>
-    <loc>https://rave.wiki/posts/3dviewer/viewer301.html</loc>
-    <lastmod>2025-01-31T18:43:06.341Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rave.wiki/index.html</loc>
-    <lastmod>2025-01-31T18:43:06.334Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rave.wiki/blogs.html</loc>
-    <lastmod>2025-01-31T18:43:05.195Z</lastmod>
+    <loc>https://rave.wiki/posts/customize_modules/python_module_01.html</loc>
+    <lastmod>2025-03-01T03:26:33.227Z</lastmod>
   </url>
   <url>
     <loc>https://rave.wiki/posts/3dviewer/viewer201.html</loc>
-    <lastmod>2025-01-31T18:43:06.341Z</lastmod>
+    <lastmod>2025-03-01T03:26:33.224Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/blogs.html</loc>
+    <lastmod>2025-03-01T03:26:32.080Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/index.html</loc>
+    <lastmod>2025-03-01T03:26:33.215Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/posts/3dviewer/viewer301.html</loc>
+    <lastmod>2025-03-01T03:26:33.224Z</lastmod>
   </url>
   <url>
     <loc>https://rave.wiki/posts/editor-notes/how-to-edit-this-website.html</loc>
-    <lastmod>2025-01-31T18:43:06.344Z</lastmod>
+    <lastmod>2025-03-01T03:26:33.230Z</lastmod>
   </url>
   <url>
     <loc>https://rave.wiki/posts/image_widgets/viewer401.html</loc>
-    <lastmod>2025-01-31T18:43:06.437Z</lastmod>
+    <lastmod>2025-03-01T03:26:33.327Z</lastmod>
   </url>
   <url>
     <loc>https://rave.wiki/posts/installation/update.html</loc>
-    <lastmod>2025-01-31T18:43:06.437Z</lastmod>
+    <lastmod>2025-03-01T03:26:33.328Z</lastmod>
   </url>
 </urlset>
