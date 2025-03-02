@@ -19,7 +19,7 @@ listing:
     categories: true
     sort-ui: true
     filter-ui: true
-    page-size: 5
+    page-size: 9
     grid-columns: 3
     table-hover: true
     exclude:
@@ -42,13 +42,9 @@ title-block-banner: true
 ## Installation
 
 ::: {#quick-access}
-
 :::
-
-
 
 ## Examples
 
 ::: {#full-listings}
-
 :::
