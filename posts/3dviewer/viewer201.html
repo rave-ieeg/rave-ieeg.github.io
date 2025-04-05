@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-da0c5ad94b4ced3c924b2ff945cdd7a3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -1838,6 +1838,10 @@ globalThis.qwebrExecuteCode = async function (
     <a class="nav-link" href="../../blogs.html"> 
 <span class="menu-text">Documentation</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/orgs/rave-ieeg/discussions" target="_blank"> 
+<span class="menu-text">Help &amp; Discussion</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -2313,10 +2317,9 @@ Usage
 <pre><code class="language-R">rave_brain(
   subject,
   surfaces = "pial",
-  use_141 = TRUE,
-  recache = FALSE,
-  clean_before_cache = FALSE,
-  compute_template = FALSE,
+  overlays = "aparc.a2009s+aseg",
+  annotations = "label/aparc.a2009s",
+  ...,
   usetemplateifmissing = FALSE,
   include_electrodes = TRUE
 )
@@ -2347,41 +2350,31 @@ one or more brain surface types from <code>“pial”</code>, <code>“white”<
 </tr>
 <tr>
 <td>
-<code id="use_141">use_141</code>
+<code id="overlays">overlays</code>
 </td>
 <td>
 <p>
-whether to use ‘AFNI/SUMA’ standard 141 brain
+volumes to overlay; default is <code>‘aparc.a2009s+aseg’</code>
 </p>
 </td>
 </tr>
 <tr>
 <td>
-<code id="recache">recache</code>
+<code id="annotations">annotations</code>
 </td>
 <td>
 <p>
-whether to re-calculate cache; only should be used when the original ‘FreeSurfer’ or ‘AFNI/SUMA’ files are changed; such as new files are added
+surface annotation or curvature data to load; default is <code>‘label/aparc.a2009s’</code>, referring to the <code>’*h.aparc.a2009s.annot’</code> under the label folder.
 </p>
 </td>
 </tr>
 <tr>
 <td>
-<code id="clean_before_cache">clean_before_cache</code>
+<code id="...">…</code>
 </td>
 <td>
 <p>
-whether to clean the original cache before <code>recache</code>; only set it to be true if original cached files are corrupted
-</p>
-</td>
-</tr>
-<tr>
-<td>
-<code id="compute_template">compute_template</code>
-</td>
-<td>
-<p>
-whether to compute template mappings; useful when template mapping with multiple subjects are needed
+ignored, reserved for legacy code
 </p>
 </td>
 </tr>
