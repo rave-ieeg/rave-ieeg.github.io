@@ -156,7 +156,7 @@ The last block analyzes and visualizes the pipeline target dependency graph.
 ```{{r visualize, echo=FALSE}}
 # Fixed usage, show pipeline graph
 try({
-  asNamespace("raveio")$pipeline_dependency_graph(
+  asNamespace("ravepipeline")$pipeline_dependency_graph(
     pipeline_path = ".", glimpse = TRUE)
 }, silent = TRUE)
 ```

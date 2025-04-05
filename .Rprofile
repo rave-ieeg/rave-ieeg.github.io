@@ -33,11 +33,11 @@ local({
     "R_USER_DATA_DIR" = file.path(wd, "data", "library", "data"),
     "R_USER_CONFIG_DIR" = file.path(wd, "data", "library", "config")
   )
-  if(system.file(package = "raveio") != '') {
+  if(system.file(package = "ravepipeline") != '') {
     try({
-      raveio <- asNamespace("raveio")
-      raveio$raveio_setopt(key = "data_dir", file.path(wd, "data", "processed"))
-      raveio$raveio_setopt(key = "raw_data_dir", file.path(wd, "data", "raw"))
+      ravepipeline <- asNamespace("ravepipeline")
+      ravepipeline$raveio_setopt(key = "data_dir", file.path(wd, "data", "processed"))
+      ravepipeline$raveio_setopt(key = "raw_data_dir", file.path(wd, "data", "raw"))
     })
   }
 })
