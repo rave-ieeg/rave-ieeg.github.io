@@ -36,6 +36,9 @@ website:
         text: Demo
       - href: blogs.md
         text: Documentation
+      - href: https://github.com/orgs/rave-ieeg/discussions
+        text: Help & Discussion
+        target: "_blank"
     tools:
       - icon: github
         href: https://github.com/rave-ieeg/

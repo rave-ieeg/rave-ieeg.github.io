@@ -10,7 +10,7 @@ disable_fork_clusters: no
 max_worker: 7.0
 disable_startup_speed_check: no
 drive_speed:
-- .inf
+- 500.0
 - 200.0
 image_height: 768
 image_width: 1280
