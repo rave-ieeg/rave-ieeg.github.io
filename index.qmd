@@ -59,7 +59,7 @@ RAVE is free and open-source software for the analysis of intracranial electroen
     referrerpolicy="strict-origin-when-cross-origin" 
     allowfullscreen> </iframe>]{#rave-intro-video style="width: 480px; display: block; float: right;"} RAVE is easy to use and creates publication-ready figures with absolutely no programming. RAVE can import standard data formats, including Matlab and EDF, and is compatible with BIDS-iEEG. It runs on laptops, lab servers, or in the cloud. Since all user interactions take place through a web browser, the user experience is identical on Mac, Windows and Linux. Data from RAVE can be exported for analysis using other software ([click here for a list of iEEG analysis tools](https://openwetware.org/wiki/RAVE:SoftwareToolsTable)). Conversely, outside results can be imported and visualized using RAVE's visualization engine. RAVE provides templates to make it easy to create GUI-based analyses using the streamlined application programming interface.
 
-Join our growing RAVE-iEEG community on Slack {{< fa brands slack >}}. E-mail [slack\@rave.wiki](mailto:slack@rave.wiki) for an invitation.
+Join our growing RAVE-iEEG community on Github {{< fa brands github >}}. E-mail [help\@rave.wiki](mailto:help@rave.wiki) for walk-through, or post questions/discussions at our [new community forum](https://github.com/orgs/rave-ieeg/discussions)
 
 RAVE has been developed since 2017 with funding provided by NIH `R01MH133717` , `U01NS113339`, and `1R24MH117529`. If you use RAVE for a publication, please cite:
 
