@@ -21,7 +21,7 @@ module_lookup_file: ~/rave_modules/modules.csv
 module_root_dir: ~/rave_modules/
 file_structure: native
 bids_data_dir: /Users/dipterix/rave_data/bids_dir/
-data_dir: /Users/dipterix/PennNeurosurgery Dropbox/Zhengjia Wang/RAVE/Website/rave-ieeg.github.io/data/processed
-raw_data_dir: /Users/dipterix/PennNeurosurgery Dropbox/Zhengjia Wang/RAVE/Website/rave-ieeg.github.io/data/raw
+data_dir: /Users/dipterix/PennNeurosurgery Dropbox/Dipterix W/RAVE/Website/rave-ieeg.github.io/data/processed
+raw_data_dir: /Users/dipterix/PennNeurosurgery Dropbox/Dipterix W/RAVE/Website/rave-ieeg.github.io/data/raw
 verbose_level: DEBUG
 tensor_temp_path: ~/rave_data/cache_dir/

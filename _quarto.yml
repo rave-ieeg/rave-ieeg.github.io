@@ -32,8 +32,6 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: posts/3dviewer/viewer301.html?viewer=full
-        text: Demo
       - href: blogs.md
         text: Documentation
       - href: https://github.com/orgs/rave-ieeg/discussions

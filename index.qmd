@@ -18,16 +18,25 @@ carousel:
         News Event! (Sunday Oct 6, 2024)
       details: |
         <p>
-        RAVE has been selected to exhibit at <i>[Building Tools & Tech for an Innovative Future: A BRAIN Initiative Alliance Social](https://www.braininitiative.org/events/sfn-social/){target="_blank"}</i> during the Society for Neuroscience (2024)
+        RAVE invited tutorial will be given at <i>[ASA Statistics in Imaging Section](https://statistics.rice.edu/events/2025-statistical-methods-imaging-conference)</i> (2025)
         </p>
         <p class="text-start">
-        Date: Sunday, October 6, 2024 <br />
-        Time: 6:30-9:00 p.m. CT <br />
-        Location: [Grant Park, Hyatt Regency McCormick Place, Chicago, IL](https://maps.app.goo.gl/5mbTWCFopC31YSWU7){target="_blank"}
+        Date: May 19, 2025 <br />
+        Time: 8:00 - 9:15 AM <br />
+        Location: Rice University, Houston, TX
+        </p>
+        <p class="text-start">
+          <details class="text-start">
+            <summary>Past events</summary>
+            <ul>
+              <li>Oct 06, 2024: RAVE has been selected to exhibit at <i>[Building Tools & Tech for an Innovative Future: A BRAIN Initiative Alliance Social](https://www.braininitiative.org/events/sfn-social/){target="_blank"}</i> during the Society for Neuroscience</li>
+              <li>Oct 18, 2022: Workshop on intracranial EEG analysis [4th Floor Atrium of the Lister Hill Library (Center for Teaching and Learning, formerly Edge of Chaos](https://sites.uab.edu/cnbci/education/workshops/)</li>
+            </ul>
+          </details>
         </p>
         <p class="text-sm-end">
           <span class="fst-italic fw-lighter">
-            Background photo: RAVE highlighted at <br />CNS 2024
+            Background photo - <br/>RAVE highlighted at Dr. Iahn Cajigas's talk @ CNS 2024
           </small>
         </p>
     - image: "images/power-explorer.webp"
@@ -43,7 +52,7 @@ carousel:
       title: |
         YAEL: Your Advanced Electrode Localization
       details: |
-        RAVE module for automatic [localizing and visualizing electrodes in 3D brain](https://yael.wiki){target="_blank"}
+        RAVE module for automatic localizing and visualizing electrodes. [See a demo result](/posts/3dviewer/viewer301.html?viewer=full){target="_blank"}
 ---
 
 ::: {.hidden id="no-wasm"}
