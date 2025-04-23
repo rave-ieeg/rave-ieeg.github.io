@@ -16,7 +16,7 @@ copyright:
   year: 2025
 ---
 
-The Natural Scenes Dataset (NSD) is a large-scale fMRI dataset conducted at ultra-high-field (7T) strength at the Center of Magnetic Resonance Research (CMRR) at the University of Minnesota (https://naturalscenesdataset.org). A recent work has presented the NSD stimuli to intracranial EEG patients. Here is how you can visualize the NSD-iEEG dataset with RAVE.
+This tutorial is for NSD-iEEG dataset (link is to be added when the paper is published). For more information on the Natural Scenes Dataset (NSD), please check out website (https://naturalscenesdataset.org). 
 
 ## Data and program setups
 
