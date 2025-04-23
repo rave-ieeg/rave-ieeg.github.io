@@ -15,7 +15,7 @@ carousel:
       active: true
       interval: 10000
       title: |
-        News Event! (Sunday Oct 6, 2024)
+        New Events! (May 19, 2025)
       details: |
         <p>
         RAVE invited tutorial will be given at <i>[ASA Statistics in Imaging Section](https://statistics.rice.edu/events/2025-statistical-methods-imaging-conference)</i> (2025)
