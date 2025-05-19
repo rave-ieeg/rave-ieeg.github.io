@@ -42,4 +42,4 @@ copyright:
 
 ## Other Tutorials
 
--   2025 ASA-SMI: [Github](http://github.com/dipterix/rave-smi-tutorial)
+-   2025 ASA-SMI: [Github](http://github.com/dipterix/rave-smi-tutorial) [Slides](https://www.dropbox.com/scl/fi/s9b4e99al984edpskki1f/slides.pptx?rlkey=kegzqwxf34b0oh2fgkdjzym2j&dl=0)
