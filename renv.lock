@@ -717,7 +717,7 @@
     },
     "ieegio": {
       "Package": "ieegio",
-      "Version": "0.0.4.9003",
+      "Version": "0.0.4.9004",
       "Source": "Repository",
       "Repository": "raveieeg",
       "Requirements": [
@@ -741,7 +741,7 @@
         "utils",
         "yaml"
       ],
-      "Hash": "0e64dba249162dac342bc52687eafd3a"
+      "Hash": "ac837bd3a392329ef854e4878b46f83c"
     },
     "igraph": {
       "Package": "igraph",
@@ -1097,7 +1097,7 @@
     },
     "ravepipeline": {
       "Package": "ravepipeline",
-      "Version": "0.0.1.9009",
+      "Version": "0.0.1.9010",
       "Source": "Repository",
       "Repository": "raveieeg",
       "Requirements": [
@@ -1121,7 +1121,7 @@
         "uuid",
         "yaml"
       ],
-      "Hash": "68597393e4e185765ce5c5698ac3f354"
+      "Hash": "78d90955875e48c1b84c1ac2998ab7b0"
     },
     "ravetools": {
       "Package": "ravetools",
@@ -1147,7 +1147,7 @@
     },
     "readNSx": {
       "Package": "readNSx",
-      "Version": "0.0.5",
+      "Version": "0.0.5.1",
       "Source": "Repository",
       "Repository": "raveieeg",
       "Requirements": [
@@ -1158,7 +1158,7 @@
         "hdf5r",
         "jsonlite"
       ],
-      "Hash": "b940d580640de99536387ab95b39154c"
+      "Hash": "9c1221c47c3df5fe035951ce63252b23"
     },
     "remotes": {
       "Package": "remotes",
@@ -1281,7 +1281,7 @@
     },
     "rpymat": {
       "Package": "rpymat",
-      "Version": "0.1.7.1",
+      "Version": "0.1.7.2",
       "Source": "Repository",
       "Repository": "raveieeg",
       "Requirements": [
@@ -1294,7 +1294,7 @@
         "rstudioapi",
         "utils"
       ],
-      "Hash": "9a3ffe897672b3d51b78814e6ae9f66f"
+      "Hash": "efbd11f4b02f80a6db844b3f21f90245"
     },
     "rstudioapi": {
       "Package": "rstudioapi",
@@ -1445,7 +1445,7 @@
     },
     "threeBrain": {
       "Package": "threeBrain",
-      "Version": "1.3.0.2",
+      "Version": "1.3.0.3",
       "Source": "Repository",
       "Repository": "raveieeg",
       "Requirements": [
@@ -1467,7 +1467,7 @@
         "utils",
         "xml2"
       ],
-      "Hash": "9a414b5cc48787f63fa0f8667cf852b1"
+      "Hash": "fa09db8a725f904d7363705a2f8e586a"
     },
     "tibble": {
       "Package": "tibble",
