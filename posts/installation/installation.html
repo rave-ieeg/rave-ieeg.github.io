@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,14 +71,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../favicon.ico" rel="icon">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e78bfa65f25c6176990b0c0550aef2f4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-34c75ececd036b4c1706ff7b4f062581.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -129,6 +130,8 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">RAVE</span>
     </a>
@@ -247,7 +250,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <p>How to check if I have an admin account?</p>
 </blockquote>
 <p>Open <code>Terminal</code> (in the /Applications/Utilities folder). Copy the command line shown below into the terminal window.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">sudo</span> ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">sudo</span> ls</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You will be prompted for a password. This is the password of the MacOS account you are logged in as. If you have an admin account, MacOS will show the files in the current directory. If not, you will receive an error message. Alternately, click anywhere on the desktop to activate the MacOS menu bar, click on the Apple icon at the top left of the menu bar, then “System Preferences” or “System Settings”, then “Users &amp; Groups”. Find your current account and verify that it has admin privileges.</p>
 <blockquote class="blockquote">
 <p>What if I don’t have an admin account?</p>
@@ -258,7 +261,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <h3 class="anchored" data-anchor-id="install-r-version-4-or-higher">1. Install R, version 4 or higher</h3>
 <p><a href="https://cran.r-project.org/bin/macosx/" target="_blank" title="Official Website to Download R">Click here to install the latest version of the R language for Mac</a>. Find the latest package (.pkg) file, click to download, then open and install. There are different versions of R for older Macs with Intel CPUs and newer Macs with Apple CPUs (M1/M2). Choose the correct version, either “Intel 64-bit” or “Apple silicon ARM64”.</p>
 <p><strong><em>To verify R installation</em></strong>: R will be installed in the /Applications folder. Open this folder and double-click on the R icon to start R. After starting R, we recommend that you right-click on the R icon in the Dock and select “Options”/“Keep in Dock” to make it easier to launch with a single click. We also recommend starting R, opening the “Preferences”/“Startup” tab, and change “Save workspace on exit from”R” to “No”. Uncheck the box “Read history file on startup”. To check the current version of “R”, start R and enter the following into the console:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>R.version</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>R.version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This will produce a number of lines of output, beginning with something like</p>
 <pre><code> platform       x86_64-apple-darwin17.0     
  arch           x86_64</code></pre>
@@ -266,16 +269,16 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <section id="homebrew-package-manager" class="level3">
 <h3 class="anchored" data-anchor-id="homebrew-package-manager">2. homebrew package manager</h3>
 <p>Installation requires the latest version of the <a href="http://brew.sh/" target="_blank"><code>homebrew</code></a> package manager. Open <code>Terminal</code> (in the /Applications/Utilities folder). Copy the command line shown below into the terminal window.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/bin/env</span> bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/bin/env</span> bash</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Copy the line below into the terminal window.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This step will take several minutes to complete. Wait until the installation is finished and the command prompt reappears before moving to the next step.</p>
 <p><strong><em>Add brew to your path or the next installation steps will fail</em></strong>. The installer provides the necessary command lines in the Terminal window at the conclusion of the previous step. Execute them in the same terminal window by copying and pasting. They will look something like</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'eval "$(/opt/homebrew/bin/brew shellenv)"'</span> <span class="op">&gt;&gt;</span> ~/.zprofile</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="ex">/opt/homebrew/bin/brew</span> shellenv<span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'eval "$(/opt/homebrew/bin/brew shellenv)"'</span> <span class="op">&gt;&gt;</span> ~/.zprofile</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="ex">/opt/homebrew/bin/brew</span> shellenv<span class="va">)</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>These commands will not produce any output.</p>
 <p>To verify brew installation: Copy the command line shown below into the terminal window.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Should produce a result like</p>
 <pre><code> Homebrew 3.4.1
  Homebrew/homebrew-core (git revision f03c984ad7; last commit 2022-03-08)</code></pre>
@@ -283,7 +286,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <section id="install-libraries-using-brew" class="level3">
 <h3 class="anchored" data-anchor-id="install-libraries-using-brew">3. Install libraries using brew</h3>
 <p>Enter this command into the terminal window:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install hdf5 fftw pkg-config cmake libpng</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install hdf5 fftw pkg-config cmake libpng</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This step will install the <code>hdf5</code> (high-performance file system), <code>fftw</code> (fast-fourier transform library), <code>pkg-config</code> (package configuration toolbox), <code>cmake</code> (cross-platform make for compiling optional packages such as ant), <code>libpng</code> (library for manipulating png images) and takes several minutes to complete. Wait until the installation is finished and the command prompt reappears before moving to the next step.</p>
 </section>
 <section id="finished-with-prerequisites" class="level3">
@@ -295,10 +298,10 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <p>You may receive this message</p>
 <pre><code> Warning: macOS is reporting that you have not yet agreed to the Xcode license. This can occur if Xcode has been updated or reinstalled (e.g. as part of a macOS update). Some features (e.g. Git / SVN) may be disabled.</code></pre>
 <p>To make this error go away, open the <code>Terminal</code> app in the Applications folder, enter</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> xcodebuild <span class="at">-license</span> accept</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> xcodebuild <span class="at">-license</span> accept</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then restart <code>RStudio</code>. <a href="https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/" target="_blank">A helpful article in case of XCode installation errors</a>.</p>
 <p>If the XCode download from the RStudio install in step 2 fails, install the command line tools manually. First, download XCode. Click “GET” (if instead you see “OPEN”, then Xcode is already installed.) Open the <code>Terminal</code> app in the Applications folder, enter</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xcode-select</span> <span class="at">--install</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xcode-select</span> <span class="at">--install</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Click “yes” to proceed with installing the command-line tools. The message “xcode-select: error: command line tools are already installed” means that you can proceed.</p>
 </section>
 </div>
@@ -322,7 +325,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <section id="add-r-cran-repository-to-your-app-list" class="level3">
 <h3 class="anchored" data-anchor-id="add-r-cran-repository-to-your-app-list">1. Add R-Cran repository to your app list:</h3>
 <p>Open terminal (if you don’t know how, look at your sidebar in Ubuntu, <code>search your computer</code> enter <code>terminal</code>, and open it), type the following code:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update indices</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update indices</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update <span class="at">-qq</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install two helper packages we need</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">--no-install-recommends</span> software-properties-common dirmngr</span>
@@ -331,36 +334,36 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fingerprint: E298A3A825C0D65DFD57CBB651716619E084DAB9</span></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span> https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc <span class="kw">|</span> <span class="fu">sudo</span> tee <span class="at">-a</span> /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># add the R 4.0 repo from CRAN -- adjust 'focal' to 'groovy' or 'bionic' as needed</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository <span class="st">"deb https://cloud.r-project.org/bin/linux/ubuntu </span><span class="va">$(</span><span class="ex">lsb_release</span> <span class="at">-cs</span><span class="va">)</span><span class="st">-cran40/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository <span class="st">"deb https://cloud.r-project.org/bin/linux/ubuntu </span><span class="va">$(</span><span class="ex">lsb_release</span> <span class="at">-cs</span><span class="va">)</span><span class="st">-cran40/"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="install-r" class="level3">
 <h3 class="anchored" data-anchor-id="install-r">2. Install R</h3>
 <p>Copy the following command line by line into your terminal and run</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install r-base r-base-dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install r-base r-base-dev</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="type-and-enter-r-your-terminal.-this-launches-r-from-your-terminal." class="level3">
 <h3 class="anchored" data-anchor-id="type-and-enter-r-your-terminal.-this-launches-r-from-your-terminal.">3. Type and enter “R” your terminal. This launches R from your terminal.</h3>
 <p>Copy the following command line by line into your terminal and run</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'ravemanager'</span>, <span class="at">repos =</span> <span class="st">'https://rave-ieeg.r-universe.dev'</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">system_requirements</span>(<span class="at">sudo =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'ravemanager'</span>, <span class="at">repos =</span> <span class="st">'https://rave-ieeg.r-universe.dev'</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">system_requirements</span>(<span class="at">sudo =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If your operating system is supported, it will print out all the system libraries needed.</p>
 </section>
 <section id="install-compiling-tools-and-system-dependencies" class="level3">
 <h3 class="anchored" data-anchor-id="install-compiling-tools-and-system-dependencies">4. Install compiling tools and system dependencies</h3>
 <p>Open a new terminal window, copy the installation script generated from the last step into this new window. For example, on Ubuntu 20.x,</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install <span class="at">-y</span> build-essential file git psmisc procps sudo wget make cmake <span class="dt">\</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install <span class="at">-y</span> build-essential file git psmisc procps sudo wget make cmake <span class="dt">\</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a> libsodium-dev libffi-dev libbz2-dev libpcre2-dev libcairo2-dev libssh2-1-dev libtiff5-dev libv8-dev <span class="dt">\</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a> libicu-dev zlib1g-dev libcurl4-openssl-dev libssl-dev libfontconfig1-dev libfreetype6-dev <span class="dt">\</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a> libfribidi-dev libharfbuzz-dev libjpeg-dev libpng-dev libtiff-dev pandoc libxml2-dev git libgit2-dev <span class="dt">\</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a> libfftw3-dev libhdf5-dev libglpk-dev libgmp3-dev libzmq3-dev python3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a> libfftw3-dev libhdf5-dev libglpk-dev libgmp3-dev libzmq3-dev python3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The packages <code>libv8-dev</code> is for <code>V8</code> package to enable JavaScript. <code>libxml2-dev</code> is for <code>xml2</code>. <code>libfftw3-dev</code> <code>libtiff5-dev</code> are necessary for fast-fourier transformations and <code>libhdf5-dev</code> is for reading and writing data in open data format <code>HDF5</code>. All the other packages are necessary for <code>devtools</code> (compilers)</p>
 </section>
 <section id="install-the-free-version-of-rstudio-desktop-here" class="level3">
 <h3 class="anchored" data-anchor-id="install-the-free-version-of-rstudio-desktop-here">5. Install the free version of RStudio Desktop here:</h3>
 <p>Go to <a href="https://posit.co/download/rstudio-desktop/" target="_blank">https://posit.co/download/rstudio-desktop/</a> and download one with keywords “Ubuntu xxx/Debian xxx” (depending on your system version), move the downloaded file to your <strong>desktop</strong>, rename it “rstudio.deb”.</p>
 <p>Open terminal, type the following command in your terminal</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> ./rstudio.deb </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> ./rstudio.deb </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and <code>RStudio</code> should be in your application list. If not, look at your sidebar in Ubuntu, click <strong>search your computer</strong> and enter “RStudio”.</p>
 </section>
 </div>
@@ -371,11 +374,11 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <ol type="1">
 <li>Open the <code>R</code> application if it is not already open (<code>RStudio</code> may also be used). Copy and paste the following command into the <code>R</code> (or <code>RStudio</code>) console:</li>
 </ol>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'ravemanager'</span>, <span class="at">repos =</span> <span class="st">'https://rave-ieeg.r-universe.dev'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'ravemanager'</span>, <span class="at">repos =</span> <span class="st">'https://rave-ieeg.r-universe.dev'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
 <li>Copy and paste the following command into the <code>R</code> console:</li>
 </ol>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">install</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">install</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wait until you see the “Done finalizing installations!” message and the R Console command prompt reappears. This may take a few minutes depending on the speed of your internet connection. After installation, it is recommended to close all instances of <code>R</code> and restart <code>R</code>.</p>
 <div class="rave-modal" data-type="botton" data-class="btn btn-outline-primary" data-label="Common installation problems" data-title="Common installation problems">
 <p>Here is a list of common problems you might encounter during the installlation.</p>
@@ -396,7 +399,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <section id="step-3-launch-rave" class="level2">
 <h2 class="anchored" data-anchor-id="step-3-launch-rave">Step 3: Launch RAVE</h2>
 <p>Copy and paste the following command into the <code>R</code> console:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rave<span class="sc">::</span><span class="fu">start_rave2</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rave<span class="sc">::</span><span class="fu">start_rave2</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In a few seconds a web browser window showing RAVE should appear. Success! Explore RAVE by clicking on one of the module names on the left-hand side such as “Subject 3D Viewer” to view a brain or “Power Explorer” to view sample iEEG data.</p>
 </section>
 <section id="step-4-analyze-your-data-with-rave" class="level2">
@@ -406,7 +409,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <section id="optional-but-recommended-install-isolated-python-environment" class="level4">
 <h4 class="anchored" data-anchor-id="optional-but-recommended-install-isolated-python-environment">(optional but recommended): Install Isolated Python Environment</h4>
 <p>Copy and paste the following command into the “R” console:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">configure_python</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">configure_python</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Some advanced RAVE features (such as CT to MRI alignment via <code>ANTs</code>) call Python libraries. To prevent conflicts with existing Python installations and ensure stability and reliability, this step uses <code>Miniconda</code> to install an isolated Python environment and useful Python packages (<code>numpy</code>, <code>scipy</code>, <code>jupyterlab</code>, <code>mne</code>, <code>pynwb</code>, <code>antspyx</code>).</p>
 
 
@@ -465,13 +468,14 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

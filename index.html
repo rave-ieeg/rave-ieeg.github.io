@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,14 +33,15 @@ ul.task-list li input[type="checkbox"] {
 <link href="./favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6a3055c089ca9bb8f927a1b446823598.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5eac1be89f9d7384a23f90ef88ea304e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
@@ -104,12 +105,36 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
           <div class="carousel-caption h-100">
             <div class="carousel-caption-content-wrapper">
               <div class="carousel-caption-content">
-                                  <h1><p>New Events! (May 19, 2025)</p></h1>
-                                <p>
-                                RAVE invited tutorial will be given at <i><a href="https://statistics.rice.edu/events/2025-statistical-methods-imaging-conference">ASA Statistics in Imaging Section</a></i> (2025)
-                                </p>
+                                  <h1><p>Cover Images</p></h1>
+                                <style>
+                                .carousel-cover {
+                                  display: inline-flex;
+                                  height: 300px;
+                                }
+                                .carousel-cover figure {
+                                  padding: 7px;
+                                  border: 1px solid #a1a1a1;
+                                  border-radius: 5px;
+                                  backdrop-filter: blur(10px);
+                                  margin: 14px;
+                                  height: 270px;
+                                }
+                                .carousel-cover figure img {
+                                  margin: 0;
+                                  height: 100%;
+                                  width: auto;
+                                }
+                                </style>
+                                <div class="carousel-cover">
+                                <figure class="figure">
+                                <a href="https://www.jneurosci.org/content/45/42.cover-expansion" target="_blank"> <img src="images/abstracts/cover-jneurosci-oct2025.jpg" class="figure-img"> </a>
+                                </figure>
+                                <figure class="figure">
+                                <a href="https://www.sciencedirect.com/science/article/pii/S1053811920308272" target="_blank"> <img src="images/abstracts/rave-neuroimage.webp" class="figure-img"> </a>
+                                </figure>
+                                </div>
                                 <p class="text-start">
-                                Date: May 19, 2025 <br> Time: 8:00 - 9:15 AM <br> Location: Rice University, Houston, TX
+                                Please check out our posters at sfN 2025! <br> &nbsp;&nbsp; Date: Nov 17, 2025 <br> &nbsp;&nbsp; Location: San Diego Convention Center
                                 </p>
                                 <p class="text-start">
                                 </p><details class="text-start">
@@ -117,6 +142,9 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
                                 Past events
                                 </summary>
                                 <ul>
+                                <li>
+                                May 19, 2025” RAVE invited tutorial will be given at <i><a href="https://statistics.rice.edu/events/2025-statistical-methods-imaging-conference">ASA Statistics in Imaging Section</a></i>
+                                </li>
                                 <li>
                                 Oct 06, 2024: RAVE has been selected to exhibit at <i><a href="https://www.braininitiative.org/events/sfn-social/" target="_blank">Building Tools &amp; Tech for an Innovative Future: A BRAIN Initiative Alliance Social</a></i> during the Society for Neuroscience
                                 </li>
@@ -177,6 +205,8 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">RAVE</span>
     </a>
@@ -235,7 +265,10 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <p>RAVE is free and open-source software for the analysis of intracranial electroencephalogram (iEEG) data, including data collected using strips and grids (electrocorticography, ECoG) and depth electrodes (stereotactic EEG). A sister package to RAVE is the <a href="https://yael.wiki">YAEL electrode localization toolkit</a>.</p>
 <p><span id="rave-intro-video" style="width: 480px; display: block; float: right;"><iframe width="480" height="270" src="https://www.youtube-nocookie.com/embed/s6EnlqF-Q8E" title="RAVE Highlights" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""> </iframe></span> RAVE is easy to use and creates publication-ready figures with absolutely no programming. RAVE can import standard data formats, including Matlab and EDF, and is compatible with BIDS-iEEG. It runs on laptops, lab servers, or in the cloud. Since all user interactions take place through a web browser, the user experience is identical on Mac, Windows and Linux. Data from RAVE can be exported for analysis using other software (<a href="https://openwetware.org/wiki/RAVE:SoftwareToolsTable">click here for a list of iEEG analysis tools</a>). Conversely, outside results can be imported and visualized using RAVE’s visualization engine. RAVE provides templates to make it easy to create GUI-based analyses using the streamlined application programming interface.</p>
 <p>Join our growing RAVE-iEEG community on Github <i class="fa-brands fa-github" aria-label="github"></i>. E-mail <a href="mailto:help@rave.wiki">help@rave.wiki</a> for walk-through, or post questions/discussions at our <a href="https://github.com/orgs/rave-ieeg/discussions">new community forum</a></p>
-<p>RAVE has been developed since 2017 with funding provided by NIH <code>R01MH133717</code> , <code>U01NS113339</code>, and <code>1R24MH117529</code>. If you use RAVE for a publication, please cite:</p>
+</section>
+<section id="attribution" class="level2">
+<h2 class="anchored" data-anchor-id="attribution">Attribution</h2>
+<p>RAVE has been developed since 2017 with funding provided by NIH <code>R01MH133717</code> , <code>U01NS113339</code>, and <code>1R24MH117529</code>, released under <a href="https://creativecommons.org/licenses/by/4.0/">creative-common (<i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i><i class="fa-brands fa-creative-commons-by" aria-label="creative-commons-by"></i>)</a> license. If you use RAVE for a publication, please cite:</p>
 <blockquote class="blockquote">
 <p>Magnotti JF, Wang Z, Beauchamp MS. RAVE: comprehensive open-source software for reproducible analysis and visualization of intracranial EEG data. NeuroImage (2020) 223:117341. [<a href="https://www.sciencedirect.com/science/article/pii/S1053811920308272">Click here for the journal full text</a>] [<a href="https://s3-us-west-2.amazonaws.com/oww-files-public/d/da/Magnotti_Wang_Beauchamp_Neuroimage2020_RAVE.pdf">Click here for the PDF</a>] [<a href="https://www.biorxiv.org/content/10.1101/2020.06.02.129676v1">Click here for the preprint</a>].</p>
 </blockquote>
@@ -243,6 +276,13 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <blockquote class="blockquote">
 <p>Wang Z, Magnotti JF, Zhang X, Beauchamp MS. YAEL: Your Advanced Electrode Localizer. Eneuro. 2023 Oct 1;10(10). [<a href="https://www.eneuro.org/content/10/10/ENEURO.0328-23.2023">Click here for the journal full text</a>] [<a href="https://s3-us-west-2.amazonaws.com/oww-files-public/7/76/Wang_Magnotti_Zhang_Beauchamp_eNeuro_2023.pdf">Click here for the PDF</a>] [<a href="https://www.biorxiv.org/content/10.1101/2023.08.04.552023v1">Click here for the preprint</a>].</p>
 </blockquote>
+<p>If you like RAVE, we appreciate that you include the following “created-via-RAVE” logo to help promote us:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/attribution.png" class="img-fluid figure-img" style="width:30.0%"></p>
+<figcaption>RAVE Attribution Logo</figcaption>
+</figure>
+</div>
 </section>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
@@ -295,6 +335,28 @@ Oct 2023
 <a class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank" href="https://doi.org/10.1523/ENEURO.0328-23.2023">
 <i class="ai ai-1x ai-doi"></i>
 DOI: 10.1523/ENEURO.0328-23.2023
+</a>
+</div>
+</div>
+</div>
+<div class="grid abstract-item">
+<div class="g-col-12 g-col-md-2 abbr">
+<div class="figure">
+<img class="preview z-depth-1 rounded w-100 placeholder placeholder-glow" data-src="images/abstracts/cover-jneurosci-oct2025.jpg" alt="" loading="lazy">
+</div>
+</div>
+<div class="g-col-12 g-col-md-10 g-col-lg-8">
+<div class="title">Stereoelectroencephalography Reveals Neural Signatures of Multisensory Integration in the Human Superior Temporal Sulcus during Audiovisual Speech Perception</div>
+<div class="author">Yue Zhang, John F. Magnotti, Xiang Zhang, Zhengjia Wang, Yingjia Yu, Kathryn A. Davis, Sameer A. Sheth, H. Isaac Chen, Daniel Yoshor and Michael S. Beauchamp</div>
+<div class="periodical">
+<em>Journal of Neuroscience</em>
+, 
+October 2025
+</div>
+<div class="links">
+<a class="btn btn-sm z-depth-0" role="button" rel="external nofollow noopener" target="_blank" href="https://doi.org/10.1523/JNEUROSCI.1037-25.2025">
+<i class="ai ai-1x ai-doi"></i>
+DOI: 10.1523/JNEUROSCI.1037-25.2025
 </a>
 </div>
 </div>
@@ -513,13 +575,14 @@ DOI: 10.7554/eLife.48116
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

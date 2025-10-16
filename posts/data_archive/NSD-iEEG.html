@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,14 +71,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../favicon.ico" rel="icon">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e78bfa65f25c6176990b0c0550aef2f4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-34c75ececd036b4c1706ff7b4f062581.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -129,6 +130,8 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">RAVE</span>
     </a>
@@ -253,8 +256,8 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <h3 class="anchored" data-anchor-id="make-sure-rave-is-up-to-date">Make sure RAVE is up-to-date</h3>
 <p>Please make sure <a href="https://rave.wiki/posts/installation/installation.html">RAVE is installed</a>. If you have installed prior to <em>May 22, 2025</em> and haven’t updated since then, you <a href="https://rave.wiki/posts/installation/update.html">need to update RAVE</a></p>
 <p>The RAVE pipeline to visualize the NSD-iEEG data is <a href="https://github.com/rave-ieeg/rave-gists/blob/main/import-nsd-electrodes.R">published on Github</a>. You can use RAVE’s built-in functions to load the script:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure the pipeline is up-to-date</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ravepipeline<span class="sc">::</span><span class="fu">update_local_snippet</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure the pipeline is up-to-date</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ravepipeline<span class="sc">::</span><span class="fu">update_local_snippet</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="generate-subject-level-3d-viewer" class="level2">
@@ -265,7 +268,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <li><code>bids_subject_code</code>: subject code, with or without the leading <code>sub-</code></li>
 </ul>
 <p>For example, here is how to generate a standalone 3D viewer for <code>sub-06</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>import_nsd_ieeg <span class="ot">=</span> ravepipeline<span class="sc">::</span><span class="fu">load_snippet</span>(<span class="st">"import-nsd-electrodes"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>import_nsd_ieeg <span class="ot">=</span> ravepipeline<span class="sc">::</span><span class="fu">load_snippet</span>(<span class="st">"import-nsd-electrodes"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>result <span class="ot">=</span> <span class="fu">import_nsd_ieeg</span>(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">bids_project_path =</span> <span class="st">"~/rave_data/nsd_data/NSDiEEG/"</span>, </span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">bids_subject_code =</span> <span class="st">"06"</span>)</span>
@@ -298,7 +301,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/Users/zj/rave_data/data_dir/NSDiEEG/NSDiEEG_06/rave/meta/electrodes.csv"</span></span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $viewer_path</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/Users/zj/rave_data/nsd_data/NSDiEEG/derivatives/rave/sub-06/exports/viewers/nsd_import.html"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/Users/zj/rave_data/nsd_data/NSDiEEG/derivatives/rave/sub-06/exports/viewers/nsd_import.html"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>RAVE subject <code>NSDiEEG_06</code> will be created with the following data:</p>
 <ul>
 <li><code>electrodes.csv</code>: this is the electrode coordinates used by RAVE, that contains electrode coordinates in T1 scanner, FreeSurfer tk-registered RAS, MNI-152, and FreeSurfer spherical coordinates</li>
@@ -316,9 +319,9 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <h2 class="anchored" data-anchor-id="group-level-viewer">Group-level viewer</h2>
 <p>Once the subject is imported to RAVE, you can use RAVE to generate group-level viewer on many popular templates. Here is an example using <code>fsaverage</code>. Other choices are <code>cvs_avg35_inMNI152</code> (MNI152), <code>N27</code> (Collin’s brain)</p>
 <p>To start, let’s make sure you have the template. This is one-time setup code.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>threeBrain<span class="sc">::</span><span class="fu">download_template_subject</span>(<span class="st">"fsaverage"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>threeBrain<span class="sc">::</span><span class="fu">download_template_subject</span>(<span class="st">"fsaverage"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Next, load the brain for all the subjects from NSD-iEEG data</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- inputs --------------</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- inputs --------------</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You can add more subjects here</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>subjects <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"06"</span>)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>template <span class="ot">=</span> <span class="st">"fsaverage"</span></span>
@@ -342,7 +345,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Volume Mapping"</span> <span class="ot">=</span> <span class="st">"sphere.reg"</span>,</span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Projection Threshold"</span> <span class="ot">=</span> <span class="dv">3</span></span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/nsdieeg-group-fsaverage.png" class="img-fluid figure-img"></p>
@@ -405,13 +408,14 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
