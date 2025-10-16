@@ -25,6 +25,16 @@ abstracts <- list(
     doi = "10.1523/ENEURO.0328-23.2023"
   ),
   list(
+    title = "Stereoelectroencephalography Reveals Neural Signatures of Multisensory Integration in the Human Superior Temporal Sulcus during Audiovisual Speech Perception",
+    authors = c(
+      "Yue Zhang, John F. Magnotti, Xiang Zhang, Zhengjia Wang, Yingjia Yu, Kathryn A. Davis, Sameer A. Sheth, H. Isaac Chen, Daniel Yoshor and Michael S. Beauchamp"
+    ),
+    journal = "Journal of Neuroscience",
+    date = "October 2025",
+    thumbnail = "cover-jneurosci-oct2025.jpg",
+    doi = "10.1523/JNEUROSCI.1037-25.2025"
+  ),
+  list(
     title = "Beta activity in human anterior cingulate cortex mediates reward biases",
     authors = c(
       "Jiayang Xiao, Joshua A. Adkinson, John Myers, Anusha B. Allawala, Raissa K. Mathura, Victoria Pirtle, Ricardo Najera, Nicole R. Provenza, Eleonora Bartoli, Andrew J. Watrous, Denise Oswalt, Ron Gadot, Adrish Anand, Ben Shofty, Sanjay J. Mathew, Wayne K. Goodman, Nader Pouratian, Xaq Pitkow, Kelly R. Bijanki, Benjamin Hayden, and Sameer A. Sheth"

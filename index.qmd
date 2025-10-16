@@ -15,20 +15,49 @@ carousel:
       active: true
       interval: 10000
       title: |
-        New Events! (May 19, 2025)
+        Cover Images
       details: |
-        <p>
-        RAVE invited tutorial will be given at <i>[ASA Statistics in Imaging Section](https://statistics.rice.edu/events/2025-statistical-methods-imaging-conference)</i> (2025)
-        </p>
+        <style>
+        .carousel-cover {
+          display: inline-flex;
+          height: 300px;
+        }
+        .carousel-cover figure {
+          padding: 7px;
+          border: 1px solid #a1a1a1;
+          border-radius: 5px;
+          backdrop-filter: blur(10px);
+          margin: 14px;
+          height: 270px;
+        }
+        .carousel-cover figure img {
+          margin: 0;
+          height: 100%;
+          width: auto;
+        }
+        </style>
+        <div class="carousel-cover">
+          <figure>
+            <a href="https://www.jneurosci.org/content/45/42.cover-expansion" target="_blank">
+              <img src="images/abstracts/cover-jneurosci-oct2025.jpg" />
+            </a>
+          </figure>
+          <figure>
+            <a href="https://www.sciencedirect.com/science/article/pii/S1053811920308272" target="_blank">
+              <img src="images/abstracts/rave-neuroimage.webp" />
+            </a>
+          </figure>
+        </div>
         <p class="text-start">
-        Date: May 19, 2025 <br />
-        Time: 8:00 - 9:15 AM <br />
-        Location: Rice University, Houston, TX
+        Please check out our posters at sfN 2025! <br />
+        &nbsp;&nbsp;  Date: Nov 17, 2025 <br />
+        &nbsp;&nbsp;  Location: San Diego Convention Center
         </p>
         <p class="text-start">
           <details class="text-start">
             <summary>Past events</summary>
             <ul>
+              <li>May 19, 2025" RAVE invited tutorial will be given at <i>[ASA Statistics in Imaging Section](https://statistics.rice.edu/events/2025-statistical-methods-imaging-conference)</i></li>
               <li>Oct 06, 2024: RAVE has been selected to exhibit at <i>[Building Tools & Tech for an Innovative Future: A BRAIN Initiative Alliance Social](https://www.braininitiative.org/events/sfn-social/){target="_blank"}</i> during the Society for Neuroscience</li>
               <li>Oct 18, 2022: Workshop on intracranial EEG analysis [4th Floor Atrium of the Lister Hill Library (Center for Teaching and Learning, formerly Edge of Chaos](https://sites.uab.edu/cnbci/education/workshops/)</li>
             </ul>
@@ -70,13 +99,19 @@ RAVE is free and open-source software for the analysis of intracranial electroen
 
 Join our growing RAVE-iEEG community on Github {{< fa brands github >}}. E-mail [help\@rave.wiki](mailto:help@rave.wiki) for walk-through, or post questions/discussions at our [new community forum](https://github.com/orgs/rave-ieeg/discussions)
 
-RAVE has been developed since 2017 with funding provided by NIH `R01MH133717` , `U01NS113339`, and `1R24MH117529`. If you use RAVE for a publication, please cite:
+## Attribution
+
+RAVE has been developed since 2017 with funding provided by NIH `R01MH133717` , `U01NS113339`, and `1R24MH117529`, released under [creative-common ({{< fa brands creative-commons >}}{{< fa brands creative-commons-by >}})](https://creativecommons.org/licenses/by/4.0/) license. If you use RAVE for a publication, please cite:
 
 > Magnotti JF, Wang Z, Beauchamp MS. RAVE: comprehensive open-source software for reproducible analysis and visualization of intracranial EEG data. NeuroImage (2020) 223:117341. \[[Click here for the journal full text](https://www.sciencedirect.com/science/article/pii/S1053811920308272)\] \[[Click here for the PDF](https://s3-us-west-2.amazonaws.com/oww-files-public/d/da/Magnotti_Wang_Beauchamp_Neuroimage2020_RAVE.pdf)\] \[[Click here for the preprint](https://www.biorxiv.org/content/10.1101/2020.06.02.129676v1)\].
 
 If you use YAEL for electrode localization, please cite:
 
 > Wang Z, Magnotti JF, Zhang X, Beauchamp MS. YAEL: Your Advanced Electrode Localizer. Eneuro. 2023 Oct 1;10(10). \[[Click here for the journal full text](https://www.eneuro.org/content/10/10/ENEURO.0328-23.2023)\] \[[Click here for the PDF](https://s3-us-west-2.amazonaws.com/oww-files-public/7/76/Wang_Magnotti_Zhang_Beauchamp_eNeuro_2023.pdf)\] \[[Click here for the preprint](https://www.biorxiv.org/content/10.1101/2023.08.04.552023v1)\].
+
+If you like RAVE, we appreciate that you include the following "created-via-RAVE" logo to help promote us:
+
+![RAVE Attribution Logo](images/attribution.png){width=30%}
 
 ## Installation
 

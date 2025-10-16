@@ -1,3 +1,4 @@
+rave_ver: 1.0.5
 threeBrain_template_subject: N27
 py_virtualenv: ''
 py3_path: ''
@@ -7,11 +8,11 @@ suma_nodes_per_electrodes: 42
 server_time_zone: America/Chicago
 max_mem: 16.0
 disable_fork_clusters: no
-max_worker: 7.0
+max_worker: 9.0
 disable_startup_speed_check: no
 drive_speed:
-- 500.0
-- 200.0
+- .inf
+- 250.0
 image_height: 768
 image_width: 1280
 fast_cache: yes
