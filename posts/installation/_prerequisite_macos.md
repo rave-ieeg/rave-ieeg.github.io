@@ -77,10 +77,10 @@ Should produce a result like
 Enter this command into the terminal window:
 
 ``` sh
-brew install hdf5 fftw pkg-config cmake libpng
+brew install hdf5 fftw pkg-config cmake libpng pandoc
 ```
 
-This step will install the `hdf5` (high-performance file system), `fftw` (fast-fourier transform library), `pkg-config` (package configuration toolbox), `cmake` (cross-platform make for compiling optional packages such as ant), `libpng` (library for manipulating png images) and takes several minutes to complete. Wait until the installation is finished and the command prompt reappears before moving to the next step.
+This step will install the `hdf5` (high-performance file system), `fftw` (fast-fourier transform library), `pkg-config` (package configuration toolbox), `cmake` (cross-platform make for compiling optional packages such as ant), `libpng` (library for manipulating png images), `pandoc` (library for converting document format) and takes several minutes to complete. Wait until the installation is finished and the command prompt reappears before moving to the next step.
 
 ### 4. Finished with prerequisites
 
