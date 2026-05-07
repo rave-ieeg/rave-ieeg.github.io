@@ -77,7 +77,8 @@ rm(wd)
       unlink(zip_path)
     }
   }
-  invisible(path)
+  brain <- threeBrain::merge_brain(template_subject = sub)
+  invisible(brain)
 }
 
 .ensure_subject <- function(subject, url) {
