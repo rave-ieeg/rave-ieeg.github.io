@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,6 +12,9 @@
 
 <title>Updating and Upgrading Guide – RAVE</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,15 +74,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../favicon.ico" rel="icon">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-20da9631914318b2f12352f620ec9993.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-b2c5e7aaed3c471607f930d04616a4e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -263,8 +265,8 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <section id="install-libraries-using-brew" class="level3">
 <h3 class="anchored" data-anchor-id="install-libraries-using-brew">3. Install libraries using brew</h3>
 <p>Enter this command into the terminal window:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install hdf5 fftw pkg-config cmake libpng</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This step will install the <code>hdf5</code> (high-performance file system), <code>fftw</code> (fast-fourier transform library), <code>pkg-config</code> (package configuration toolbox), <code>cmake</code> (cross-platform make for compiling optional packages such as ant), <code>libpng</code> (library for manipulating png images) and takes several minutes to complete. Wait until the installation is finished and the command prompt reappears before moving to the next step.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install hdf5 fftw pkg-config cmake libpng pandoc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This step will install the <code>hdf5</code> (high-performance file system), <code>fftw</code> (fast-fourier transform library), <code>pkg-config</code> (package configuration toolbox), <code>cmake</code> (cross-platform make for compiling optional packages such as ant), <code>libpng</code> (library for manipulating png images), <code>pandoc</code> (library for converting document format) and takes several minutes to complete. Wait until the installation is finished and the command prompt reappears before moving to the next step.</p>
 </section>
 <section id="finished-with-prerequisites" class="level3">
 <h3 class="anchored" data-anchor-id="finished-with-prerequisites">4. Finished with prerequisites</h3>

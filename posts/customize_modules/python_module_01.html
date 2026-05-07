@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,6 +12,9 @@
 
 <title>Create a Python Pipeline – RAVE</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,15 +74,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../favicon.ico" rel="icon">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-20da9631914318b2f12352f620ec9993.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-b2c5e7aaed3c471607f930d04616a4e8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -279,7 +281,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <section id="create-a-new-python-module" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-new-python-module">2.1 Create a new Python module</h2>
 <p>Open project <code>rave-pipelines</code>, type the following R command in the console:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>raveio<span class="sc">::</span><span class="fu">module_add</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ravepipeline<span class="sc">::</span><span class="fu">module_add</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">module_id =</span> <span class="st">"fooof_module"</span>, </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">module_label =</span> <span class="st">"Fooof"</span>, </span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"python"</span></span>
@@ -315,7 +317,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r setup, include = FALSE}</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at"># This code block sets up the engine environment</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at"># Please do not remove me</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">raveio::pipeline_setup_rmd("fooof_module")</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">ravepipeline::pipeline_setup_rmd("fooof_module")</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">rpymat::ensure_rpymat()</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After setting up the document, RAVE pipeline targets kick in. In RAVE-markdown files, pipeline “target” is simply a type of code block with a set of special options, for example,</p>
@@ -372,8 +374,8 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <figcaption>The “knit” button. In some versions of RStudio, this buton might be replaced by a “Render” button. These two are the same: they reshape the RAVE-markdown document into low-level RAVE pipeline files</figcaption>
 </figure>
 </div>
-<p>Once a RAVE-markdown is compiled, the pipeline can be loaded via the <code>raveio</code> package:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pipeline <span class="ot">&lt;-</span> raveio<span class="sc">::</span><span class="fu">pipeline</span>(</span>
+<p>Once a RAVE-markdown is compiled, the pipeline can be loaded via the <code>ravepipeline</code> package:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pipeline <span class="ot">&lt;-</span> ravepipeline<span class="sc">::</span><span class="fu">pipeline</span>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">pipeline_name =</span> <span class="st">"fooof_module"</span>,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">paths =</span> <span class="fu">file.path</span>(rstudioapi<span class="sc">::</span><span class="fu">getActiveProject</span>(), <span class="st">"modules"</span>), </span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">temporary =</span> <span class="cn">TRUE</span></span>
@@ -503,7 +505,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <h3 class="anchored" data-anchor-id="programmatically-set-pipeline-inputs">2.3.1 Programmatically set pipeline inputs</h3>
 <p><small> We will discuss advanced usages in the future. This section only covers a basic usage. </small></p>
 <p>Pipeline settings can be read/written programmatically in R:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pipeline <span class="ot">&lt;-</span> raveio<span class="sc">::</span><span class="fu">pipeline</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pipeline <span class="ot">&lt;-</span> ravepipeline<span class="sc">::</span><span class="fu">pipeline</span>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">pipeline_name =</span> <span class="st">"fooof_module"</span>,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">paths =</span> <span class="fu">file.path</span>(rstudioapi<span class="sc">::</span><span class="fu">getActiveProject</span>(), <span class="st">"modules"</span>), </span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">temporary =</span> <span class="cn">TRUE</span></span>
@@ -592,7 +594,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <p>Step 5: Go to <code>main.Rmd</code>, remove the <code>numpy</code> import line. Now we can use <code>np</code> and <code>log_info</code> without explicitly importing these two variables in every block. See <a href="https://github.com/rave-ieeg/rave-pipelines/blob/bfaaf4219d7ab1e607247b68842c1287d825d3e1/modules/fooof_module/main.Rmd">this final result</a></p>
 <p>Step 6: Compile (knit) <code>main.Rmd</code></p>
 <p>We can test-run the pipeline:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pipeline <span class="ot">&lt;-</span> raveio<span class="sc">::</span><span class="fu">pipeline</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pipeline <span class="ot">&lt;-</span> ravepipeline<span class="sc">::</span><span class="fu">pipeline</span>(</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">pipeline_name =</span> <span class="st">"fooof_module"</span>,</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">paths =</span> <span class="fu">file.path</span>(rstudioapi<span class="sc">::</span><span class="fu">getActiveProject</span>(), <span class="st">"modules"</span>), </span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">temporary =</span> <span class="cn">TRUE</span></span>

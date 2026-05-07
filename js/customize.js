@@ -245,6 +245,7 @@ function estimateWordCount() {
   $title.appendChild($el);
 }
 
+/*
 function linkWASMLinks() {
 
   document.addEventListener('click', function(event) {
@@ -289,6 +290,7 @@ function linkWASMLinks() {
   }
   checkWebR();
 }
+
 
 async function ensurePath(filePath) {
   const mainWebR = window.mainWebR;
@@ -450,7 +452,7 @@ function registerDropZones() {
 
 
 }
-
+*/
 
 function registerWindowReady(funcName, baseObj) {
     // The public function name defaults to window.docReady
@@ -538,9 +540,11 @@ window.docReady(function() {
   raveModal.register();
 
   // The followings need WASM
+  /*
   if( document.getElementById("no-wasm") === null ) {
     registerDropZones();
     linkWASMLinks();
   }
+  */
 
 })
