@@ -2,54 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://rave.wiki/posts/signal_processing/signal-filter.html</loc>
-    <lastmod>2026-05-07T19:38:09.717Z</lastmod>
+    <lastmod>2026-05-07T20:18:16.926Z</lastmod>
   </url>
   <url>
     <loc>https://rave.wiki/posts/installation/installation.html</loc>
-    <lastmod>2025-01-26T18:09:20.000Z</lastmod>
+    <lastmod>2026-05-07T20:18:16.925Z</lastmod>
   </url>
   <url>
     <loc>https://rave.wiki/posts/image_widgets/viewer401.html</loc>
-    <lastmod>2026-05-07T19:25:52.876Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rave.wiki/posts/editor-notes/how-to-edit-this-website.html</loc>
-    <lastmod>2024-09-22T04:07:09.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rave.wiki/posts/customize_modules/python_module_01.html</loc>
-    <lastmod>2026-05-07T19:30:24.310Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rave.wiki/posts/3dviewer/viewer201.html</loc>
-    <lastmod>2026-05-07T19:36:58.338Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rave.wiki/blogs.html</loc>
-    <lastmod>2025-03-02T03:03:10.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rave.wiki/index.html</loc>
-    <lastmod>2025-10-16T19:08:06.784Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rave.wiki/posts/3dviewer/viewer301.html</loc>
-    <lastmod>2026-05-07T19:52:31.108Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rave.wiki/posts/data_archive/NSD-iEEG.html</loc>
-    <lastmod>2026-05-07T19:54:34.575Z</lastmod>
+    <lastmod>2026-05-07T20:18:16.924Z</lastmod>
   </url>
   <url>
     <loc>https://rave.wiki/posts/electrode_localization/yael.html</loc>
-    <lastmod>2026-05-07T19:32:35.634Z</lastmod>
+    <lastmod>2026-05-07T20:18:16.841Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/posts/data_archive/NSD-iEEG.html</loc>
+    <lastmod>2026-05-07T20:18:16.831Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/posts/3dviewer/viewer301.html</loc>
+    <lastmod>2026-05-07T20:18:16.829Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/index.html</loc>
+    <lastmod>2026-05-07T20:18:16.822Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/blogs.html</loc>
+    <lastmod>2026-05-07T20:18:16.757Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/posts/3dviewer/viewer201.html</loc>
+    <lastmod>2026-05-07T20:18:16.829Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/posts/customize_modules/python_module_01.html</loc>
+    <lastmod>2026-05-07T20:18:16.831Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/posts/editor-notes/how-to-edit-this-website.html</loc>
+    <lastmod>2026-05-07T20:18:16.841Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rave.wiki/posts/image_widgets/dnd_surface_basic.html</loc>
+    <lastmod>2026-05-07T20:18:16.846Z</lastmod>
   </url>
   <url>
     <loc>https://rave.wiki/posts/installation/general-information.html</loc>
-    <lastmod>2026-05-07T19:34:26.710Z</lastmod>
+    <lastmod>2026-05-07T20:18:16.925Z</lastmod>
   </url>
   <url>
     <loc>https://rave.wiki/posts/installation/update.html</loc>
-    <lastmod>2024-09-22T04:04:18.000Z</lastmod>
+    <lastmod>2026-05-07T20:18:16.925Z</lastmod>
   </url>
 </urlset>
