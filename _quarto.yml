@@ -1,5 +1,6 @@
 project:
   type: website
+  execute-dir: project
   render:
     - "*.{qmd,ipynb,rmd,md}"
     - "!webr_packages/"
