@@ -382,7 +382,7 @@
     "href": "posts/image_widgets/dnd_surface_basic.html",
     "title": "Visualize Any Surfaces in 3D Viewer",
     "section": "",
-    "text": "Download the MNI152 viewer here\nDownload the GIfTI surface here\n\n\nInstructions\n\nTo visualize your own surface files (FreeSurfer, GIfTI) in the 3D viewer, drop the surface file as the animation\nYou may change the color by expanding control panel &gt; Custom Geometry Settings &gt; Configure ROI Surfaces &gt; “your_surface_filename” &gt; Color\nTo clear the object, open Configure ROI Surfaces &gt; Clear Uploaded Surfaces\n\n\n\n\n\nReuseCC BY 4.0"
+    "text": "Download the MNI152 viewer here\n\n\nInstructions\n\nTo visualize your own surface files (FreeSurfer, GIfTI) in the 3D viewer, drop the surface file as the animation\nYou may change the color by expanding control panel &gt; Custom Geometry Settings &gt; Configure ROI Surfaces &gt; “your_surface_filename” &gt; Color\nTo clear the object, open Configure ROI Surfaces &gt; Clear Uploaded Surfaces\n\n\n\n\n\nReuseCC BY 4.0"
   },
   {
     "objectID": "posts/installation/general-information.html",
