@@ -18,7 +18,7 @@ execute:
   freeze: false
 ---
 
-```{r, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+```{r, echo=FALSE, results='hide', message=FALSE, warning=FALSE, eval=TRUE}
 .ensure_viewer_template("cvs_avg35_inMNI152")
 dir.create("data/viewers", showWarnings = FALSE, recursive = FALSE)
 
@@ -41,7 +41,7 @@ path <- threeBrain::save_brain(
 )
 ```
 
-```{r}
+```{r, eval=TRUE}
 #| column: page
 #| classes: "column-page-inset"
 template <- threeBrain::merge_brain(
@@ -49,6 +49,7 @@ template <- threeBrain::merge_brain(
   template_surface_types = c("pial", "inflated")
 )
 template$plot(
+  side_display = FALSE,
   controllers = list(
     "Left Opacity" = 0.1,
     "Right Opacity" = 0.1

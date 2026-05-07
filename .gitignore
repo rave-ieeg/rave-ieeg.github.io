@@ -22,4 +22,5 @@ config
 data/raw/
 data/processed/
 data/Library
-
+data/tables
+data/viewers
