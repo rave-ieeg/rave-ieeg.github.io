@@ -13,50 +13,16 @@ categories:
   - "Interactive Module"
 copyright: 
   holder: Zhengjia Wang
-  year: 2024
+  year: 2024-2026
 execute:
   freeze: false
-webr:
-  packages: ['raveio']
-  repos: 
-    - 'https://rave-ieeg.r-universe.dev'
-    - 'https://dipterix.r-universe.dev'
-    - 'https://repo.r-wasm.org/'
-  version: 0.4.2
-  channel-type: "service-worker"
-  autoload-packages: false
-  mount-url: 
-    # - meta: "http://localhost:4834/samples/project-demo-minimal.js.metadata"
-    #   data: "http://localhost:4834/samples/project-demo-minimal.data"
-    #   path: "/home/web_user/rave_data"
-    # - meta: "https://zenodo.org/api/records/13825852/files/project-demo-minimal.js.metadata/content"
-    #   data: "https://zenodo.org/api/records/13825852/files/project-demo-minimal.data/content"
-    #   path: "/home/web_user/rave_data"
-    - meta: "/data/wasm/samples/project-demo-datadir.js.metadata/content"
-      data: "/data/wasm/samples/project-demo-datadir.data/content"
-      path: "/home/web_user/"
-    - meta: "/data/wasm/samples/project-demo-rawdir.js.metadata/content"
-      data: "/data/wasm/samples/project-demo-rawdir.data/content"
-      path: "/home/web_user/"
-    - meta: "/data/wasm/samples/project-demo-fsaverage.js.metadata/content"
-      data: "/data/wasm/samples/project-demo-fsaverage.data/content"
-      path: "/home/web_user/"
 ---
 
-::: {.alert .alert-warning role="alert"}
-This post contains interactive components (experimental) that allows you to execute RAVE code from the web browsers. If you would like to try this feature and customize/play with the code, please be patient. It might take a while for the browser to finish setting up (depending on your network speed). Once the script is ready, you will see "WEBR STATUS: 🟢 Ready!" in the above banner.
 
-```{webr-r}
-#| context: setup
-#| autorun: true
-# webr::mount(
-      # - meta: "http://localhost:3530/samples/project-demo-minimal.js.metadata"
-    #   data: "http://localhost:3530/samples/project-demo-minimal.data"
-    #   path: "/home/web_user/rave_data"
-# )
-tryCatch({
-  brain <- raveio::rave_brain("demo/DemoSubject")
-}, error = function(e) {})
+```{r, results='hide', echo=FALSE, eval=TRUE, warning=FALSE}
+# Load profile
+.ensure_subject("demo/DemoSubject")
+dir.create("data/tables", showWarnings = FALSE, recursive = TRUE)
 utils::write.csv(
   data.frame(
     Subject = "DemoSubject",
@@ -64,45 +30,30 @@ utils::write.csv(
     tValue = rnorm(84),
     Cluster = sample(c("A", "B", "C"), size = 84, replace = TRUE)
   ),
-  "~/example_electrode_value.csv"
+  "data/tables/viewer201_value_table.csv"
 )
 ```
-:::
 
 ## Prerequisites
 
-This post assumes that you have already imported subject's imaging data to RAVE and finished the electrode localization. 
+This post assumes that you have already imported subject's imaging data to RAVE and finished the electrode localization.
 
 ## 1. Simple 3D viewer
 
-Library `raveio` provides simple high-level function [`rave_brain`](#function-rave_brain) to load 3D brain object.
+Library `ravecore` provides simple high-level function [`rave_brain`](#function-rave_brain) to load 3D brain object.
 
-:::{.column-page}
-
-```{webr-r}
-#| editor-max-height: 250
-#| editor-quick-suggestions: TRUE
-#| classes: "column-page-inset"
-brain <- raveio::rave_brain("demo/DemoSubject")
+```{r}
+brain <- ravecore::rave_brain("demo/DemoSubject")
 
 # See the output to the right for what's inside of the brain object
 brain
 ```
 
-:::
-
 Use `brain$plot(<your arguments...>)` to show the viewer:
 
-:::{.column-page}
-
-```{webr-r}
-#| editor-max-height: 500
-#| editor-quick-suggestions: TRUE
-#| classes: "column-page-inset"
+``` r
 brain$plot()
 ```
-
-:::
 
 ![Preview of the result. See below if you want to play with the 3D viewer interactively](preview-1.png){fig-align="center" width="100%"}
 
@@ -118,20 +69,13 @@ brain$plot()
 
 Here is the explanation of the columns (case-sensitive):
 
--   `Subject` is the subject code
--   `Electrode` is the electrode channel number (integer)
--   `varname*` can be almost anything (give it a meaningful name, for e.g., `Power`, `Cluster`, ...) that you would like to show, and the values can be either numeric or categorical
-    -   The variable name is recommended to only contain letters and digits. For example, `BetaBandPower` seems to be a good idea, while names like `75-150 Hz` should be avoided
-    -   The variable values must not be numerical if the intent is categorical. For example cluster values such as `1`, `2`, `3`, ... should be avoided and users should use `Cluster 1`, `Cluster 2`, `Cluster 3`, ..., or `A`, `B`, `C`, ... instead
+- `Subject` is the subject code
+- `Electrode` is the electrode channel number (integer)
+- `varname*` can be almost anything (give it a meaningful name, for e.g., `Power`, `Cluster`, ...) that you would like to show, and the values can be either numeric or categorical
+  - The variable name is recommended to only contain letters and digits. For example, `BetaBandPower` seems to be a good idea, while names like `75-150 Hz` should be avoided
+  - The variable values must not be numerical if the intent is categorical. For example cluster values such as `1`, `2`, `3`, ... should be avoided and users should use `Cluster 1`, `Cluster 2`, `Cluster 3`, ..., or `A`, `B`, `C`, ... instead
 
-
-
-:::{.column-page}
-
-```{webr-r}
-#| editor-max-height: 500
-#| editor-quick-suggestions: TRUE
-#| classes: "column-page-inset"
+``` r
 data_table <- data.frame(
     Subject = "DemoSubject",
     Electrode = c(13,14,15,16,24),
@@ -144,29 +88,23 @@ brain$set_electrode_values(data_table)
 brain$plot()
 ```
 
-:::
-
 ![**Left**: continuous values with symmetric value range. The color palette transition from blue to white to red (default); **Right**: Categorical data with default color palette](preview-2.png){width="100%"}
 
 ## 3. Render options
 
 `brain$plot` allows users to provide render options to change the following components:
 
--   Color palette
--   Default value ranges (for continuous data)
--   Control panels
+- Color palette
+- Default value ranges (for continuous data)
+- Control panels
 
 Here's a full example:
 
-:::{.column-page}
-
-```{webr-r}
-#| editor-max-height: 500
-#| editor-quick-suggestions: TRUE
+```{r}
 #| column: page
 #| classes: "column-page-inset"
 # Load brain
-brain <- raveio::rave_brain("demo/DemoSubject")
+brain <- ravecore::rave_brain("demo/DemoSubject")
 
 # Set values with 2 variables: `ContinuousVal` and `CategoricalVal`
 brain$set_electrode_values(
@@ -182,6 +120,7 @@ brain$set_electrode_values(
 
 # Plot brain with options
 brain$plot(
+  side_display = FALSE, control_display = FALSE,
   
   # change color palettes: each variable requires a palette (if not default)
   palettes = list(
@@ -248,12 +187,10 @@ brain$plot(
 )
 ```
 
-:::
-
 ## Key Documentations
 
-### Function `raveio::rave_brain` {#function-rave_brain}
+### Function `ravecore::rave_brain` {#function-rave_brain}
 
-```{r, echo = FALSE, results='asis'}
-.help_text("rave_brain", package = "raveio")
+``` r
+.help_text("rave_brain", package = "ravecore")
 ```
