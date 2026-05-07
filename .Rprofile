@@ -25,23 +25,24 @@ if (Sys.info()[['sysname']] %in% c('Linux')) {
 }
 options(renv.config.repos.override = getOption("repos"))
 
+wd <- normalizePath(getwd())
+Sys.setenv(
+  "R_USER_DATA_DIR" = file.path(wd, "data", "library", "data"),
+  "R_USER_CONFIG_DIR" = file.path(wd, "data", "library", "config")
+)
+
 source("renv/activate.R")
 
 local({
-  wd <- normalizePath(getwd())
-  Sys.setenv(
-    "R_USER_DATA_DIR" = file.path(wd, "data", "library", "data"),
-    "R_USER_CONFIG_DIR" = file.path(wd, "data", "library", "config")
-  )
-  if(system.file(package = "ravepipeline") != '') {
-    try({
-      ravepipeline <- asNamespace("ravepipeline")
-      ravepipeline$raveio_setopt(key = "data_dir", file.path(wd, "data", "processed"))
-      ravepipeline$raveio_setopt(key = "raw_data_dir", file.path(wd, "data", "raw"))
-    })
+  if (system.file(package = "ravepipeline") != '') {
+    ravepipeline::raveio_setopt(
+      key = "data_dir", file.path(wd, "data", "processed"))
+    ravepipeline::raveio_setopt(
+      key = "raw_data_dir", file.path(wd, "data", "raw"))
   }
 })
 
+rm(wd)
 
 # utility functions
 .help_text <- function(...) {
@@ -59,5 +60,46 @@ local({
   re_trim <- trimws(re)
   re <- re[!re_trim %in% c("<h3>NA</h3>")]
   cat(re, sep = "\n")
+  invisible()
+}
+
+.ensure_viewer_template <- function(sub) {
+  path <- file.path(threeBrain::default_template_directory(), sub)
+  if (!dir.exists(path)) {
+    threeBrain::download_template_subject(subject_code = sub)
+    zip_files <- list.files(
+      threeBrain::default_template_directory(),
+      pattern = ".zip$",
+      recursive = FALSE,
+      full.names = TRUE
+    )
+    for (zip_path in zip_files) {
+      unlink(zip_path)
+    }
+  }
+  brain <- threeBrain::merge_brain(template_subject = sub)
+  invisible(brain)
+}
+
+.ensure_subject <- function(subject, url) {
+  missing_url <- missing(url)
+  tryCatch(
+    {
+      ravecore::as_rave_subject(subject_id = subject, strict = TRUE)
+    },
+    error = function(e) {
+      subject_inst <- ravecore::as_rave_subject(subject_id = subject, strict = FALSE)
+      if (missing_url) {
+        url <- subject_inst$subject_code
+      }
+      ravecore::install_subject(
+        path = url,
+        overwrite = FALSE,
+        ask = FALSE,
+        force_project = subject_inst$project_name,
+        force_subject = subject_inst$subject_code
+      )
+    }
+  )
   invisible()
 }

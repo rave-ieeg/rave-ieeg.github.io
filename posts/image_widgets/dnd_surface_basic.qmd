@@ -1,0 +1,33 @@
+---
+title: "Visualize Any Surfaces in 3D Viewer"
+description: |
+  Drag & drop common surface files into 3D viewer
+date: 2026-05-07
+author: 
+  - name: Zhengjia Wang
+    orcid: 0000-0001-5629-1116
+    affiliations: 
+      - name: "Dept. of Neurosurgery, University of Pennsylvania"
+  - name: John Magnotti
+    orcid: 0000-0003-2093-0603
+    affiliations: 
+      - name: "Dept. of Neurosurgery, University of Pennsylvania"
+categories:
+  - "3D Viewer"
+copyright: 
+  holder: Zhengjia Wang
+  year: 2026
+execute:
+  freeze: true
+---
+
+![](dragdrop-basic-1.webp){width="100%"}
+
+* [Download the MNI152 viewer here](../../data/viewers/RAVE_MNI_template.html)
+* [Download the GIfTI surface here](Cingulum_Frontal_Parahippocampal_L.gii)
+
+### Instructions
+
+* To visualize your own surface files (FreeSurfer, GIfTI) in the 3D viewer, drop the surface file as the animation
+* You may change the color by expanding control panel \> `Custom Geometry Settings` \> `Configure ROI Surfaces` \> "your_surface_filename" \> `Color`
+* To clear the object, open `Configure ROI Surfaces` \> `Clear Uploaded Surfaces`
