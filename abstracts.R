@@ -112,14 +112,14 @@ abstracts <- list(
 
 abstract_html <- lapply(abstracts, function(item) {
   authors <- item$authors
-  if(length(authors) > 1) {
+  if (length(authors) > 1) {
     authors <- paste0(
       paste(authors[-length(authors)], collapse = ", "),
       ", and ", authors[[length(authors)]]
     )
   }
   doi <- paste(item$doi, collapse = "")
-  if(!length(doi) || !nzchar(doi)) {
+  if (!length(doi) || !nzchar(doi)) {
     doi <- NULL
   }
 
@@ -127,9 +127,9 @@ abstract_html <- lapply(abstracts, function(item) {
     class = "grid abstract-item",
     htmltools::div(
       class = "g-col-12 g-col-md-2 abbr",
-      if(length(item$thumbnail)) {
+      if (length(item$thumbnail)) {
         htmltools::div(
-          class="figure",
+          class = "figure",
           htmltools::img(
             class = "preview z-depth-1 rounded w-100 placeholder placeholder-glow",
             `data-src` = ifelse(
@@ -138,38 +138,36 @@ abstract_html <- lapply(abstracts, function(item) {
               sprintf("images/abstracts/%s", item$thumbnail)
             ),
             alt = "",
-            loading="lazy"
+            loading = "lazy"
           )
         )
       }
     ),
     htmltools::div(
       class = "g-col-12 g-col-md-10 g-col-lg-8",
-      htmltools::div(class="title", item$title),
-      htmltools::div(class="author", authors),
-      htmltools::div(class="periodical", htmltools::tags$em(item$journal), ", ", item$date),
-      htmltools::div(
-        class="links",
-
-        if(!is.null(doi)) {
-          htmltools::a(
-            class="btn btn-sm z-depth-0",
-            role="button", rel="external nofollow noopener", target="_blank",
-            href=sprintf("https://doi.org/%s", doi),
-            htmltools::tags$i(class="ai ai-1x ai-doi"),
-            sprintf("DOI: %s", doi)
-          )
-        }
-
+      htmltools::div(class = "title", item$title),
+      htmltools::div(class = "author", authors),
+      htmltools::div(class = "periodical", htmltools::tags$em(item$journal), ", ", item$date),
+      htmltools::div(class = "links", if (!is.null(doi)) {
+        htmltools::a(
+          class = "btn btn-sm z-depth-0",
+          role = "button",
+          rel = "external nofollow noopener",
+          target = "_blank",
+          href = sprintf("https://doi.org/%s", doi),
+          htmltools::tags$i(class = "ai ai-1x ai-doi"),
+          sprintf("DOI: %s", doi)
+        )
+      }
       )
     )
   )
 })
 
 htmltools::div(
-  class="publications",
+  class = "publications",
   htmltools::div(
-    class="bibliography",
+    class = "bibliography",
     abstract_html
   )
 )

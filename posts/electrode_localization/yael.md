@@ -83,7 +83,7 @@ Here is a video tutorial using NIfTI T1 and CT as input:
 
 <!-- {.alert .alert-info role="info"} -->
 
-<!-- The default RAVE 'raw directory' is under the user home directory > `rave_data` > `raw_dir`. You can always use R command `raveio::raveio_getopt("raw_data_dir")` to obtain the full path to the raw directory. -->
+<!-- The default RAVE 'raw directory' is under the user home directory > `rave_data` > `raw_dir`. You can always use R command `ravepipeline::raveio_getopt("raw_data_dir")` to obtain the full path to the raw directory. -->
 
 <!-- When a patient is being enrolled to an experiment, normally this patient will be given a code to avoid their personal information being exposed to the public. For example, a patient is given a subject code `"DBNLP001"`. To create the preprocessing folder for this subject,  -->
 

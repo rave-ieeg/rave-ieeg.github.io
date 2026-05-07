@@ -16,7 +16,7 @@ categories:
 license: "CC BY"
 copyright: 
   holder: Zhengjia Wang
-  year: 2024
+  year: 2024-2026
 ---
 
 ## Demo: Make Group-Level Visualization on a Template Brain
@@ -28,24 +28,43 @@ Here is an interactive demo showing two subjects mapped to a template `MNI152` b
 
 # Using MNI152 template
 template_subject <- "cvs_avg35_inMNI152"
-template_root <- threeBrain::default_template_directory()
-if(!dir.exists(file.path(template_root, template_subject))) {
-  threeBrain::download_template_subject(template_subject)
-}
+.ensure_viewer_template("cvs_avg35_inMNI152")
 
-# Load subject brain
-b1 <- raveio::rave_brain("YAEL/PAV037")
-b2 <- raveio::rave_brain("YAEL/PAV038")
+# Load subject electrode table
+t1 <- read.csv("posts/3dviewer/PAV080.csv")
+t2 <- read.csv("posts/3dviewer/PAV081.csv")
+
+coord1 <- data.frame(
+  Electrode = t1$Electrode,
+  x = t1$MNI152_x,
+  y = t1$MNI152_y,
+  z = t1$MNI152_z,
+  Label = t1$Label,
+  SubjectCode = "PAV080"
+)
+coord2 <- data.frame(
+  Electrode = max(t1$Electrode) + t2$Electrode,
+  x = t2$MNI152_x,
+  y = t2$MNI152_y,
+  z = t2$MNI152_z,
+  Label = t2$Label,
+  SubjectCode = "PAV081"
+)
 
 # create template brain
 template <- threeBrain::merge_brain(
-  b1, b2, 
   template_subject = template_subject
 )
 
+template$set_electrodes(rbind(coord1, coord2))
+
 # set electrode values
-invisible(b1$set_electrode_values())
-invisible(b2$set_electrode_values())
+v1 <- data.frame(
+  Electrode = c(coord1$Electrode, coord2$Electrode),
+  subject_code = c(coord1$SubjectCode, coord2$SubjectCode),
+  surgical_label = c(t1$LabelPrefix, t2$LabelPrefix)
+)
+template$template_object$set_electrode_values(v1)
 
 # plot with options
 template$plot(
@@ -74,16 +93,18 @@ template$plot(
     
     "Electrode Shape" = "prototype",
     "Translucent" = "contact+outline",
-    "Text Scale" = 3,
+    "Text Scale" = 1.5,
     "Text Visibility" = TRUE,
     
-    "Display Data" = "[Subject]",
+    "Display Data" = "subject_code",
     
     "Show Time" = FALSE,
     
     "Highlight Box" = FALSE,
     
-    "Info Text" = TRUE
+    "Info Text" = TRUE,
+    
+    "Slice Mask" = 0.09
   ),
   custom_javascript = r'[
   const urlParams = new URLSearchParams(window.location.search);
@@ -103,7 +124,7 @@ template$plot(
     app.$wrapper.parentNode.style.width="100%";
   
     if( viewerOption === 'full') {
-      const stateText = '{"isThreeBrainControllerData":true,"controllerData":{"controllers":{},"folders":{"_logo_":{"controllers":{},"folders":{}},"Default":{"controllers":{"Background Color":"#000000","Camera Position":"[free rotate]","Display Coordinates":true,"Record":false,"Paste to Set State":""},"folders":{}},"Volume Settings":{"controllers":{"Show Panels":true,"Slice Brightness":0,"Slice Contrast":0,"Slice Mode":"canonical","Crosshair Gap":10,"Coronal (P - A)":0,"Axial (I - S)":0,"Sagittal (L - R)":0,"Intersect MNI305":"0.00, 0.00, 0.00","Overlay Coronal":true,"Overlay Axial":true,"Overlay Sagittal":true,"Frustum Near":1,"Frustum Far":1,"Voxel Type":"wmparc","Voxel Display":"side camera","Voxel Opacity":-1,"Voxel Min":-100000,"Voxel Max":100000,"Symmetric Color Map":false,"Voxel Label":"","ISO Surface":false},"folders":{}},"Surface Settings":{"controllers":{"Surface Material":"MeshPhysicalMaterial","Surface Type":"pial","Clipping Plane":"disabled","Left Hemisphere":"mesh clipping x 0.3","Right Hemisphere":"mesh clipping x 0.3","Left Opacity":0.4,"Right Opacity":0.4,"Left Mesh Clipping":0.3,"Right Mesh Clipping":0.3,"Surface Color":"none","Blend Factor":1,"Sigma":1,"Decay":0.6,"Range Limit":5},"folders":{}},"Electrode Settings":{"controllers":{"Subject":"cvs_avg35_inMNI152","Map Electrodes":true,"Surface Mapping":"sphere.reg","Volume Mapping":"mni305","Projection Threshold":30,"Target Surface":"auto","Visibility":"all visible","Electrode Shape":"prototype","Outlines":"auto","Translucent":"contact+outline","Text Scale":3,"Text Visibility":true},"folders":{}},"Custom Geometry Settings":{"controllers":{},"folders":{"Configure ROI Surfaces":{"controllers":{"Visibility (all surfaces)":"visible","Opacity (all surfaces)":1},"folders":{}},"Configure ROI Volumes":{"controllers":{"Visibility (all volumes)":"visible","Opacity (all volumes)":1},"folders":{}}}},"Data Visualization":{"controllers":{"Display Data":"[Subject]","Display Range":"","Threshold Data":"[None]","Threshold Range":"","Threshold Method":"|v| >= T1","Additional Data":"[None]","Inactive Color":"#c2c2c2","Play/Pause":false,"Speed":1,"Time":0,"Video Mode":"muted","Show Legend":true,"Show Time":false,"Highlight Box":false,"Info Text":true},"folders":{}}}},"sliceCrosshair":{"tkrRAS":"-1.41, -18.47, 17.68","scannerRAS":"-2.41, -35.47, 36.68","mni305RAS":"-3.26, -36.85, 35.21","mni152RAS":"-2.41, -35.47, 36.68"},"cameraState":{"target":{"x":1.9237136840820312,"y":0.07685089111328125,"z":-3.6354293823242188},"up":{"x":0.026081451985242324,"y":0.9996014963871832,"z":0.01079843890786995},"position":{"x":6.781290796621995,"y":-5.56686340368258,"z":499.94862987995145},"zoom":1}}';
+      const stateText = '{"isThreeBrainControllerData":true,"controllerData":{"controllers":{},"folders":{"_logo_":{"controllers":{},"folders":{}},"Default":{"controllers":{"Background Color":"#000000","Camera Position":"[free rotate]","Display Coordinates":true,"Record":false,"Paste to Set State":""},"folders":{}},"Volume Settings":{"controllers":{"Show Panels":true,"Slice Brightness":0,"Slice Contrast":0,"Slice Mode":"canonical","Crosshair Gap":10,"Coronal (P - A)":0,"Axial (I - S)":0,"Sagittal (L - R)":0,"Intersect MNI305":"0.00, 0.00, 0.00","Overlay Coronal":true,"Overlay Axial":true,"Overlay Sagittal":true,"Frustum Near":1,"Frustum Far":1,"Voxel Type":"wmparc","Voxel Display":"side camera","Voxel Opacity":-1,"Voxel Min":-100000,"Voxel Max":100000,"Symmetric Color Map":false,"Voxel Label":"","ISO Surface":false},"folders":{}},"Surface Settings":{"controllers":{"Surface Material":"MeshPhysicalMaterial","Surface Type":"pial","Clipping Plane":"disabled","Left Hemisphere":"mesh clipping x 0.3","Right Hemisphere":"mesh clipping x 0.3","Left Opacity":0.4,"Right Opacity":0.4,"Left Mesh Clipping":0.3,"Right Mesh Clipping":0.3,"Surface Color":"none","Blend Factor":1,"Sigma":1,"Decay":0.6,"Range Limit":5},"folders":{}},"Electrode Settings":{"controllers":{"Subject":"cvs_avg35_inMNI152","Map Electrodes":true,"Surface Mapping":"sphere.reg","Volume Mapping":"mni305","Projection Threshold":30,"Target Surface":"auto","Visibility":"all visible","Electrode Shape":"prototype","Outlines":"auto","Translucent":"contact+outline","Text Scale":1.5,"Text Visibility":true},"folders":{}},"Custom Geometry Settings":{"controllers":{},"folders":{"Configure ROI Surfaces":{"controllers":{"Visibility (all surfaces)":"visible","Opacity (all surfaces)":1},"folders":{}},"Configure ROI Volumes":{"controllers":{"Visibility (all volumes)":"visible","Opacity (all volumes)":1},"folders":{}}}},"Data Visualization":{"controllers":{"Display Data":"subject_code","Display Range":"","Threshold Data":"[None]","Threshold Range":"","Threshold Method":"|v| >= T1","Additional Data":"[None]","Inactive Color":"#c2c2c2","Play/Pause":false,"Speed":1,"Time":0,"Video Mode":"muted","Show Legend":true,"Show Time":false,"Highlight Box":false,"Info Text":true},"folders":{}}}},"sliceCrosshair":{"tkrRAS":"-1.41, -18.47, 17.68","scannerRAS":"-2.41, -35.47, 36.68","mni305RAS":"-3.26, -36.85, 35.21","mni152RAS":"-2.41, -35.47, 36.68"},"cameraState":{"target":{"x":1.9237136840820312,"y":0.07685089111328125,"z":-3.6354293823242188},"up":{"x":0.026081451985242324,"y":0.9996014963871832,"z":0.01079843890786995},"position":{"x":6.781290796621995,"y":-5.56686340368258,"z":499.94862987995145},"zoom":1}}';
       const data = JSON.parse( stateText );
       if( typeof data === "object" && data !== null && data.isThreeBrainControllerData ) {
         const controllerData = data.controllerData;
@@ -157,8 +178,8 @@ template$plot(
 Function `threeBrain::merge_brain` provides high-level function to load individual subjects' brain on a given template. See the following example:
 
 ``` r
-b1 <- raveio::rave_brain("YAEL/PAV037")
-b2 <- raveio::rave_brain("YAEL/PAV038")
+b1 <- ravecore::rave_brain("YAEL/PAV080")
+b2 <- ravecore::rave_brain("YAEL/PAV081")
 
 template <- threeBrain::merge_brain(b1, b2)
 ```
@@ -213,8 +234,8 @@ if(!dir.exists(file.path(template_root, template_subject))) {
 }
 
 # Load subject brain
-b1 <- raveio::rave_brain("YAEL/PAV037")
-b2 <- raveio::rave_brain("YAEL/PAV038")
+b1 <- ravecore::rave_brain("YAEL/PAV037")
+b2 <- ravecore::rave_brain("YAEL/PAV038")
 
 # create template brain
 template <- threeBrain::merge_brain(

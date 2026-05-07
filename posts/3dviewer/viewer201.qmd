@@ -110,7 +110,7 @@ brain <- ravecore::rave_brain("demo/DemoSubject")
 brain$set_electrode_values(
   data.frame(
     Subject = "DemoSubject",
-    Electrode = c(13:16,24,73:80),
+    Electrode = c(13:16, 24, 73:80), 
     ContinuousVal = rnorm(13),
     CategoricalVal = sample(letters[1:4], size = 13, replace = TRUE),
     PValue = c(0.15, 0.5, 0.9, 0.01, 0.05, 0.45, 0.8,

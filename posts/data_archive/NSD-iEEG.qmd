@@ -119,25 +119,31 @@ threeBrain::download_template_subject("fsaverage")
 
 Next, load the brain for all the subjects from NSD-iEEG data
 
-```r
+```{r}
 # ---- inputs --------------
 # You can add more subjects here
-subjects = c("06")
-template = "fsaverage"
+subjects <- c("06")
+template <- "fsaverage"
 
 # ---- code ----------------
 
 # load each subject brain
-brain_list = list()
-for(subject_code in subjects) {
-  rave_subject = raveio::as_rave_subject(sprintf("NSDiEEG/NSDiEEG_%s", subject_code))
-  brain = raveio::rave_brain(rave_subject, surfaces = c("sphere.reg"))
+brain_list <- list()
+for (subject_code in subjects) {
+  rave_subject <- ravecore::new_rave_subject(
+    project_name = "NSDiEEG", 
+    subject_code = sprintf("NSDiEEG_%s", subject_code)
+  ) 
+  brain <- ravecore::rave_brain(rave_subject, surfaces = c("sphere.reg"))
   brain$set_electrode_values()
-  brain_list[[length(brain_list) + 1]] = brain
+  brain_list[[length(brain_list) + 1]] <- brain
 }
 
 # load template brain
-template_brain = threeBrain::merge_brain(.list = brain_list, template_subject = template, template_surface_types = c("inflated", "sphere.reg"))
+template_brain <- threeBrain::merge_brain(
+  .list = brain_list, template_subject = template, 
+  template_surface_types = c("inflated", "sphere.reg")
+)
 template_brain$plot(
   controllers = list(
     "Display Data" = "ElectrodeShaft",

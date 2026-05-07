@@ -66,7 +66,7 @@ We will start with the pipeline (code) part. At the end of this part, a python m
 Open project `rave-pipelines`, type the following R command in the console:
 
 ```r
-raveio::module_add(
+ravepipeline::module_add(
   module_id = "fooof_module", 
   module_label = "Fooof", 
   type = "python"
@@ -113,7 +113,7 @@ A setup block immediately follows the meta field. This block provides tools to h
 ```{{r setup, include = FALSE}}
 # This code block sets up the engine environment
 # Please do not remove me
-raveio::pipeline_setup_rmd("fooof_module")
+ravepipeline::pipeline_setup_rmd("fooof_module")
 rpymat::ensure_rpymat()
 ```
 ~~~~
@@ -177,11 +177,11 @@ To compile the RAVE-markdown file, click on the `knit` button right above the RS
 
 ![The "knit" button. In some versions of RStudio, this buton might be replaced by a "Render" button. These two are the same: they reshape the RAVE-markdown document into low-level RAVE pipeline files](figure-knit-button.png)
 
-Once a RAVE-markdown is compiled, the pipeline can be loaded via the `raveio` package:
+Once a RAVE-markdown is compiled, the pipeline can be loaded via the `ravepipeline` package:
 
 
 ``` r
-pipeline <- raveio::pipeline(
+pipeline <- ravepipeline::pipeline(
   pipeline_name = "fooof_module",
   paths = file.path(rstudioapi::getActiveProject(), "modules"), 
   temporary = TRUE
@@ -337,7 +337,7 @@ pipeline$run("correlation")
 Pipeline settings can be read/written programmatically in R:
 
 ``` r
-pipeline <- raveio::pipeline(
+pipeline <- ravepipeline::pipeline(
   pipeline_name = "fooof_module",
   paths = file.path(rstudioapi::getActiveProject(), "modules"), 
   temporary = TRUE
@@ -457,7 +457,7 @@ Step 6: Compile (knit) `main.Rmd`
 We can test-run the pipeline:
 
 ``` r
-pipeline <- raveio::pipeline(
+pipeline <- ravepipeline::pipeline(
   pipeline_name = "fooof_module",
   paths = file.path(rstudioapi::getActiveProject(), "modules"), 
   temporary = TRUE

@@ -23,7 +23,7 @@ Let's load the package and generate a sample signal. The signal is a mixture of 
 ```{r}
 sample_rate <- 200
 t <- seq(0, 10, by = 1 / sample_rate)
-noise <- cumsum(rnorm(length(t), sd = 0.4)) / sqrt(seq_len(length(t)))
+noise <- cumsum(rnorm(length(t), sd = 0.4)) / sqrt(seq_along(t))
 x <- 0.2 * sin(t * 4 * pi) + 0.02 * sin(t * 20 * pi) +
   0.005 * sin(t * 120 * pi) + noise
 
@@ -59,9 +59,9 @@ y1 <- ravetools::filtfilt(b = f1$b, a = f1$a, x = x)
 par(mfrow = c(1, 2))
 
 # compare the results
-plot(t, x, type = 'l', xlab = "Time", ylab = "",
-    main = "Mixture of 2, 10, and 60Hz", xlim = c(0,1))
-lines(t, y1, col = 'red')
+plot(t, x, type = "l", xlab = "Time", ylab = "",
+     main = "Mixture of 2, 10, and 60Hz", xlim = c(0, 1))
+lines(t, y1, col = "red")
 legend(
   "topleft", c("Input", "Low: 3Hz"),
   col = c(par("fg"), "red"), lty = 1

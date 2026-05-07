@@ -1279,35 +1279,6 @@
       "Author": "Winston Chang [aut, cre]",
       "Repository": "CRAN"
     },
-    "edfReader": {
-      "Package": "edfReader",
-      "Version": "1.2.1",
-      "Source": "Repository",
-      "Type": "Package",
-      "Title": "Reading EDF(+) and BDF(+) Files",
-      "Date": "2019-03-19",
-      "Authors@R": "person (\"Jan\", \"Vis\", email = \"jan@visconsultancy.eu\", role = c(\"aut\", \"cre\"))",
-      "Maintainer": "Jan Vis <jan@visconsultancy.eu>",
-      "Description": "Reads European Data Format files EDF and EDF+, see <http://www.edfplus.info>, BioSemi Data Format files BDF, see <http://www.biosemi.com/faq/file_format.htm>, and BDF+ files, see <http://www.teuniz.net/edfbrowser/bdfplus%20format%20description.html>. The files are read in two steps: first the header is read and then the signals (using the header object as a parameter).",
-      "License": "GPL-3",
-      "Language": "en-GB",
-      "LazyData": "TRUE",
-      "Imports": [],
-      "RoxygenNote": "6.0.1",
-      "Depends": [
-        "R (>= 3.2.0)"
-      ],
-      "Suggests": [
-        "testthat",
-        "knitr",
-        "rmarkdown",
-        "ggplot2"
-      ],
-      "VignetteBuilder": "knitr",
-      "NeedsCompilation": "no",
-      "Author": "Jan Vis [aut, cre]",
-      "Repository": "CRAN"
-    },
     "evaluate": {
       "Package": "evaluate",
       "Version": "1.0.5",
@@ -3206,57 +3177,6 @@
       "RemoteUrl": "https://github.com/rave-ieeg/ravecore",
       "RemoteRef": "HEAD",
       "RemoteSha": "509570bce90d28299abb1330210e4bc6f4a94294"
-    },
-    "raveio": {
-      "Package": "raveio",
-      "Version": "0.9.0.101",
-      "Source": "Repository",
-      "Type": "Package",
-      "Title": "File-System Toolbox for RAVE Project",
-      "Language": "en-US",
-      "Authors@R": "c( person(\"Zhengjia\", \"Wang\", email = \"dipterix.wang@gmail.com\", role = c(\"aut\", \"cre\")), person(\"John\", \"Magnotti\", email = \"john.magnotti@pennmedicine.upenn.edu\", role = c(\"aut\")), person(\"Michael\", \"Beauchamp\", email = \"michael.beauchamp@pennmedicine.upenn.edu\", role = c(\"aut\")), person(\"University of Pennsylvania\", role = c(\"cph\")) )",
-      "Description": "Includes multiple cross-platform read/write interfaces for 'RAVE' project. 'RAVE' stands for \"R analysis and visualization of human intracranial electroencephalography data\". The whole project aims at providing powerful free-source package that analyze brain recordings from patients with electrodes placed on the cortical surface or inserted into the brain. 'raveio' as part of this project provides tools to read/write neurophysiology data from/to 'RAVE' file structure, as well as several popular formats including 'EDF(+)', 'Matlab', 'BIDS-iEEG', and 'HDF5', etc. Documentation and examples about 'RAVE' project are provided at <https://rave.wiki>, and the paper by John F. Magnotti, Zhengjia Wang, Michael S. Beauchamp (2020) <doi:10.1016/j.neuroimage.2020.117341>. For applications such as electrode localization, please check Zhengjia Wang, John F. Magnotti, Xiang Zhang, Michael S. Beauchamp (2023) <doi:10.1523/ENEURO.0328-23.2023>, or see 'citation(\"raveio\")' for details.",
-      "BugReports": "https://github.com/beauchamplab/raveio/issues",
-      "URL": "https://beauchamplab.github.io/raveio/",
-      "License": "MIT + file LICENSE",
-      "Encoding": "UTF-8",
-      "RoxygenNote": "7.3.3",
-      "SystemRequirements": "little-endian platform",
-      "Imports": [
-        "utils",
-        "stats",
-        "data.table",
-        "dipsaus",
-        "edfReader (>= 1.2.1)",
-        "filearray (>= 0.1.3)",
-        "ieegio",
-        "R6",
-        "ravepipeline",
-        "ravetools",
-        "rpyANTs",
-        "targets (>= 0.8.0)",
-        "threeBrain (>= 0.2.5)"
-      ],
-      "Suggests": [
-        "callr (>= 3.7.0)",
-        "stringr (>= 1.4.0)",
-        "globals",
-        "jsonlite",
-        "testthat",
-        "shiny",
-        "rpymat",
-        "freesurferformats",
-        "readNSx",
-        "gsignal"
-      ],
-      "Config/pak/sysreqs": "cmake libfftw3-dev git libglpk-dev make libhdf5-dev libicu-dev libpng-dev libuv1-dev libxml2-dev libssl-dev python3 libzmq3-dev zlib1g-dev",
-      "Repository": "https://rave-ieeg.r-universe.dev",
-      "RemoteUrl": "https://github.com/beauchamplab/raveio",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "efd87d4ba61e9ff5fbb8ee19f9a3bb8d00591b87",
-      "NeedsCompilation": "no",
-      "Author": "Zhengjia Wang [aut, cre], John Magnotti [aut], Michael Beauchamp [aut], University of Pennsylvania [cph]",
-      "Maintainer": "Zhengjia Wang <dipterix.wang@gmail.com>"
     },
     "ravepipeline": {
       "Package": "ravepipeline",
