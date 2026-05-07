@@ -23,4 +23,5 @@ data/raw/
 data/processed/
 data/Library
 data/tables
-data/viewers
+data/viewers/RAVE_MNI_template.html
+data/viewers/RAVE_dragdrop_sample.zip

@@ -43,6 +43,15 @@ jobs:
         with:
           cache-version: 1
 
+      - name: Restore data cache
+        id: cache-data
+        uses: actions/cache@v4
+        with:
+          path: data/
+          key: data-${{ hashFiles('data/**') }}
+          restore-keys: |
+            data-
+
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:

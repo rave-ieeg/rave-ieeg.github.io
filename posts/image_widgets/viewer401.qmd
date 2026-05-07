@@ -19,6 +19,7 @@ execute:
 ---
 
 ```{r, echo=FALSE, results='hide', message=FALSE, warning=FALSE, eval=TRUE}
+set.seed(42)
 .ensure_viewer_template("cvs_avg35_inMNI152")
 dir.create("data/viewers", showWarnings = FALSE, recursive = FALSE)
 
@@ -39,6 +40,17 @@ path <- threeBrain::save_brain(
   path = "data/viewers/RAVE_MNI_template.html",
   title = "RAVE-MNI152 Template"
 )
+
+cwd <- getwd()
+setwd("data/viewers/")
+fs <- list.files(".", all.files = FALSE, recursive = TRUE, include.dirs = FALSE)
+fs <- fs[!endsWith(fs, ".zip")]
+if (file.exists("RAVE_dragdrop_sample.zip")) {
+  unlink("RAVE_dragdrop_sample.zip")
+}
+utils::zip(files = fs, zipfile = "RAVE_dragdrop_sample.zip")
+unlink("RAVE_MNI_template.html")
+setwd(cwd)
 ```
 
 ```{r, eval=TRUE}
@@ -66,7 +78,7 @@ The 3D viewer supports dragging & dropping files for quick adhoc visualizations.
 
   <hr />
 
-  [Example file for this demo](Cingulum_Frontal_Parahippocampal_L.gii)
+  [Example file for this demo](../../data/viewers/surfaces/Cingulum_Frontal_Parahippocampal_L.gii)
 
   - Drop GIfTI (`*.gii`), STL (`*.stl`), or FreeSurfer mesh files (`*h.pial`, `*h.white`, `*h.smoothwm`, `*h.inflated`, ...)
   - To clear the object, open `Configure ROI Surfaces` \> `Clear Uploaded Surfaces`
@@ -77,7 +89,7 @@ The 3D viewer supports dragging & dropping files for quick adhoc visualizations.
 
   <hr />
 
-  Example files: [left hemisphere](lh.aparc.a2009s.annot) and [right hemisphere](rh.aparc.a2009s.annot)
+  Example files: [left hemisphere](../../data/viewers/surface_values/lh.aparc.a2009s.annot) and [right hemisphere](../../data/viewers/surface_values/rh.aparc.a2009s.annot)
 
   - Drop FreeSurfer annotation (`*.annot`) or curvature files (`*.curv` or `*.sulc`)
   - To clear the object, open `Configure ROI Surfaces` \> `Clear Uploaded Surfaces`
@@ -88,7 +100,7 @@ The 3D viewer supports dragging & dropping files for quick adhoc visualizations.
 
   <hr />
 
-  [Example file for this demo](Cingulum_Frontal_Parahippocampal_L.nii.gz)
+  [Example file for this demo](../../data/viewers/volumes/Cingulum_Frontal_Parahippocampal_L.nii.gz)
 
   - Drop in a NIfTI (`*.nii`, `*.nii.gz`) or a MGZ (`*.mgz`) file
   - Clamp volume via threshold using `Clipping Min/Max`
@@ -100,7 +112,7 @@ The 3D viewer supports dragging & dropping files for quick adhoc visualizations.
 
   <hr />
 
-  [Example file for this demo](aparc.a2009s+aseg.mgz)
+  [Example file for this demo](../../data/viewers/volumes/aparc.a2009s+aseg.mgz)
 
   - Drop in a NIfTI (`*.nii`, `*.nii.gz`) or a MGZ (`*.mgz`) file
   - Set color map to "discrete"
@@ -113,7 +125,7 @@ The 3D viewer supports dragging & dropping files for quick adhoc visualizations.
 
   <hr />
 
-  [Example file for this demo](electrodes-dragdrop-template.csv)
+  [Example file for this demo](../../data/viewers/electrodes/electrodes-dragdrop-template.csv)
 
   - Prepare an electrode coordinate file (see an example from the link above). The bare minimum columns are `Electrode` (channel number), `Label` (contact label), and anatomical coordinates (see below)
     - For visualizing on template brain, please specify either column set `MNI152_x`, `MNI152_y`, `MNI152_z` (known as the MNI coordinate) or `MNI305_x`, `MNI305_y`, `MNI305_z` (known as fsaverage coordinate)
@@ -125,7 +137,7 @@ The 3D viewer supports dragging & dropping files for quick adhoc visualizations.
 
   <hr />
 
-  [Example coordinate file](electrodes-dragdrop-template.csv) & [value table](electroanimation-dragdrop-template.csv)
+  [Example coordinate file](../../data/viewers/electrodes/electrodes-dragdrop-template.csv) & [value table](../../data/viewers/electrodes/electroanimation-dragdrop-template.csv)
 
   - First, drop in an electrode coordinate file (see the example coordinate file above)
   - Then, drop in an electrode value table with `Electrode`, `Time`, and one or more variable columns (see the example value table above)
@@ -138,7 +150,7 @@ The 3D viewer supports dragging & dropping files for quick adhoc visualizations.
 
   <hr />
 
-  [Example file for this demo](dragdrop-controller-state.json)
+  [Example file for this demo](../../data/viewers/controllers/dragdrop-controller-state.json)
 
   - Go to `Default` \> `Copy Controller State`, the viewer state will be copied to the clipboard (download the example data to see what is inside)
   - You can directly copy the state string to the text box (`Default` \> `Paste to set State`) or save the string to a `json` file and drag & drop in
@@ -149,7 +161,7 @@ The 3D viewer supports dragging & dropping files for quick adhoc visualizations.
 
   <hr />
 
-  Download [this example file](dragdrop-state-transition.json) and try out! The file is essentially a `json` file with one flag, some global parameters and settings for each transition.
+  Download [this example file](../../data/viewers/controllers/dragdrop-state-transition.json) and try out! The file is essentially a `json` file with one flag, some global parameters and settings for each transition.
 
   - The flag is `"isThreeBrainTransition": true`, allowing RAVE to know how to handle the file
   - Global parameters include
