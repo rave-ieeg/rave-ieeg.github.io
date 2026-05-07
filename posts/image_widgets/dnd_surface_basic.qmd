@@ -23,10 +23,11 @@ execute:
 
 ![](dragdrop-basic-1.webp){width="100%"}
 
+### Reproduce the demo
+
 * [Download the MNI152 viewer here](../../data/viewers/RAVE_dragdrop_sample.zip){target="_blank"}
-
-### Instructions
-
-* To visualize your own surface files (FreeSurfer, GIfTI) in the 3D viewer, drop the surface file as the animation
-* You may change the color by expanding control panel \> `Custom Geometry Settings` \> `Configure ROI Surfaces` \> "your_surface_filename" \> `Color`
+* Unzip the file, open file `RAVE_MNI_template.html`, a MNI152 template viewer
+* Drop the `surfaces` folder (or any surface of your choice) as demonstrated in the animation above
+* The surface will show up in the viewer.
+  * You may change the color by expanding control panel \> `Custom Geometry Settings` \> `Configure ROI Surfaces` \> "your_surface_filename" \> `Color`
 * To clear the object, open `Configure ROI Surfaces` \> `Clear Uploaded Surfaces`
