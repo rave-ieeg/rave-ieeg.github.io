@@ -119,7 +119,7 @@ threeBrain::download_template_subject("fsaverage")
 
 Next, load the brain for all the subjects from NSD-iEEG data
 
-```{r}
+``` r
 # ---- inputs --------------
 # You can add more subjects here
 subjects <- c("06")
