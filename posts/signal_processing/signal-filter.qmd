@@ -13,33 +13,14 @@ categories:
   - "Interactive Module"
 copyright: 
   holder: Zhengjia Wang
-  year: 2024
-webr:
-  packages: ['ravetools']
-  repos: 
-    - 'https://rave-ieeg.r-universe.dev'
-    - 'https://dipterix.r-universe.dev'
-    - 'https://repo.r-wasm.org/'
-  version: 0.4.2
-  channel-type: "service-worker"
-  autoload-packages: false
+  year: 2024-2026
 ---
-
-![](signal-filter.png){.hidden}
-
-::: {.alert .alert-warning role="alert"}
-This post contains interactive components (experimental) that allows you to execute RAVE code from the web browsers. If you would like to try this feature and customize/play with the code, please be patient. It might take a while for the browser to finish setting up (depending on your network speed). Once the script is ready, you will see "WEBR STATUS: 🟢 Ready!" in the above banner.
-:::
 
 ## 1. Preparation
 
 Let's load the package and generate a sample signal. The signal is a mixture of `2Hz`, `10Hz`, `60Hz`, and noise
 
-```{webr-r}
-#| editor-max-height: 500
-#| editor-quick-suggestions: TRUE
-#| autorun: true
-library(ravetools)
+```{r}
 sample_rate <- 200
 t <- seq(0, 10, by = 1 / sample_rate)
 noise <- cumsum(rnorm(length(t), sd = 0.4)) / sqrt(seq_len(length(t)))
@@ -60,26 +41,22 @@ ravetools::diagnose_channel(
 
 Construct a `FIR` filter with low pass at `3Hz` and (around) `0.5Hz` transition bandwidth:
 
-```{webr-r}
-#| editor-max-height: 500
-#| editor-quick-suggestions: TRUE
-#| autorun: true
+```{r}
 # Low-pass filter
-f1 <- design_filter(
+f1 <- ravetools::design_filter(
   data_size = length(x),
   sample_rate = sample_rate,
   low_pass_freq = 3, low_pass_trans_freq = 0.5
 )
-f1
+ravetools::diagnose_filter(b = f1$b, a = f1$a, fs = sample_rate, n = 3000)
 ```
 
 Apply the filter to the signal `x` using `filtfilt` method:
 
-```{webr-r}
-#| editor-max-height: 500
-#| editor-quick-suggestions: TRUE
-#| autorun: true
-y1 <- filtfilt(b = f1$b, a = f1$a, x = x)
+```{r}
+y1 <- ravetools::filtfilt(b = f1$b, a = f1$a, x = x)
+
+par(mfrow = c(1, 2))
 
 # compare the results
 plot(t, x, type = 'l', xlab = "Time", ylab = "",
@@ -91,8 +68,8 @@ legend(
 )
 
 # plot welch-periodogram
-pwelch(x, fs = sample_rate, window = sample_rate * 2,
+ravetools::pwelch(x, fs = sample_rate, window = sample_rate * 2,
     noverlap = sample_rate, plot = 1, ylim = c(-100, 10))
-pwelch(y1, fs = sample_rate, window = sample_rate * 2,
+ravetools::pwelch(y1, fs = sample_rate, window = sample_rate * 2,
     noverlap = sample_rate, plot = 2, col = "red")
 ```
