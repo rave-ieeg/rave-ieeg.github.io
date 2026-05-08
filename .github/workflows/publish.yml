@@ -52,6 +52,9 @@ jobs:
           restore-keys: |
             data-
 
+      - name: Restore committed data files overwritten by cache
+        run: git checkout -- data/
+
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
