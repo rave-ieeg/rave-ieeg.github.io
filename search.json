@@ -137,14 +137,14 @@
     "href": "posts/3dviewer/viewer301.html",
     "title": "Make a group brain",
     "section": "",
-    "text": "Here is an interactive demo showing two subjects mapped to a template MNI152 brain."
+    "text": "Here is an interactive demo showing two subjects mapped to a template MNI152 brain.\n\n\nDownloading cvs_avg35_inMNI152 brain from\n    https://github.com/dipterix/threeBrain-sample/releases/download/1.0.0/cvs_avg35_inMNI152.zip\nto\n    /home/runner/work/rave-ieeg.github.io/rave-ieeg.github.io/data/library/data/R/threeBrain/templates \nSubject is located at  /home/runner/work/rave-ieeg.github.io/rave-ieeg.github.io/data/library/data/R/threeBrain/templates/cvs_avg35_inMNI152 \nChecking the subject \nCongrats! Template subject has passed the check. You can set it as default template subject by entering \n\n    threeBrain::set_default_template(\"cvs_avg35_inMNI152\") \nFilling the surface in a 256x256x256 volume\nGenerating surface from volume...\nThe initial reconstructed surface volume is 863093.5 mm^3 \nResampling mesh using a volume of 124 x 230 x 183\n  VoxelSize is 1.000000, offset is 0.000000\n  Mesh Box is 77.000000 182.000000 135.000000\nSuccessfully merged 0 vertices with a distance lower than 0.000346\nThe re-meshed surface volume is 863526.2 mm^3 \nThe smoothed surface volume is 861329.7 mm^3 \nFilling the surface in a 256x256x256 volume\nGenerating surface from volume...\nThe initial reconstructed surface volume is 860982.9 mm^3 \nResampling mesh using a volume of 127 x 229 x 183\n  VoxelSize is 1.000000, offset is 0.000000\n  Mesh Box is 79.000000 182.000000 136.000000\nSuccessfully merged 0 vertices with a distance lower than 0.000346\nThe re-meshed surface volume is 859977.2 mm^3 \nThe smoothed surface volume is 855706.6 mm^3"
   },
   {
     "objectID": "posts/3dviewer/viewer301.html#demo-make-group-level-visualization-on-a-template-brain",
     "href": "posts/3dviewer/viewer301.html#demo-make-group-level-visualization-on-a-template-brain",
     "title": "Make a group brain",
     "section": "",
-    "text": "Here is an interactive demo showing two subjects mapped to a template MNI152 brain."
+    "text": "Here is an interactive demo showing two subjects mapped to a template MNI152 brain.\n\n\nDownloading cvs_avg35_inMNI152 brain from\n    https://github.com/dipterix/threeBrain-sample/releases/download/1.0.0/cvs_avg35_inMNI152.zip\nto\n    /home/runner/work/rave-ieeg.github.io/rave-ieeg.github.io/data/library/data/R/threeBrain/templates \nSubject is located at  /home/runner/work/rave-ieeg.github.io/rave-ieeg.github.io/data/library/data/R/threeBrain/templates/cvs_avg35_inMNI152 \nChecking the subject \nCongrats! Template subject has passed the check. You can set it as default template subject by entering \n\n    threeBrain::set_default_template(\"cvs_avg35_inMNI152\") \nFilling the surface in a 256x256x256 volume\nGenerating surface from volume...\nThe initial reconstructed surface volume is 863093.5 mm^3 \nResampling mesh using a volume of 124 x 230 x 183\n  VoxelSize is 1.000000, offset is 0.000000\n  Mesh Box is 77.000000 182.000000 135.000000\nSuccessfully merged 0 vertices with a distance lower than 0.000346\nThe re-meshed surface volume is 863526.2 mm^3 \nThe smoothed surface volume is 861329.7 mm^3 \nFilling the surface in a 256x256x256 volume\nGenerating surface from volume...\nThe initial reconstructed surface volume is 860982.9 mm^3 \nResampling mesh using a volume of 127 x 229 x 183\n  VoxelSize is 1.000000, offset is 0.000000\n  Mesh Box is 79.000000 182.000000 136.000000\nSuccessfully merged 0 vertices with a distance lower than 0.000346\nThe re-meshed surface volume is 859977.2 mm^3 \nThe smoothed surface volume is 855706.6 mm^3"
   },
   {
     "objectID": "posts/3dviewer/viewer301.html#create-template-brain",
@@ -228,14 +228,14 @@
     "href": "posts/3dviewer/viewer201.html",
     "title": "Customize 3D Viewer Color Palette",
     "section": "",
-    "text": "This post assumes that you have already imported subject’s imaging data to RAVE and finished the electrode localization."
+    "text": "Forcing project -&gt; demo\n\n\nForcing subject -&gt; DemoSubject\n\n\n                                                                                \n▶ [Running jobs]: initializing...\n                                                                                \n→ [Running jobs]: Initializing work... (0%)\n                                                                                \n→ [Installing subject ]: Installing orignal_signals... (20%)\n                                                                                \n→ [Installing subject ]: Installing processed_data... (40%)\n                                                                                \n→ [Installing subject ]: Installing pipelines... (60%)\n                                                                                \n→ [Installing subject ]: Installing rave_imaging... (80%)\n                                                                                \n→ [Installing subject ]: Installing notes... (100%)\n                                                                                \n■ \nDone."
   },
   {
     "objectID": "posts/3dviewer/viewer201.html#prerequisites",
     "href": "posts/3dviewer/viewer201.html#prerequisites",
     "title": "Customize 3D Viewer Color Palette",
-    "section": "",
-    "text": "This post assumes that you have already imported subject’s imaging data to RAVE and finished the electrode localization."
+    "section": "Prerequisites",
+    "text": "Prerequisites\nThis post assumes that you have already imported subject’s imaging data to RAVE and finished the electrode localization."
   },
   {
     "objectID": "posts/3dviewer/viewer201.html#simple-3d-viewer",
