@@ -24,9 +24,9 @@ website:
       - href: index.qmd
         text: Home
       - href: blogs.md
-        text: Documentation
+        text: Tutorials & Demos
       - href: https://github.com/orgs/rave-ieeg/discussions
-        text: Help & Discussion
+        text: Get Help
         target: "_blank"
     tools:
       - icon: github
