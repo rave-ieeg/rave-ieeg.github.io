@@ -21,8 +21,6 @@ website:
   navbar:
     background: "#000000"
     left:
-      - href: index.qmd
-        text: Home
       - href: blogs.md
         text: Tutorials & Demos
       - href: https://github.com/orgs/rave-ieeg/discussions
