@@ -18,17 +18,17 @@ copyright:
 
 ## Overview
 
-![](yael.png){.hidden}
+![](posts/electrode_localization/yael.png){.hidden}
 
 Electrode localization is a critical step for getting spatial information of iEEG and DBS electrodes. YAEL (*Your Advanced Electrode Localizer*) provides a fully integrated pipeline that takes in raw DICOM or NIfTI images and outputs the electrode coordinates and atlas labels. The pipeline is divided into two parts:
 
--   Input: T1 pre-operative MRI and post-surgery CT
+- Input: T1 pre-operative MRI and post-surgery CT
 
--   Step 1: Imaging preprocess
+- Step 1: Imaging preprocess
 
--   Step 2: Interactive 3D electrode localization
+- Step 2: Interactive 3D electrode localization
 
--   Output: electrode coordinate table and RAVE 3D viewer
+- Output: electrode coordinate table and RAVE 3D viewer
 
 For more high-level information, [please check our paper](https://doi.org/10.1523/ENEURO.0328-23.2023). Click on the 'Prerequisites' button to check data and system requirements:
 
@@ -60,8 +60,8 @@ Please make sure the computer has access to the internet.
 
 `FreeSurfer` is highly recommended if you want to reconstruct brain surface models. The program also comes with commonly used brain parcelation and sub-cortical segmentation methods. Please check their official website on how to download and configure. Make sure you also register and download a license file (it's free):
 
--   Download page: <https://surfer.nmr.mgh.harvard.edu/fswiki/DownloadAndInstall>
--   Free license application: <https://surfer.nmr.mgh.harvard.edu/registration.html>
+- Download page: <https://surfer.nmr.mgh.harvard.edu/fswiki/DownloadAndInstall>
+- Free license application: <https://surfer.nmr.mgh.harvard.edu/registration.html>
 
 If you are using Windows, please consider using docker <https://hub.docker.com/r/freesurfer/freesurfer> to run FreeSurfer reconstruction on your own. See (TBD) for how to bring your own FreeSurfer folder to YAEL.
 :::
@@ -70,8 +70,8 @@ If you are using Windows, please consider using docker <https://hub.docker.com/r
 
 The imaging preprocess module in YAEL contains the following two parts. If you would like to substitute any part (or even the entire module) with your existing pipelines, see 'Alternative Preprocess' (TBD) below.
 
--   T1 image preprocess
--   CT-MR co-registration
+- T1 image preprocess
+- CT-MR co-registration
 
 Here is a video tutorial using NIfTI T1 and CT as input:
 
@@ -107,11 +107,10 @@ Here is an introductory video of using YAEL interactive 3D viewer for electrode 
 
 More videos are available here:
 
--   ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="YAEL tricks: using pre-defined sEEG/DBS electrode geometries" data-title="YAEL tricks: using pre-defined sEEG/DBS electrode geometries"}
-    {{< video https://youtu.be/ZfhJu_e63L0 >}}
-    :::
+- ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="YAEL tricks: using pre-defined sEEG/DBS electrode geometries" data-title="YAEL tricks: using pre-defined sEEG/DBS electrode geometries"}
+  {{< video https://youtu.be/ZfhJu_e63L0 >}}
+  :::
 
--   ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Tutorials made by Neurocognition of Language Lab" data-title="Tutorial made by Neurocognition of Language Lab"}
-    Credit: Sarah (Ivi) Fung
-    {{< video https://youtu.be/16Bi7Ptbohg >}} {{< video https://youtu.be/qNEEotkbi1I >}} 
-    :::
+- ::: {.rave-modal data-type="span" data-class="text-decoration-underline" data-label="Tutorials made by Neurocognition of Language Lab" data-title="Tutorial made by Neurocognition of Language Lab"}
+  Credit: Sarah (Ivi) Fung {{< video https://youtu.be/16Bi7Ptbohg >}} {{< video https://youtu.be/qNEEotkbi1I >}}
+  :::

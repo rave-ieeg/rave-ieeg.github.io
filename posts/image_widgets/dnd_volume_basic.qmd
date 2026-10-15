@@ -1,5 +1,5 @@
 ---
-title: "Visualize Any Volume/Atlas in 3D Viewer"
+title: "Visualize Anatomical Volume/Atlas in 3D Viewer"
 description: |
   Drag & drop common volumetric files (.nii[.gz], .mgz) into 3D viewer
 date: 2026-05-07
@@ -22,7 +22,7 @@ execute:
 - [Download the MNI152 viewer here](../../data/viewers/RAVE_dragdrop_sample.zip){target="_blank"}
 - Unzip the file, open file `RAVE_MNI_template.html`, a MNI152 template viewer
 
-### Example 1: continuous volume
+### Example 1: continuous volume (probablistic mask, intensity map)
 
 ![](dragdrop-basic-2.webp){width="100%"}
 
@@ -33,7 +33,7 @@ execute:
   - If this is an fMRI image, `Volume Settings` \> `Component Index` allows you to set the time index
 - To clear the object, open `Configure ROI Volumes` \> `Clear Uploaded Volumes`
 
-### Example 1: discrete volume (atlases/mask)
+### Example 2: discrete volume (atlases/mask)
 
 ![](dragdrop-basic-3.webp){width="100%"}
 

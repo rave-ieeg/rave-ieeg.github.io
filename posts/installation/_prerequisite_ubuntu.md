@@ -67,3 +67,13 @@ sudo dpkg -i ./rstudio.deb
 
 and `RStudio` should be in your application list. If not, look at your sidebar in Ubuntu, click **search your computer** and enter "RStudio". 
 
+### 6. (Optional) Install Node.js for AI features (Ubuntu 24.04 or newer)
+
+If you want to use RAVE's AI features (optional, see [Drive RAVE with AI](../ai-agents/introduction.md){target="_blank"}), install `Node.js`. Open terminal and type the following command:
+
+```sh
+sudo apt install -y nodejs
+```
+
+To verify the installation, type `node --version` in your terminal. It should print `v18` or higher.
+

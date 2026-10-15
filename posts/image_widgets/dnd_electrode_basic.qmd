@@ -44,15 +44,12 @@ The CSV must contain the following columns (column names are **case-sensitive**)
 
 After dropping the file the electrodes appear in the viewer. To remove them, expand the control panel \> `Electrode Settings` \> `Clear Uploaded Electrodes`.
 
-::: callout-note
-For a **native-subject** viewer, replace `MNI152_x / MNI152_y / MNI152_z` with `T1R / T1A / T1S` (subject-native coordinates). All other columns remain the same. An example is provided in `electrodes/electrodes-dragdrop-native.csv`.
-:::
 
 ### 2. Set electrode values
 
 ![](dragdrop-basic-5.webp){width="100%"}
 
-Once electrodes are visible in the viewer you can color them by any numeric or categorical variable. Prepare a second CSV — an example is provided in `electrodes/electroanimation-dragdrop-template.csv` — and drop it into the viewer.
+Once electrodes are visible in the viewer you can color them by any numeric or categorical variable. Prepare a second CSV — an example is provided in `electrodes/electroanimation-dragdrop-template.csv` from the zip file — and drop it into the viewer.
 
 The value CSV must contain at least an `Electrode` column plus one or more value columns:
 
