@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -15,10 +15,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -78,10 +81,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-b8e98c8ff6d24df9d1d8ea91fa5ffa4e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-b8eccbc372613be2e7d99e7e29db8966.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -282,8 +285,8 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <section id="install-libraries-using-brew" class="level3">
 <h3 class="anchored" data-anchor-id="install-libraries-using-brew">3. Install libraries using brew</h3>
 <p>Enter this command into the terminal window:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install hdf5 fftw pkg-config cmake libpng pandoc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This step will install the <code>hdf5</code> (high-performance file system), <code>fftw</code> (fast-fourier transform library), <code>pkg-config</code> (package configuration toolbox), <code>cmake</code> (cross-platform make for compiling optional packages such as ant), <code>libpng</code> (library for manipulating png images), <code>pandoc</code> (library for converting document format) and takes several minutes to complete. Wait until the installation is finished and the command prompt reappears before moving to the next step.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install hdf5 fftw pkg-config cmake libpng pandoc node</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This step will install the <code>hdf5</code> (high-performance file system), <code>fftw</code> (fast-fourier transform library), <code>pkg-config</code> (package configuration toolbox), <code>cmake</code> (cross-platform make for compiling optional packages such as ant), <code>libpng</code> (library for manipulating png images), <code>pandoc</code> (library for converting document format), <code>node</code> (<code>Node.js</code>, needed for RAVE’s AI features) and takes several minutes to complete. Wait until the installation is finished and the command prompt reappears before moving to the next step.</p>
 </section>
 <section id="finished-with-prerequisites" class="level3">
 <h3 class="anchored" data-anchor-id="finished-with-prerequisites">4. Finished with prerequisites</h3>
@@ -311,6 +314,12 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <section id="install-the-latest-version-of-rtools." class="level3">
 <h3 class="anchored" data-anchor-id="install-the-latest-version-of-rtools.">2. Install the latest version of RTools.</h3>
 <p>Go to <a href="https://cran.r-project.org/bin/windows/Rtools/" target="_blank">https://cran.r-project.org/bin/windows/Rtools/</a> and download a proper version of <code>RTools</code>. The version must match your version of R. RTools contains compilers used to compile packages</p>
+</section>
+<section id="optional-install-node.js-for-ai-features" class="level3">
+<h3 class="anchored" data-anchor-id="optional-install-node.js-for-ai-features">3. (Optional) Install Node.js for AI features</h3>
+<p>If you want to use RAVE’s AI features (optional, see <a href="../../posts/ai-agents/introduction.html" target="_blank">Drive RAVE with AI</a>), install <code>Node.js</code>.</p>
+<p>Go to <a href="https://nodejs.org/en/download" target="_blank">https://nodejs.org/en/download</a>. The page selects the latest LTS (long-term support) version for you. Click “Windows Installer (.msi)” to download the installer.</p>
+<p>Open the installer and click through to install. The default options are fine.</p>
 </section>
 </div>
 <div class="rave-modal" data-type="botton" data-class="btn btn-primary" data-label="Ubuntu Linux" data-title="Prerequisite on Ubuntu Linux">
@@ -362,6 +371,12 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">-i</span> ./rstudio.deb </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and <code>RStudio</code> should be in your application list. If not, look at your sidebar in Ubuntu, click <strong>search your computer</strong> and enter “RStudio”.</p>
 </section>
+<section id="optional-install-node.js-for-ai-features-ubuntu-24.04-or-newer" class="level3">
+<h3 class="anchored" data-anchor-id="optional-install-node.js-for-ai-features-ubuntu-24.04-or-newer">6. (Optional) Install Node.js for AI features (Ubuntu 24.04 or newer)</h3>
+<p>If you want to use RAVE’s AI features (optional, see <a href="../../posts/ai-agents/introduction.html" target="_blank">Drive RAVE with AI</a>), install <code>Node.js</code>. Open terminal and type the following command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> nodejs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To verify the installation, type <code>node --version</code> in your terminal. It should print <code>v18</code> or higher.</p>
+</section>
 </div>
 </section>
 <section id="step-2-install-rave-for-the-first-time" class="level2">
@@ -370,11 +385,11 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <ol type="1">
 <li>Open the <code>R</code> application if it is not already open (<code>RStudio</code> may also be used). Copy and paste the following command into the <code>R</code> (or <code>RStudio</code>) console:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'ravemanager'</span>, <span class="at">repos =</span> <span class="st">'https://rave-ieeg.r-universe.dev'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'ravemanager'</span>, <span class="at">repos =</span> <span class="st">'https://rave-ieeg.r-universe.dev'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
 <li>Copy and paste the following command into the <code>R</code> console:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">install</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">install</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wait until you see the “Done finalizing installations!” message and the R Console command prompt reappears. This may take a few minutes depending on the speed of your internet connection. After installation, it is recommended to close all instances of <code>R</code> and restart <code>R</code>.</p>
 <div class="rave-modal" data-type="botton" data-class="btn btn-outline-primary" data-label="Common installation problems" data-title="Common installation problems">
 <p>Here is a list of common problems you might encounter during the installlation.</p>
@@ -395,7 +410,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <section id="step-3-launch-rave" class="level2">
 <h2 class="anchored" data-anchor-id="step-3-launch-rave">Step 3: Launch RAVE</h2>
 <p>Copy and paste the following command into the <code>R</code> console:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rave<span class="sc">::</span><span class="fu">start_rave2</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>rave<span class="sc">::</span><span class="fu">start_rave2</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In a few seconds a web browser window showing RAVE should appear. Success! Explore RAVE by clicking on one of the module names on the left-hand side such as “Subject 3D Viewer” to view a brain or “Power Explorer” to view sample iEEG data.</p>
 </section>
 <section id="step-4-analyze-your-data-with-rave" class="level2">
@@ -405,7 +420,7 @@ gtag('config', 'GTM-MVX9KRN9', { 'anonymize_ip': true});
 <section id="optional-but-recommended-install-isolated-python-environment" class="level4">
 <h4 class="anchored" data-anchor-id="optional-but-recommended-install-isolated-python-environment">(optional but recommended): Install Isolated Python Environment</h4>
 <p>Copy and paste the following command into the “R” console:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">configure_python</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ravemanager<span class="sc">::</span><span class="fu">configure_python</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Some advanced RAVE features (such as CT to MRI alignment via <code>ANTs</code>) call Python libraries. To prevent conflicts with existing Python installations and ensure stability and reliability, this step uses <code>Miniconda</code> to install an isolated Python environment and useful Python packages (<code>numpy</code>, <code>scipy</code>, <code>jupyterlab</code>, <code>mne</code>, <code>pynwb</code>, <code>antspyx</code>).</p>
 
 
