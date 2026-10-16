@@ -38,7 +38,7 @@ RAVE can now be operated by AI agents. An AI agent is a chat app that can also u
 
    > Load these electrodes in Power Clustering, apply the same analysis settings, and show me the response patterns.
 
-   No need to enter the same settings again in every module.
+   No need to enter the same settings again in every module. [Watch the video demo](#demo-across-modules).
 
 4. **Apply the same analysis, different subjects, automatically.** AI agents know how RAVE works. Describe the analysis you want, and the agent sets it up as a reproducible RAVE pipeline (a saved analysis you can run again). Or ask it to save your analysis as a reusable recipe (called a "skill"), then run it on all your subjects with the same settings.
 
@@ -144,7 +144,13 @@ Here is the result in RAVE's 3D viewer:
 
 ![](intro-demo-6-viewer-result.webp){width="100%" fig-alt="The 3D viewer with a see-through brain, green-to-yellow electrode colors and a large coronal slice"}
 
-<!-- TODO: add a demo for "Carry an analysis across modules": load the significant electrodes in Voltage Explorer or Power Clustering with the same analysis settings -->
+## Example: carry an analysis across modules {#demo-across-modules}
+
+In this video, the agent drives RAVE across three modules: Power Explorer, Power Clustering and Voltage Explorer. It sets up the analysis settings in each module for you, runs the analysis, and sums up the results in the chat.
+
+You retain control over the analysis. Agents assist with repetitive steps such as keeping analysis parameters consistent across modules and finding hidden buttons/outputs.
+
+{{< video https://youtu.be/o1e6bK1G5T4 title="Agentic RAVE" >}}
 
 <!-- TODO: add a demo for "Apply the same analysis, different subjects, automatically": save the analysis as a reusable skill, then run it on several subjects -->
 
