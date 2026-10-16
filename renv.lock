@@ -1545,7 +1545,7 @@
     },
     "future": {
       "Package": "future",
-      "Version": "1.76.0",
+      "Version": "1.80.0",
       "Source": "Repository",
       "Title": "Unified Parallel and Distributed Processing in R for Everyone",
       "Depends": [
@@ -1585,21 +1585,21 @@
     },
     "future.apply": {
       "Package": "future.apply",
-      "Version": "1.20.2",
+      "Version": "1.21.0",
       "Source": "Repository",
       "Title": "Apply Function to Elements in Parallel using Futures",
       "Depends": [
         "R (>= 3.2.0)",
-        "future (>= 1.49.0)"
+        "future (>= 1.80.0)"
       ],
       "Imports": [
         "globals",
         "parallel",
+        "stats",
         "utils"
       ],
       "Suggests": [
         "datasets",
-        "stats",
         "tools",
         "listenv",
         "R.rsp",
@@ -1614,7 +1614,7 @@
       "BugReports": "https://github.com/futureverse/future.apply/issues",
       "Language": "en-US",
       "Encoding": "UTF-8",
-      "RoxygenNote": "7.3.3",
+      "Config/roxygen2/version": "8.1.0",
       "NeedsCompilation": "no",
       "Author": "Henrik Bengtsson [aut, cre, cph] (ORCID: <https://orcid.org/0000-0002-7579-5165>), R Core Team [cph, ctb]",
       "Maintainer": "Henrik Bengtsson <henrikb@braju.com>",
@@ -3104,7 +3104,7 @@
     },
     "ravecore": {
       "Package": "ravecore",
-      "Version": "0.1.1.22",
+      "Version": "0.1.1.23",
       "Source": "Repository",
       "Title": "Core File Structures and Workflows for 'RAVE'",
       "Authors@R": "c( person(\"Zhengjia\", \"Wang\", email = \"dipterix.wang@gmail.com\",  role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0001-5629-1116\")), person(\"Xiang\", \"Zhang\", email = \"xiang.zhang@pennmedicine.upenn.edu\", role = c(\"aut\")), person(\"John\", \"Magnotti\", email = \"john.magnotti@pennmedicine.upenn.edu\", role = c(\"aut\")), person(\"Michael\", \"Beauchamp\", email = \"michael.beauchamp@pennmedicine.upenn.edu\", role = c(\"aut\")), person(\"Trustees of the University of Pennsylvania\", role = \"cph\", comment = \"All files in this package unless explicitly stated in the file\") )",
@@ -3154,7 +3154,7 @@
       "RemoteType": "repository",
       "RemoteUrl": "https://github.com/rave-ieeg/ravecore",
       "RemoteRef": "HEAD",
-      "RemoteSha": "a4fc13aab0844f745fc2e67f25acfc8c7404991f"
+      "RemoteSha": "fed5eaa7b2f05cf2d01bd997edc95629fb1d8ad2"
     },
     "ravepipeline": {
       "Package": "ravepipeline",
@@ -3289,7 +3289,7 @@
     },
     "readNSx": {
       "Package": "readNSx",
-      "Version": "0.1.0",
+      "Version": "0.1.0.1",
       "Source": "Repository",
       "Title": "Read 'Blackrock-Microsystems' Files ('NEV', 'NSx')",
       "Authors@R": "c( person(given = \"Zhengjia\", family = \"Wang\",  email = \"dipterix.wang@gmail.com\", role = c(\"aut\", \"cre\")) )",
@@ -3330,7 +3330,7 @@
       "RemoteType": "repository",
       "RemoteUrl": "https://github.com/dipterix/readNSx",
       "RemoteRef": "HEAD",
-      "RemoteSha": "518c62b3df42f900965d8e76a3706133510e8f11"
+      "RemoteSha": "2057a7c15f4579c7708201e68872463ccfc45f94"
     },
     "remotes": {
       "Package": "remotes",
@@ -4121,7 +4121,7 @@
     },
     "threeBrain": {
       "Package": "threeBrain",
-      "Version": "1.3.0.68",
+      "Version": "1.3.0.70",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Your Advanced 3D Brain Visualization",
@@ -4167,7 +4167,7 @@
       "RemoteType": "repository",
       "RemoteUrl": "https://github.com/dipterix/threeBrain",
       "RemoteRef": "HEAD",
-      "RemoteSha": "c5a906e1761cf85a5549295c8f50d0c96ddcfa29"
+      "RemoteSha": "e47b6b18146894da22e3dc4f9485286317ba15c1"
     },
     "tibble": {
       "Package": "tibble",
@@ -4469,7 +4469,7 @@
     },
     "xfun": {
       "Package": "xfun",
-      "Version": "0.61",
+      "Version": "0.62",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Supporting Functions for Packages Maintained by 'Yihui Xie'",
@@ -4492,7 +4492,6 @@
         "tinytex (>= 0.30)",
         "mime",
         "litedown (>= 0.6)",
-        "commonmark",
         "knitr (>= 1.50)",
         "remotes",
         "pak",
@@ -4509,7 +4508,7 @@
       "BugReports": "https://github.com/yihui/xfun/issues",
       "Encoding": "UTF-8",
       "VignetteBuilder": "litedown",
-      "Config/roxygen2/version": "8.1.0",
+      "Config/roxygen2/version": "8.1.1",
       "NeedsCompilation": "yes",
       "Author": "Yihui Xie [aut, cre, cph] (ORCID: <https://orcid.org/0000-0003-0645-5666>, URL: https://yihui.org), Wush Wu [ctb], Daijiang Li [ctb], Xianying Tan [ctb], Salim Brüggemann [ctb] (ORCID: <https://orcid.org/0000-0002-5329-5987>), Christophe Dervieux [ctb]",
       "Maintainer": "Yihui Xie <xie@yihui.name>",
